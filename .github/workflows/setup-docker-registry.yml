@@ -1,0 +1,353 @@
+# ========================================
+# 🐳 Docker Registry Setup Workflow
+# ========================================
+# מטרה: הקמת Docker Registry מקומי
+# תרחיש שימוש: פעם אחת לפני בנייה ראשונית
+# יוצר: קובץ התקנה להרצה מקומית
+
+name: Setup Docker Registry
+
+on:
+  workflow_dispatch:
+    inputs:
+      registry_port:
+        description: 'Registry Port'
+        required: false
+        default: '5000'
+      registry_volume:
+        description: 'Registry Storage Volume'
+        required: false
+        default: 'docker_registry'
+
+jobs:
+  
+  # ============================================
+  # 📦 Create Registry Setup Package
+  # ============================================
+  create-setup-package:
+    name: Create Registry Setup Package
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 📝 Create Registry Setup Script (PowerShell)
+        run: |
+          mkdir -p docker-registry-setup
+          
+          cat > docker-registry-setup/setup-registry.ps1 << 'PSEOF'
+          # ========================================
+          # 🐳 Docker Registry Local Setup
+          # ========================================
+          # מקים Docker Registry מקומי על המחשב שלך
+          # פועל בפורט 5000 (ברירת מחדל)
+          # חוסם את NetFree מלחסום Docker Hub
+          
+          param(
+              [int]$Port = 5000,
+              [string]$VolumeName = "docker_registry",
+              [switch]$Stop,
+              [switch]$Remove
+          )
+          
+          Write-Host "╔═══════════════════════════════════════════╗" -ForegroundColor Cyan
+          Write-Host "║  🐳 Docker Registry Setup               ║" -ForegroundColor Cyan
+          Write-Host "╚═══════════════════════════════════════════╝`n" -ForegroundColor Cyan
+          
+          # ============================================
+          # Stop & Remove
+          # ============================================
+          if ($Stop -or $Remove) {
+              Write-Host "🛑 עוצר Registry...`n" -ForegroundColor Yellow
+              docker stop docker-registry 2>&1 | Out-Null
+              
+              if ($Remove) {
+                  Write-Host "🗑️ מוחק Registry...`n" -ForegroundColor Yellow
+                  docker rm docker-registry 2>&1 | Out-Null
+                  docker volume rm $VolumeName 2>&1 | Out-Null
+                  
+                  Write-Host "✅ Registry הוסר!" -ForegroundColor Green
+              } else {
+                  Write-Host "✅ Registry נעצר!" -ForegroundColor Green
+              }
+              exit 0
+          }
+          
+          # ============================================
+          # Create Registry
+          # ============================================
+          Write-Host "📦 יוצר Docker Volume...`n" -ForegroundColor Cyan
+          docker volume create $VolumeName
+          
+          Write-Host "🚀 מפעיל Registry Container...`n" -ForegroundColor Cyan
+          docker run -d `
+            --name docker-registry `
+            --restart=always `
+            -p ${Port}:5000 `
+            -v ${VolumeName}:/var/lib/registry `
+            -e REGISTRY_STORAGE_DELETE_ENABLED=true `
+            registry:2
+          
+          if ($LASTEXITCODE -eq 0) {
+              Write-Host "`n╔═══════════════════════════════════════════╗" -ForegroundColor Green
+              Write-Host "║  ✅ Registry פועל בהצלחה!               ║" -ForegroundColor Green
+              Write-Host "╚═══════════════════════════════════════════╝`n" -ForegroundColor Green
+              
+              Write-Host "📍 כתובת Registry:" -ForegroundColor Cyan
+              Write-Host "   http://localhost:$Port`n" -ForegroundColor White
+              
+              Write-Host "🔧 הגדרות Docker:" -ForegroundColor Yellow
+              Write-Host '   הוסף ל-daemon.json:' -ForegroundColor White
+              Write-Host '   {' -ForegroundColor White
+              Write-Host '     "insecure-registries": ["localhost:' -NoNewline -ForegroundColor White
+              Write-Host "$Port" -NoNewline -ForegroundColor Cyan
+              Write-Host '"]' -ForegroundColor White
+              Write-Host "   }`n" -ForegroundColor White
+              
+              Write-Host "📋 פקודות שימושיות:" -ForegroundColor Yellow
+              Write-Host "   • Tag image:    docker tag IMAGE localhost:$Port/IMAGE" -ForegroundColor White
+              Write-Host "   • Push image:   docker push localhost:$Port/IMAGE" -ForegroundColor White
+              Write-Host "   • Pull image:   docker pull localhost:$Port/IMAGE" -ForegroundColor White
+              Write-Host "   • Stop:         .\setup-registry.ps1 -Stop" -ForegroundColor White
+              Write-Host "   • Remove:       .\setup-registry.ps1 -Remove`n" -ForegroundColor White
+              
+              Write-Host "🎯 צעד הבא:" -ForegroundColor Magenta
+              Write-Host "   1. הפעל מחדש את Docker Desktop" -ForegroundColor White
+              Write-Host "   2. Push image: docker tag ghcr.io/sumca1/escriptorium-project:latest localhost:$Port/escriptorium:latest" -ForegroundColor White
+              Write-Host "   3.             docker push localhost:$Port/escriptorium:latest`n" -ForegroundColor White
+              
+          } else {
+              Write-Host "❌ שגיאה ביצירת Registry!" -ForegroundColor Red
+              exit 1
+          }
+          PSEOF
+          
+          echo "✅ Created setup-registry.ps1"
+      
+      - name: 📝 Create Registry Setup Script (Bash)
+        run: |
+          cat > docker-registry-setup/setup-registry.sh << 'BASHEOF'
+          #!/bin/bash
+          # ========================================
+          # 🐳 Docker Registry Local Setup
+          # ========================================
+          
+          PORT=${1:-5000}
+          VOLUME_NAME=${2:-docker_registry}
+          
+          echo "╔═══════════════════════════════════════════╗"
+          echo "║  🐳 Docker Registry Setup               ║"
+          echo "╚═══════════════════════════════════════════╝"
+          echo
+          
+          # Create volume
+          echo "📦 Creating Docker Volume..."
+          docker volume create $VOLUME_NAME
+          
+          # Run registry
+          echo "🚀 Starting Registry Container..."
+          docker run -d \
+            --name docker-registry \
+            --restart=always \
+            -p ${PORT}:5000 \
+            -v ${VOLUME_NAME}:/var/lib/registry \
+            -e REGISTRY_STORAGE_DELETE_ENABLED=true \
+            registry:2
+          
+          if [ $? -eq 0 ]; then
+              echo
+              echo "╔═══════════════════════════════════════════╗"
+              echo "║  ✅ Registry Running Successfully!       ║"
+              echo "╚═══════════════════════════════════════════╝"
+              echo
+              echo "📍 Registry URL: http://localhost:$PORT"
+              echo
+              echo "🔧 Docker Configuration:"
+              echo "   Add to daemon.json:"
+              echo "   {"
+              echo "     \"insecure-registries\": [\"localhost:$PORT\"]"
+              echo "   }"
+              echo
+              echo "📋 Useful Commands:"
+              echo "   • Tag image:  docker tag IMAGE localhost:$PORT/IMAGE"
+              echo "   • Push image: docker push localhost:$PORT/IMAGE"
+              echo "   • Pull image: docker pull localhost:$PORT/IMAGE"
+              echo
+          else
+              echo "❌ Error creating Registry!"
+              exit 1
+          fi
+          BASHEOF
+          
+          chmod +x docker-registry-setup/setup-registry.sh
+          echo "✅ Created setup-registry.sh"
+      
+      - name: 📝 Create README
+        run: |
+          cat > docker-registry-setup/README.md << 'MDEOF'
+          # 🐳 Docker Registry Local Setup
+          
+          קובץ התקנה להקמת Docker Registry מקומי על המחשב שלך.
+          
+          ## 📋 מה זה עושה?
+          
+          - מקים **Docker Registry פרטי** על המחשב המקומי
+          - פועל בפורט **5000** (ברירת מחדל)
+          - מאפשר לך לאחסן תמונות Docker **מקומית**
+          - **עוקף** חסימות NetFree של Docker Hub
+          
+          ## 🚀 התקנה מהירה
+          
+          ### Windows (PowerShell):
+          ```powershell
+          # הפעלה בסיסית
+          .\setup-registry.ps1
+          
+          # עם פורט מותאם
+          .\setup-registry.ps1 -Port 5001
+          
+          # עצירה
+          .\setup-registry.ps1 -Stop
+          
+          # הסרה מלאה
+          .\setup-registry.ps1 -Remove
+          ```
+          
+          ### Linux/Mac (Bash):
+          ```bash
+          # הפעלה בסיסית
+          ./setup-registry.sh
+          
+          # עם פורט מותאם
+          ./setup-registry.sh 5001
+          ```
+          
+          ## ⚙️ הגדרת Docker
+          
+          לאחר ההתקנה, **חובה** להגדיר את Docker:
+          
+          ### Windows:
+          1. פתח **Docker Desktop**
+          2. Settings → Docker Engine
+          3. הוסף:
+          ```json
+          {
+            "insecure-registries": ["localhost:5000"]
+          }
+          ```
+          4. **Restart Docker Desktop**
+          
+          ### Linux:
+          1. ערוך: `/etc/docker/daemon.json`
+          2. הוסף:
+          ```json
+          {
+            "insecure-registries": ["localhost:5000"]
+          }
+          ```
+          3. הפעל מחדש: `sudo systemctl restart docker`
+          
+          ## 📦 שימוש
+          
+          ### 1. Push תמונה ל-Registry המקומי
+          ```bash
+          # Tag
+          docker tag ghcr.io/sumca1/escriptorium-project:latest localhost:5000/escriptorium:latest
+          
+          # Push
+          docker push localhost:5000/escriptorium:latest
+          ```
+          
+          ### 2. Pull תמונה מה-Registry המקומי
+          ```bash
+          docker pull localhost:5000/escriptorium:latest
+          ```
+          
+          ### 3. שימוש ב-docker-compose
+          ```yaml
+          services:
+            web:
+              image: localhost:5000/escriptorium:latest
+              # ...
+          ```
+          
+          ## 🔍 בדיקת סטטוס
+          
+          ```bash
+          # בדוק שה-Registry רץ
+          docker ps | grep registry
+          
+          # בדוק תמונות ב-Registry
+          curl http://localhost:5000/v2/_catalog
+          ```
+          
+          ## 🛑 עצירה והסרה
+          
+          ### עצירה זמנית:
+          ```powershell
+          # PowerShell
+          .\setup-registry.ps1 -Stop
+          
+          # Bash
+          docker stop docker-registry
+          ```
+          
+          ### הסרה מלאה:
+          ```powershell
+          # PowerShell
+          .\setup-registry.ps1 -Remove
+          
+          # Bash
+          docker rm docker-registry
+          docker volume rm docker_registry
+          ```
+          
+          ## ⚠️ שים לב
+          
+          - Registry זה **לא מאובטח** - השתמש רק **מקומית**
+          - **אל תחשוף** לאינטרנט ללא SSL/TLS
+          - כל התמונות נשמרות ב-Docker Volume בשם `docker_registry`
+          
+          ## 🎯 תרחישי שימוש
+          
+          ### תרחיש 1: פיתוח מקומי
+          Build מקומי → Push ל-Registry → Test על מכונה אחרת בבית
+          
+          ### תרחיש 2: עקיפת NetFree
+          Build ב-GitHub Actions → Pull מ-GitHub → Push ל-Registry מקומי → שימוש ללא חסימות
+          
+          ### תרחיש 3: גרסאות מרובות
+          שמור מספר גרסאות של אותה תמונה מקומית לבדיקות
+          
+          ## 📚 משאבים נוספים
+          
+          - [Docker Registry Documentation](https://docs.docker.com/registry/)
+          - [Docker Registry API](https://docs.docker.com/registry/spec/api/)
+          MDEOF
+          
+          echo "✅ Created README.md"
+      
+      - name: 📦 Create Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-registry-setup
+          path: docker-registry-setup/
+          retention-days: 90
+      
+      - name: 📢 Summary
+        run: |
+          echo "## 🎉 Docker Registry Setup Package Created!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Package Contents:" >> $GITHUB_STEP_SUMMARY
+          echo "- \`setup-registry.ps1\` (Windows)" >> $GITHUB_STEP_SUMMARY
+          echo "- \`setup-registry.sh\` (Linux/Mac)" >> $GITHUB_STEP_SUMMARY
+          echo "- \`README.md\` (Full Instructions)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📥 Download:" >> $GITHUB_STEP_SUMMARY
+          echo "Click **'docker-registry-setup'** in Artifacts below" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🚀 Quick Start:" >> $GITHUB_STEP_SUMMARY
+          echo '```powershell' >> $GITHUB_STEP_SUMMARY
+          echo '.\setup-registry.ps1' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY

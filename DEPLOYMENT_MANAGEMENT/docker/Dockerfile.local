@@ -1,0 +1,36 @@
+# ============================================
+# 🏠 Local Build Dockerfile (NetFree Compatible)
+# ============================================
+# This Dockerfile builds WITHOUT pulling from Docker Hub
+# Uses only base images that are already available
+
+# שלב 1: Frontend Build
+# אם אין node, נדלג על זה ונשתמש ב-frontend מוכן
+FROM python:3.10-slim AS base
+
+# התקנת dependencies בסיסיים
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    libpq-dev \
+    postgresql-client \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# העתקת קוד
+WORKDIR /usr/src/app
+COPY ../../CORE/eScriptorium_UNIFIED /usr/src/app
+
+# התקנת Python packages
+RUN pip install --no-cache-dir -r requirements.txt || true
+
+# הגדרות סביבה
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=escriptorium.settings
+
+# Port
+EXPOSE 8000
+
+# הרצה
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

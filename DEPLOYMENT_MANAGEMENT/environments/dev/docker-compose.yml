@@ -10,11 +10,7 @@ version: '3.8'
 
 x-app:
   &app
-  build:
-    context: ../../../CORE/eScriptorium_UNIFIED
-    dockerfile: Dockerfile
-    args:
-      - ENVIRONMENT=dev
+  image: ghcr.io/sumca1/escriptorium-project:latest
   env_file: 
     - ../../../CORE/eScriptorium_UNIFIED/config/variables.env
     - .env.dev
@@ -98,11 +94,11 @@ services:
       - SERVERNAME=localhost
       - TZ=Asia/Jerusalem
     volumes:
-      - ../../../CORE/eScriptorium_UNIFIED/nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../../CORE/eScriptorium_UNIFIED/nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf:ro
       - static:/usr/src/app/static:ro
       - media:/usr/src/app/media:ro
     ports:
-      - "8080:80"
+      - "8082:80"
     depends_on:
       - web
     networks:
