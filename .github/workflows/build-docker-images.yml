@@ -48,6 +48,21 @@ jobs:
           build-args: |
             ENVIRONMENT=production
       
+      - name: 📦 Pull and push Docker Registry image
+        run: |
+          echo "🐳 משוך Registry מ-Docker Hub (זמין ב-GitHub!)"
+          docker pull registry:2
+          
+          echo "🏷️ Tag לGitHub Container Registry"
+          docker tag registry:2 ${{ env.REGISTRY }}/${{ github.repository }}/registry:2
+          docker tag registry:2 ${{ env.REGISTRY }}/${{ github.repository }}/registry:latest
+          
+          echo "⬆️ Push ל-GitHub"
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}/registry:2
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}/registry:latest
+          
+          echo "✅ Registry זמין ב-GitHub!"
+      
       - name: ✅ Build complete
         run: |
           echo "✅ Docker image built and pushed successfully!"
