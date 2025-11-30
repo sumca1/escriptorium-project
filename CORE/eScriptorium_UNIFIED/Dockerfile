@@ -1,4 +1,6 @@
-FROM docker.io/library/node:18-alpine AS frontend
+# Frontend build stage
+# Using GitHub Container Registry to bypass NetFree blocking
+FROM ghcr.io/sumca1/escriptorium-project/node:18-alpine AS frontend
 
 WORKDIR /build
 COPY ./front /build

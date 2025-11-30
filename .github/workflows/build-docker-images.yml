@@ -48,20 +48,37 @@ jobs:
           build-args: |
             ENVIRONMENT=production
       
-      - name: 📦 Pull and push Docker Registry image
+      - name: 📦 Pull and push base images for NetFree bypass
         run: |
-          echo "🐳 משוך Registry מ-Docker Hub (זמין ב-GitHub!)"
-          docker pull registry:2
+          echo "🐳 משוך תמונות base מ-Docker Hub (זמין ב-GitHub!)"
           
-          echo "🏷️ Tag לGitHub Container Registry"
+          # Registry image
+          echo "📦 1/4 - registry:2"
+          docker pull registry:2
           docker tag registry:2 ${{ env.REGISTRY }}/${{ github.repository }}/registry:2
           docker tag registry:2 ${{ env.REGISTRY }}/${{ github.repository }}/registry:latest
-          
-          echo "⬆️ Push ל-GitHub"
           docker push ${{ env.REGISTRY }}/${{ github.repository }}/registry:2
           docker push ${{ env.REGISTRY }}/${{ github.repository }}/registry:latest
           
-          echo "✅ Registry זמין ב-GitHub!"
+          # Node Alpine for frontend builds
+          echo "📦 2/4 - node:18-alpine"
+          docker pull node:18-alpine
+          docker tag node:18-alpine ${{ env.REGISTRY }}/${{ github.repository }}/node:18-alpine
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}/node:18-alpine
+          
+          # Python slim for possible future use
+          echo "📦 3/4 - python:3.10-slim"
+          docker pull python:3.10-slim
+          docker tag python:3.10-slim ${{ env.REGISTRY }}/${{ github.repository }}/python:3.10-slim
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}/python:3.10-slim
+          
+          # Postgres Alpine
+          echo "📦 4/4 - postgres:15-alpine"
+          docker pull postgres:15-alpine
+          docker tag postgres:15-alpine ${{ env.REGISTRY }}/${{ github.repository }}/postgres:15-alpine
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}/postgres:15-alpine
+          
+          echo "✅ כל התמונות זמינות ב-GitHub Container Registry!"
       
       - name: ✅ Build complete
         run: |
