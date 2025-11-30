@@ -131,7 +131,7 @@ TEMPLATES = [
                 'biblia_translation_processor.biblia_translations',  # BiblIA Hebrew translations
             ],
             'builtins': [
-                'translations.translation_loader',  # 🆕 BiblIA Unified Translation System
+                # 'translations.translation_loader',  # 🆕 BiblIA Unified Translation System - DISABLED: module not found
             ],
         },
     },

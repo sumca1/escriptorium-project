@@ -1,0 +1,86 @@
+# Simplified Dockerfile - No frontend build (NetFree workaround)
+# Uses existing frontend dist files from source
+
+# Pull official base image
+FROM registry.gitlab.com/scripta/escriptorium/base:dj-solo
+
+ARG VERSION_DATE="passthistobuildcmd"
+ENV VERSION_DATE=$VERSION_DATE
+ENV FRONTEND_DIR=/usr/src/app/escriptorium/static/dist
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# ============================================
+# TESSERACT INSTALLATION
+# ============================================
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    tesseract-ocr-heb \
+    tesseract-ocr-ara \
+    tesseract-ocr-script-arab \
+    tesseract-ocr-script-hebr \
+    libtesseract-dev \
+    libleptonica-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata
+
+# ============================================
+# HUNSPELL SPELL CHECKER
+# ============================================
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    hunspell \
+    hunspell-en-us \
+    && rm -rf /var/lib/apt/lists/*
+
+# ============================================
+# COPY APPLICATION CODE
+# ============================================
+WORKDIR /usr/src/app
+
+# Copy requirements first (better caching)
+COPY ./app/requirements.txt /usr/src/app/requirements.txt
+COPY ./app/requirements-dev.txt /usr/src/app/requirements-dev.txt
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy core files
+COPY ./app/manage.py /usr/src/app/manage.py
+COPY ./app/uwsgi.ini /usr/src/app/uwsgi.ini
+COPY ./app/entrypoint.sh /usr/src/app/entrypoint.sh
+COPY ./app/Dockerfile /usr/src/app/Dockerfile
+COPY ./app/clean_biblia_middleware_v2.py /usr/src/app/clean_biblia_middleware_v2.py
+
+# Make entrypoint executable
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# Copy application directories
+COPY ./app/apps /usr/src/app/apps
+COPY ./app/escriptorium /usr/src/app/escriptorium
+COPY ./app/fastapi_app /usr/src/app/fastapi_app
+COPY ./app/escriptorium_model_checker.py /usr/src/app/escriptorium_model_checker.py
+COPY ./app/templates /usr/src/app/templates
+COPY ./app/static /usr/src/app/static
+COPY ./app/locale /usr/src/app/locale
+COPY ./app/homepage /usr/src/app/homepage
+COPY ./app/contributors /usr/src/app/contributors
+
+# Install gettext for compilemessages
+RUN apt-get update && apt-get install -y --no-install-recommends gettext && rm -rf /var/lib/apt/lists/*
+
+# Create logs directory
+RUN mkdir -p /usr/src/app/escriptorium/logs
+
+# Compile translations
+RUN python manage.py compilemessages || true
+
+# Copy public images
+COPY ./public/images /usr/src/app/public/images
+
+# Copy existing frontend dist (if exists)
+COPY ./front/dist /usr/src/app/escriptorium/static/dist
+
+# Run entrypoint
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
