@@ -1,0 +1,184 @@
+# Docker Files Manifest
+# This is the SOURCE OF TRUTH for what files should be in Docker
+# Generated: 28 Oct 2025, Session 2
+# Purpose: Ensure all modified files are properly synced to Docker
+
+version: "1.0"
+last_updated: "2025-10-28T23:00:00"
+
+# Critical files modified in Session 2 - MUST be in Docker
+# Each entry specifies EXACT source and destination paths
+session_2_security_fixes:
+  - source_path: "app/apps/api/views.py"
+    docker_path: "/app/apps/api/views.py"
+    docker_directory: "/app/apps/api"
+    reason: "SQL injection fix (B608) - whitelist dictionary"
+    critical: true
+    verify_import: "from django.db import connection"
+    
+  - source_path: "app/fastapi_app/main.py"
+    docker_path: "/app/fastapi_app/main.py"
+    docker_directory: "/app/fastapi_app"
+    reason: "Binding fix (B104) - localhost only"
+    critical: true
+    verify_content: "host=\"127.0.0.1\""
+    
+  - source_path: "passim_service.py"
+    docker_path: "/app/passim_service.py"
+    docker_directory: "/app"
+    reason: "Binding fix (B104) - localhost only"
+    critical: true
+    verify_content: "host='127.0.0.1'"
+    
+  - source_path: ".github/instructions/enhanced_learning_logger.py"
+    docker_path: "NOT_IN_DOCKER"
+    reason: "Pickle documentation (B301) - GitHub workflow only"
+    critical: false
+    note: "This file should NOT be in Docker - it's a development tool"
+    
+  - source_path: "app/escriptorium_model_checker.py"
+    docker_path: "/app/escriptorium_model_checker.py"
+    docker_directory: "/app"
+    reason: "Pickle risk warning (B301)"
+    critical: true
+    verify_import: "import pickle"
+    
+  - source_path: "app/biblia_templatetags/biblia_trans.py"
+    docker_path: "/app/biblia_templatetags/biblia_trans.py"
+    docker_directory: "/app/biblia_templatetags"
+    reason: "XSS prevention (B308/B703) - escape() added"
+    critical: true
+    security_note: "CRITICAL - protects Hebrew translations from XSS"
+    verify_import: "from django.utils.html import escape"
+    must_have_directory: true
+
+# Core application directories that MUST be copied
+required_app_directories:
+  - source: "app/"
+    destination: "/app"
+    excludes:
+      - "**/__pycache__"
+      - "**/*.pyc"
+      - "**/.pytest_cache"
+      - "**/venv"
+    note: "Main Django application"
+    
+  - source: "scripts/"
+    destination: "/app/scripts"
+    note: "Utility scripts"
+    
+# Configuration files
+required_config_files:
+  - path: "requirements.txt"
+    reason: "Python dependencies"
+    critical: true
+    
+  - path: "manage.py"
+    reason: "Django management"
+    critical: true
+
+# Files that should NOT be in Docker
+excluded_files:
+  - pattern: "**/*.bak"
+    reason: "Backup files"
+    
+  - pattern: "**/*_old.py"
+    reason: "Old versions"
+    
+  - pattern: "**/*.backup"
+    reason: "Backup files"
+    
+  - pattern: ".git/**"
+    reason: "Version control"
+    
+  - pattern: "venv/**"
+    reason: "Local virtual environment"
+    
+  - pattern: "**/__pycache__/**"
+    reason: "Python cache"
+    
+  - pattern: "**/*.log"
+    reason: "Log files"
+
+# Dockerfile COPY commands validation
+# Each entry here should match a COPY command in Dockerfile
+expected_copy_commands:
+  - command: "COPY app/ /app/"
+    creates_directories:
+      - "/app/apps"
+      - "/app/apps/api"
+      - "/app/fastapi_app"
+      - "/app/biblia_templatetags"
+    includes_files:
+      - "app/apps/api/views.py → /app/apps/api/views.py"
+      - "app/fastapi_app/main.py → /app/fastapi_app/main.py"
+      - "app/biblia_templatetags/biblia_trans.py → /app/biblia_templatetags/biblia_trans.py"
+      - "app/escriptorium_model_checker.py → /app/escriptorium_model_checker.py"
+    note: "Main app directory - includes all Session 2 fixes"
+    critical: true
+    
+  - command: "COPY passim_service.py /app/"
+    creates_directories:
+      - "/app"
+    includes_files:
+      - "passim_service.py → /app/passim_service.py"
+    note: "Passim service at root level"
+    critical: true
+    
+  - command: "COPY scripts/ /app/scripts/"
+    creates_directories:
+      - "/app/scripts"
+    note: "Utility scripts"
+    
+  - command: "COPY requirements.txt /app/"
+    includes_files:
+      - "requirements.txt → /app/requirements.txt"
+    note: "Dependencies"
+    critical: true
+    
+  - command: "COPY manage.py /app/"
+    includes_files:
+      - "manage.py → /app/manage.py"
+    note: "Django management"
+    critical: true
+
+# Critical directories that MUST exist in Docker
+required_docker_directories:
+  - path: "/app"
+    reason: "Root application directory"
+    
+  - path: "/app/apps"
+    reason: "Django apps directory"
+    
+  - path: "/app/apps/api"
+    reason: "API app (contains views.py with SQL fix)"
+    contains_critical_file: "views.py"
+    
+  - path: "/app/fastapi_app"
+    reason: "FastAPI application"
+    contains_critical_file: "main.py"
+    
+  - path: "/app/biblia_templatetags"
+    reason: "Hebrew translation template tags (XSS fixes)"
+    contains_critical_file: "biblia_trans.py"
+    security_critical: true
+    
+  - path: "/app/scripts"
+    reason: "Utility scripts"
+
+# Verification checklist
+verification_steps:
+  - step: "Check all session_2_security_fixes files exist in source"
+  - step: "Verify Dockerfile has COPY commands for all required directories"
+  - step: "Compare timestamps between source and Docker image"
+  - step: "Search for .bak, _old files and remove them"
+  - step: "Validate imports work (django.utils.html.escape)"
+  - step: "Run security scan on final Docker image"
+
+# Notes for future sessions
+maintenance_notes:
+  - "Always update this manifest when modifying Python files"
+  - "Run sync script before docker build"
+  - "Verify no old versions (_old, .bak) remain"
+  - "Check that new dependencies are in requirements.txt"
+  - "Security fixes MUST be in Docker before deployment"

@@ -1,0 +1,410 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Document Comparison" %} - {{ document.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comparison.css' %}?v={{ STATIC_VERSION }}">
+{% endblock %}
+
+{% block content %}
+<div class="comparison-container">
+    <!-- Header -->
+    <div class="comparison-header">
+        <div class="header-content">
+            <div class="header-main">
+                <h1><i class="fas fa-file-alt"></i> {{ document.name }}</h1>
+                <p>{% trans "OCR Engine Comparison for this document" %}</p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'comparison:dashboard' %}" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-left"></i> {% trans "Back to Dashboard" %}
+                </a>
+                <a href="{% url 'documents:show' document.pk %}" class="btn btn-light">
+                    <i class="fas fa-eye"></i> {% trans "View Document" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Info -->
+    <div class="document-info-section">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="info-card">
+                    <h3>{% trans "Document Information" %}</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>{% trans "Name:" %}</label>
+                            <span>{{ document.name }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Parts:" %}</label>
+                            <span>{{ document.parts.count }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Created:" %}</label>
+                            <span>{{ document.created_at|date:"d/m/Y H:i" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Owner:" %}</label>
+                            <span>{{ document.owner.username }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Total Transcriptions:" %}</label>
+                            <span>{{ transcriptions.count }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Can Compare:" %}</label>
+                            <span class="{% if can_compare %}text-success{% else %}text-warning{% endif %}">
+                                {% if can_compare %}
+                                    <i class="fas fa-check"></i> {% trans "Yes" %}
+                                {% else %}
+                                    <i class="fas fa-times"></i> {% trans "No" %}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quick-stats">
+                    <h4>{% trans "Quick Stats" %}</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item kraken-stat">
+                            <i class="fas fa-dragon"></i>
+                            <div>
+                                <strong>{{ kraken_transcriptions|length }}</strong>
+                                <small>Kraken</small>
+                            </div>
+                        </div>
+                        <div class="stat-item tesseract-stat">
+                            <i class="fas fa-eye"></i>
+                            <div>
+                                <strong>{{ tesseract_transcriptions|length }}</strong>
+                                <small>Tesseract</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Options -->
+    {% if can_compare %}
+    <div class="comparison-options-section">
+        <div class="section-header">
+            <h2>{% trans "Available Comparisons" %}</h2>
+            <p class="text-muted">{% trans "Select transcriptions to compare side-by-side" %}</p>
+        </div>
+
+        <div class="comparison-matrix">
+            <div class="row">
+                <!-- Kraken Results -->
+                <div class="col-md-6">
+                    <div class="engine-section kraken-section">
+                        <div class="engine-header">
+                            <h4><i class="fas fa-dragon"></i> {% trans "Kraken Results" %}</h4>
+                            <span class="badge badge-primary">{{ kraken_transcriptions|length }}</span>
+                        </div>
+                        
+                        <div class="transcriptions-list">
+                            {% for trans in kraken_transcriptions %}
+                            <div class="transcription-item" data-trans-id="{{ trans.id }}" data-engine="kraken">
+                                <div class="transcription-info">
+                                    <div class="transcription-header">
+                                        <strong>{% trans "Transcription" %} #{{ trans.id }}</strong>
+                                        <small class="text-muted">{{ trans.created_at|date:"d/m/Y H:i" }}</small>
+                                    </div>
+                                    <div class="transcription-details">
+                                        <span class="detail-item">
+                                            <i class="fas fa-list"></i> {{ trans.linetranscription_set.count }} {% trans "lines" %}
+                                        </span>
+                                        <span class="detail-item">
+                                            <i class="fas fa-clock"></i> {{ trans.created_at|timesince }} {% trans "ago" %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="transcription-actions">
+                                    <button class="btn btn-sm btn-outline-primary select-kraken" 
+                                            data-trans-id="{{ trans.id }}">
+                                        {% trans "Select" %}
+                                    </button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tesseract Results -->
+                <div class="col-md-6">
+                    <div class="engine-section tesseract-section">
+                        <div class="engine-header">
+                            <h4><i class="fas fa-eye"></i> {% trans "Tesseract Results" %}</h4>
+                            <span class="badge badge-success">{{ tesseract_transcriptions|length }}</span>
+                        </div>
+                        
+                        <div class="transcriptions-list">
+                            {% for trans in tesseract_transcriptions %}
+                            <div class="transcription-item" data-trans-id="{{ trans.id }}" data-engine="tesseract">
+                                <div class="transcription-info">
+                                    <div class="transcription-header">
+                                        <strong>{% trans "Transcription" %} #{{ trans.id }}</strong>
+                                        <small class="text-muted">{{ trans.created_at|date:"d/m/Y H:i" }}</small>
+                                    </div>
+                                    <div class="transcription-details">
+                                        <span class="detail-item">
+                                            <i class="fas fa-list"></i> {{ trans.linetranscription_set.count }} {% trans "lines" %}
+                                        </span>
+                                        <span class="detail-item">
+                                            <i class="fas fa-clock"></i> {{ trans.created_at|timesince }} {% trans "ago" %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="transcription-actions">
+                                    <button class="btn btn-sm btn-outline-success select-tesseract" 
+                                            data-trans-id="{{ trans.id }}">
+                                        {% trans "Select" %}
+                                    </button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Panel -->
+        <div class="comparison-panel" id="comparison-panel">
+            <div class="panel-header">
+                <h3>{% trans "Ready to Compare" %}</h3>
+            </div>
+            <div class="selected-items">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="selected-item" id="selected-kraken">
+                            <div class="engine-icon kraken-color">
+                                <i class="fas fa-dragon"></i>
+                            </div>
+                            <div class="selection-info">
+                                <h5>{% trans "Kraken Selection" %}</h5>
+                                <p id="kraken-selection-info">{% trans "No transcription selected" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="vs-indicator">
+                            <span class="vs-text">VS</span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="selected-item" id="selected-tesseract">
+                            <div class="engine-icon tesseract-color">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="selection-info">
+                                <h5>{% trans "Tesseract Selection" %}</h5>
+                                <p id="tesseract-selection-info">{% trans "No transcription selected" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comparison-actions">
+                <button class="btn btn-primary btn-lg" id="start-detailed-comparison" disabled>
+                    <i class="fas fa-microscope"></i> {% trans "Start Detailed Comparison" %}
+                </button>
+                <button class="btn btn-secondary" id="clear-selections">
+                    <i class="fas fa-times"></i> {% trans "Clear Selections" %}
+                </button>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- Not Enough Transcriptions -->
+    <div class="insufficient-data-section">
+        <div class="no-data">
+            <i class="fas fa-info-circle"></i>
+            <h3>{% trans "Insufficient Data for Comparison" %}</h3>
+            <p>{% trans "You need at least 2 transcriptions to perform a comparison." %}</p>
+            <p class="text-muted">
+                {% trans "Current status:" %}
+                {% if kraken_transcriptions %}
+                    <span class="text-primary">{{ kraken_transcriptions|length }} Kraken</span>
+                {% else %}
+                    <span class="text-muted">0 Kraken</span>
+                {% endif %}
+                +
+                {% if tesseract_transcriptions %}
+                    <span class="text-success">{{ tesseract_transcriptions|length }} Tesseract</span>
+                {% else %}
+                    <span class="text-muted">0 Tesseract</span>
+                {% endif %}
+            </p>
+            <div class="suggested-actions">
+                <a href="{% url 'documents:show' document.pk %}" class="btn btn-primary">
+                    <i class="fas fa-play"></i> {% trans "Run OCR on this Document" %}
+                </a>
+                <a href="{% url 'comparison:dashboard' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> {% trans "Back to Dashboard" %}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- All Transcriptions List -->
+    <div class="all-transcriptions-section">
+        <div class="section-header">
+            <h2>{% trans "All Transcriptions" %}</h2>
+            <p class="text-muted">{% trans "Complete list of OCR results for this document" %}</p>
+        </div>
+        
+        <div class="transcriptions-table-container">
+            <table class="table table-striped transcriptions-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "ID" %}</th>
+                        <th>{% trans "Engine" %}</th>
+                        <th>{% trans "Lines" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trans in transcriptions %}
+                    <tr class="transcription-row" data-trans-id="{{ trans.id }}">
+                        <td><strong>#{{ trans.id }}</strong></td>
+                        <td>
+                            <span class="engine-badge" data-engine="{% if 'kraken' in trans.linetranscription_set.first.version_source|default:'' %}kraken{% else %}tesseract{% endif %}">
+                                {% if 'kraken' in trans.linetranscription_set.first.version_source|default:'' %}
+                                    <i class="fas fa-dragon"></i> Kraken
+                                {% else %}
+                                    <i class="fas fa-eye"></i> Tesseract
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td>{{ trans.linetranscription_set.count }}</td>
+                        <td>{{ trans.created_at|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <span class="badge badge-success">{% trans "Complete" %}</span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="#" class="btn btn-sm btn-outline-primary view-transcription" 
+                                   data-trans-id="{{ trans.id }}">
+                                    <i class="fas fa-eye"></i> {% trans "View" %}
+                                </a>
+                                <button class="btn btn-sm btn-outline-secondary quick-compare" 
+                                        data-trans-id="{{ trans.id }}">
+                                    <i class="fas fa-balance-scale"></i> {% trans "Compare" %}
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    let selectedKraken = null;
+    let selectedTesseract = null;
+    
+    // Handle Kraken selection
+    $('.select-kraken').click(function() {
+        const transId = $(this).data('trans-id');
+        $('.transcription-item[data-engine="kraken"]').removeClass('selected');
+        $(this).closest('.transcription-item').addClass('selected');
+        selectedKraken = transId;
+        updateSelectionDisplay();
+    });
+    
+    // Handle Tesseract selection
+    $('.select-tesseract').click(function() {
+        const transId = $(this).data('trans-id');
+        $('.transcription-item[data-engine="tesseract"]').removeClass('selected');
+        $(this).closest('.transcription-item').addClass('selected');
+        selectedTesseract = transId;
+        updateSelectionDisplay();
+    });
+    
+    // Clear selections
+    $('#clear-selections').click(function() {
+        selectedKraken = null;
+        selectedTesseract = null;
+        $('.transcription-item').removeClass('selected');
+        updateSelectionDisplay();
+    });
+    
+    // Start comparison
+    $('#start-detailed-comparison').click(function() {
+        if (selectedKraken && selectedTesseract) {
+            const url = `{% url "comparison:viewer" %}?trans1=${selectedKraken}&trans2=${selectedTesseract}`;
+            window.location.href = url;
+        }
+    });
+    
+    function updateSelectionDisplay() {
+        // Update Kraken selection display
+        if (selectedKraken) {
+            const krakenItem = $(`.transcription-item[data-trans-id="${selectedKraken}"]`);
+            const krakenInfo = `{% trans "Transcription" %} #${selectedKraken}`;
+            $('#kraken-selection-info').text(krakenInfo);
+            $('#selected-kraken').addClass('selected');
+        } else {
+            $('#kraken-selection-info').text('{% trans "No transcription selected" %}');
+            $('#selected-kraken').removeClass('selected');
+        }
+        
+        // Update Tesseract selection display
+        if (selectedTesseract) {
+            const tesseractItem = $(`.transcription-item[data-trans-id="${selectedTesseract}"]`);
+            const tesseractInfo = `{% trans "Transcription" %} #${selectedTesseract}`;
+            $('#tesseract-selection-info').text(tesseractInfo);
+            $('#selected-tesseract').addClass('selected');
+        } else {
+            $('#tesseract-selection-info').text('{% trans "No transcription selected" %}');
+            $('#selected-tesseract').removeClass('selected');
+        }
+        
+        // Update comparison panel visibility and button state
+        const canCompare = selectedKraken && selectedTesseract;
+        $('#start-detailed-comparison').prop('disabled', !canCompare);
+        
+        if (selectedKraken || selectedTesseract) {
+            $('#comparison-panel').addClass('active');
+        } else {
+            $('#comparison-panel').removeClass('active');
+        }
+    }
+    
+    // Quick compare functionality
+    $('.quick-compare').click(function() {
+        const transId = $(this).data('trans-id');
+        // Find another transcription to compare with
+        const allTransIds = $('.transcription-row').map(function() {
+            return $(this).data('trans-id');
+        }).get().filter(id => id !== transId);
+        
+        if (allTransIds.length > 0) {
+            const compareWithId = allTransIds[0]; // Use first available
+            const url = `{% url "comparison:viewer" %}?trans1=${transId}&trans2=${compareWithId}`;
+            window.location.href = url;
+        } else {
+            alert('{% trans "No other transcriptions available for comparison" %}');
+        }
+    });
+});
+</script>
+{% endblock %}

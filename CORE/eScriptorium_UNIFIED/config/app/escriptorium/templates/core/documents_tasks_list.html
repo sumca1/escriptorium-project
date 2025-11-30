@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n static bootstrap %}
+{% block head_title %}{% trans "Tasks monitoring" %}{% endblock %}
+
+{% block body %}
+<h1>{% trans 'Task Monitoring' %}</h1>
+<div id="documents_tasks">
+  <documentstasks :is-admin="{{ user.is_staff|lower }}" :task-states="{{ task_states }}" :users="{{ users }}" />
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script>
+    // Pre-load required i18n namespace for tasks page
+    if (typeof loadI18nNamespace === 'function') {
+      loadI18nNamespace('tasks').then(function() {
+        console.log('✅ Tasks namespace loaded');
+      }).catch(function(err) {
+        console.warn('⚠️ Could not load tasks namespace:', err);
+      });
+    }
+  </script>
+  <script src="{% static 'docstasks.js' %}?v={{ STATIC_VERSION }}"></script>
+{% endblock %}

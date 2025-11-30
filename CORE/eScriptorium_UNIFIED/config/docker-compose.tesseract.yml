@@ -1,0 +1,181 @@
+# ============================================================================
+# 🔥 TESSERACT TRAINING - Docker Compose Configuration
+# This file builds eScriptorium with modified Tesseract for training support
+#
+# Usage:
+#   docker-compose -f docker-compose.tesseract.yml build
+#   docker-compose -f docker-compose.tesseract.yml up -d
+#
+# Build time: ~30-45 minutes (first build)
+# Created: 30 October 2025
+# ============================================================================
+
+x-app:
+  &app
+  build:
+    context: ./app
+    dockerfile: Dockerfile.tesseract-training
+  env_file: variables.env
+  environment:
+    - TZ=Asia/Jerusalem
+    - TESSDATA_PREFIX=/usr/local/share/tessdata
+  volumes:
+    - ./app/:/usr/src/app/
+    - static:/usr/src/app/static
+    - media:/usr/src/app/media
+  command: /bin/true
+
+services:
+
+  web:
+    <<: *app
+    command: uwsgi --ini /usr/src/app/uwsgi.ini
+    restart: unless-stopped
+    expose:
+      - 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  channelserver:
+    <<: *app
+    command: /usr/src/app/entrypoint.sh daphne --bind 0.0.0.0 --port 5000 -v 1 escriptorium.asgi:application
+    restart: unless-stopped
+    expose:
+      - 5000
+
+  # FastAPI service for real-time image processing
+  fastapi:
+    <<: *app
+    command: python -m uvicorn fastapi_app.main:app --host 0.0.0.0 --port 8001 --reload
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONPATH=/usr/src/app
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Passim service (document comparison)
+  passim:
+    <<: *app
+    command: python -m uvicorn passim_app.main:app --host 0.0.0.0 --port 8003 --reload
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    environment:
+      - PYTHONPATH=/usr/src/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  celery:
+    <<: *app
+    command: /usr/src/app/entrypoint.sh celery --app=escriptorium.celery:app worker --loglevel=INFO -Ofair --max-tasks-per-child=1 --prefetch-multiplier=1
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    volumes:
+      - static:/usr/src/app/static
+      - media:/usr/src/app/media
+    depends_on:
+      - web
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  exim:
+    build: ./exim
+    restart: unless-stopped
+    expose:
+      - 25
+
+  db:
+    image: postgres:12.20-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file: variables.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  static:
+  media:
+  postgres:
+
+# ============================================================================
+# Build & Run Instructions
+# ============================================================================
+#
+# 1. Build the image (FIRST TIME - takes 30-45 minutes):
+#    docker-compose -f docker-compose.tesseract.yml build --no-cache
+#
+# 2. Start services:
+#    docker-compose -f docker-compose.tesseract.yml up -d
+#
+# 3. Verify Tesseract installation:
+#    docker-compose -f docker-compose.tesseract.yml exec web tesseract --version
+#    docker-compose -f docker-compose.tesseract.yml exec web lstmtraining --help
+#
+# 4. Verify Python bindings:
+#    docker-compose -f docker-compose.tesseract.yml exec web python -c "import tesserocr; print(dir(tesserocr.PyTessBaseAPI))"
+#    # Should show 'WriteLSTMFLineData' method!
+#
+# 5. Check logs:
+#    docker-compose -f docker-compose.tesseract.yml logs -f web
+#
+# 6. Stop services:
+#    docker-compose -f docker-compose.tesseract.yml down
+#
+# ============================================================================
+# Troubleshooting
+# ============================================================================
+#
+# If build fails at Tesseract compilation:
+#   - Check available disk space (need ~5GB)
+#   - Check available RAM (need ~2GB)
+#   - Try reducing parallel jobs: make -j2 instead of make -j$(nproc)
+#
+# If tesserocr fails to install:
+#   - Verify Tesseract installed: docker-compose -f docker-compose.tesseract.yml exec web tesseract --version
+#   - Check CPPFLAGS and LDFLAGS in Dockerfile
+#   - Try installing tesserocr manually in container
+#
+# If 'WriteLSTMFLineData' method missing:
+#   - You're using standard Tesseract instead of modified version
+#   - Rebuild with --no-cache flag
+#   - Verify git clone succeeded in build logs
+#
+# ============================================================================

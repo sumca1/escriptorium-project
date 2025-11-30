@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Engine Comparison" %} - BiblIA eScriptorium{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comparison.css' %}?v={{ STATIC_VERSION }}">
+<style>
+    .best-engine-value {
+        font-size: 1.2em;
+    }
+    
+    .stat-value {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .stat-label {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+    
+    .documents-list {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .documents-list h2 {
+        margin-top: 0;
+        color: #333;
+    }
+    
+    .document-item {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .document-item:last-child {
+        border-bottom: none;
+    }
+    
+    .document-info h4 {
+        margin: 0 0 5px 0;
+        color: #333;
+    }
+    
+    .document-info p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9em;
+    }
+    
+    .btn-compare {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+    
+    .btn-compare:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+    }
+    
+    .empty-state i {
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="comparison-container">
+    <div class="comparison-header">
+        <h1>🔬 {% trans "Engine Comparison Dashboard" %}</h1>
+        <p>{% trans "Compare Kraken vs Tesseract OCR results side-by-side" %}</p>
+        <div class="header-actions">
+            <a href="{% url 'comparison-selector' %}" class="btn btn-primary">
+                {% trans "Start New Comparison" %} →
+            </a>
+        </div>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{% trans "Total Comparisons" %}</h3>
+            <div class="stat-value" id="total-comparisons">-</div>
+            <div class="stat-label">{% trans "Available" %}</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3>{% trans "Avg Accuracy" %}</h3>
+            <div class="stat-value" id="avg-accuracy">-</div>
+            <div class="stat-label">%</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3>{% trans "Best Engine" %}</h3>
+            <div class="stat-value best-engine-value" id="best-engine">-</div>
+            <div class="stat-label">{% trans "Most Accurate" %}</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3>{% trans "Documents" %}</h3>
+            <div class="stat-value">{{ documents.count }}</div>
+            <div class="stat-label">{% trans "With Multiple Transcriptions" %}</div>
+        </div>
+    </div>
+    
+    <div class="documents-list">
+        <h2>📄 {% trans "Documents with Comparisons" %}</h2>
+        
+        {% if documents %}
+            {% for document in documents %}
+            <div class="document-item">
+                <div class="document-info">
+                    <h4>{{ document.name }}</h4>
+                    <p>
+                        {% trans "Created:" %} {{ document.created_at|date:"Y-m-d" }} | 
+                        {% trans "Pages:" %} {{ document.parts.count }}
+                    </p>
+                </div>
+                <button class="btn btn-primary" data-document-id="{{ document.pk }}">
+                    {% trans "Compare" %} →
+                </button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <h3>{% trans "No Comparisons Available" %}</h3>
+                <p>{% trans "You need documents with at least two transcriptions (Kraken and Tesseract) to compare." %}</p>
+                <p>{% trans "Start by creating transcriptions for your documents using different OCR engines." %}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function openComparison(documentId) {
+    // Find transcriptions for this document and open viewer
+    // For now, redirect to document page
+    // TODO: Get transcription IDs and redirect to viewer
+    window.location.href = `/document/${documentId}/`;
+}
+
+// Alternative: Direct viewer link with transcription IDs
+function openComparisonViewer(trans1Id, trans2Id) {
+    window.location.href = `/comparison/viewer/?trans1=${trans1Id}&trans2=${trans2Id}`;
+}
+</script>
+<script src="{% static 'js/comparison-dashboard.js' %}?v={{ STATIC_VERSION }}"></script>
+{% endblock %}

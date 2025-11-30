@@ -1,0 +1,2522 @@
+# Hebrew translation for eScriptorium
+# Copyright (C) 2025 BiblIA Project
+# This file is distributed under the same license as the eScriptorium package.
+# BiblIA Team <team@biblia.org>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eScriptorium 0.13\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-21 15:00+0000\n"
+"PO-Revision-Date: 2025-09-21 19:15+0000\n"
+"Last-Translator: BiblIA Team <team@biblia.org>\n"
+"Language-Team: Hebrew <team@biblia.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+# #1 - מקור: app\apps\core\tasks.py:926
+msgid "Replacements applied with some errors"
+msgstr "ההחלפות בוצעו עם שגיאות מסוימות"
+
+# #2 - מקור: app\apps\core\views.py:396
+msgid "Project created successfully!"
+msgstr "הפרויקט נוצר בהצלחה!"
+
+# #3 - מקור: app\apps\core\views.py:410
+msgid "Project updated successfully!"
+msgstr "הפרויקט עודכן בהצלחה!"
+
+# #4 - מקור: app\apps\core\views.py:512
+msgid "Document created successfully!"
+msgstr "המסמך נוצר בהצלחה!"
+
+# #5 - מקור: app\apps\core\views.py:554
+msgid "Document saved successfully!"
+msgstr "המסמך נשמר בהצלחה!"
+
+# #6 - מקור: app\apps\core\views.py:596
+msgid "Ontology saved successfully!"
+msgstr "האונטולוגיה נשמרה בהצלחה!"
+
+# #7 - מקור: app\apps\core\views.py:685
+msgid "Document shared successfully!"
+msgstr "המסמך שותף בהצלחה!"
+
+# #8 - מקור: app\apps\core\views.py:722
+msgid "Project shared successfully!"
+msgstr "הפרויקט שותף בהצלחה!"
+
+# #9 - מקור: app\apps\core\views.py:766
+msgid "Document archived successfully!"
+msgstr "המסמך הועבר לארכיון בהצלחה!"
+
+# #10 - מקור: app\apps\core\views.py:768
+msgid "Document published successfully!"
+msgstr "המסמך פורסם בהצלחה!"
+
+# #11 - מקור: app\apps\core\views.py:926
+msgid "Model uploaded successfully!"
+msgstr "המודל הועלה בהצלחה!"
+
+# #12 - מקור: app\apps\core\views.py:967
+msgid "Model deleted successfully!"
+msgstr "המודל נמחק בהצלחה!"
+
+# #13 - מקור: app\apps\core\views.py:1004
+msgid "Right added successfully!"
+msgstr "ההרשאה נוספה בהצלחה!"
+
+# #14 - מקור: app\apps\core\views.py:1034
+msgid "Right deleted successfully!"
+msgstr "ההרשאה נמחקה בהצלחה!"
+
+# #16 - מקור: app\apps\imports\parsers.py:1211
+msgid "Error while fetching {filename}: {error}"
+msgstr "שגיאה בעת שליפת {filename}: {error}"
+
+# #17 - מקור: app\apps\users\admin.py:139
+msgid "Successfully sent {count} invitations."
+msgstr "{count} הזמנות נשלחו בהצלחה."
+
+# #18 - מקור: app\apps\users\forms.py:242
+msgid "Message : Please precise your institution or research center if applicable"
+msgstr "הודעה: נא לציין מוסד או מרכז מחקר אם רלוונטי"
+
+# #19 - מקור: app\apps\users\views.py:255
+msgid "Profile successfully saved."
+msgstr "הפרופיל נשמר בהצלחה."
+
+# #20 - מקור: app\apps\users\views.py:327
+msgid "Team successfully created."
+msgstr "הצוות נוצר בהצלחה."
+
+# #21 - מקור: app\apps\users\views.py:350
+msgid "User successfully invited to the team."
+msgstr "המשתמש הוזמן לצוות בהצלחה."
+
+# #22 - מקור: app\apps\users\views.py:370
+msgid "Message successfully sent."
+msgstr "ההודעה נשלחה בהצלחה."
+
+# #1 - מקור: app\apps\api\serializers.py:968
+msgid "Either use model_name to create a new model, add a model pk to retrain an existing one, or both to create a new model from an existing one."
+msgstr "יש להשתמש בשם מודל ליצירת מודל חדש, להוסיף מזהה מודל לאימון חוזר, או שניהם ליצירת מודל חדש ממודל קיים."
+
+# #2 - מקור: app\apps\api\serializers.py:1171
+msgid "Either use model_name to create a new model, or add a model pk to retrain an existing one."
+msgstr "יש להשתמש בשם מודל ליצירת מודל חדש, או להוסיף מזהה מודל לאימון חוזר."
+
+# #3 - מקור: app\apps\core\forms.py:190
+msgid "You cannot find and replace text across multiple projects at once, please pick a single project before submitting your request."
+msgstr "לא ניתן לבצע חיפוש והחלפה במספר פרויקטים יחד. נא לבחור פרויקט אחד לפני שליחה."
+
+# #5 - מקור: app\apps\core\models.py:935
+msgid "Created"
+msgstr "נוצר"
+
+# #7 - מקור: app\apps\imports\parsers.py:837
+msgid "Block type {0} was automatically added to the ontology"
+msgstr "סוג בלוק {0} נוסף אוטומטית לאונטולוגיה"
+
+# #8 - מקור: app\apps\imports\parsers.py:901
+msgid "Line type {0} was automatically added to the ontology"
+msgstr "סוג שורה {0} נוסף אוטומטית לאונטולוגיה"
+
+# #1 - מקור: app\apps\api\serializers.py:1340
+msgid "If checked, the aligner will use all transcribed pages of the document to find matches. If unchecked, it will compare each page to the text separately."
+msgstr "אם מסומן, המיישר ישתמש בכל הדפים המתומללים למציאת התאמות. אם לא, כל דף יושווה בנפרד."
+
+# #2 - מקור: app\apps\core\models.py:2179
+msgid "Pages per segmentation task"
+msgstr "דפים לכל משימת חלוקה"
+
+# #3 - מקור: app\apps\core\models.py:2183
+msgid "Pages per transcription task"
+msgstr "דפים לכל משימת תמלול"
+
+# #6 - מקור: app\apps\imports\parsers.py:169
+msgid "Parse error in {filename}: {page}: {error}, skipping it."
+msgstr "שגיאת ניתוח ב-{filename}: {page}: {error}, מדלג."
+
+# #7 - מקור: app\apps\imports\parsers.py:927
+msgid "Default PAGE Import"
+msgstr "ייבוא PAGE ברירת מחדל"
+
+# #8 - מקור: app\escriptorium\templates\404.html:6
+msgid "Page not found."
+msgstr "הדף לא נמצא."
+
+# #9 - מקור: app\escriptorium\templates\base.html:85
+msgid "Search in all your projects"
+msgstr "חפש בכל הפרויקטים שלך"
+
+# #10 - מקור: app\escriptorium\templates\base.html:118
+msgid "My Models"
+msgstr "המודלים שלי"
+
+# #11 - מקור: app\escriptorium\templates\base.html:129
+msgid "Change password"
+msgstr "שנה סיסמה"
+
+# #12 - מקור: app\escriptorium\templates\base.html:132
+msgid "Task reports"
+msgstr "דוחות משימות"
+
+# #13 - מקור: app\escriptorium\templates\base.html:133
+msgid "Tasks monitoring"
+msgstr "מעקב משימות"
+
+# #14 - מקור: app\escriptorium\templates\base.html:135
+msgid "Leaderboard"
+msgstr "טבלת מובילים"
+
+# #15 - מקור: app\escriptorium\templates\base.html:137
+msgid "Site administration"
+msgstr "ניהול האתר"
+
+# #16 - מקור: app\escriptorium\templates\base.html:69
+msgid "Contact"
+msgstr "צור קשר"
+
+# #17 - מקור: app\escriptorium\templates\base.html:141
+msgid "Invite"
+msgstr "הזמן"
+
+# #19 - מקור: app\escriptorium\templates\core\contributors.html:4
+msgid "Contributors"
+msgstr "תורמים"
+
+# #20 - מקור: app\escriptorium\templates\core\contributors.html:19
+msgid "The contributors list will be available here soon."
+msgstr "רשימת התורמים תוצג כאן בקרוב."
+
+# #21 - מקור: app\escriptorium\templates\core\credits.html:4
+msgid "Credits"
+msgstr "קרדיטים"
+
+# #22 - מקור: app\escriptorium\templates\core\credits.html:13
+msgid "eScriptorium and kraken are Free and Open-Source Software developed by a team in the laboratoire AOROC (CNRS PSL, UMR 8546) at the École Pratique des Hautes Études – Université PSL."
+msgstr "eScriptorium ו-Kraken הם תוכנות חופשיות וקוד פתוח שפותחו במעבדת AOROC (CNRS PSL, UMR 8546) ב-École Pratique des Hautes Études – Université PSL."
+
+# #23 - מקור: app\escriptorium\templates\core\credits.html:22
+msgid "The credits list will be available here soon."
+msgstr "רשימת הקרדיטים תוצג כאן בקרוב."
+
+# #24 - מקור: app\escriptorium\templates\core\document_form.html:3
+msgid "Create a new Document"
+msgstr "צור מסמך חדש"
+
+# #25 - מקור: app\escriptorium\templates\core\document_form.html:15
+msgid "Share this Document"
+msgstr "שתף מסמך זה"
+
+# #26 - מקור: app\escriptorium\templates\core\document_form.html:24
+msgid "Migrate to another project"
+msgstr "העבר לפרויקט אחר"
+
+# #27 - מקור: app\escriptorium\templates\core\document_form.html:38
+msgid "Do you really want to delete the document?"
+msgstr "האם למחוק את המסמך?"
+
+# #28 - מקור: app\escriptorium\templates\core\document_form.html:71
+msgid "Metadata"
+msgstr "מטא-נתונים"
+
+# #29 - מקור: app\escriptorium\templates\core\document_form.html:32
+msgid "Publish"
+msgstr "פרסם"
+
+# #30 - מקור: app\escriptorium\templates\core\document_form.html:47
+msgid "nav-doc-tab"
+msgstr "nav-doc-tab"
+
+# #31 - מקור: app\escriptorium\templates\core\document_images.html:17
+msgid "Drop images here or click to upload."
+msgstr "גרור תמונות לכאן או לחץ להעלאה."
+
+# #32 - מקור: app\escriptorium\templates\core\document_images.html:27
+msgid "Unselect all"
+msgstr "בטל בחירה"
+
+# #33 - מקור: app\escriptorium\templates\core\document_images.html:28
+msgid "Loading"
+msgstr "טוען"
+
+# #34 - מקור: app\escriptorium\templates\core\document_images.html:38
+msgid "You don't have any CPU minutes left"
+msgstr "לא נותרו לך דקות CPU"
+
+# #35 - מקור: app\escriptorium\templates\core\document_images.html:95
+msgid "You don't have any GPU minutes left"
+msgstr "לא נותרו לך דקות GPU"
+
+# #36 - מקור: app\escriptorium\templates\core\document_images.html:98
+msgid "You don't have any disk storage left"
+msgstr "לא נותר שטח אחסון"
+
+# #37 - מקור: app\escriptorium\templates\core\document_images.html:100
+msgid "Train a segmenter/recognizer model."
+msgstr "אמן מודל חלוקה/זיהוי."
+
+# #38 - מקור: app\escriptorium\templates\core\document_images.html:113
+msgid "Cancel training"
+msgstr "בטל אימון"
+
+# #39 - מקור: app\escriptorium\templates\core\document_images.html:125
+msgid "Segment selected images."
+msgstr "חלק את התמונות שנבחרו."
+
+# #40 - מקור: app\escriptorium\templates\core\document_images.html:136
+msgid "Start transcribing selected images."
+msgstr "התחל לתמלל את התמונות שנבחרו."
+
+# #41 - מקור: app\escriptorium\templates\core\document_images.html:148
+msgid "Align transcribed images to a textual witness (reference text)."
+msgstr "ישר תמונות מתומללות לטקסט ייחוס."
+
+# #42 - מקור: app\escriptorium\templates\core\document_images.html:168
+msgid "Delete this image and all its data (segmentation, transcriptions)"
+msgstr "מחק תמונה זו וכל נתוניה (חלוקה, תמלולים)"
+
+# #43 - מקור: app\escriptorium\templates\core\document_images.html:171
+msgid "Cancel tasks"
+msgstr "בטל משימות"
+
+# #44 - מקור: app\escriptorium\templates\core\document_images.html:177
+msgid "Compressing"
+msgstr "מכווץ"
+
+# #45 - מקור: app\escriptorium\templates\core\document_list.html:3
+msgid "My Documents"
+msgstr "המסמכים שלי"
+
+# #46 - מקור: app\escriptorium\templates\core\document_list.html:10
+msgid "Manage tags"
+msgstr "נהל תגיות"
+
+# #47 - מקור: app\escriptorium\templates\core\document_list.html:14
+msgid "Share this Project"
+msgstr "שתף פרויקט זה"
+
+# #48 - מקור: app\escriptorium\templates\core\document_list.html:128
+msgid "Do you really want to remove the document from your list?"
+msgstr "להסיר את המסמך מהרשימה?"
+
+# #49 - מקור: app\escriptorium\templates\core\document_list.html:9
+msgid "Create new Document"
+msgstr "צור מסמך חדש"
+
+# #50 - מקור: app\escriptorium\templates\core\document_list.html:22
+msgid "Filters"
+msgstr "מסננים"
+
+# #51 - מקור: app\escriptorium\templates\core\document_list.html:41
+msgid "Preview"
+msgstr "תצוגה מקדימה"
+
+# #52 - מקור: app\escriptorium\templates\core\document_list.html:44
+msgid "Name"
+msgstr "שם"
+
+# #53 - מקור: app\escriptorium\templates\core\document_list.html:50
+msgid "Last modified"
+msgstr "עודכן לאחרונה"
+
+# #54 - מקור: app\escriptorium\templates\core\document_list.html:53
+msgid "Image count"
+msgstr "מספר תמונות"
+
+# #55 - מקור: app\escriptorium\templates\core\document_list.html:56
+msgid "Tags"
+msgstr "תגיות"
+
+# #56 - מקור: app\escriptorium\templates\core\document_list.html:59
+msgid "Actions"
+msgstr "פעולות"
+
+# #57 - מקור: app\escriptorium\templates\core\document_list.html:85
+msgid "Shared with"
+msgstr "שותף עם"
+
+# #58 - מקור: app\escriptorium\templates\core\document_list.html:87
+msgid "Last modified on"
+msgstr "עודכן בתאריך"
+
+# #59 - מקור: app\escriptorium\templates\core\document_list.html:101
+msgid "Unpublished"
+msgstr "לא פורסם"
+
+# #60 - מקור: app\escriptorium\templates\core\document_list.html:111
+msgid "Edit last updated Element"
+msgstr "ערוך את הרכיב האחרון שעודכן"
+
+# #61 - מקור: app\escriptorium\templates\core\document_nav.html:14
+msgid "Back to document list"
+msgstr "חזרה לרשימת המסמכים"
+
+# #62 - מקור: app\escriptorium\templates\core\document_nav.html:21
+msgid "Description"
+msgstr "תיאור"
+
+# #63 - מקור: app\escriptorium\templates\core\document_nav.html:25
+msgid "Images"
+msgstr "תמונות"
+
+# #64 - מקור: app\escriptorium\templates\core\document_nav.html:96
+msgid "All levels"
+msgstr "כל הרמות"
+
+# #65 - מקור: app\escriptorium\templates\core\document_ontology.html:4
+msgid "Document Ontology"
+msgstr "אונטולוגיית מסמך"
+
+# #66 - מקור: app\escriptorium\templates\core\document_ontology.html:39
+msgid "Lines and Regions typologies:"
+msgstr "טיפוסי שורות ואזורים:"
+
+# #67 - מקור: app\escriptorium\templates\core\document_ontology.html:40
+msgid "The default configuration only contains semantic types."
+msgstr "הגדרת ברירת המחדל כוללת רק טיפוסים סמנטיים."
+
+# #68 - מקור: app\escriptorium\templates\core\document_ontology.html:41
+msgid "It is not recommended to mix semantic, stylistic and layout types."
+msgstr "לא מומלץ לשלב טיפוסים סמנטיים, סגנוניים ומבניים."
+
+# #70 - מקור: app\escriptorium\templates\core\document_ontology.html:44
+msgid "Annotations:"
+msgstr "הערות:"
+
+# #71 - מקור: app\escriptorium\templates\core\document_ontology.html:45
+msgid "Each Annotation can store values for different components."
+msgstr "כל הערה יכולה להכיל ערכים לרכיבים שונים."
+
+# #73 - מקור: app\escriptorium\templates\core\document_ontology.html:47
+msgid "Annotation types allow to regroup the corresponding buttons in the editing interface (and may be used as a hint for import/export)."
+msgstr "סוגי הערות מאפשרים לאגד כפתורים מתאימים בממשק העריכה (ויכולים לשמש כרמז לייבוא/ייצוא)."
+
+# #74 - מקור: app\escriptorium\templates\core\document_ontology.html:53
+msgid "Region types"
+msgstr "סוגי אזורים"
+
+# #75 - מקור: app\escriptorium\templates\core\document_ontology.html:60
+msgid "Add a region type"
+msgstr "הוסף סוג אזור"
+
+# #76 - מקור: app\escriptorium\templates\core\document_ontology.html:70
+msgid "Line types"
+msgstr "סוגי שורות"
+
+# #77 - מקור: app\escriptorium\templates\core\document_ontology.html:76
+msgid "Add a line type"
+msgstr "הוסף סוג שורה"
+
+# #78 - מקור: app\escriptorium\templates\core\document_ontology.html:87
+msgid "Part types"
+msgstr "סוגי חלקים"
+
+# #79 - מקור: app\escriptorium\templates\core\document_ontology.html:93
+msgid "Add a part type"
+msgstr "הוסף סוג חלק"
+
+# #80 - מקור: app\escriptorium\templates\core\document_ontology.html:103
+msgid "Annotations components"
+msgstr "רכיבי הערות"
+
+# #81 - מקור: app\escriptorium\templates\core\document_ontology.html:126
+msgid "Image Annotations"
+msgstr "הערות תמונה"
+
+# #82 - מקור: app\escriptorium\templates\core\document_ontology.html:179
+msgid "Text Annotations"
+msgstr "הערות טקסט"
+
+# #84 - מקור: app\escriptorium\templates\core\documents_tasks_list.html:6
+msgid "Task Monitoring"
+msgstr "מעקב משימות"
+
+# #85 - מקור: app\escriptorium\templates\core\home.html:3
+msgid "Homepage"
+msgstr "דף הבית"
+
+# #86 - מקור: app\escriptorium\templates\core\home.html:14
+msgid "eScriptorium: A Digital Text Production Pipeline for Print and Handwritten Texts using machine learning techniques."
+msgstr "eScriptorium: מערכת דיגיטלית לעיבוד טקסטים מודפסים וכתבי יד באמצעות למידת מכונה."
+
+# #87 - מקור: app\escriptorium\templates\core\home.html:25
+msgid "Automatic<br>Transcription"
+msgstr "תמלול<br>אוטומטי"
+
+# #88 - מקור: app\escriptorium\templates\core\home.html:26
+msgid "Apply OCR/HTR to images of printed and handwritten documents using shared open models."
+msgstr "הפעל OCR/HTR על תמונות מסמכים מודפסים וכתבי יד בעזרת מודלים פתוחים."
+
+# #89 - מקור: app\escriptorium\templates\core\home.html:31
+msgid "Manual<br>Transcription"
+msgstr "תמלול<br>ידני"
+
+# #90 - מקור: app\escriptorium\templates\core\home.html:32
+msgid "Make use of an ergonomic user interface leveraging modern browser technology to edit segmentations and transcriptions."
+msgstr "השתמש בממשק נוח לעריכת חלוקות ותמלולים בטכנולוגיה מתקדמת."
+
+# #91 - מקור: app\escriptorium\templates\core\home.html:37
+msgid "Train<br>Models"
+msgstr "אמן<br>מודלים"
+
+# #92 - מקור: app\escriptorium\templates\core\home.html:38
+msgid "Create new models or finetune existing ones to improve automatic recognition."
+msgstr "צור מודלים חדשים או שפר קיימים לשיפור הזיהוי."
+
+# #93 - מקור: app\escriptorium\templates\core\home.html:64
+msgid "Service originally developed by"
+msgstr "המערכת פותחה במקור על ידי"
+
+# #94 - מקור: app\escriptorium\templates\core\home.html:65
+msgid "École Pratique des Hautes Études (EPHE)"
+msgstr "École Pratique des Hautes Études (EPHE)"
+
+# #95 - מקור: app\escriptorium\templates\core\home.html:72
+msgid "See"
+msgstr "ראה"
+
+# #96 - מקור: app\escriptorium\templates\core\home.html:72
+msgid "contributors history"
+msgstr "היסטוריית תורמים"
+
+# #97 - מקור: app\escriptorium\templates\core\home.html:125
+msgid "Resources"
+msgstr "משאבים"
+
+# #98 - מקור: app\escriptorium\templates\core\home.html:127
+msgid "Tutorial"
+msgstr "מדריך"
+
+# #99 - מקור: app\escriptorium\templates\core\home.html:128
+msgid "eScriptorium open source code"
+msgstr "קוד פתוח של eScriptorium"
+
+# #100 - מקור: app\escriptorium\templates\core\home.html:129
+msgid "eScriptorium Blog"
+msgstr "בלוג eScriptorium"
+
+# #101 - מקור: app\escriptorium\templates\core\home.html:137
+msgid "Acknowledgements"
+msgstr "תודות"
+
+# #102 - מקור: app\escriptorium\templates\core\home.html:145
+msgid "Legal mentions"
+msgstr "הערות משפטיות"
+
+# #103 - מקור: app\escriptorium\templates\core\ocrmodel_form.html:5
+msgid "Upload a model"
+msgstr "העלה מודל"
+
+# #104 - מקור: app\escriptorium\templates\core\migrate\migrate_document.html:27
+msgid "Migrate"
+msgstr "העבר"
+
+# #105 - מקור: app\escriptorium\templates\core\models_list\table.html:6
+msgid "Role"
+msgstr "תפקיד"
+
+# #106 - מקור: app\escriptorium\templates\core\models_list\table.html:8
+msgid "Script"
+msgstr "כתב"
+
+# #107 - מקור: app\escriptorium\templates\core\models_list\table.html:19
+msgid "Trained from"
+msgstr "אומן מתוך"
+
+# #108 - מקור: app\escriptorium\templates\core\models_list\table.html:20
+msgid "Training Status"
+msgstr "מצב אימון"
+
+# #109 - מקור: app\escriptorium\templates\core\models_list\table.html:21
+msgid "Accuracy"
+msgstr "דיוק"
+
+# #110 - מקור: app\escriptorium\templates\core\models_list\table.html:22
+msgid "Errors"
+msgstr "שגיאות"
+
+# #111 - מקור: app\escriptorium\templates\core\models_list\table.html:23
+msgid "Right"
+msgstr "הרשאה"
+
+# #112 - מקור: app\escriptorium\templates\core\models_list\table.html:28
+msgid "Model name"
+msgstr "שם מודל"
+
+# #113 - מקור: app\escriptorium\templates\core\models_list\table.html:29
+msgid "Model role"
+msgstr "תפקיד המודל"
+
+# #114 - מקור: app\escriptorium\templates\core\models_list\table.html:30
+msgid "Model script"
+msgstr "כתב המודל"
+
+# #115 - מקור: app\escriptorium\templates\core\models_list\table.html:35
+msgid "Filter by script"
+msgstr "סינון לפי כתב"
+
+# #116 - מקור: app\escriptorium\templates\core\models_list\table.html:42
+msgid "Parent from which the model was trained"
+msgstr "הורה שממנו אומן המודל"
+
+# #117 - מקור: app\escriptorium\templates\core\models_list\table.html:46
+msgid "Is currently training"
+msgstr "באימון כעת"
+
+# #118 - מקור: app\escriptorium\templates\core\models_list\table.html:47
+msgid "Is done training"
+msgstr "האימון הושלם"
+
+# #119 - מקור: app\escriptorium\templates\core\models_list\table.html:49
+msgid "Gathering data"
+msgstr "אוסף נתונים"
+
+# #120 - מקור: app\escriptorium\templates\core\models_list\table.html:58
+msgid "Number of errors/Total number of characters"
+msgstr "מספר שגיאות/סה\"כ תווים"
+
+# #121 - מקור: app\escriptorium\templates\core\models_list\table.html:70
+msgid "Toggle versions"
+msgstr "החלף גרסאות"
+
+# #122 - מקור: app\escriptorium\templates\core\models_list\table.html:86
+msgid "Share model"
+msgstr "שתף מודל"
+
+# #123 - מקור: app\escriptorium\templates\core\models_list\table.html:95
+msgid "Unbind model from the document"
+msgstr "נתק מודל מהמסמך"
+
+# #124 - מקור: app\escriptorium\templates\core\models_list\table.html:104
+msgid "Delete model"
+msgstr "מחק מודל"
+
+# #125 - מקור: app\escriptorium\templates\core\models_list\rights\delete.html:5
+msgid "Delete right"
+msgstr "מחק הרשאה"
+
+# #126 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:5
+msgid "shares"
+msgstr "שיתופים"
+
+# #128 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:19
+msgid "Recipient type"
+msgstr "סוג נמען"
+
+# #129 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:21
+msgid "User full name"
+msgstr "שם מלא של המשתמש"
+
+# #130 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:24
+msgid "Group name"
+msgstr "שם קבוצה"
+
+# #132 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:28
+msgid "Stop sharing"
+msgstr "הפסק שיתוף"
+
+# #133 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:51
+msgid "Add right"
+msgstr "הוסף הרשאה"
+
+# #134 - מקור: app\escriptorium\templates\core\search\search.html:28
+msgid "Couldn't connect to Elasticsearch, please contact your instance administrator."
+msgstr "לא ניתן להתחבר ל-Elasticsearch, פנה למנהל המערכת."
+
+# #135 - מקור: app\escriptorium\templates\core\wizards\import_mets.html:15
+msgid "The prefix of the target transcription. Will default to "METS Import""
+msgstr "קידומת התמלול. ברירת מחדל: \"METS Import\""
+
+# #136 - מקור: app\escriptorium\templates\includes\pagination.html:24
+msgid "First page"
+msgstr "עמוד ראשון"
+
+# #137 - מקור: app\escriptorium\templates\includes\pagination.html:60
+msgid "Last page"
+msgstr "עמוד אחרון"
+
+# #138 - מקור: app\escriptorium\templates\registration\login.html:8
+msgid "Please Sign In"
+msgstr "התחבר"
+
+# #140 - מקור: app\escriptorium\templates\registration\login.html:24
+msgid "Please login to see this page."
+msgstr "התחבר כדי לצפות בדף זה."
+
+# #141 - מקור: app\escriptorium\templates\registration\password_change_done.html:13
+msgid "Your password has successfully been changed."
+msgstr "הסיסמה שונתה בהצלחה."
+
+# #143 - מקור: app\escriptorium\templates\registration\password_change_form.html:34
+msgid "Old password:"
+msgstr "סיסמה ישנה:"
+
+# #144 - מקור: app\escriptorium\templates\registration\password_change_form.html:40
+msgid "New password:"
+msgstr "סיסמה חדשה:"
+
+# #145 - מקור: app\escriptorium\templates\registration\password_change_form.html:46
+msgid "New password confirmation:"
+msgstr "אישור סיסמה חדשה:"
+
+# #146 - מקור: app\escriptorium\templates\registration\password_change_form.html:57
+msgid "Lost your password?"
+msgstr "שכחת סיסמה?"
+
+# #147 - מקור: app\escriptorium\templates\registration\password_change_form.html:52
+msgid "Change my password"
+msgstr "שנה את הסיסמה שלי"
+
+# #148 - מקור: app\escriptorium\templates\registration\password_reset_complete.html:13
+msgid "Your password has been set.  You may go ahead and"
+msgstr "הסיסמה הוגדרה. ניתן להמשיך ול-"
+
+# #149 - מקור: app\escriptorium\templates\registration\password_reset_complete.html:13
+msgid "log in"
+msgstr "להתחבר"
+
+# #150 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:13
+msgid "Reset your password"
+msgstr "אפס סיסמה"
+
+# #151 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:19
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "נא להכניס את הסיסמה החדשה פעמיים לאימות."
+
+# #153 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:31
+msgid "Confirm password:"
+msgstr "אשר סיסמה:"
+
+# #154 - מקור: app\escriptorium\templates\registration\password_reset_done.html:13
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly."
+msgstr "שלחנו הוראות לאיפוס סיסמה, אם קיים חשבון עם כתובת זו."
+
+# #155 - מקור: app\escriptorium\templates\registration\password_reset_done.html:14
+msgid "If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr "אם לא קיבלת דוא\"ל, בדוק את הכתובת והספאם."
+
+# #156 - מקור: app\escriptorium\templates\registration\password_reset_form.html:17
+msgid "Forgotten your password? Enter your email address below, and we’ll email instructions for setting a new one."
+msgstr "שכחת סיסמה? הכנס דוא\"ל ונשלח הוראות לאיפוס."
+
+# #157 - מקור: app\escriptorium\templates\reporting\document_report.html:3
+msgid "Document report"
+msgstr "דוח מסמך"
+
+# #158 - מקור: app\escriptorium\templates\reporting\document_report.html:33
+msgid "Data metrics"
+msgstr "מדדי נתונים"
+
+# #159 - מקור: app\escriptorium\templates\reporting\document_report.html:39
+msgid "Total number of document parts"
+msgstr "סה"כ חלקי מסמך"
+
+# #160 - מקור: app\escriptorium\templates\reporting\document_report.html:41
+msgid "A document part corresponds to one image loaded within a document."
+msgstr "חלק מסמך הוא תמונה אחת במסמך."
+# #161 - מקור: app\escriptorium\templates\reporting\document_report.html:49
+msgid "Transcribed document parts"
+msgstr "חלקי מסמך מתומללים"
+
+# #162 - מקור: app\escriptorium\templates\reporting\document_report.html:51
+msgid "The number of transcribed images in the selected transcription(s)."
+msgstr "מספר התמונות המתומללות בתמלול הנבחר."
+
+# #166 - מקור: app\escriptorium\templates\reporting\document_report.html:73
+msgid "Vocabulary"
+msgstr "אוצר מילים"
+
+# #167 - מקור: app\escriptorium\templates\reporting\document_report.html:74
+msgid "Reload vocabulary"
+msgstr "רענן את אוצר המילים"
+
+# #168 - מקור: app\escriptorium\templates\reporting\document_report.html:104
+msgid "No vocabulary found in the selected transcription(s)."
+msgstr "לא נמצא אוצר מילים בתמלול הנבחר."
+
+# #169 - מקור: app\escriptorium\templates\reporting\document_report.html:106
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr "אוצר המילים הוא רשימת כל התווים בתמלול עם שכיחותם."
+
+# #170 - מקור: app\escriptorium\templates\reporting\project_reports.html:3
+msgid "Project reports"
+msgstr "דוחות פרויקט"
+
+# #171 - מקור: app\escriptorium\templates\reporting\project_reports.html:38
+msgid "Total number of regions"
+msgstr "סה\"כ אזורים"
+
+# #172 - מקור: app\escriptorium\templates\reporting\project_reports.html:40
+msgid "A region is a polygon drawn on a document part, grouping one, several or no line(s)."
+msgstr "אזור הוא מצולע שמצויר על חלק מסמך ויכול להכיל שורה אחת, כמה שורות או אפילו אף לא שורה."
+
+# #173 - מקור: app\escriptorium\templates\reporting\project_reports.html:48
+msgid "Total number of lines"
+msgstr "סה\"כ שורות"
+
+# #175 - מקור: app\escriptorium\templates\reporting\project_reports.html:60
+msgid "Total number of words"
+msgstr "סה\"כ מילים"
+
+# #176 - מקור: app\escriptorium\templates\reporting\project_reports.html:62
+msgid "A word is any series of one or more characters, excepted punctuation signs and white spaces."
+msgstr "מילה היא רצף של תו אחד או יותר בלי סימני פיסוק ובלי רווחים."
+
+# #177 - מקור: app\escriptorium\templates\reporting\project_reports.html:70
+msgid "Total number of characters"
+msgstr "סה\"כ תווים"
+
+# #178 - מקור: app\escriptorium\templates\reporting\project_reports.html:72
+msgid "A character is any symbol used in the transcription, including punctuation, excepted white spaces."
+msgstr "תו הוא כל סימן שמופיע בתמלול (כולל סימני פיסוק) חוץ מרווחים."
+
+# #179 - מקור: app\escriptorium\templates\reporting\project_reports.html:121
+msgid "Annotation"
+msgstr "הערה"
+
+# #180 - מקור: app\escriptorium\templates\reporting\project_reports.html:127
+msgid "Current use of document tags"
+msgstr "שימוש נוכחי בתגיות מסמך"
+
+# #181 - מקור: app\escriptorium\templates\reporting\project_reports.html:145
+msgid "Current use of part tags"
+msgstr "שימוש נוכחי בתגיות חלק"
+
+# #182 - מקור: app\escriptorium\templates\reporting\project_reports.html:157
+msgid "Current use of regions type"
+msgstr "שימוש נוכחי בסוגי אזורים"
+
+# #183 - מקור: app\escriptorium\templates\reporting\project_reports.html:177
+msgid "Current use of lines type"
+msgstr "שימוש נוכחי בסוגי שורות"
+
+# #184 - מקור: app\escriptorium\templates\reporting\project_reports.html:195
+msgid "Project activity"
+msgstr "פעילות פרויקט"
+
+# #185 - מקור: app\escriptorium\templates\reporting\project_reports.html:201
+msgid "Created on"
+msgstr "נוצר בתאריך"
+
+# #186 - מקור: app\escriptorium\templates\reporting\project_reports.html:210
+msgid "Last update on"
+msgstr "עודכן בתאריך"
+
+# #187 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:11
+msgid "Total"
+msgstr "סה\"כ"
+
+# #188 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:14
+msgid "Last week"
+msgstr "שבוע אחרון"
+
+# #189 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:17
+msgid "Last day"
+msgstr "יום אחרון"
+
+# #191 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:23
+msgid "Disk usage"
+msgstr "שימוש בדיסק"
+
+# #192 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:24
+msgid "CPU usage"
+msgstr "שימוש ב-CPU"
+
+# #193 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:25
+msgid "GPU usage"
+msgstr "שימוש ב-GPU"
+
+# #194 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:26
+msgid "No. of tasks"
+msgstr "מספר משימות"
+
+# #195 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:27
+msgid "Runtime"
+msgstr "זמן ריצה"
+
+# #196 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:45
+msgid "All time"
+msgstr "כל הזמנים"
+
+# #197 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:7
+msgid "Status:"
+msgstr "סטטוס:"
+
+# #198 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:8
+msgid "Queued at:"
+msgstr "הוכנס לתור ב:"
+
+# #199 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:9
+msgid "Started at:"
+msgstr "התחיל ב:"
+
+# #200 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:10
+msgid "Ended at:"
+msgstr "הסתיים ב:"
+
+# #201 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:20
+msgid "Calculated from your images and models"
+msgstr "מחושב מהתמונות והמודלים שלך"
+
+# #202 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:43
+msgid "CPU usage over the last week"
+msgstr "שימוש CPU בשבוע האחרון"
+
+# #203 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:66
+msgid "GPU usage over the last week"
+msgstr "שימוש GPU בשבוע האחרון"
+
+# #204 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:80
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren't listed below."
+msgstr "ערכי שימוש CPU/GPU כוללים גם עיבוד אוטומטי של תמונות בעת העלאה, משימות אלו לא מופיעות למטה."
+
+# #205 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:85
+msgid "Task report"
+msgstr "דוח משימה"
+
+# #206 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:86
+msgid "Started at"
+msgstr "התחיל ב"
+
+# #207 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:87
+msgid "Done at"
+msgstr "הסתיים ב"
+
+# #208 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:88
+msgid "Duration"
+msgstr "משך"
+
+# #209 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:89
+msgid "State"
+msgstr "מצב"
+
+# #210 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:90
+msgid "CPU cost"
+msgstr "עלות CPU"
+
+# #211 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:91
+msgid "GPU cost"
+msgstr "עלות GPU"
+
+# #212 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:132
+msgid "You don't have any task report yet."
+msgstr "אין לך עדיין דוחות משימה."
+
+# #213 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:5
+msgid "Task Usage"
+msgstr "שימוש במשימות"
+
+# #214 - מקור: app\escriptorium\templates\users\account_expired.html:9
+msgid "Account Expired"
+msgstr "החשבון פג תוקף"
+
+# #215 - מקור: app\escriptorium\templates\users\account_expired.html:10
+msgid "Your account has expired. Please reach out to the person who invited you for assistance."
+msgstr "החשבון שלך פג תוקף. פנה למזמין לעזרה."
+
+# #216 - מקור: app\escriptorium\templates\users\group_detail_invite.html:5
+msgid "Back to profile"
+msgstr "חזרה לפרופיל"
+
+# #217 - מקור: app\escriptorium\templates\users\group_detail_invite.html:8
+msgid "Team:"
+msgstr "צוות:"
+
+# #218 - מקור: app\escriptorium\templates\users\group_detail_invite.html:16
+msgid "Invite a user to this team."
+msgstr "הזמן משתמש לצוות זה."
+
+# #220 - מקור: app\escriptorium\templates\users\group_detail_invite.html:42
+msgid "Transfer ownership"
+msgstr "העבר בעלות"
+
+# #221 - מקור: app\escriptorium\templates\users\group_detail_invite.html:54
+msgid "No other user in this team."
+msgstr "אין משתמשים נוספים בצוות זה."
+
+# #222 - מקור: app\escriptorium\templates\users\profile_api_key.html:16
+msgid "example:"
+msgstr "דוגמה:"
+
+# #223 - מקור: app\escriptorium\templates\users\email\invitation_html.html:2
+msgid "Hello"
+msgstr "שלום"
+
+# #224 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "is inviting you to join"
+msgstr "מזמין אותך להצטרף אל"
+
+# #225 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "his/her team"
+msgstr "הצוות שלו/שלה"
+
+# #226 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "on"
+msgstr "ב"
+
+# #227 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "eScriptorium!"
+msgstr "eScriptorium!"
+
+# #228 - מקור: app\escriptorium\templates\users\email\invitation_html.html:4
+msgid "All you need to do is click on the link below:"
+msgstr "כל שעליך לעשות הוא ללחוץ על הקישור למטה:"
+
+# #229 - מקור: app\escriptorium\templates\users\email\invitation_html.html:6
+msgid "Sincerely, the eScriptorium team."
+msgstr "בברכה, צוות eScriptorium."
+
+# #2 - מקור: app\apps\api\serializers.py:626
+msgid "You don't have any disk storage left."
+msgstr "לא נותר לך שטח אחסון."
+
+# #3 - מקור: app\apps\api\serializers.py:855
+msgid "You don't have any CPU minutes left."
+msgstr "לא נותרו לך דקות CPU."
+
+# #4 - מקור: app\apps\api\serializers.py:857
+msgid "You don't have any GPU minutes left."
+msgstr "לא נותרו לך דקות GPU."
+
+# #5 - מקור: app\apps\api\serializers.py:880
+msgid "Horizontal l2r"
+msgstr "אופקי משמאל לימין"
+
+# #6 - מקור: app\apps\api\serializers.py:881
+msgid "Horizontal r2l"
+msgstr "אופקי מימין לשמאל"
+
+# #7 - מקור: app\apps\api\serializers.py:882
+msgid "Vertical l2r"
+msgstr "אנכי משמאל לימין"
+
+# #8 - מקור: app\apps\api\serializers.py:883
+msgid "Vertical r2l"
+msgstr "אנכי מימין לשמאל"
+
+# #9 - מקור: app\apps\api\serializers.py:1309
+msgid "Max offset"
+msgstr "היסט מרבי (Max Offset)"
+
+# #10 - מקור: app\apps\api\serializers.py:1310
+msgid "Enables max-offset and disables beam search. Maximum number of characters (20–80) difference between the aligned witness text and the original transcription."
+msgstr "מפעיל שימוש ב'היסט מרבי' (Max Offset) ומבטל חיפוש Beam. זהו מספר התווים המרבי (20–80) שמותר להבדל בין טקסט הייחוס המיושר לתמלול המקורי."
+
+# #11 - מקור: app\apps\api\serializers.py:1316
+msgid "Beam size"
+msgstr "גודל Beam (Beam Size)"
+
+# #12 - מקור: app\apps\api\serializers.py:1317
+msgid "Enables beam search; if this and max offset are left unset, beam search will be on and beam size set to 20. Higher beam size (1-100) will result in slower computation but more accurate results."
+msgstr "מפעיל חיפוש Beam (Beam Search). אם לא הוגדר גם Max Offset וגם ערך כאן, חיפוש Beam מופעל אוטומטית וערך ברירת המחדל הוא 20. ערך Beam גבוה יותר (1–100) יאט את החישוב אך עשוי לשפר דיוק."
+
+# #13 - מקור: app\apps\api\serializers.py:1323
+msgid "Gap"
+msgstr "פער"
+
+# #14 - מקור: app\apps\api\serializers.py:1328
+msgid "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text. To force end-to-end alignment of two documents, increase to 1,000,000."
+msgstr "המרחק בין n-grams ייחודיים תואמים; 600 מתאים ל-OCR נקי או טקסטים בהם קטעים מיושרים לחלקים שונים בטקסט הייחוס. לאכיפת יישור מקצה לקצה, הגדל ל-1,000,000."
+
+# #15 - מקור: app\apps\api\serializers.py:1331
+msgid "Merge aligned text with existing transcription"
+msgstr "מזג טקסט מיושר עם התמלול הקיים"
+
+# #16 - מקור: app\apps\api\serializers.py:1334
+msgid "If checked, the aligner will reuse the text of the original transcription when alignment could not be performed; if unchecked, those lines will be blank."
+msgstr "אם מסומן, המיישר ישתמש בטקסט התמלול המקורי כאשר לא ניתן לבצע יישור; אם לא, שורות אלו יישארו ריקות."
+
+# #17 - מקור: app\apps\api\serializers.py:1337
+msgid "Use full transcribed document"
+msgstr "השתמש בכל המסמך המתומלל"
+
+# #18 - מקור: app\apps\api\serializers.py:1343
+msgid "Line length match threshold"
+msgstr "סף התאמת אורך שורה"
+
+# #19 - מקור: app\apps\api\serializers.py:1344
+msgid "Minimum proportion (0.0–1.0) of aligned line length to original transcription, below which matches are ignored. At 0.0, all matches are accepted."
+msgstr "יחס מינימלי (0.0–1.0) בין אורך שורה מיושרת לתמלול המקורי, מתחתיו ההתאמות מתעלמות. ב-0.0 כל ההתאמות מתקבלות."
+
+# #20 - מקור: app\apps\api\serializers.py:1353
+msgid "Region types to include in the alignment."
+msgstr "סוגי אזורים לכלול ביישור."
+
+# #21 - מקור: app\apps\api\serializers.py:1357
+msgid "Layer name"
+msgstr "שם שכבה"
+
+# #22 - מקור: app\apps\api\serializers.py:1358
+msgid "Name for the new transcription layer produced by this alignment. If you reuse an existing layer name, the layer will be overwritten; use caution."
+msgstr "שם לשכבת התמלול החדשה שתיווצר ביישור זה. שימוש בשם שכבה קיים ידרוס את השכבה; יש להיזהר."
+
+# #23 - מקור: app\apps\api\serializers.py:1379
+msgid "You must supply a textual witness (reference text)."
+msgstr "יש לספק טקסט ייחוס (טקסט רפרנס)."
+
+# #24 - מקור: app\apps\api\serializers.py:1383
+msgid "You may only supply one witness text (file upload or existing text)."
+msgstr "ניתן לספק טקסט ייחוס אחד בלבד (קובץ או טקסט קיים)."
+
+# #25 - מקור: app\apps\api\serializers.py:1388
+msgid "Alignment layer name cannot be the same as the transcription you are trying to align."
+msgstr "שם שכבת היישור לא יכול להיות זהה לתמלול שאתה מנסה ליישר."
+
+# #26 - מקור: app\apps\api\serializers.py:1395
+msgid "Max offset and beam size cannot both be non-zero."
+msgstr "אי אפשר להגדיר גם Max Offset וגם Beam Size שניהם כערכים גדולים מאפס בו-זמנית."
+
+# #27 - מקור: app\apps\api\serializers.py:874
+msgid "Lines and regions"
+msgstr "שורות ואזורים"
+
+# #28 - מקור: app\apps\api\serializers.py:875
+msgid "Lines Baselines and Masks"
+msgstr "שורות – קווי בסיס ומסכות"
+
+# #29 - מקור: app\apps\api\serializers.py:876
+msgid "Only lines Masks"
+msgstr "רק מסכות שורות"
+
+# #30 - מקור: app\apps\api\serializers.py:877
+msgid "Regions"
+msgstr "אזורים"
+
+# #31 - מקור: app\apps\api\serializers.py:1031
+msgid "Upload local file"
+msgstr "העלה קובץ מקומי"
+
+# #33 - מקור: app\apps\api\views.py:1187
+msgid "'lines' is mandatory."
+msgstr "\"lines\" הוא שדה חובה."
+
+# #34 - מקור: app\apps\api\views.py:421
+msgid "Canceled."
+msgstr "בוטל."
+
+# #35 - מקור: app\apps\core\forms.py:137
+msgid "Text to search in all of your projects, surround one or more terms with quotation marks to deactivate fuzziness"
+msgstr "טקסט לחיפוש בכל הפרויקטים שלך, הקף מונחים במרכאות לביטול חיפוש מטושטש"
+
+# #36 - מקור: app\apps\core\forms.py:156
+msgid "Word by word"
+msgstr "מילה במילה"
+
+# #37 - מקור: app\apps\core\forms.py:156
+msgid "Regular expression"
+msgstr "ביטוי רגולרי"
+
+# #40 - מקור: app\apps\core\forms.py:531
+msgid "eScriptorium is not compatible with bounding box models."
+msgstr "eScriptorium אינו תואם למודלים של תיבות גבול."
+
+# #41 - מקור: app\apps\core\forms.py:967
+msgid "The model is already training."
+msgstr "המודל כבר באימון."
+
+# #42 - מקור: app\apps\core\forms.py:970
+msgid "Either choose a model name or overwrite an existing one."
+msgstr "בחר שם למודל או דרוס קיים."
+
+# #44 - מקור: app\apps\core\forms.py:976
+msgid "You can't overwrite the existing file of a model you don't own."
+msgstr "אינך יכול לדרוס קובץ של מודל שאינך הבעלים שלו."
+
+# #45 - מקור: app\apps\core\forms.py:1066
+msgid "Empty Ground Truth data."
+msgstr "נתוני אמת קרקע ריקים."
+
+# #46 - מקור: app\apps\core\forms.py:178
+msgid "Text to find"
+msgstr "טקסט לחיפוש"
+
+# #47 - מקור: app\apps\core\forms.py:405
+msgid "Color"
+msgstr "צבע"
+
+# #48 - מקור: app\apps\core\forms.py:406
+msgid "Allow Comments"
+msgstr "אפשר תגובות"
+
+# #49 - מקור: app\apps\core\models.py:224
+msgid "Rectangle"
+msgstr "מלבן"
+
+# #50 - מקור: app\apps\core\models.py:225
+msgid "Polygon"
+msgstr "מצולע"
+
+# #51 - מקור: app\apps\core\models.py:228
+msgid "Background Color"
+msgstr "צבע רקע"
+
+# #52 - מקור: app\apps\core\models.py:229
+msgid "Text Color"
+msgstr "צבע טקסט"
+
+# #53 - מקור: app\apps\core\models.py:230
+msgid "Bold"
+msgstr "מודגש"
+
+# #54 - מקור: app\apps\core\models.py:231
+msgid "Italic"
+msgstr "נטוי"
+
+# #55 - מקור: app\apps\core\models.py:383
+msgid "Top to bottom"
+msgstr "מלמעלה למטה"
+
+# #56 - מקור: app\apps\core\models.py:460
+msgid "Share with users"
+msgstr "שתף עם משתמשים"
+
+# #57 - מקור: app\apps\core\models.py:466
+msgid "Share with teams"
+msgstr "שתף עם צוותים"
+
+# #58 - מקור: app\apps\core\models.py:516
+msgid "Draft"
+msgstr "טיוטה"
+
+# #59 - מקור: app\apps\core\models.py:517
+msgid "Published"
+msgstr "פורסם"
+
+# #60 - מקור: app\apps\core\models.py:518
+msgid "Archived"
+msgstr "בארכיון"
+
+# #61 - מקור: app\apps\core\models.py:523
+msgid "Left to right"
+msgstr "משמאל לימין"
+
+# #62 - מקור: app\apps\core\models.py:524
+msgid "Right to left"
+msgstr "מימין לשמאל"
+
+# #63 - מקור: app\apps\core\models.py:530
+msgid "Baseline"
+msgstr "קו בסיס"
+
+# #64 - מקור: app\apps\core\models.py:531
+msgid "Topline"
+msgstr "קו עליון"
+
+# #65 - מקור: app\apps\core\models.py:532
+msgid "Centered"
+msgstr "מרוכז"
+
+# #66 - מקור: app\apps\core\models.py:555
+msgid "The position of the line relative to the polygon."
+msgstr "מיקום הקו ביחס למצולע."
+
+# #69 - מקור: app\apps\core\models.py:878
+msgid "Couldn't find the alignment task."
+msgstr "לא ניתן למצוא את משימת היישור."
+
+# #70 - מקור: app\apps\core\models.py:936
+msgid "Converting"
+msgstr "ממיר"
+
+# #71 - מקור: app\apps\core\models.py:937
+msgid "Converted"
+msgstr "הומר"
+
+# #72 - מקור: app\apps\core\models.py:938
+msgid "Segmenting"
+msgstr "בתהליך חלוקה"
+
+# #73 - מקור: app\apps\core\models.py:939
+msgid "Segmented"
+msgstr "החלוקה הושלמה"
+
+# #74 - מקור: app\apps\core\models.py:940
+msgid "Transcribing"
+msgstr "בתהליך תמלול"
+
+# #75 - מקור: app\apps\core\models.py:941
+msgid "Aligning"
+msgstr "בתהליך יישור"
+
+# #76 - מקור: app\apps\core\models.py:942
+msgid "Aligned"
+msgstr "היישור הושלם"
+
+# #77 - מקור: app\apps\core\models.py:959
+msgid "Element"
+msgstr "רכיב"
+
+# #78 - מקור: app\apps\core\models.py:1651
+msgid "%(value)s is not a polygon - a 2 dimensional array."
+msgstr "%(value)s אינו מצולע - מערך דו-ממדי."
+
+# #79 - מקור: app\apps\core\models.py:1661
+msgid "Polygon needs to have at least 2 points, it has %(length)d: %(value)s."
+msgstr "מצולע חייב להכיל לפחות 2 נקודות, יש לו %(length)d: %(value)s."
+
+# #80 - מקור: app\apps\core\models.py:1671
+msgid "Polygon needs to have at least 3 points, it has %(length)d: %(value)s."
+msgstr "מצולע חייב להכיל לפחות 3 נקודות, יש לו %(length)d: %(value)s."
+
+# #81 - מקור: app\apps\core\models.py:1834
+msgid "Both baseline and mask are empty."
+msgstr "גם קו הבסיס וגם המסכה ריקים."
+
+# #82 - מקור: app\apps\core\models.py:1963
+msgid "Recognize"
+msgstr "זהה"
+
+# #83 - מקור: app\apps\core\models.py:2051
+msgid "Couldn't find the training task."
+msgstr "לא ניתן למצוא את משימת האימון."
+
+# #84 - מקור: app\apps\core\models.py:232
+msgid "Underline"
+msgstr "קו תחתון"
+
+# #88 - מקור: app\apps\core\tasks.py:352
+msgid "Training finished!"
+msgstr "האימון הושלם!"
+
+# #90 - מקור: app\apps\core\tasks.py:433
+msgid "Segmentation done!"
+msgstr "החלוקה הושלמה!"
+
+# #92 - מקור: app\apps\core\tasks.py:512
+msgid "Transcription done!"
+msgstr "התמלול הושלם!"
+
+# #95 - מקור: app\apps\core\tasks.py:856
+msgid "Alignment done!"
+msgstr "היישור הושלם!"
+
+# #96 - מקור: app\apps\core\tasks.py:877
+msgid "Your replacements are being applied..."
+msgstr "ההחלפות שלך מיושמות..."
+
+# #97 - מקור: app\apps\core\tasks.py:924
+msgid "All replacements failed"
+msgstr "כל ההחלפות נכשלו"
+
+# #98 - מקור: app\apps\core\tasks.py:928
+msgid "Replacements applied!"
+msgstr "ההחלפות יושמו!"
+
+# #99 - מקור: app\apps\imports\forms.py:39
+msgid "The document is unreachable, unreadable or the host timed out."
+msgstr "המסמך אינו נגיש, לא קריא או שהשרת לא הגיב בזמן."
+
+# #102 - מקור: app\apps\imports\forms.py:52
+msgid "You're not allowed to import files from this domain, please contact your instance administrator."
+msgstr "אין לך הרשאה לייבא קבצים מהדומיין הזה, פנה למנהל המערכת שלך."
+
+# #103 - מקור: app\apps\imports\forms.py:77
+msgid "The name of the target transcription. Will default to '{format} Import'."
+msgstr "שם התמלול היעד. ברירת מחדל: '{format} Import'."
+
+# #105 - מקור: app\apps\imports\forms.py:84
+msgid "Destroys existing regions, lines and any bound transcription before importing."
+msgstr "הורס אזורים, שורות וכל תמלול קשור לפני הייבוא."
+
+# #108 - מקור: app\apps\imports\forms.py:91
+msgid "Resume previous import"
+msgstr "המשך ייבוא קודם"
+
+# #110 - מקור: app\apps\imports\forms.py:161
+msgid "Choose one type of import."
+msgstr "בחר סוג ייבוא אחד."
+
+# #111 - מקור: app\apps\imports\forms.py:219
+msgid "Will significantly increase the time to produce and download the export."
+msgstr "יגדיל משמעותית את זמן ההפקה וההורדה של הייצוא."
+
+# #112 - מקור: app\apps\imports\forms.py:222
+msgid "Include character bounding boxes."
+msgstr "כלול תיבות גבול של תווים."
+
+# #114 - מקור: app\apps\imports\forms.py:218
+msgid "Include images"
+msgstr "כלול תמונות"
+
+# #115 - מקור: app\apps\imports\forms.py:254
+msgid "Export %(document_name)s"
+msgstr "ייצא את %(document_name)s"
+
+# #117 - מקור: app\apps\imports\parsers.py:185
+msgid "Zip Import"
+msgstr "ייבוא Zip"
+
+# #119 - מקור: app\apps\imports\parsers.py:198
+msgid "Zip file appears to be corrupted."
+msgstr "קובץ ה-Zip נראה פגום."
+
+# #120 - מקור: app\apps\imports\parsers.py:339
+msgid "METS Import"
+msgstr "ייבוא METS"
+
+# #121 - מקור: app\apps\imports\parsers.py:770
+msgid "Default ALTO Import"
+msgstr "ייבוא ALTO ברירת מחדל"
+
+# #125 - מקור: app\apps\imports\parsers.py:667
+msgid "No match found for file {} with filename "{}"."
+msgstr "לא נמצאה התאמה לקובץ {} עם שם הקובץ \"{}\"."
+
+# #128 - מקור: app\apps\imports\tasks.py:71
+msgid "Details"
+msgstr "פרטים"
+
+# #129 - מקור: app\apps\imports\tasks.py:137
+msgid "Export done!"
+msgstr "הייצוא הושלם!"
+
+# #130 - מקור: app\apps\users\admin.py:130
+msgid "You do not have permission to send invitations."
+msgstr "אין לך הרשאה לשלוח הזמנות."
+
+# #132 - מקור: app\apps\users\forms.py:47
+msgid "CSV file with emails"
+msgstr "קובץ CSV עם כתובות אימייל"
+
+# #133 - מקור: app\apps\users\forms.py:48
+msgid "Upload a CSV file with one email per line."
+msgstr "העלה קובץ CSV עם כתובת אימייל אחת בכל שורה."
+
+# #134 - מקור: app\apps\users\forms.py:52
+msgid "Emails"
+msgstr "אימיילים"
+
+# #135 - מקור: app\apps\users\forms.py:54
+msgid "Enter one email per line."
+msgstr "הזן אימייל אחד בכל שורה."
+
+# #136 - מקור: app\apps\users\forms.py:65
+msgid "Optional: set an expiry date for these accounts"
+msgstr "אופציונלי: קבע תאריך תפוגה לחשבונות אלו"
+
+# #138 - מקור: app\apps\users\forms.py:132
+msgid "Email or username."
+msgstr "אימייל או שם משתמש."
+
+# #139 - מקור: app\apps\users\models.py:147
+msgid "Sent"
+msgstr "נשלח"
+
+# #140 - מקור: app\apps\users\models.py:148
+msgid "Received"
+msgstr "התקבל"
+
+# #141 - מקור: app\apps\users\models.py:149
+msgid "Accepted"
+msgstr "אושר"
+
+# #142 - מקור: app\apps\users\models.py:246
+msgid "{username} accepted your invitation!"
+msgstr "{username} קיבל את ההזמנה שלך!"
+
+# #143 - מקור: app\apps\users\management\commands\check_quotas.py:43
+msgid "Disk storage"
+msgstr "אחסון דיסק"
+
+# #144 - מקור: app\apps\users\management\commands\check_quotas.py:44
+msgid "CPU minutes"
+msgstr "דקות CPU"
+
+# #145 - מקור: app\apps\users\management\commands\check_quotas.py:45
+msgid "GPU minutes"
+msgstr "דקות GPU"
+
+# #1 - מקור: app\apps\api\tests.py:302
+msgid "Fake report"
+msgstr "דוח דמה"
+
+# #7 - מקור: app\apps\core\forms.py:639
+msgid "default ({name})"
+msgstr "ברירת מחדל ({name})"
+
+# #8 - מקור: app\apps\core\forms.py:1015
+msgid "Overwrite existing model file"
+msgstr "דרוס קובץ מודל קיים"
+
+# #9 - מקור: app\apps\core\forms.py:1129
+msgid "Migrate with associated tags"
+msgstr "העבר עם תגיות משויכות"
+
+# #10 - מקור: app\apps\core\models.py:2187
+msgid "Instance setting"
+msgstr "הגדרת מופע"
+
+# #11 - מקור: app\apps\core\models.py:2188
+msgid "Instance settings"
+msgstr "הגדרות מופע"
+
+# #12 - מקור: app\apps\core\views.py:1064
+msgid "Document was successfully migrated to the selected project!"
+msgstr "המסמך הועבר בהצלחה לפרויקט הנבחר!"
+
+# #18 - מקור: app\apps\imports\tests\test_api.py:422
+msgid "Test import"
+msgstr "ייבוא בדיקה"
+
+# #19 - מקור: app\apps\imports\tests\test_exporters.py:167
+msgid "Test report for export task"
+msgstr "דוח בדיקה למשימת ייצוא"
+
+# #20 - מקור: app\apps\imports\tests\test_mets.py:31
+msgid "METS import from an archive"
+msgstr "ייבוא METS מארכיון"
+
+# #29 - מקור: app\apps\reporting\tasks.py:123
+msgid "report_label"
+msgstr "תווית דוח"
+
+# #30 - מקור: app\apps\users\admin.py:32
+msgid "Optional: Set the user's account expiry date"
+msgstr "רשות: הגדר תוקף לחשבון המשתמש"
+
+# #31 - מקור: app\apps\users\forms.py:20
+msgid "Optional: set an expiry date for this user's account"
+msgstr "רשות: הגדר תוקף לחשבון משתמש זה"
+
+# #32 - מקור: app\escriptorium\templates\base.html:55
+msgid "Toggle navigation"
+msgstr "החלף ניווט"
+
+# #38 - מקור: app\escriptorium\templates\django\forms\widgets\field.html:2
+msgid "my-1 mr-1"
+msgstr "my-1 mr-1"
+
+# #39 - מקור: app\escriptorium\templates\includes\pagination.html:4
+msgid "Pagination"
+msgstr "דפדוף"
+
+
+
+msgid "PDF is not a valid image, please use the dedicated Import function."
+msgstr "קובץ PDF אינו תמונה תקינה. נא להשתמש בפעולת הייבוא הייעודית."
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Import in %(document_name)s"
+msgstr "ייבוא אל %(document_name)s"
+
+msgid "'lines"
+msgstr "'שורות' (lines)"
+
+msgid "You can"
+msgstr "באפשרותך"
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "You need to choose a model to override if the override option is checked."
+msgstr "אם בחרת באפשרות דריסה, עליך לבחור מודל לדריסה."
+
+msgid "An optional URL pointing to an external document that explains content editing and authorship guidelines for this project, in order to guide a team or group towards consistent practices for manual segmentation/transcription."
+msgstr "כתובת (URL) אופציונלית למסמך חיצוני עם הנחיות עריכה וכתיבה לפרויקט, כדי לסייע לצוות לעבוד בצורה עקבית בחלוקה/תמלול ידני."
+
+msgid "If checked, enable toggling on and off colorized overlays for automatic transcription (OCR/HTR) confidences."
+msgstr "אם מסומן, אפשר להפעיל או לכבות שכבת צבע שמציגה את רמת הביטחון של התמלול האוטומטי (OCR/HTR)."
+
+msgid "The model did not converge, probably because of lack of data."
+msgstr "המודל לא התכנס, כנראה בגלל חוסר בנתונים."
+
+msgid "Something went wrong during the segmenter training process!"
+msgstr "משהו השתבש במהלך אימון מחלק החלוקה!"
+
+msgid "The name of the target transcription. Will default to"
+msgstr "שם התמלול היעד. ברירת מחדל:"
+
+msgid "exp: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+msgstr "דוגמה: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Import in %(document_name)s"
+msgstr "ייבוא אל %(document_name)s"
+
+msgid "This data is only present for transcriptions coming from automatic recognition and is invalidated by manual edition."
+msgstr "הנתון הזה קיים רק בתמלולים שנוצרו בזיהוי אוטומטי, והוא מתבטל בעריכה ידנית."
+
+msgid "A file containing a document ontology in JSON format"
+msgstr "קובץ המכיל אונטולוגיית מסמך בפורמט JSON"
+
+msgid "No match found for file {} with filename"
+msgstr "לא נמצאה התאמה לקובץ {} עם שם הקובץ"
+
+msgid "Invalid baseline {baseline} in {filen} line {linen}"
+msgstr "קו בסיס לא תקין {baseline} בקובץ {filen} שורה {linen}"
+
+msgid "Invalid coordinates for {tag} in {filen} line {line}"
+msgstr "קואורדינטות לא תקינות עבור {tag} בקובץ {filen} שורה {line}"
+
+msgid "Import finished with warnings!"
+msgstr "הייבוא הסתיים עם אזהרות!"
+
+msgid "Import done!"
+msgstr "הייבוא הושלם!"
+
+msgid "The following emails were invalid and were skipped: {emails}"
+msgstr "כתובות האימייל הבאות לא תקינות ולכן לא נכללו: {emails}"
+
+msgid "Please provide either a CSV file or enter emails directly."
+msgstr "נא לצרף קובץ CSV או להקליד כתובות אימייל ישירות."
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Update a Document"
+msgstr "עדכן מסמך"
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Select all"
+msgstr "בחר הכל"
+
+msgid "Update a Document"
+msgstr "עדכן מסמך"
+
+msgid "Select a specific transcription to search in."
+msgstr "בחר תמלול מסוים לחיפוש."
+
+msgid "Update a Document"
+msgstr "עדכן מסמך"
+
+msgid "Import/<br>Export"
+msgstr "ייבוא/<br>ייצוא"
+
+msgid "Import and export models and texts transcriptions in a variety of formats. Access data through a full REST API."
+msgstr "ייבוא וייצוא מודלים ותמלולים במגוון פורמטים. ניתן לגשת לנתונים גם דרך ממשק API מלא."
+
+msgid "Import an ontology in this document"
+msgstr "ייבא אונטולוגיה למסמך זה"
+
+msgid "The prefix of the target transcription. Will default to"
+msgstr "קידומת התמלול היעד. ברירת מחדל:"
+
+msgid "Gathering data can take time and the model won"
+msgstr "איסוף הנתונים עשוי לקחת זמן, והמודל לא יתחיל באימון עד לסיום."
+
+msgid "Your account doesn"
+msgstr "החשבון שלך אינו פעיל או שאין לך הרשאה."
+
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr "קישור איפוס הסיסמה אינו תקף, ייתכן שכבר נעשה בו שימוש. נא לבקש איפוס סיסמה חדש."
+
+msgid "Confidence is an estimate of the automatic transcription model to approximate its own accuracy per character."
+msgstr "רמת הביטחון היא הערכה של המודל האוטומטי לגבי הדיוק שלו בכל תו."
+
+msgid "The validity of this figure will depend on specific cases and models and is not necessarily an indication of result quality."
+msgstr "המשמעות של ערך זה תלויה במודל ובמקרה, ואינה בהכרח מעידה על איכות התוצאה."
+
+msgid "A line is a segment of text identified on a document part, usually associated with a polygon (mask) and a transcription."
+msgstr "שורה היא קטע טקסט שמזוהה בחלק מסמך, לרוב עם מצולע (מסכה) ותמלול."
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren"
+msgstr "ערכי שימוש CPU/GPU כוללים גם עיבוד אוטומטי של תמונות בעת העלאה, משימות אלו לא מופיעות ברשימה."
+
+msgid "Make sure to use a correct email as you will not receive an error message if it is not the case (in order to avoid phishing)."
+msgstr "ודא שהזנת כתובת אימייל נכונה – לא תתקבל הודעת שגיאה במקרה של טעות (למניעת פישינג)."
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Available %s"
+msgstr "%s זמינים"
+
+msgid "Type into this box to filter down the list of available %s."
+msgstr "הקלד כאן כדי לסנן את רשימת ה-%s הזמינים."
+
+msgid "Choose all"
+msgstr "בחר הכל"
+
+msgid "Click to choose all %s at once."
+msgstr "לחץ כדי לבחור את כל ה-%s בבת אחת."
+
+msgid "Chosen %s"
+msgstr "%s שנבחרו"
+
+msgid "Type into this box to filter down the list of selected %s."
+msgstr "הקלד כאן כדי לסנן את רשימת ה-%s שנבחרו."
+
+msgid "Remove all"
+msgstr "הסר הכל"
+
+msgid "Click to remove all chosen %s at once."
+msgstr "לחץ כדי להסיר את כל ה-%s שנבחרו בבת אחת."
+
+msgid "%(sel)s of %(cnt)s selected"
+msgstr "%(sel)s מתוך %(cnt)s נבחרו"
+
+msgid "You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."
+msgstr "יש לך שינויים שלא נשמרו בשדות העריכה. אם תבצע פעולה, השינויים יאבדו."
+
+msgid "You have selected an action, but you haven’t saved your changes to individual fields yet. Please click OK to save. You’ll need to re-run the action."
+msgstr "בחרת פעולה אך לא שמרת את השינויים בשדות. לחץ על OK לשמירה – תצטרך להפעיל שוב את הפעולה."
+
+msgid "You have selected an action, and you haven’t made any changes on individual fields. You’re probably looking for the Go button rather than the Save button."
+msgstr "בחרת פעולה אך לא שינית שדות. כנראה שאתה מחפש את כפתור 'בצע' ולא 'שמור'."
+
+msgid "Choose a Time"
+msgstr "בחר שעה"
+
+msgid "Choose a time"
+msgstr "בחר שעה"
+
+msgid "Choose a Date"
+msgstr "בחר תאריך"
+
+msgid "abbrev. month January"
+msgstr "ינו'"
+
+msgid "abbrev. month February"
+msgstr "פבר'"
+
+msgid "abbrev. month March"
+msgstr "מרץ'"
+
+msgid "abbrev. month April"
+msgstr "אפר'"
+
+msgid "abbrev. month May"
+msgstr "מאי"
+
+msgid "abbrev. month June"
+msgstr "יונ'"
+
+msgid "abbrev. month July"
+msgstr "יול'"
+
+msgid "abbrev. month August"
+msgstr "אוג'"
+
+msgid "abbrev. month September"
+msgstr "ספט'"
+
+msgid "abbrev. month October"
+msgstr "אוק'"
+
+msgid "abbrev. month November"
+msgstr "נוב'"
+
+msgid "abbrev. month December"
+msgstr "דצמ'"
+
+msgid "one letter Sunday"
+msgstr "א'"
+
+msgid "one letter Monday"
+msgstr "ב'"
+
+msgid "one letter Tuesday"
+msgstr "ג'"
+
+msgid "one letter Wednesday"
+msgstr "ד'"
+
+msgid "one letter Thursday"
+msgstr "ה'"
+
+msgid "one letter Saturday"
+msgstr "ש'"
+
+msgid "'+t.operator+"
+msgstr "פעולה"
+
+
+# Language names
+msgid "English"
+msgstr "אנגלית"
+
+msgid "Hebrew"
+msgstr "עברית"
+
+msgid "French"
+msgstr "צרפתית"
+
+msgid "German"
+msgstr "גרמנית"
+
+# Authentication & Registration
+msgid "Change your password"
+msgstr "שנה את הסיסמה שלך"
+
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "שכחת את הסיסמה? הכנס את כתובת האימייל שלך למטה, ואנו נשלח לך הוראות להגדרת סיסמה חדשה."
+
+msgid "Email address:"
+msgstr "כתובת אימייל:"
+
+msgid "Reset my password"
+msgstr "אפס את הסיסמה שלי"
+
+msgid "Register to eScriptorium"
+msgstr "הרשם ל-eScriptorium"
+
+msgid "Signup"
+msgstr "הרשמה"
+
+# Profile & User Management
+msgid "Profile Settings"
+msgstr "הגדרות פרופיל"
+
+msgid "Information"
+msgstr "מידע"
+
+msgid "API key"
+msgstr "מפתח API"
+
+msgid "Files"
+msgstr "קבצים"
+
+msgid "Teams"
+msgstr "צוותים"
+
+msgid "Invitations"
+msgstr "הזמנות"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Update"
+msgstr "עדכן"
+
+msgid "Create"
+msgstr "צור"
+
+msgid "You don't have any saved files yet."
+msgstr "עדיין אין לך קבצים שמורים."
+
+msgid "You don't have permission to view or edit this document."
+msgstr "אין לך הרשאה לצxxxxxxxxxxxx את המסמך הזה."
+
+# Teams & Groups
+msgid "Create a new Team"
+msgstr "צור צוות חדש"
+
+msgid "Pending Invitations"
+msgstr "הזמנות ממתינות"
+
+msgid "Accept"
+msgstr "קבל"
+
+msgid "My Teams"
+msgstr "הצוותים שלי"
+
+msgid "Leave"
+msgstr "עזוב"
+
+msgid "You are not part of any team yet."
+msgstr "אתה עדיין לא חלק מאף צוות."
+
+msgid "Share with"
+msgstr "שתף עם"
+
+msgid "Users"
+msgstr "משתמשים"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Share"
+msgstr "שתף"
+
+msgid "Owner"
+msgstr "בעלים"
+
+msgid "Do you really want to remove the project from your list?"
+msgstr "האם אתה באמת רוצה להסיר את הפרויקט מהרשימה שלך?"
+
+msgid "Remove from list"
+msgstr "הסר מהרשימה"
+
+# API & Technical
+msgid "API Authentication Token:"
+msgstr "טוקן אימות API:"
+
+msgid "Copy to clipboard."
+msgstr "העתק ללוח."
+
+msgid "Regenerate Token."
+msgstr "יצר טוקן מחדש."
+
+msgid "example: "
+msgstr "דוגמה: "
+
+# Invitations
+msgid "Invite Users"
+msgstr "הזמן משתמשים"
+
+msgid "Invite mode"
+msgstr "מצב הזמנה"
+
+msgid "Single"
+msgstr "יחיד"
+
+msgid "Bulk"
+msgstr "קבוצתי"
+
+msgid "Recipient's information"
+msgstr "מידע על הנמען"
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "Upload CSV file"
+msgstr "העלה קובץ CSV"
+
+msgid "OR"
+msgstr "או"
+
+msgid "Or"
+msgstr "או"
+
+msgid "Paste emails (one per line)"
+msgstr "הדבק אימיילים (אחד בכל שורה)"
+
+msgid "Team"
+msgstr "צוות"
+
+msgid "Expiry date (optional)"
+msgstr "תאריך תפוגה (אופציונלי)"
+
+msgid "Send Invitations"
+msgstr "שלח הזמנות"
+
+# Table headers
+msgid "Recipient"
+msgstr "נמען"
+
+msgid "Group"
+msgstr "קבוצה"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Content"
+msgstr "תוכן"
+
+msgid "Replacement preview"
+msgstr "תצוגה מקדימה של החלפה"
+
+msgid "Image preview"
+msgstr "תצוגה מקדימה של תמונה"
+
+msgid "Score"
+msgstr "ציון"
+
+msgid "Edit"
+msgstr "ערוך"
+
+# Messages
+msgid "You didn't send any invitations yet."
+msgstr "עדיין לא שלחת הזמנות."
+
+msgid "No results matched your search."
+msgstr "אין תוצאות התואמות לחיפוש שלך."
+
+msgid "Image preview is not available for this search result"
+msgstr "תצוגה מקדימה של תמונה לא זמינה עבור תוצאת חיפוש זו"
+
+# Admin
+msgid "Add invitation"
+msgstr "הוסף הזמנה"
+
+msgid "Bulk Invite"
+msgstr "הזמנה קבוצתית"
+
+# Projects
+msgid "My Projects"
+msgstr "הפרויקטים שלי"
+
+msgid "Create new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Update a Project"
+msgstr "עדכן פרויקט"
+
+msgid "Create a new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Documents"
+msgstr "מסמכים"
+
+msgid "Reports"
+msgstr "דוחות"
+
+msgid "Ontology"
+msgstr "אונטולוגיה"
+
+# Search functionality
+msgid "Search in projects"
+msgstr "חיפוש בפרויקטים"
+
+msgid "Search text in projects"
+msgstr "חיפוש טקסט בפרויקטים"
+
+msgid "Search feature is deactivated on this instance."
+msgstr "תכונת החיפוש מושבתת במופע הזה."
+
+msgid "Search"
+msgstr "חפש"
+
+msgid "Find"
+msgstr "מצא"
+
+msgid "Couldn't xxxxxct to Elasticsearch, please contact your instance administrator."
+msgstr "לא הצלחתי להתחבר ל-Elasticsearch, אנא פנה למנהל המופע שלך."
+
+msgid "Reason:"
+msgstr "סיבה:"
+
+msgid "Find and replace in projects"
+msgstr "מצא והחלף בפרויקטים"
+
+msgid "Find and replace text in projects"
+msgstr "מצא והחלף טקסט בפרויקטים"
+
+msgid "Replace all"
+msgstr "החלף הכל"
+
+msgid "Filter results by this part"
+msgstr "סנן תוצאות לפי חלק זה"
+
+msgid "Filter results by this document"
+msgstr "סנן תוצאות לפי מסמך זה"
+
+msgid "Filter results by this transcription level"
+msgstr "סנן תוצאות לפי רמת התמלול"
+
+msgid "Results"
+msgstr "תוצאות"
+
+msgid "Previous line"
+msgstr "שורה קודמת"
+
+msgid "Line transcription"
+msgstr "תמלול שורה"
+
+msgid "Next line"
+msgstr "שורה הבאה"
+
+msgid "Search terms found in previous or next line."
+msgstr "מונחי חיפוש נמצאו בשורה קודמת או הבאה."
+
+msgid "in document"
+msgstr "במסמך"
+
+msgid "Full image cropped according to the transcription bounding box"
+msgstr "תמונה מלאה חתוכה לפי מסגרת התמלול"
+
+msgid "Search score"
+msgstr "ציון חיפוש"
+
+msgid "Go to document part editing page"
+msgstr "עבור לדף עריכת חלק המסמך"
+
+# Import/Export functionality
+msgid "Import is already ongoing, please wait for it to be finished or cancel it."
+msgstr "הייבוא כבר מתבצע, אנא המתן עד שיסתיים או בטל אותו."
+
+msgid "Resume previous import."
+msgstr "המשך ייבוא קודם."
+
+msgid "Start importing"
+msgstr "התחל ייבוא"
+
+msgid "Import images from IIIF."
+msgstr "ייבא תמונות מ-IIIF."
+
+msgid "Import images from a PDF document."
+msgstr "ייבא תמונות ממסמך PDF."
+
+msgid "A single pdf with one image per page."
+msgstr "PDF יחיד עם תמונה אחת לכל עמוד."
+
+msgid "Import segmentation & transcriptions from XML."
+msgstr "ייבא פילוח ותמלולים מ-XML."
+
+msgid "Import images/segmentation/transcriptions described by METS."
+msgstr "ייבא תמונות/פילוח/תמלולים המתוארים ב-METS."
+
+msgid "The prefix of the target transcription. Will default to \"METS Import\""
+msgstr "קידומת התמלול היעד. יהיה כברירת מחדל \"ייבוא METS\""
+
+msgid "From a remote METS file"
+msgstr "מקובץ METS מרוחק"
+
+msgid "Or from a local archive"
+msgstr "או מארכיון מקומי"
+
+msgid "A single ZIP archive described by a METS file contained inside it."
+msgstr "ארכיון ZIP יחיד המתואר על ידי קובץ METS שנמצא בתוכו."
+
+msgid "Export"
+msgstr "ייצא"
+
+# Training & Models
+msgid "(PLACEHOLDER)"
+msgstr "(מקום שומר מקום)"
+
+msgid "New model"
+msgstr "מודל חדש"
+
+msgid "Or select an existing one"
+msgstr "או בחר אחד קיים"
+
+msgid "Train"
+msgstr "אמן"
+
+msgid "The training data will be generated from the selected images and transcription."
+msgstr "נתוני האימון יווצרו מהתמונות והתמלול שנבחרו."
+
+msgid "Empty lines will be ignored."
+msgstr "שורות ריקות יתעלמו."
+
+msgid "Gathering data can take time and the model won't be available in the models tab until then."
+msgstr "איסוף נתונים עלול לקחת זמן והמודל לא יהיה זמין בלשונית המודלים עד אז."
+
+msgid "image(s) selected."
+msgstr "תמונה/ות נבחרו."
+
+# Transcription & Segmentation
+msgid "Make sure that the segmentation is good before going forward because resegmenting will delete all bound transcriptions."
+msgstr "וודא שהפילוח טוב לפני המשך כי פילוח מחדש ימחק את כל התמלולים הקשורים."
+
+msgid "Select a model"
+msgstr "בחר מודל"
+
+msgid "Select a transcription"
+msgstr "בחר תמלול"
+
+msgid "Transcribe"
+msgstr "תמלל"
+
+msgid "Beware that re-segmenting will delete any existing transcriptions!"
+msgstr "זהירות, פילוח מחדש ימחק כל תמלול קיים!"
+
+msgid "Segment"
+msgstr "פלח"
+
+# Alignment
+msgid "Choose a transcription and a textual witness (reference text) to align to the transcription."
+msgstr "בחר תמלול ועד טקסטואלי (טקסט ייחוס) ליישור עם התמלול."
+
+msgid "Upload or select a textual witness"
+msgstr "העלה או בחר עד טקסטואלי"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Align"
+msgstr "יישר"
+
+# Additional funding and institutional text
+msgid "Funded salaries of two developers for XX years…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים..."
+
+# Common UI elements
+msgid "Powered by"
+msgstr "מופעל על ידי"
+
+msgid "Service hosted and maintained by"
+msgstr "שירות מארח ומתוחזק על ידי"
+
+msgid "Inria Paris"
+msgstr "Inria פריס"
+
+msgid "Institutions & Funding"
+msgstr "מוסדות ומימון"
+
+msgid "Other Contributions"
+msgstr "תרומות אחרות"
+
+msgid "In addition to the support of AOROC and the EPHE, eScriptorium has benefitted from a significant number of institutions and funding sources, including the following:"
+msgstr "מופעל על ידי"
+
+msgid "Service hosted and maintained by"
+msgstr "שירות מארח ומתוחזק על ידי"
+
+msgid "Inria Paris"
+msgstr "Inria פריס"
+
+msgid "Institutions & Funding"
+msgstr "מוסדות ומימון"
+
+msgid "Other Contributions"
+msgstr "תרומות אחרות"
+
+# Additional Login/Authentication terms
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Your username and password didn't match. Please try again."
+msgstr "שם המשתמש והסיסמה שלך לא תואמים. אנא נסה שוב."
+
+msgid "Hello {{username}}"
+msgstr "שלום {{username}}"
+
+msgid "Password"
+msgstr "סיסמה"
+
+msgid "Login"
+msgstr "התחברות"
+
+msgid "Sign in"
+msgstr "כניסה"
+
+msgid "Lost password?"
+msgstr "שכחת סיסמה?"
+
+msgid "Forgotten your password?"
+msgstr "שכחת את הסיסמה?"
+
+msgid "Remember me"
+msgstr "זכור אותי"
+
+msgid "Log out"
+msgstr "התנתק"
+
+msgid "Logout"
+msgstr "התנתקות"
+
+# Navigation and Common UI
+msgid "Home"
+msgstr "בית"
+
+msgid "Dashboard"
+msgstr "לוח בקרה"
+
+msgid "Projects"
+msgstr "פרויקטים"
+
+msgid "Models"
+msgstr "מודלים"
+
+msgid "Profile"
+msgstr "פרופיל"
+
+msgid "Help"
+msgstr "עזרה"
+
+msgid "About"
+msgstr "אודות"
+
+msgid "Back"
+msgstr "חזור"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Cancel"
+msgstr "ביטול"
+
+msgid "Delete"
+msgstr "מחק"
+
+msgid "Confirm"
+msgstr "אשר"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Loading..."
+msgstr "טוען..."
+
+msgid "Please wait..."
+msgstr "אנא המתן..."
+
+# Form validation and errors
+msgid "This field is required."
+msgstr "שדה זה חובה."
+
+msgid "Please enter a valid email address."
+msgstr "אנא הכנס כתובת אימייל תקינה."
+
+msgid "Passwords do not match."
+msgstr "הסיסמאות אינן תואמות."
+
+msgid "Invalid username or password."
+msgstr "שם משתמש או סיסמה שגויים."
+
+# Common actions
+msgid "View"
+msgstr "צפה"
+
+msgid "Download"
+msgstr "הורד"
+
+msgid "Upload"
+msgstr "העלה"
+
+msgid "Import"
+msgstr "ייבא"
+
+msgid "Submit"
+msgstr "שלח"
+
+msgid "Apply"
+msgstr "החל"
+
+msgid "Reset"
+msgstr "איפוס"
+
+# Date and time
+msgid "Today"
+msgstr "היום"
+
+msgid "Yesterday"
+msgstr "אתמול"
+
+msgid "Tomorrow"
+msgstr "מחר"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Time"
+msgstr "שעה"
+
+# Status and states
+msgid "Active"
+msgstr "פעיל"
+
+msgid "Inactive"
+msgstr "לא פעיל"
+
+msgid "Pending"
+msgstr "ממתין"
+
+msgid "Completed"
+msgstr "הושלם"
+
+msgid "Failed"
+msgstr "נכשל"
+
+msgid "Success"
+msgstr "הצליח"
+
+msgid "Error"
+msgstr "שגיאה"
+
+msgid "Warning"
+msgstr "אזהרה"
+
+# Model Field Labels and Help Text
+msgid "email address"
+msgstr "כתובת אימייל"
+
+msgid "Use the legacy version of the user interface. If unchecked, features that have not yet been ported to the new interface may become unavailable. Likewise, if checked, newer features may become unavailable."
+msgstr "השתמש בגרסה הישנה של ממשק המשתמש. אם לא מסומן, תכונות שעדיין לא הועברו לממשק החדש עלולות להפוך לא זמינות. כמו כן, אם מסומן, תכונות חדשות יותר עלולות להפוך לא זמינות."
+
+msgid "Team"
+msgstr "צוות"
+
+msgid "Contact message"
+msgstr "הודעת יצירת קשר"
+
+msgid "Contact messages"
+msgstr "הודעות יצירת קשר"
+
+# Form Labels and Help Text
+msgid "All projects"
+msgstr "כל הפרויקטים"
+
+msgid "Text to replace"
+msgstr "טקסט להחלפה"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Model"
+msgstr "מודל"
+
+msgid "-- New --"
+msgstr "-- חדש --"
+
+msgid "If checked, deletes existing segmentation <b>and bound transcriptions</b> first!"
+msgstr "אם מסומן, מוחק קודם פילוח קיים <b>ותמלולים קשורים</b>!"
+
+msgid "The transcription on which to perform alignment."
+msgstr "התמלול שעליו לבצע יישור."
+
+msgid "The reference text for alignment; must be a .txt file."
+msgstr "טקסט הייחוס ליישור; חייב להיות קובץ .txt."
+
+msgid "Reuse a previously-uploaded reference text."
+msgstr "השתמש מחדש בטקסט ייחוס שהועלה קודם."
+
+msgid "N-gram"
+msgstr "N-gram"
+
+msgid "Length (2–25) of token sequences to compare; 25 should work well for at least moderately clean OCR. For very poor OCR, lower to 3 or 4."
+msgstr "אורך (2-25) של רצפי טוקנים להשוואה; 25 אמור לעבוד טוב לפחות עבור OCR נקי בינוני. עבור OCR גרוע מאוד, הורד ל-3 או 4."
+
+# Workflow and Task Status
+msgid "Queued"
+msgstr "בתור"
+
+msgid "Running"
+msgstr "רץ"
+
+msgid "Crashed"
+msgstr "קרס"
+
+msgid "Finished"
+msgstr "הסתיים"
+
+msgid "Canceled"
+msgstr "בוטל"
+
+# User Management and Invitations Messages
+msgid "Invitation sent successfully!"
+msgstr "ההזמנה נשלחה בהצלחה!"
+
+msgid "You do not have permission to invite users."
+msgstr "אין לך הרשאה להזמין משתמשים."
+
+msgid "Successfully registered, you can now log in!"
+msgstr "נרשמת בהצלחה, כעת תוכל להתחבר!"
+
+msgid "You are now a member of Team {team_name}!"
+msgstr "אתה כעת חבר בצוות {team_name}!"
+
+msgid "User {user} successfully removed from the team {team_name}."
+msgstr "המשתמש {user} הוסר בהצלחה מהצוות {team_name}."
+
+msgid "You successfully left {team}."
+msgstr "עזבת בהצלחה את {team}."
+
+msgid "Successfully transferred ownership to {user}."
+msgstr "הבעלות הועברה בהצלחה ל{user}."
+
+msgid "Successfully sent %(count)d invitations."
+msgstr "נשלחו בהצלחה %(count)d הזמנות."
+
+msgid "Skipped invalid: %(emails)s"
+msgstr "דולג על לא תקין: %(emails)s"
+
+msgid "Invitation sent to %(email)s."
+msgstr "ההזמנה נשלחה אל %(email)s."
+
+# System Messages and Notifications
+msgid "Something went wrong during the ontology import..."
+msgstr "משהו השתבש במהלך ייבוא האונטולוגיה..."
+
+msgid "Ontology import finished with warnings."
+msgstr "ייבוא האונטולוגיה הסתיים עם אזהרות."
+
+msgid "Ontology import finished successfully!"
+msgstr "ייבוא האונטולוגיה הסתיים בהצלחה!"
+
+# File and document related
+msgid "Document"
+msgstr "מסמך"
+
+msgid "Page"
+msgstr "עמוד"
+
+msgid "Line"
+msgstr "שורה"
+
+msgid "Word"
+msgstr "מילה"
+
+msgid "Character"
+msgstr "תו"
+
+msgid "Text"
+msgstr "טקסט"
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "File"
+msgstr "קובץ"
+
+msgid "Folder"
+msgstr "תיקייה"
+
+msgid "Size"
+msgstr "גודל"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Format"
+msgstr "פורמט"
+
+msgid "Quality"
+msgstr "איכות"
+
+msgid "Resolution"
+msgstr "רזולוציה"
+
+# Button and Action Labels  
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Send invitation"
+msgstr "שלח הזמנה"
+
+msgid "Remove user from group"
+msgstr "הסר משתמש מקבוצה"
+
+# Block translations with variables
+msgctxt "invitation email"
+msgid "%(sender)s has invited you to join the team %(team_name)s on eScriptorium."
+msgstr "%(sender)s הזמין אותך להצטרף לצוות %(team_name)s ב-eScriptorium."
+
+msgctxt "team ownership"
+msgid "Owned by %(owner)s"
+msgstr "בבעלות %(owner)s"
+
+# Additional funding and institutional text (from contributors examples)
+msgid "In addition to the support of AOROC and the EPHE, eScriptorium has benefitted from a significant number of institutions and funding sources, including the following:"
+msgstr "בנוסף לתמיכת AOROC וה-EPHE, eScriptorium זכה לתמיכת מספר רב של מוסדות ומקורות מימון, כולל:"
+
+msgid "Funded salaries of two developers for XX years, as well as …"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם..."
+
+msgid "Funded …???"
+msgstr "מימן...???"
+
+msgid "Funded the acquisition of HPC hardware and servers…"
+msgstr "מימן רכישת חומרת HPC ושרתים..."
+
+msgid "Funded the development of the virtual keyboard with Teklia."
+msgstr "מימן את פיתוח המקלדת הוירטואלית עם Teklia."
+
+msgid "Funded salaries of two developers for XX years, as well as sustaining the HPC…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם קיום ה-HPC..."
+
+msgid "Funded advanced line-joining interface…"
+msgstr "מימן ממשק מתקדם לחיבור שורות..."
+
+msgid "Funded UI development…"
+msgstr "מימן פיתוח ממשק משתמש..."
+
+msgid "Funded SLURM-based task execution…"
+msgstr "מימן ביצוע משימות מבוסס SLURM..."
+
+msgid "We are also very grateful for other types of contribution, such as open datasets (particularly those on HTR-United), open models, tickets reporting bugs and improvements, documentation, organising training sessions, producing plugins and other tools…"
+msgstr "אנו גם מאוד אסירי תודה לסוגים אחרים של תרומה, כגון מערכי נתונים פתוחים (במיוחד אלה ב-HTR-United), מודלים פתוחים, כרטיסים המדווחים על באגים ושיפורים, תיעוד, ארגון מפגשי הכשרה, הפקת תוספים וכלים אחרים..."

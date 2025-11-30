@@ -1,0 +1,236 @@
+.escr-progress-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    background: var(--background1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 9998;
+    overflow: hidden;
+}
+
+/* Header */
+.escr-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--background2);
+    border-bottom: 1px solid var(--border);
+}
+
+.escr-progress-title {
+    font-weight: 600;
+    color: var(--text1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.escr-progress-icon {
+    font-size: 18px;
+    animation: escr-progress-spin 2s linear infinite;
+}
+
+@keyframes escr-progress-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.escr-progress-cancel-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text3);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.escr-progress-cancel-btn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* Progress Bar */
+.escr-progress-bar-container {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.escr-progress-bar {
+    flex: 1;
+    height: 12px;
+    background: var(--background2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.escr-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success), var(--success-light));
+    border-radius: 6px;
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.escr-progress-bar-fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: escr-progress-shimmer 2s infinite;
+}
+
+@keyframes escr-progress-shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.escr-progress-percentage {
+    font-weight: 600;
+    color: var(--text1);
+    min-width: 45px;
+    text-align: right;
+    font-size: 14px;
+}
+
+/* Stats */
+.escr-progress-stats {
+    padding: 0 20px 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.escr-progress-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.escr-progress-stat-label {
+    color: var(--text2);
+    font-weight: 500;
+}
+
+.escr-progress-stat-value {
+    color: var(--text1);
+    font-weight: 600;
+}
+
+.escr-progress-stat-error .escr-progress-stat-value {
+    color: var(--danger);
+}
+
+/* Time */
+.escr-progress-time {
+    padding: 12px 20px;
+    background: var(--background2);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.escr-progress-time-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.escr-progress-time-label {
+    color: var(--text2);
+}
+
+.escr-progress-time-value {
+    color: var(--text1);
+    font-weight: 600;
+    font-family: monospace;
+}
+
+/* Canceling State */
+.escr-progress-canceling {
+    padding: 16px 20px;
+    background: var(--warning-light);
+    color: var(--warning-dark);
+    text-align: center;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-top: 1px solid var(--warning);
+}
+
+.escr-progress-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--warning-dark);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: escr-progress-spin 0.8s linear infinite;
+}
+
+.escr-progress-indicator.canceling {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Transitions */
+.escr-progress-slide-enter-active,
+.escr-progress-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+.escr-progress-slide-enter-from {
+    transform: translateY(100%) translateX(20px);
+    opacity: 0;
+}
+
+.escr-progress-slide-leave-to {
+    transform: translateY(100%) translateX(20px);
+    opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .escr-progress-indicator {
+        width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .escr-progress-indicator {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .escr-progress-slide-enter-from,
+[dir="rtl"] .escr-progress-slide-leave-to {
+    transform: translateY(100%) translateX(-20px);
+}

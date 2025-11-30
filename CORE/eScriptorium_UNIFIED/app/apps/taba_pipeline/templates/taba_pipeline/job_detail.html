@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ job.name }} - TABA{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+          <i class="fas fa-tasks"></i>
+          {{ job.name }}
+        </h1>
+        <a href="{% url 'taba:job-list' %}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> {% trans "Back to Jobs" %}
+        </a>
+      </div>
+
+      <!-- Job Status Card -->
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+              <i class="fas fa-info-circle"></i> {% trans "Job Information" %}
+            </div>
+            <div class="card-body">
+              <dl class="row">
+                <dt class="col-sm-3">{% trans "Job Name" %}:</dt>
+                <dd class="col-sm-9">{{ job.name }}</dd>
+
+                <dt class="col-sm-3">{% trans "Document" %}:</dt>
+                <dd class="col-sm-9">
+                  <a href="/document/{{ job.document.pk }}/">{{ job.document.name }}</a>
+                </dd>
+
+                <dt class="col-sm-3">{% trans "OCR Transcription" %}:</dt>
+                <dd class="col-sm-9">{{ job.ocr_transcription.name }}</dd>
+
+                <dt class="col-sm-3">{% trans "GT Corpus" %}:</dt>
+                <dd class="col-sm-9">
+                  <a href="{% url 'taba:corpus-detail' job.gt_corpus.pk %}">{{ job.gt_corpus.name }}</a>
+                </dd>
+
+                <dt class="col-sm-3">{% trans "Status" %}:</dt>
+                <dd class="col-sm-9">
+                  {% if job.status == 'completed' %}
+                    <span class="badge badge-success badge-lg">{{ job.get_status_display }}</span>
+                  {% elif job.status == 'failed' %}
+                    <span class="badge badge-danger badge-lg">{{ job.get_status_display }}</span>
+                  {% elif job.status == 'pending' %}
+                    <span class="badge badge-secondary badge-lg">{{ job.get_status_display }}</span>
+                  {% else %}
+                    <span class="badge badge-primary badge-lg">{{ job.get_status_display }}</span>
+                  {% endif %}
+                </dd>
+
+                <dt class="col-sm-3">{% trans "Progress" %}:</dt>
+                <dd class="col-sm-9">
+                  <div class="progress" style="height: 25px;">
+                    <div class="progress-bar progress-bar-striped {% if job.status not in 'completed,failed' %}progress-bar-animated{% endif %}" 
+                         role="progressbar" 
+                         style="width: {{ job.progress }}%;" 
+                         aria-valuenow="{{ job.progress }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                      {{ job.progress }}%
+                    </div>
+                  </div>
+                </dd>
+
+                <dt class="col-sm-3">{% trans "Owner" %}:</dt>
+                <dd class="col-sm-9">{{ job.owner.username }}</dd>
+
+                <dt class="col-sm-3">{% trans "Created" %}:</dt>
+                <dd class="col-sm-9">{{ job.created_at|date:"d/m/Y H:i:s" }}</dd>
+
+                {% if job.started_at %}
+                <dt class="col-sm-3">{% trans "Started" %}:</dt>
+                <dd class="col-sm-9">{{ job.started_at|date:"d/m/Y H:i:s" }}</dd>
+                {% endif %}
+
+                {% if job.completed_at %}
+                <dt class="col-sm-3">{% trans "Completed" %}:</dt>
+                <dd class="col-sm-9">{{ job.completed_at|date:"d/m/Y H:i:s" }}</dd>
+                {% endif %}
+
+                {% if job.duration %}
+                <dt class="col-sm-3">{% trans "Duration" %}:</dt>
+                <dd class="col-sm-9">{{ job.duration }}</dd>
+                {% endif %}
+              </dl>
+
+              {% if job.error_message %}
+              <div class="alert alert-danger mt-3">
+                <h5><i class="fas fa-exclamation-triangle"></i> {% trans "Error Message" %}</h5>
+                <pre>{{ job.error_message }}</pre>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Passim Parameters -->
+          <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+              <i class="fas fa-cog"></i> {% trans "Passim Parameters" %}
+            </div>
+            <div class="card-body">
+              <dl class="row">
+                <dt class="col-sm-4">{% trans "N-gram size" %}:</dt>
+                <dd class="col-sm-8">{{ job.passim_n }}</dd>
+
+                <dt class="col-sm-4">{% trans "CPU Cores" %}:</dt>
+                <dd class="col-sm-8">{{ job.passim_cores }}</dd>
+
+                <dt class="col-sm-4">{% trans "Memory" %}:</dt>
+                <dd class="col-sm-8">{{ job.passim_memory }} GB</dd>
+
+                <dt class="col-sm-4">{% trans "Driver Memory" %}:</dt>
+                <dd class="col-sm-8">{{ job.passim_driver_memory }} GB</dd>
+
+                <dt class="col-sm-4">{% trans "Levenshtein Threshold" %}:</dt>
+                <dd class="col-sm-8">{{ job.levenshtein_threshold }}</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics Card -->
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+              <i class="fas fa-chart-bar"></i> {% trans "Results" %}
+            </div>
+            <div class="card-body text-center">
+              <div class="mb-3">
+                <h2 class="text-primary">{{ job.total_aligned_lines }}</h2>
+                <small>{% trans "Total Aligned Lines" %}</small>
+              </div>
+              <div class="mb-3">
+                <h3 class="text-success">{{ job.aligned_gt_texts|length }}</h3>
+                <small>{% trans "GT Texts Found" %}</small>
+              </div>
+              <div>
+                <h3 class="text-info">{{ results|length }}</h3>
+                <small>{% trans "Pages Processed" %}</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Card -->
+          <div class="card">
+            <div class="card-header bg-warning text-dark">
+              <i class="fas fa-bolt"></i> {% trans "Actions" %}
+            </div>
+            <div class="card-body">
+              {% if job.status == 'pending' %}
+              <form method="post" action="{% url 'taba:job-run' job.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-block">
+                  <i class="fas fa-play"></i> {% trans "Start Job" %}
+                </button>
+              </form>
+              {% elif job.status in 'preparing,running_passim,processing' %}
+              <button class="btn btn-primary btn-block" disabled>
+                <i class="fas fa-spinner fa-spin"></i> {% trans "Job Running..." %}
+              </button>
+              {% endif %}
+
+              <a href="/admin/taba_pipeline/alignmentjob/{{ job.pk }}/change/" class="btn btn-warning btn-block mt-2">
+                <i class="fas fa-edit"></i> {% trans "Edit in Admin" %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Table -->
+      {% if results %}
+      <div class="card mt-4">
+        <div class="card-header bg-dark text-white">
+          <i class="fas fa-list"></i> {% trans "Alignment Results by Page" %}
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th>{% trans "Page" %}</th>
+                <th>{% trans "GT Text" %}</th>
+                <th class="text-right">{% trans "Aligned Lines" %}</th>
+                <th class="text-right">{% trans "Max Cluster" %}</th>
+                <th class="text-right">{% trans "Avg. Levenshtein" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for result in results %}
+              <tr>
+                <td><strong>{{ result.part_title }}</strong></td>
+                <td>{{ result.gt_text.title }}</td>
+                <td class="text-right">{{ result.total_aligned_lines }}</td>
+                <td class="text-right">{{ result.max_cluster_size }}</td>
+                <td class="text-right">{{ result.average_levenshtein_ratio|floatformat:3 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- GT Statistics -->
+      {% if gt_statistics %}
+      <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+          <i class="fas fa-chart-pie"></i> {% trans "Ground Truth Statistics" %}
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>{% trans "GT Text" %}</th>
+                <th class="text-right">{% trans "Pages" %}</th>
+                <th class="text-right">{% trans "Total Lines" %}</th>
+                <th class="text-right">{% trans "Max Cluster" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for stat in gt_statistics %}
+              <tr>
+                <td><strong>{{ stat.gt_text.title }}</strong></td>
+                <td class="text-right">{{ stat.total_pages }}</td>
+                <td class="text-right">{{ stat.total_lines }}</td>
+                <td class="text-right">{{ stat.max_cluster }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

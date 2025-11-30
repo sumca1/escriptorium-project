@@ -1,0 +1,40 @@
+{
+  "activity": [
+    {
+      "title": "Production פעיל",
+      "time": "11:25",
+      "description": "2 containers פעילים"
+    },
+    {
+      "title": "עדכון Dashboard",
+      "time": "11:35",
+      "description": "עדכון אוטומטי של מדדים וסטטיסטיקות"
+    }
+  ],
+  "files": {
+    "synced": 0,
+    "total": 0,
+    "modified": 0
+  },
+  "lastUpdate": "2025-11-12 11:35:20",
+  "environments": {
+    "test": {
+      "tests": 0,
+      "passed": 0,
+      "coverage": 0,
+      "status": "inactive"
+    },
+    "prod": {
+      "uptime": 1020,
+      "healthy": 2,
+      "containers": 2,
+      "status": "active"
+    },
+    "dev": {
+      "uptime": 0,
+      "port": 8000,
+      "status": "inactive"
+    }
+  },
+  "logs": null
+}

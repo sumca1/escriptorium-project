@@ -1,0 +1,1218 @@
+time="2025-10-19T15:41:35+03:00" level=warning msg="G:\\OCR_Arabic_Testing\\BiblIA_dataset-project\\BiblIA_dataset\\eScriptorium_CLEAN\\docker-compose.override.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+fastapi-1     | │                                                                              │
+fastapi-1     | │     93 │   def database_forwards(self, app_label, schema_editor, from_state, │
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+celery-low-1  | no destination
+fastapi-1     | │     94 │   │   model = to_state.apps.get_model(app_label, self.name)         │
+fastapi-1     | │     95 │   │   if self.allow_migrate_model(schema_editor.connection.alias, m │
+fastapi-1     | │ ❱   96 │   │   │   schema_editor.create_model(model)                         │
+celery-low-1  | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-priority-1  | │    69 │   │   )                                                              │
+fastapi-1     | │     97 │                                                                     │
+fastapi-1              | │     98 │   def database_backwards(self, app_label, schema_editor, from_state │
+fastapi-1              | │     99 │   │   model = from_state.apps.get_model(app_label, self.name)       │
+fastapi-1              | │                                                                              │
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/base/schema.py:451 │
+fastapi-1              | │ in create_model                                                              │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    448 │   │   sql, params = self.table_sql(model)                           │
+fastapi-1              | │    449 │   │   # Prevent using [] as params, in the case a literal '%' is us │
+celery-low-priority-1  | │    70                                                                        │
+celery-low-priority-1  | │                                                                              │
+celery-low-priority-1  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+celery-low-priority-1  | │ _execute_with_wrappers                                                       │
+celery-low-priority-1  | │                                                                              │
+fastapi-1              | │    450 │   │   # definition.                                                 │
+celery-low-priority-1  | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+celery-low-priority-1  | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+celery-low-priority-1  | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+celery-low-priority-1  | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+celery-low-priority-1  | │    81 │                                                                      │
+celery-low-priority-1  | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+celery-low-priority-1  | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+celery-low-priority-1  | │                                                                              │
+celery-low-1           | no destination
+celery-low-1           | no destination
+fastapi-1              | │ ❱  451 │   │   self.execute(sql, params or None)                             │
+fastapi-1              | │    452 │   │                                                                 │
+celery-low-1           | no destination
+fastapi-1              | │    453 │   │   if self.connection.features.supports_comments:                │
+fastapi-1              | │    454 │   │   │   # Add table comment.                                      │
+fastapi-1              | │                                                                              │
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/postgresql/schema. │
+fastapi-1              | │ py:45 in execute                                                             │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-priority-1  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+celery-low-priority-1  | │ _execute                                                                     │
+celery-low-priority-1  | │                                                                              │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    42 │   def execute(self, sql, params=()):                                 │
+celery-low-priority-1  | │    86 │   │   │   │   # params default might be backend specific.            │
+celery-low-priority-1  | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+fastapi-1              | │    43 │   │   # Merge the query client-side, as PostgreSQL won't do it serve │
+celery-low-priority-1  | │    88 │   │   │   else:                                                      │
+celery-low-priority-1  | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+fastapi-1              | │    44 │   │   if params is None:                                             │
+celery-low-priority-1  | │    90 │                                                                      │
+fastapi-1              | │ ❱  45 │   │   │   return super().execute(sql, params)                        │
+fastapi-1              | │    46 │   │   sql = self.connection.ops.compose_sql(str(sql), params)        │
+celery-low-priority-1  | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+celery-low-priority-1  | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+celery-low-priority-1  | │                                                                              │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+fastapi-1              | │    47 │   │   # Don't let the superclass touch anything.                     │
+fastapi-1              | │    48 │   │   return super().execute(sql, None)                              │
+fastapi-1              | │                                                                              │
+celery-low-1           | no destination
+celery-low-priority-1  | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+celery-low-priority-1  | │                                                                              │
+celery-low-priority-1  | │    88 │   │   │   │   # the connection unusable.                             │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/base/schema.py:201 │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+fastapi-1              | │ in execute                                                                   │
+celery-low-1           | no destination
+celery-low-priority-1  | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    198 │   │   │   │   self.collected_sql.append(sql + ending)               │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-priority-1  | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+celery-low-priority-1  | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+celery-low-priority-1  | │    92 │                                                                      │
+fastapi-1              | │    199 │   │   else:                                                         │
+celery-low-priority-1  | │    93 │   def __call__(self, func):                                          │
+fastapi-1              | │    200 │   │   │   with self.connection.cursor() as cursor:                  │
+fastapi-1              | │ ❱  201 │   │   │   │   cursor.execute(sql, params)                           │
+celery-low-priority-1  | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+celery-low-priority-1  | │                                                                              │
+celery-low-priority-1  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:87 in     │
+fastapi-1              | │    202 │                                                                     │
+fastapi-1              | │    203 │   def quote_name(self, name):                                       │
+fastapi-1              | │    204 │   │   return self.connection.ops.quote_name(name)                   │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-priority-1  | │ _execute                                                                     │
+celery-low-priority-1  | │                                                                              │
+fastapi-1              | │                                                                              │
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:67 in     │
+fastapi-1              | │ execute                                                                      │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    64 │   │   │   │   return self.cursor.callproc(procname, params, kparams) │
+fastapi-1              | │    65 │                                                                      │
+celery-low-priority-1  | │    84 │   │   with self.db.wrap_database_errors:                             │
+celery-low-priority-1  | │    85 │   │   │   if params is None:                                         │
+celery-low-priority-1  | │    86 │   │   │   │   # params default might be backend specific.            │
+celery-low-priority-1  | │ ❱  87 │   │   │   │   return self.cursor.execute(sql)                        │
+celery-low-priority-1  | │    88 │   │   │   else:                                                      │
+celery-low-priority-1  | │    89 │   │   │   │   return self.cursor.execute(sql, params)                │
+celery-low-1           | no destination
+celery-low-priority-1  | │    90                                                                        │
+fastapi-1              | │    66 │   def execute(self, sql, params=None):                               │
+celery-low-1           | no destination
+celery-low-1           | no destination
+celery-low-priority-1  | ╰──────────────────────────────────────────────────────────────────────────────╯
+celery-low-1           | no destination
+celery-low-priority-1  | IntegrityError: duplicate key value violates unique constraint 
+celery-low-priority-1  | "pg_type_typname_nsp_index"
+celery-low-priority-1  | DETAIL:  Key (typname, typnamespace)=(auth_permission, 2200) already exists.
+celery-low-priority-1  | 
+celery-low-priority-1  |   Applying auth.0001_initial... 
+celery-low-priority-1  |  -------------- celery@175897ac1df8 v5.3.6 (emerald-rush)
+celery-low-priority-1  | --- ***** ----- 
+celery-low-priority-1  | -- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.34 2025-10-19 12:41:19
+fastapi-1              | │ ❱  67 │   │   return self._execute_with_wrappers(                            │
+celery-low-priority-1  | - *** --- * --- 
+celery-low-priority-1  | - ** ---------- [config]
+fastapi-1              | │    68 │   │   │   sql, params, many=False, executor=self._execute            │
+fastapi-1              | │    69 │   │   )                                                              │
+fastapi-1              | │    70                                                                        │
+celery-low-priority-1  | - ** ---------- .> app:         escriptorium:0x70b897b85f70
+celery-low-priority-1  | - ** ---------- .> transport:   redis://redis:6379/0
+fastapi-1              | │                                                                              │
+celery-low-priority-1  | - ** ---------- .> results:     redis://redis:6379/
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+fastapi-1              | │ _execute_with_wrappers                                                       │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+fastapi-1              | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+fastapi-1              | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+fastapi-1              | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+celery-low-priority-1  | - *** --- * --- .> concurrency: 10 (prefork)
+celery-low-priority-1  | -- ******* ---- .> task events: ON
+fastapi-1              | │    81 │                                                                      │
+celery-low-priority-1  | --- ***** ----- 
+celery-low-priority-1  |  -------------- [queues]
+celery-low-priority-1  |                 .> low-priority     exchange=default(direct) key=low-priority
+fastapi-1              | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+celery-low-priority-1  |                 
+celery-low-priority-1  | 
+celery-low-priority-1  | [tasks]
+fastapi-1              | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+fastapi-1              | │                                                                              │
+celery-low-priority-1  |   . core.tasks.align
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+celery-low-priority-1  |   . core.tasks.convert
+celery-low-priority-1  |   . core.tasks.forced_align
+celery-low-priority-1  |   . core.tasks.generate_part_thumbnails
+celery-low-priority-1  |   . core.tasks.lossless_compression
+fastapi-1              | │ _execute                                                                     │
+celery-low-priority-1  |   . core.tasks.recalculate_masks
+fastapi-1              | │                                                                              │
+fastapi-1              | │    86 │   │   │   │   # params default might be backend specific.            │
+celery-low-priority-1  |   . core.tasks.replace_line_transcriptions_text
+celery-low-priority-1  |   . core.tasks.segment
+celery-low-priority-1  |   . core.tasks.segtrain
+celery-low-priority-1  |   . core.tasks.train
+celery-low-priority-1  |   . core.tasks.transcribe
+celery-low-priority-1  |   . escriptorium.celery.debug_task
+celery-low-priority-1  |   . imports.tasks.document_export
+celery-low-priority-1  |   . imports.tasks.document_import
+fastapi-1              | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+fastapi-1              | │    88 │   │   │   else:                                                      │
+fastapi-1              | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+fastapi-1              | │    90 │                                                                      │
+fastapi-1              | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+fastapi-1              | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+fastapi-1              | │                                                                              │
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+fastapi-1              | │                                                                              │
+fastapi-1              | │    88 │   │   │   │   # the connection unusable.                             │
+fastapi-1              | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+fastapi-1              | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+fastapi-1              | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+fastapi-1              | │    92 │                                                                      │
+fastapi-1              | │    93 │   def __call__(self, func):                                          │
+fastapi-1              | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+fastapi-1              | │                                                                              │
+fastapi-1              | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:87 in     │
+fastapi-1              | │ _execute                                                                     │
+celery-low-priority-1  |   . users.tasks.async_email
+celery-low-priority-1  | 
+celery-low-priority-1  | [2025-10-19 12:41:22,734: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+fastapi-1              | │                                                                              │
+fastapi-1              | │    84 │   │   with self.db.wrap_database_errors:                             │
+celery-low-priority-1  | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-low-priority-1  | If you wish to retain the existing behavior for retrying connections on startup,
+celery-low-priority-1  | you should set broker_connection_retry_on_startup to True.
+celery-low-priority-1  |   warnings.warn(
+celery-low-priority-1  | 
+celery-low-priority-1  | [2025-10-19 12:41:22,749: INFO/MainProcess] Connected to redis://redis:6379/0
+celery-low-priority-1  | [2025-10-19 12:41:22,751: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-low-priority-1  | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-low-priority-1  | If you wish to retain the existing behavior for retrying connections on startup,
+celery-low-priority-1  | you should set broker_connection_retry_on_startup to True.
+celery-low-priority-1  |   warnings.warn(
+celery-low-priority-1  | 
+celery-low-priority-1  | [2025-10-19 12:41:22,756: INFO/MainProcess] mingle: searching for neighbors
+celery-low-priority-1  | [2025-10-19 12:41:23,780: INFO/MainProcess] mingle: all alone
+celery-low-priority-1  | [2025-10-19 12:41:23,856: INFO/MainProcess] celery@175897ac1df8 ready.
+celery-low-priority-1  | [2025-10-19 12:41:30,728: INFO/MainProcess] sync with celery@25b53f158929
+fastapi-1              | │    85 │   │   │   if params is None:                                         │
+fastapi-1              | │    86 │   │   │   │   # params default might be backend specific.            │
+fastapi-1              | │ ❱  87 │   │   │   │   return self.cursor.execute(sql)                        │
+fastapi-1              | │    88 │   │   │   else:                                                      │
+fastapi-1              | │    89 │   │   │   │   return self.cursor.execute(sql, params)                │
+fastapi-1              | │    90                                                                        │
+fastapi-1              | ╰──────────────────────────────────────────────────────────────────────────────╯
+fastapi-1              | ProgrammingError: relation "authtoken_token" already exists
+fastapi-1              | 
+fastapi-1              | /usr/local/bin/python: No module named uvicorn
+flower-1               | [I 251019 12:40:35 command:168] Visit me at http://0.0.0.0:5555
+flower-1               | [I 251019 12:40:35 command:176] Broker: redis://redis:6379/0
+flower-1               | [I 251019 12:40:35 command:177] Registered tasks: 
+flower-1               |     ['celery.accumulate',
+flower-1               |      'celery.backend_cleanup',
+flower-1               |      'celery.chain',
+flower-1               |      'celery.chord',
+flower-1               |      'celery.chord_unlock',
+flower-1               |      'celery.chunks',
+flower-1               |      'celery.group',
+flower-1               |      'celery.map',
+flower-1               |      'celery.starmap']
+flower-1               | [I 251019 12:40:35 mixins:228] Connected to redis://redis:6379/0
+flower-1               | [W 251019 12:40:36 inspector:44] Inspect method stats failed
+flower-1               | [W 251019 12:40:36 inspector:44] Inspect method revoked failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method reserved failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method active failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method conf failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method active_queues failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method scheduled failed
+flower-1               | [W 251019 12:40:37 inspector:44] Inspect method registered failed
+celery-gpu-1           |   Applying core.0074_instancesettings... OK
+celery-gpu-1           |   Applying easy_thumbnails.0001_initial... OK
+celery-gpu-1           |   Applying easy_thumbnails.0002_thumbnaildimensions... OK
+celery-gpu-1           |   Applying reporting.0001_initial... OK
+celery-gpu-1           |   Applying imports.0001_initial... OK
+celery-gpu-1           |   Applying imports.0002_auto_20190403_1308... OK
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:58,120Z", "level": "INFO", "component": "o.e.h.AbstractHttpServerTransport", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "publish_address {172.18.0.4:9200}, bound_addresses {[::]:9200}", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:58,121Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "started", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:58,299Z", "level": "INFO", "component": "o.e.g.GatewayService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "recovered [0] indices into cluster_state", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:58,653Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.ml-state] for index patterns [.ml-state*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:58,929Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.ml-notifications-000002] for index patterns [.ml-notifications-000002]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,103Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.ml-anomalies-] for index patterns [.ml-anomalies-*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,222Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.ml-stats] for index patterns [.ml-stats-*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,356Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [data-streams-mappings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,458Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [logs-settings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,540Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [metrics-settings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,622Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [logs-mappings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,734Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [metrics-mappings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,812Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [synthetics-mappings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,893Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [synthetics-settings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:40:59,991Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.watch-history-13] for index patterns [.watcher-history-13*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,106Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [ilm-history] for index patterns [ilm-history-5*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+celery-gpu-1           |   Applying imports.0003_auto_20190409_0942... OK
+celery-gpu-1           |   Applying imports.0004_auto_20190411_1048... OK
+celery-gpu-1           |   Applying imports.0005_import_task_id... OK
+celery-gpu-1           |   Applying imports.0006_auto_20190507_1212... OK
+celery-gpu-1           |   Applying imports.0007_auto_20191014_0949... OK
+celery-gpu-1           |   Applying imports.0008_auto_20191014_1003... OK
+celery-gpu-1           |   Applying imports.0009_documentimport_total... OK
+celery-gpu-1           |   Applying imports.0010_auto_20191015_0917... OK
+celery-gpu-1           |   Applying imports.0011_auto_20201009_1015... OK
+celery-gpu-1           |   Applying imports.0012_auto_20220608_1737... OK
+celery-gpu-1           |   Applying imports.0013_documentimport_with_mets... OK
+celery-gpu-1           |   Applying imports.0014_documentimport_mets_base_uri... OK
+celery-gpu-1           |   Applying imports.0015_alter_documentimport_import_file... OK
+celery-gpu-1           |   Applying language_support.0001_initial... OK
+celery-gpu-1           |   Applying language_support.0002_modellanguageanalysis_confidence_score... OK
+celery-gpu-1           |   Applying reporting.0002_taskreport_method... OK
+celery-gpu-1           |   Applying reporting.0003_taskreport_cpu_cost... OK
+celery-gpu-1           |   Applying reporting.0004_taskreport_gpu_cost... OK
+celery-gpu-1           |   Applying reporting.0005_taskreport_document... OK
+celery-gpu-1           |   Applying reporting.0006_taskreport_part_and_canceled_state... OK
+celery-gpu-1           |   Applying reporting.0007_taskreport_ocr_model... OK
+celery-gpu-1           |   Applying reporting.0008_taskgroup_taskreport_group... OK
+celery-gpu-1           |   Applying reporting.0009_alter_taskgroup_options... OK
+celery-gpu-1           |   Applying sessions.0001_initial... OK
+celery-gpu-1           |   Applying sites.0001_initial... OK
+celery-gpu-1           |   Applying sites.0002_alter_domain_unique... OK
+celery-gpu-1           |   Applying users.0005_auto_20181129_1601... OK
+celery-gpu-1           |   Applying users.0006_auto_20190208_1135... OK
+celery-gpu-1           |   Applying users.0007_user_onboarding... OK
+celery-gpu-1           |   Applying users.0008_auto_20200520_1007... OK
+celery-gpu-1           |   Applying users.0009_contactus... OK
+celery-gpu-1           |   Applying users.0010_auto_20200828_0823... OK
+celery-gpu-1           |   Applying users.0011_groupowner... OK
+celery-gpu-1           |   Applying users.0012_create_group_owners... OK
+celery-gpu-1           |   Applying users.0013_auto_20210106_1305... OK
+celery-gpu-1           |   Applying users.0014_auto_20210324_1007... OK
+celery-gpu-1           |   Applying users.0015_update_domain_n_site_name... OK
+celery-gpu-1           |   Applying users.0016_auto_20211006_1227... OK
+celery-gpu-1           |   Applying users.0017_quotaevent... OK
+celery-gpu-1           |   Applying users.0018_auto_20220608_1737... OK
+celery-gpu-1           |   Applying users.0019_remove_user_onboarding... OK
+celery-gpu-1           |   Applying users.0020_user_legacy_mode... OK
+celery-gpu-1           |   Applying users.0021_alter_user_legacy_mode... OK
+celery-gpu-1           |   Applying users.0022_invitation_expiry_date_user_expiry_date... OK
+celery-gpu-1           |  
+celery-gpu-1           |  -------------- celery@25b53f158929 v5.3.6 (emerald-rush)
+celery-gpu-1           | --- ***** ----- 
+celery-gpu-1           | -- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.34 2025-10-19 12:41:30
+celery-gpu-1           | - *** --- * --- 
+celery-gpu-1           | - ** ---------- [config]
+celery-gpu-1           | - ** ---------- .> app:         escriptorium:0x752b169c5ca0
+celery-gpu-1           | - ** ---------- .> transport:   redis://redis:6379/0
+celery-gpu-1           | - ** ---------- .> results:     redis://redis:6379/
+celery-gpu-1           | - *** --- * --- .> concurrency: 1 (prefork)
+celery-gpu-1           | -- ******* ---- .> task events: ON
+celery-gpu-1           | --- ***** ----- 
+celery-gpu-1           |  -------------- [queues]
+celery-gpu-1           |                 .> gpu              exchange=default(direct) key=gpu
+celery-gpu-1           |                 
+celery-gpu-1           | 
+celery-gpu-1           | [tasks]
+celery-gpu-1           |   . core.tasks.align
+celery-gpu-1           |   . core.tasks.convert
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,192Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.slm-history] for index patterns [.slm-history-5*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,269Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [.deprecation-indexing-settings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,346Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding component template [.deprecation-indexing-mappings]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,411Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [logs] for index patterns [logs-*-*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,484Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [metrics] for index patterns [metrics-*-*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,561Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [synthetics] for index patterns [synthetics-*-*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,635Z", "level": "INFO", "component": "o.e.c.m.MetadataIndexTemplateService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index template [.deprecation-indexing-template] for index patterns [.logs-deprecation.*]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,700Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [ml-size-based-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,774Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [synthetics]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,837Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [metrics]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,932Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [logs]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:00,988Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [90-days-default]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,060Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [365-days-default]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,119Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [30-days-default]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,191Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [7-days-default]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,257Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [180-days-default]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,331Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [watch-history-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,408Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [ilm-history-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,495Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [slm-history-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,562Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [.deprecation-indexing-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,634Z", "level": "INFO", "component": "o.e.x.i.a.TransportPutLifecycleAction", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "adding index lifecycle policy [.fleet-actions-results-ilm-policy]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,862Z", "level": "INFO", "component": "o.e.i.g.GeoIpDownloader", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "updating geoip databases", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:01,863Z", "level": "INFO", "component": "o.e.i.g.GeoIpDownloader", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "fetching geoip databases overview from [https://geoip.elastic.co/v1/database?elastic_geoip_service_tos=agree]", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:02,167Z", "level": "INFO", "component": "o.e.l.LicenseService", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "license [ce774f89-9fc7-4ef4-9d56-544df5499dd6] mode [basic] - valid", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:02,193Z", "level": "ERROR", "component": "o.e.i.g.GeoIpDownloader", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "exception during geoip databases update", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw" , 
+elasticsearch-1        | "stacktrace": ["javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target",
+elasticsearch-1        | "at sun.security.ssl.Alert.createSSLException(Alert.java:131) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.TransportContext.fatal(TransportContext.java:370) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.TransportContext.fatal(TransportContext.java:313) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.TransportContext.fatal(TransportContext.java:308) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1357) ~[?:?]",
+celery-live-1          | │    69 │   │   )                                                              │
+nginx-1                | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+celery-gpu-1           |   . core.tasks.forced_align
+nginx-1                | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+celery-gpu-1           |   . core.tasks.generate_part_thumbnails
+celery-gpu-1           |   . core.tasks.lossless_compression
+celery-gpu-1           |   . core.tasks.recalculate_masks
+celery-gpu-1           |   . core.tasks.replace_line_transcriptions_text
+celery-gpu-1           |   . core.tasks.segment
+celery-gpu-1           |   . core.tasks.segtrain
+celery-gpu-1           |   . core.tasks.train
+celery-gpu-1           |   . core.tasks.transcribe
+web-1                  | │ ❱  67 │   │   return self._execute_with_wrappers(                            │
+web-1                  | │    68 │   │   │   sql, params, many=False, executor=self._execute            │
+web-1                  | │    69 │   │   )                                                              │
+web-1                  | │    70                                                                        │
+elasticsearch-1        | "at sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1232) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1175) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396) ~[?:?]",
+nginx-1                | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+celery-gpu-1           |   . escriptorium.celery.debug_task
+elasticsearch-1        | "at sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480) ~[?:?]",
+web-1                  | │                                                                              │
+celery-live-1          | │    70                                                                        │
+celery-live-1          | │                                                                              │
+celery-live-1          | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+celery-live-1          | │ _execute_with_wrappers                                                       │
+elasticsearch-1        | "at sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:458) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.TransportContext.dispatch(TransportContext.java:200) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.SSLTransport.decode(SSLTransport.java:172) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1500) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1415) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:450) ~[?:?]",
+nginx-1                | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf is not a file or does not exist
+nginx-1                | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1                | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1                | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1                | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: using the "epoll" event method
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: nginx/1.26.1
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: OS: Linux 6.6.87.2-microsoft-standard-WSL2
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker processes
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 20
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 21
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 22
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 23
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 24
+web-1                  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+web-1                  | │ _execute_with_wrappers                                                       │
+mail-1                 | 
+web-1                  | │                                                                              │
+celery-gpu-1           |   . imports.tasks.document_export
+celery-gpu-1           |   . imports.tasks.document_import
+mail-1                 | *** warning - no files are being watched ***
+mail-1                 | 
+elasticsearch-1        | "at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:421) ~[?:?]",
+celery-live-1          | │                                                                              │
+elasticsearch-1        | "at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:580) ~[?:?]",
+celery-live-1          | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+celery-gpu-1           |   . users.tasks.async_email
+celery-live-1          | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+celery-gpu-1           | 
+celery-live-1          | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+celery-live-1          | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+celery-live-1          | │    81 │                                                                      │
+celery-live-1          | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 25
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 26
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 27
+mail-1                 | *** '/var/log/exim4/mainlog' has been created ***
+mail-1                 | 
+mail-1                 | *** /var/log/exim4/mainlog ***
+celery-gpu-1           | [2025-10-19 12:41:30,702: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 28
+web-1                  | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+celery-live-1          | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+web-1                  | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+web-1                  | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+elasticsearch-1        | "at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:183) ~[?:?]",
+celery-gpu-1           | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-live-1          | │                                                                              │
+celery-live-1          | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+celery-live-1          | │ _execute                                                                     │
+web-1                  | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+web-1                  | │    81 │                                                                      │
+celery-gpu-1           | If you wish to retain the existing behavior for retrying connections on startup,
+mail-1                 | 2025-10-19 12:40:35 Warning: No server certificate defined; will use a selfsigned one.
+mail-1                 |  Suggested action: either install a certificate or change tls_advertise_hosts option
+mail-1                 | 2025-10-19 12:40:35 Warning: purging the environment.
+mail-1                 |  Suggested action: use keep_environment.
+mail-1                 | 2025-10-19 12:40:35 exim 4.93 daemon started: pid=10, -q30m, listening for SMTP on port 25 (IPv4)
+web-1                  | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+celery-live-1          | │                                                                              │
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 29
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 30
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 31
+mail-1                 | 2025-10-19 12:40:35 Warning: No server certificate defined; will use a selfsigned one.
+mail-1                 |  Suggested action: either install a certificate or change tls_advertise_hosts option
+web-1                  | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+elasticsearch-1        | "at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1665) ~[?:?]",
+elasticsearch-1        | "at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1589) ~[?:?]",
+elasticsearch-1        | "at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:529) ~[?:?]",
+mail-1                 | 2025-10-19 12:40:35 Start queue run: pid=13
+mail-1                 | 2025-10-19 12:40:35 End queue run: pid=13
+web-1                  | │                                                                              │
+web-1                  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+celery-gpu-1           | you should set broker_connection_retry_on_startup to True.
+elasticsearch-1        | "at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:308) ~[?:?]",
+celery-live-1          | │    86 │   │   │   │   # params default might be backend specific.            │
+celery-live-1          | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 32
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 33
+celery-gpu-1           |   warnings.warn(
+celery-gpu-1           | 
+celery-gpu-1           | [2025-10-19 12:41:30,714: INFO/MainProcess] Connected to redis://redis:6379/0
+celery-gpu-1           | [2025-10-19 12:41:30,715: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-gpu-1           | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-gpu-1           | If you wish to retain the existing behavior for retrying connections on startup,
+celery-gpu-1           | you should set broker_connection_retry_on_startup to True.
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 34
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 35
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.HttpClient.lambda$get$0(HttpClient.java:55) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+elasticsearch-1        | "at java.security.AccessController.doPrivileged(AccessController.java:569) ~[?:?]",
+celery-gpu-1           |   warnings.warn(
+celery-gpu-1           | 
+celery-gpu-1           | [2025-10-19 12:41:30,720: INFO/MainProcess] mingle: searching for neighbors
+celery-gpu-1           | [2025-10-19 12:41:31,747: INFO/MainProcess] mingle: sync with 3 nodes
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 36
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 37
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.HttpClient.doPrivileged(HttpClient.java:97) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 38
+nginx-1                | 2025/10/19 12:40:35 [notice] 1#1: start worker process 39
+celery-gpu-1           | [2025-10-19 12:41:31,749: INFO/MainProcess] mingle: sync complete
+celery-gpu-1           | [2025-10-19 12:41:31,763: INFO/MainProcess] celery@25b53f158929 ready.
+celery-live-1          | │    88 │   │   │   else:                                                      │
+web-1                  | │ _execute                                                                     │
+celery-live-1          | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+celery-live-1          | │    90 │                                                                      │
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.HttpClient.get(HttpClient.java:49) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET / HTTP/1.1" 200 4803 "-" "Mozilla/5.0 (Windows NT 10.0; Microsoft Windows 10.0.19045; he-IL) PowerShell/7.5.3" "-"
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET / HTTP/1.1" 200 4803 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+web-1                  | │                                                                              │
+nginx-1                | 2025/10/19 12:41:33 [error] 21#21: *3 open() "/usr/src/app/static/vendor.css" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/vendor.css HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+celery-live-1          | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+celery-live-1          | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+web-1                  | │    86 │   │   │   │   # params default might be backend specific.            │
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/vendor.css HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+web-1                  | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+nginx-1                | 2025/10/19 12:41:33 [error] 21#21: *3 open() "/usr/src/app/static/main.css" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/main.css HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+celery-live-1          | │                                                                              │
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.HttpClient.getBytes(HttpClient.java:40) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.GeoIpDownloader.fetchDatabasesOverview(GeoIpDownloader.java:135) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.GeoIpDownloader.updateDatabases(GeoIpDownloader.java:123) ~[ingest-geoip-7.17.0.jar:7.17.0]",
+web-1                  | │    88 │   │   │   else:                                                      │
+web-1                  | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/main.css HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+nginx-1                | 2025/10/19 12:41:33 [error] 22#22: *4 open() "/usr/src/app/static/globalNavigation.css" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/globalNavigation.css HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/globalNavigation.css HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+web-1                  | │    90 │                                                                      │
+web-1                  | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+web-1                  | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+nginx-1                | 2025/10/19 12:41:33 [error] 23#23: *6 open() "/usr/src/app/static/css/rtl-hebrew.css" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/css/rtl-hebrew.css HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+celery-live-1          | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/css/rtl-hebrew.css HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+celery-live-1          | │                                                                              │
+web-1                  | │                                                                              │
+web-1                  | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+web-1                  | │                                                                              │
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.GeoIpDownloader.runDownloader(GeoIpDownloader.java:260) [ingest-geoip-7.17.0.jar:7.17.0]",
+web-1                  | │    88 │   │   │   │   # the connection unusable.                             │
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.GeoIpDownloaderTaskExecutor.nodeOperation(GeoIpDownloaderTaskExecutor.java:97) [ingest-geoip-7.17.0.jar:7.17.0]",
+web-1                  | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+celery-live-1          | │    88 │   │   │   │   # the connection unusable.                             │
+nginx-1                | 2025/10/19 12:41:33 [error] 27#27: *8 open() "/usr/src/app/static/main.js" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/main.js HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+nginx-1                | 2025/10/19 12:41:33 [error] 26#26: *7 open() "/usr/src/app/static/vendor.js" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/vendor.js HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+web-1                  | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+celery-live-1          | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+celery-live-1          | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/main.js HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+elasticsearch-1        | "at org.elasticsearch.ingest.geoip.GeoIpDownloaderTaskExecutor.nodeOperation(GeoIpDownloaderTaskExecutor.java:43) [ingest-geoip-7.17.0.jar:7.17.0]",
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/vendor.js HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+web-1                  | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+celery-live-1          | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+web-1                  | │    92 │                                                                      │
+web-1                  | │    93 │   def __call__(self, func):                                          │
+celery-live-1          | │    92 │                                                                      │
+celery-live-1          | │    93 │   def __call__(self, func):                                          │
+elasticsearch-1        | "at org.elasticsearch.persistent.NodePersistentTasksExecutor$1.doRun(NodePersistentTasksExecutor.java:42) [elasticsearch-7.17.0.jar:7.17.0]",
+elasticsearch-1        | "at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:777) [elasticsearch-7.17.0.jar:7.17.0]",
+web-1                  | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+nginx-1                | 2025/10/19 12:41:33 [error] 28#28: *9 open() "/usr/src/app/static/globalNavigation.js" failed (2: No such file or directory), client: 172.18.0.1, server: , request: "GET /static/globalNavigation.js HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"
+elasticsearch-1        | "at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:26) [elasticsearch-7.17.0.jar:7.17.0]",
+elasticsearch-1        | "at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]",
+elasticsearch-1        | "at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]",
+nginx-1                | 172.18.0.1 - - [19/Oct/2025:12:41:33 +0000] "GET /static/globalNavigation.js HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" "-"
+celery-live-1          | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+celery-live-1          | │                                                                              │
+celery-live-1          | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:87 in     │
+elasticsearch-1        | "at java.lang.Thread.run(Thread.java:833) [?:?]",
+celery-live-1          | │ _execute                                                                     │
+elasticsearch-1        | "Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target",
+celery-live-1          | │                                                                              │
+celery-live-1          | │    84 │   │   with self.db.wrap_database_errors:                             │
+celery-live-1          | │    85 │   │   │   if params is None:                                         │
+elasticsearch-1        | "at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439) ~[?:?]",
+elasticsearch-1        | "at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306) ~[?:?]",
+elasticsearch-1        | "at sun.security.validator.Validator.validate(Validator.java:264) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231) ~[?:?]",
+celery-live-1          | │    86 │   │   │   │   # params default might be backend specific.            │
+celery-live-1          | │ ❱  87 │   │   │   │   return self.cursor.execute(sql)                        │
+celery-live-1          | │    88 │   │   │   else:                                                      │
+celery-live-1          | │    89 │   │   │   │   return self.cursor.execute(sql, params)                │
+web-1                  | │                                                                              │
+web-1                  | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:87 in     │
+web-1                  | │ _execute                                                                     │
+celery-live-1          | │    90                                                                        │
+celery-live-1          | ╰──────────────────────────────────────────────────────────────────────────────╯
+celery-live-1          | IntegrityError: duplicate key value violates unique constraint 
+celery-live-1          | "pg_type_typname_nsp_index"
+elasticsearch-1        | "at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:132) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341) ~[?:?]",
+elasticsearch-1        | "... 33 more",
+web-1                  | │                                                                              │
+elasticsearch-1        | "Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target",
+web-1                  | │    84 │   │   with self.db.wrap_database_errors:                             │
+web-1                  | │    85 │   │   │   if params is None:                                         │
+web-1                  | │    86 │   │   │   │   # params default might be backend specific.            │
+web-1                  | │ ❱  87 │   │   │   │   return self.cursor.execute(sql)                        │
+web-1                  | │    88 │   │   │   else:                                                      │
+celery-live-1          | DETAIL:  Key (typname, typnamespace)=(users_user, 2200) already exists.
+web-1                  | │    89 │   │   │   │   return self.cursor.execute(sql, params)                │
+web-1                  | │    90                                                                        │
+celery-live-1          | 
+elasticsearch-1        | "at sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141) ~[?:?]",
+elasticsearch-1        | "at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126) ~[?:?]",
+elasticsearch-1        | "at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297) ~[?:?]",
+celery-live-1          |   Applying users.0001_initial... 
+elasticsearch-1        | "at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434) ~[?:?]",
+celery-live-1          |  -------------- celery@10e7c5408179 v5.3.6 (emerald-rush)
+celery-live-1          | --- ***** ----- 
+elasticsearch-1        | "at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306) ~[?:?]",
+celery-live-1          | -- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.34 2025-10-19 12:41:20
+celery-live-1          | - *** --- * --- 
+celery-live-1          | - ** ---------- [config]
+celery-live-1          | - ** ---------- .> app:         escriptorium:0x71277ad05f70
+celery-live-1          | - ** ---------- .> transport:   redis://redis:6379/0
+celery-live-1          | - ** ---------- .> results:     redis://redis:6379/
+elasticsearch-1        | "at sun.security.validator.Validator.validate(Validator.java:264) ~[?:?]",
+celery-live-1          | - *** --- * --- .> concurrency: 10 (prefork)
+celery-live-1          | -- ******* ---- .> task events: ON
+web-1                  | ╰──────────────────────────────────────────────────────────────────────────────╯
+web-1                  | IntegrityError: duplicate key value violates unique constraint 
+web-1                  | "pg_type_typname_nsp_index"
+web-1                  | DETAIL:  Key (typname, typnamespace)=(auth_permission, 2200) already exists.
+web-1                  | 
+web-1                  | [uWSGI] getting INI configuration from /usr/src/app/uwsgi.ini
+celery-live-1          | --- ***** ----- 
+celery-live-1          |  -------------- [queues]
+web-1                  | *** Starting uWSGI 2.0.30 (64bit) on [Sun Oct 19 12:41:09 2025] ***
+web-1                  | compiled with version: 12.2.0 on 13 August 2025 10:30:36
+web-1                  | os: Linux-6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025
+web-1                  | nodename: 370dee12a857
+web-1                  | machine: x86_64
+celery-live-1          |                 .> live             exchange=default(direct) key=live
+celery-live-1          |                 
+elasticsearch-1        | "at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:132) ~[?:?]",
+elasticsearch-1        | "at sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341) ~[?:?]",
+elasticsearch-1        | "... 33 more"] }
+elasticsearch-1        | {"type": "server", "timestamp": "2025-10-19T12:41:18,134Z", "level": "WARN", "component": "o.e.t.ThreadPool", "cluster.name": "docker-cluster", "node.name": "040a85c18336", "message": "absolute clock went backwards by [2.2s/2239ms] while timer thread was sleeping", "cluster.uuid": "kdNvBY87RVWK6rfsyJPN3w", "node.id": "Qs4RKviHTpqf84YihuIsBw"  }
+web-1                  | clock source: unix
+celery-live-1          | 
+celery-live-1          | [tasks]
+celery-live-1          |   . core.tasks.align
+celery-live-1          |   . core.tasks.convert
+celery-live-1          |   . core.tasks.forced_align
+celery-live-1          |   . core.tasks.generate_part_thumbnails
+celery-live-1          |   . core.tasks.lossless_compression
+celery-live-1          |   . core.tasks.recalculate_masks
+celery-live-1          |   . core.tasks.replace_line_transcriptions_text
+celery-live-1          |   . core.tasks.segment
+web-1                  | detected number of CPU cores: 20
+celery-live-1          |   . core.tasks.segtrain
+web-1                  | current working directory: /usr/src/app
+web-1                  | detected binary path: /usr/local/bin/uwsgi
+web-1                  | !!! no internal routing support, rebuild with pcre support !!!
+web-1                  | uWSGI running as root, you can use --uid/--gid/--chroot options
+web-1                  | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+web-1                  | chdir() to /usr/src/app/
+web-1                  | *** WARNING: you are running uWSGI without its master process manager ***
+web-1                  | your memory page size is 4096 bytes
+web-1                  | detected max file descriptor number: 1048576
+web-1                  | lock engine: pthread robust mutexes
+web-1                  | thunder lock: disabled (you can enable it with --thunder-lock)
+web-1                  | uWSGI http bound on :8000 fd 4
+web-1                  | spawned uWSGI http 1 (pid: 122)
+web-1                  | uwsgi socket 0 bound to TCP address 127.0.0.1:40355 (port auto-assigned) fd 3
+web-1                  | uWSGI running as root, you can use --uid/--gid/--chroot options
+web-1                  | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+web-1                  | Python version: 3.8.20 (default, Sep 27 2024, 06:05:23)  [GCC 12.2.0]
+web-1                  | Python main interpreter initialized at 0x5d03359b86a0
+web-1                  | uWSGI running as root, you can use --uid/--gid/--chroot options
+web-1                  | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+web-1                  | python threads support enabled
+web-1                  | your server socket listen backlog is limited to 100 connections
+celery-live-1          |   . core.tasks.train
+web-1                  | your mercy for graceful operations on workers is 60 seconds
+web-1                  | mapped 72904 bytes (71 KB) for 1 cores
+web-1                  | *** Operational MODE: single process ***
+web-1                  | WSGI app 0 (mountpoint='') ready in 10 seconds on interpreter 0x5d03359b86a0 pid: 1 (default app)
+web-1                  | uWSGI running as root, you can use --uid/--gid/--chroot options
+celery-live-1          |   . core.tasks.transcribe
+web-1                  | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+celery-live-1          |   . escriptorium.celery.debug_task
+web-1                  | *** uWSGI is running in multiple interpreter mode ***
+celery-live-1          |   . imports.tasks.document_export
+web-1                  | spawned uWSGI worker 1 (and the only) (pid: 1, cores: 1)
+celery-live-1          |   . imports.tasks.document_import
+web-1                  | 🔍 CleanBibliaMiddlewareV2: current_language = he
+web-1                  | ✅ Applying Hebrew/Arabic translations...
+web-1                  | 📄 Processing HTML (15068 bytes)...
+web-1                  | ✅ Translation completed! New size: 13803 bytes
+web-1                  | [pid: 1|app: 0|req: 1/1] 172.18.0.9 () {34 vars in 507 bytes} [Sun Oct 19 12:41:33 2025] GET / => generated 13803 bytes in 689 msecs (HTTP/1.1 200) 9 headers in 398 bytes (1 switches on core 0)
+web-1                  | 🔍 CleanBibliaMiddlewareV2: current_language = he
+web-1                  | ✅ Applying Hebrew/Arabic translations...
+web-1                  | 📄 Processing HTML (15068 bytes)...
+web-1                  | ✅ Translation completed! New size: 13803 bytes
+web-1                  | [pid: 1|app: 0|req: 2/2] 172.18.0.9 () {60 vars in 1206 bytes} [Sun Oct 19 12:41:33 2025] GET / => generated 13803 bytes in 23 msecs (HTTP/1.1 200) 9 headers in 398 bytes (1 switches on core 0)
+celery-live-1          |   . users.tasks.async_email
+celery-live-1          | 
+celery-live-1          | [2025-10-19 12:41:23,281: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-live-1          | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-live-1          | If you wish to retain the existing behavior for retrying connections on startup,
+celery-live-1          | you should set broker_connection_retry_on_startup to True.
+celery-live-1          |   warnings.warn(
+celery-live-1          | 
+celery-live-1          | [2025-10-19 12:41:23,294: INFO/MainProcess] Connected to redis://redis:6379/0
+celery-live-1          | [2025-10-19 12:41:23,296: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-live-1          | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-live-1          | If you wish to retain the existing behavior for retrying connections on startup,
+celery-live-1          | you should set broker_connection_retry_on_startup to True.
+celery-live-1          |   warnings.warn(
+celery-live-1          | 
+celery-live-1          | [2025-10-19 12:41:23,301: INFO/MainProcess] mingle: searching for neighbors
+celery-live-1          | [2025-10-19 12:41:24,322: INFO/MainProcess] mingle: all alone
+celery-live-1          | [2025-10-19 12:41:24,361: INFO/MainProcess] celery@10e7c5408179 ready.
+celery-live-1          | [2025-10-19 12:41:30,728: INFO/MainProcess] sync with celery@25b53f158929
+db-1                   | The files belonging to this database system will be owned by user "postgres".
+db-1                   | This user must also own the server process.
+db-1                   | 
+db-1                   | The database cluster will be initialized with locale "en_US.utf8".
+db-1                   | The default database encoding has accordingly been set to "UTF8".
+db-1                   | The default text search configuration will be set to "english".
+db-1                   | 
+db-1                   | Data page checksums are disabled.
+db-1                   | 
+db-1                   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1                   | creating subdirectories ... ok
+db-1                   | selecting dynamic shared memory implementation ... posix
+db-1                   | selecting default max_connections ... 100
+db-1                   | selecting default shared_buffers ... 128MB
+db-1                   | selecting default time zone ... Etc/UTC
+db-1                   | creating configuration files ... ok
+db-1                   | running bootstrap script ... ok
+celerybeat-1           | │     97 │                                                                     │
+celerybeat-1           | │     98 │   def database_backwards(self, app_label, schema_editor, from_state │
+celerybeat-1           | │     99 │   │   model = from_state.apps.get_model(app_label, self.name)       │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/base/schema.py:451 │
+celerybeat-1           | │ in create_model                                                              │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │    448 │   │   sql, params = self.table_sql(model)                           │
+celerybeat-1           | │    449 │   │   # Prevent using [] as params, in the case a literal '%' is us │
+celerybeat-1           | │    450 │   │   # definition.                                                 │
+channelserver-1        | │                                                                              │
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/models/query.py:1805 in     │
+channelserver-1        | │ _insert                                                                      │
+celerybeat-1           | │ ❱  451 │   │   self.execute(sql, params or None)                             │
+celerybeat-1           | │    452 │   │                                                                 │
+celerybeat-1           | │    453 │   │   if self.connection.features.supports_comments:                │
+celerybeat-1           | │    454 │   │   │   # Add table comment.                                      │
+celerybeat-1           | │                                                                              │
+db-1                   | performing post-bootstrap initialization ... ok
+channelserver-1        | │                                                                              │
+channelserver-1        | │   1802 │   │   │   unique_fields=unique_fields,                              │
+channelserver-1        | │   1803 │   │   )                                                             │
+channelserver-1        | │   1804 │   │   query.insert_values(fields, objs, raw=raw)                    │
+channelserver-1        | │ ❱ 1805 │   │   return query.get_compiler(using=using).execute_sql(returning_ │
+channelserver-1        | │   1806 │                                                                     │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/postgresql/schema. │
+celerybeat-1           | │ py:45 in execute                                                             │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │    42 │   def execute(self, sql, params=()):                                 │
+db-1                   | syncing data to disk ... ok
+db-1                   | 
+db-1                   | 
+channelserver-1        | │   1807 │   _insert.alters_data = True                                        │
+channelserver-1        | │   1808 │   _insert.queryset_only = False                                     │
+db-1                   | Success. You can now start the database server using:
+db-1                   | 
+channelserver-1        | │                                                                              │
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/models/sql/compiler.py:1822 │
+celerybeat-1           | │    43 │   │   # Merge the query client-side, as PostgreSQL won't do it serve │
+celerybeat-1           | │    44 │   │   if params is None:                                             │
+celerybeat-1           | │ ❱  45 │   │   │   return super().execute(sql, params)                        │
+db-1                   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1                   | 
+db-1                   | initdb: warning: enabling "trust" authentication for local connections
+channelserver-1        | │ in execute_sql                                                               │
+redis-1                | Starting Redis Server
+redis-1                | 1:C 19 Oct 2025 12:40:34.459 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1                | 1:C 19 Oct 2025 12:40:34.459 * Redis version=8.2.1, bits=64, commit=00000000, modified=1, pid=1, just started
+db-1                   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+channelserver-1        | │                                                                              │
+celerybeat-1           | │    46 │   │   sql = self.connection.ops.compose_sql(str(sql), params)        │
+channelserver-1        | │   1819 │   │   self.returning_fields = returning_fields                      │
+celerybeat-1           | │    47 │   │   # Don't let the superclass touch anything.                     │
+channelserver-1        | │   1820 │   │   with self.connection.cursor() as cursor:                      │
+db-1                   | waiting for server to start....2025-10-19 12:40:36.496 UTC [48] LOG:  starting PostgreSQL 15.14 (Debian 15.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+celery-main-1          | │                                                                              │
+db-1                   | 2025-10-19 12:40:36.502 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1                   | 2025-10-19 12:40:36.520 UTC [51] LOG:  database system was shut down at 2025-10-19 12:40:35 UTC
+channelserver-1        | │   1821 │   │   │   for sql, params in self.as_sql():                         │
+celerybeat-1           | │    48 │   │   return super().execute(sql, None)                              │
+channelserver-1        | │ ❱ 1822 │   │   │   │   cursor.execute(sql, params)                           │
+channelserver-1        | │   1823 │   │   │   if not self.returning_fields:                             │
+db-1                   | 2025-10-19 12:40:36.532 UTC [48] LOG:  database system is ready to accept connections
+redis-1                | 1:C 19 Oct 2025 12:40:34.459 * Configuration loaded
+db-1                   |  done
+channelserver-1        | │   1824 │   │   │   │   return []                                             │
+celery-main-1          | │ /usr/local/lib/python3.8/site-packages/django/core/management/base.py:106 in │
+celerybeat-1           | │                                                                              │
+celery-main-1          | │ wrapper                                                                      │
+celery-main-1          | │                                                                              │
+channelserver-1        | │   1825 │   │   │   if (                                                      │
+channelserver-1        | │                                                                              │
+db-1                   | server started
+db-1                   | CREATE DATABASE
+celery-main-1          | │   103 │   │   saved_locale = translation.get_language()                      │
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:67 in     │
+channelserver-1        | │ execute                                                                      │
+channelserver-1        | │                                                                              │
+channelserver-1        | │    64 │   │   │   │   return self.cursor.callproc(procname, params, kparams) │
+redis-1                | 1:M 19 Oct 2025 12:40:34.459 * monotonic clock: POSIX clock_gettime
+channelserver-1        | │    65 │                                                                      │
+channelserver-1        | │    66 │   def execute(self, sql, params=None):                               │
+db-1                   | 
+celery-main-1          | │   104 │   │   translation.deactivate_all()                                   │
+celery-main-1          | │   105 │   │   try:                                                           │
+channelserver-1        | │ ❱  67 │   │   return self._execute_with_wrappers(                            │
+channelserver-1        | │    68 │   │   │   sql, params, many=False, executor=self._execute            │
+channelserver-1        | │    69 │   │   )                                                              │
+redis-1                | 1:M 19 Oct 2025 12:40:34.461 * Running mode=standalone, port=6379.
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> RedisBloom version 8.2.0 (Git=unknown)
+channelserver-1        | │    70                                                                        │
+channelserver-1        | │                                                                              │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/base/schema.py:201 │
+db-1                   | 
+db-1                   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1                   | 
+db-1                   | waiting for server to shut down...2025-10-19 12:40:36.806 UTC [48] LOG:  received fast shutdown request
+db-1                   | .2025-10-19 12:40:36.814 UTC [48] LOG:  aborting any active transactions
+db-1                   | 2025-10-19 12:40:36.817 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> Registering configuration options: [
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ bf-error-rate       :      0.01 }
+celerybeat-1           | │ in execute                                                                   │
+celerybeat-1           | │                                                                              │
+db-1                   | 2025-10-19 12:40:36.817 UTC [49] LOG:  shutting down
+db-1                   | 2025-10-19 12:40:36.824 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1                   | 2025-10-19 12:40:36.998 UTC [49] LOG:  checkpoint complete: wrote 922 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.033 s, sync=0.120 s, total=0.181 s; sync files=301, longest=0.032 s, average=0.001 s; distance=4239 kB, estimate=4239 kB
+db-1                   | 2025-10-19 12:40:37.007 UTC [48] LOG:  database system is shut down
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+celerybeat-1           | │    198 │   │   │   │   self.collected_sql.append(sql + ending)               │
+celerybeat-1           | │    199 │   │   else:                                                         │
+db-1                   |  done
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ bf-initial-size     :       100 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ bf-expansion-factor :         2 }
+celery-main-1          | │ ❱ 106 │   │   │   res = handle_func(*args, **kwargs)                         │
+celery-main-1          | │   107 │   │   finally:                                                       │
+celery-main-1          | │   108 │   │   │   if saved_locale is not None:                               │
+celery-main-1          | │   109 │   │   │   │   translation.activate(saved_locale)                     │
+celery-main-1          | │                                                                              │
+celery-main-1          | │ /usr/local/lib/python3.8/site-packages/django/core/management/commands/migra │
+celery-main-1          | │ te.py:356 in handle                                                          │
+db-1                   | server stopped
+db-1                   | 
+celery-main-1          | │                                                                              │
+celery-main-1          | │   353 │   │   else:                                                          │
+db-1                   | PostgreSQL init process complete; ready for start up.
+db-1                   | 
+celerybeat-1           | │    200 │   │   │   with self.connection.cursor() as cursor:                  │
+celerybeat-1           | │ ❱  201 │   │   │   │   cursor.execute(sql, params)                           │
+db-1                   | 2025-10-19 12:40:37.041 UTC [1] LOG:  starting PostgreSQL 15.14 (Debian 15.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+db-1                   | 2025-10-19 12:40:37.042 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1                   | 2025-10-19 12:40:37.042 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1                   | 2025-10-19 12:40:37.062 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1                   | 2025-10-19 12:40:37.082 UTC [64] LOG:  database system was shut down at 2025-10-19 12:40:36 UTC
+db-1                   | 2025-10-19 12:40:37.092 UTC [1] LOG:  database system is ready to accept connections
+channelserver-1        | │ _execute_with_wrappers                                                       │
+channelserver-1        | │                                                                              │
+celerybeat-1           | │    202 │                                                                     │
+celerybeat-1           | │    203 │   def quote_name(self, name):                                       │
+celerybeat-1           | │    204 │   │   return self.connection.ops.quote_name(name)                   │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:67 in     │
+celerybeat-1           | │ execute                                                                      │
+celery-main-1          | │   354 │   │   │   fake = options["fake"]                                     │
+celery-main-1          | │   355 │   │   │   fake_initial = options["fake_initial"]                     │
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ cf-bucket-size      :         2 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ cf-initial-size     :      1024 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ cf-max-iterations   :        20 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ cf-expansion-factor :         1 }
+db-1                   | 2025-10-19 12:41:06.983 UTC [76] ERROR:  duplicate key value violates unique constraint "pg_class_relname_nsp_index"
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │    64 │   │   │   │   return self.cursor.callproc(procname, params, kparams) │
+celerybeat-1           | │    65 │                                                                      │
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> 	{ cf-max-expansions   :        32 }
+db-1                   | 2025-10-19 12:41:06.983 UTC [76] DETAIL:  Key (relname, relnamespace)=(django_migrations_id_seq, 2200) already exists.
+channelserver-1        | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+channelserver-1        | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+celery-main-1          | │ ❱ 356 │   │   post_migrate_state = executor.migrate(                         │
+celery-main-1          | │   357 │   │   │   targets,                                                   │
+db-1                   | 2025-10-19 12:41:06.983 UTC [76] STATEMENT:  CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL)
+db-1                   | 2025-10-19 12:41:07.137 UTC [78] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+db-1                   | 2025-10-19 12:41:07.137 UTC [78] DETAIL:  Key (typname, typnamespace)=(auth_permission, 2200) already exists.
+channelserver-1        | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+celery-main-1          | │   358 │   │   │   plan=plan,                                                 │
+celery-main-1          | │   359 │   │   │   state=pre_migrate_state.clone(),                           │
+celery-main-1          | │                                                                              │
+db-1                   | 2025-10-19 12:41:07.137 UTC [78] STATEMENT:  CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL)
+channelserver-1        | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+channelserver-1        | │    81 │                                                                      │
+celerybeat-1           | │    66 │   def execute(self, sql, params=None):                               │
+celerybeat-1           | │ ❱  67 │   │   return self._execute_with_wrappers(                            │
+celerybeat-1           | │    68 │   │   │   sql, params, many=False, executor=self._execute            │
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * <bf> ]
+redis-1                | 1:M 19 Oct 2025 12:40:34.462 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Redis version found by RedisSearch : 8.2.1 - oss
+celerybeat-1           | │    69 │   │   )                                                              │
+db-1                   | 2025-10-19 12:41:07.137 UTC [79] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+db-1                   | 2025-10-19 12:41:07.137 UTC [79] DETAIL:  Key (typname, typnamespace)=(auth_permission, 2200) already exists.
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> RediSearch version 8.2.1 (Git=dba8dd0)
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Low level api version 1 initialized successfully
+channelserver-1        | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+celerybeat-1           | │    70                                                                        │
+db-1                   | 2025-10-19 12:41:07.137 UTC [79] STATEMENT:  CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL)
+db-1                   | 2025-10-19 12:41:07.390 UTC [81] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+db-1                   | 2025-10-19 12:41:07.390 UTC [81] DETAIL:  Key (typname, typnamespace)=(users_user, 2200) already exists.
+channelserver-1        | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+celery-main-1          | │ /usr/local/lib/python3.8/site-packages/django/db/migrations/executor.py:107  │
+db-1                   | 2025-10-19 12:41:07.390 UTC [81] STATEMENT:  CREATE TABLE "users_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL)
+celery-main-1          | │ in migrate                                                                   │
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, 
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Initialized thread pools!
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:80 in     │
+celerybeat-1           | │ _execute_with_wrappers                                                       │
+celerybeat-1           | │                                                                              │
+channelserver-1        | │                                                                              │
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+channelserver-1        | │ _execute                                                                     │
+channelserver-1        | │                                                                              │
+channelserver-1        | │    86 │   │   │   │   # params default might be backend specific.            │
+channelserver-1        | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+db-1                   | 2025-10-19 12:41:07.390 UTC [82] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+celerybeat-1           | │    77 │   │   context = {"connection": self.db, "cursor": self}              │
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Disabled workers threadpool of size 0
+channelserver-1        | │    88 │   │   │   else:                                                      │
+channelserver-1        | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+db-1                   | 2025-10-19 12:41:07.390 UTC [82] DETAIL:  Key (typname, typnamespace)=(users_user, 2200) already exists.
+db-1                   | 2025-10-19 12:41:07.390 UTC [82] STATEMENT:  CREATE TABLE "users_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL)
+db-1                   | 2025-10-19 12:41:07.580 UTC [83] ERROR:  relation "authtoken_token" already exists
+db-1                   | 2025-10-19 12:41:07.580 UTC [83] STATEMENT:  CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE)
+celery-main-1          | │                                                                              │
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Subscribe to config changes
+db-1                   | 2025-10-19 12:41:08.397 UTC [84] ERROR:  duplicate key value violates unique constraint "users_user_username_key"
+db-1                   | 2025-10-19 12:41:08.397 UTC [84] DETAIL:  Key (username)=(koperberg) already exists.
+celerybeat-1           | │    78 │   │   for wrapper in reversed(self.db.execute_wrappers):             │
+celerybeat-1           | │    79 │   │   │   executor = functools.partial(wrapper, executor)            │
+celerybeat-1           | │ ❱  80 │   │   return executor(sql, params, many, context)                    │
+redis-1                | 1:M 19 Oct 2025 12:40:34.469 * <search> Enabled role change notification
+celery-main-1          | │   104 │   │   │   if not self.recorder.has_table():                          │
+redis-1                | 1:M 19 Oct 2025 12:40:34.473 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+celery-main-1          | │   105 │   │   │   │   return self._create_project_state(with_applied_migrati │
+celerybeat-1           | │    81 │                                                                      │
+redis-1                | 1:M 19 Oct 2025 12:40:34.473 * <search> Register write commands
+celerybeat-1           | │    82 │   def _execute(self, sql, params, *ignored_wrapper_args):            │
+celerybeat-1           | │    83 │   │   self.db.validate_no_broken_transaction()                       │
+db-1                   | 2025-10-19 12:41:08.397 UTC [84] STATEMENT:  INSERT INTO "users_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('', NULL, true, 'koperberg', '', '', 'koperberg@biblia-project.com', true, true, '2025-10-19T12:41:07.958260+00:00'::timestamptz) RETURNING "users_user"."id"
+redis-1                | 1:M 19 Oct 2025 12:40:34.473 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> RedisTimeSeries version 80200, git_sha=1439d4a439ca9c063e6ef124a510abff09a5d493
+channelserver-1        | │    90 │                                                                      │
+celery-main-1          | │   106 │   │   else:                                                          │
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> Redis version found by RedisTimeSeries : 8.2.1 - oss
+celerybeat-1           | │                                                                              │
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> Registering configuration options: [
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+celerybeat-1           | │ _execute                                                                     │
+celerybeat-1           | │                                                                              │
+channelserver-1        | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+celerybeat-1           | │    86 │   │   │   │   # params default might be backend specific.            │
+channelserver-1        | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+channelserver-1        | │                                                                              │
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+celerybeat-1           | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+celerybeat-1           | │    88 │   │   │   else:                                                      │
+channelserver-1        | │                                                                              │
+channelserver-1        | │    88 │   │   │   │   # the connection unusable.                             │
+channelserver-1        | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+channelserver-1        | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+channelserver-1        | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> 	{ ts-compaction-policy   :              }
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> 	{ ts-num-threads         :            3 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> 	{ ts-retention-policy    :            0 }
+celerybeat-1           | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+celerybeat-1           | │    90 │                                                                      │
+celerybeat-1           | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+celerybeat-1           | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/utils.py:91 in __exit__     │
+redis-1                | 1:M 19 Oct 2025 12:40:34.474 * <timeseries> 	{ ts-duplicate-policy    :        block }
+channelserver-1        | │    92 │                                                                      │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │    88 │   │   │   │   # the connection unusable.                             │
+celerybeat-1           | │    89 │   │   │   │   if dj_exc_type not in (DataError, IntegrityError):     │
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+celery-main-1          | │ ❱ 107 │   │   │   self.recorder.ensure_schema()                              │
+celery-main-1          | │   108 │   │                                                                  │
+channelserver-1        | │    93 │   def __call__(self, func):                                          │
+channelserver-1        | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+channelserver-1        | │                                                                              │
+celerybeat-1           | │    90 │   │   │   │   │   self.wrapper.errors_occurred = True                │
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> 	{ ts-encoding            :   compressed }
+channelserver-1        | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:89 in     │
+channelserver-1        | │ _execute                                                                     │
+channelserver-1        | │                                                                              │
+channelserver-1        | │    86 │   │   │   │   # params default might be backend specific.            │
+channelserver-1        | │    87 │   │   │   │   return self.cursor.execute(sql)                        │
+channelserver-1        | │    88 │   │   │   else:                                                      │
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> ]
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> Detected redis oss
+celery-main-1          | │   109 │   │   if plan is None:                                               │
+celery-main-1          | │   110 │   │   │   plan = self.migration_plan(targets)                        │
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * <timeseries> Enabled diskless replication
+redis-1                | 1:M 19 Oct 2025 12:40:34.475 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Created new data type 'ReJSON-RL'
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> version: 80200 git sha: unknown branch: unknown
+celerybeat-1           | │ ❱  91 │   │   │   │   raise dj_exc_value.with_traceback(traceback) from exc_ │
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Exported RedisJSON_V1 API
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Exported RedisJSON_V2 API
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Exported RedisJSON_V3 API
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Exported RedisJSON_V4 API
+redis-1                | 1:M 19 Oct 2025 12:40:34.476 * <ReJSON> Exported RedisJSON_V5 API
+celery-main-1          | │                                                                              │
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * <ReJSON> Enabled diskless replication
+channelserver-1        | │ ❱  89 │   │   │   │   return self.cursor.execute(sql, params)                │
+channelserver-1        | │    90 │                                                                      │
+celerybeat-1           | │    92 │                                                                      │
+celerybeat-1           | │    93 │   def __call__(self, func):                                          │
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * <ReJSON> Initialized shared string cache, thread safe: false.
+celery-main-1          | │ /usr/local/lib/python3.8/site-packages/django/db/migrations/recorder.py:72   │
+celery-main-1          | │ in ensure_schema                                                             │
+channelserver-1        | │    91 │   def _executemany(self, sql, param_list, *ignored_wrapper_args):    │
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * <search> Acquired RedisJSON_V5 API
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * Server initialized
+celerybeat-1           | │    94 │   │   # Note that we are intentionally not using @wraps here for per │
+celerybeat-1           | │                                                                              │
+channelserver-1        | │    92 │   │   self.db.validate_no_broken_transaction()                       │
+channelserver-1        | ╰──────────────────────────────────────────────────────────────────────────────╯
+redis-1                | 1:M 19 Oct 2025 12:40:34.477 * Ready to accept connections tcp
+celerybeat-1           | │ /usr/local/lib/python3.8/site-packages/django/db/backends/utils.py:87 in     │
+celerybeat-1           | │ _execute                                                                     │
+celerybeat-1           | │                                                                              │
+celerybeat-1           | │    84 │   │   with self.db.wrap_database_errors:                             │
+celery-main-1          | │                                                                              │
+channelserver-1        | IntegrityError: duplicate key value violates unique constraint 
+channelserver-1        | "users_user_username_key"
+celerybeat-1           | │    85 │   │   │   if params is None:                                         │
+celerybeat-1           | │    86 │   │   │   │   # params default might be backend specific.            │
+celerybeat-1           | │ ❱  87 │   │   │   │   return self.cursor.execute(sql)                        │
+celerybeat-1           | │    88 │   │   │   else:                                                      │
+channelserver-1        | DETAIL:  Key (username)=(koperberg) already exists.
+channelserver-1        | 
+celery-main-1          | │    69 │   │   │   with self.connection.schema_editor() as editor:            │
+celery-main-1          | │    70 │   │   │   │   editor.create_model(self.Migration)                    │
+celery-main-1          | │    71 │   │   except DatabaseError as exc:                                   │
+celery-main-1          | │ ❱  72 │   │   │   raise MigrationSchemaMissing(                              │
+celery-main-1          | │    73 │   │   │   │   "Unable to create the django_migrations table (%s)" %  │
+channelserver-1        |   Applying users.0004_auto_20181126_1526...Waiting for postgres...
+celerybeat-1           | │    89 │   │   │   │   return self.cursor.execute(sql, params)                │
+channelserver-1        | PostgreSQL started
+channelserver-1        | System check identified some issues:
+channelserver-1        | 
+celerybeat-1           | │    90                                                                        │
+celery-main-1          | │    74 │   │   │   )                                                          │
+celerybeat-1           | ╰──────────────────────────────────────────────────────────────────────────────╯
+celerybeat-1           | IntegrityError: duplicate key value violates unique constraint 
+celerybeat-1           | "pg_type_typname_nsp_index"
+channelserver-1        | WARNINGS:
+channelserver-1        | ?: (staticfiles.W004) The directory '/usr/src/app/escriptorium/static/dist' in the STATICFILES_DIRS setting does not exist.
+celery-main-1          | │    75                                                                        │
+celery-main-1          | ╰──────────────────────────────────────────────────────────────────────────────╯
+channelserver-1        | Found another file with the destination path 'dummy'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
+channelserver-1        | 
+channelserver-1        | 0 static files copied to '/usr/src/app/static', 211 unmodified.
+celerybeat-1           | DETAIL:  Key (typname, typnamespace)=(users_user, 2200) already exists.
+channelserver-1        | System check identified some issues:
+channelserver-1        | 
+celerybeat-1           | 
+celerybeat-1           | Usage: celery [OPTIONS] COMMAND [ARGS]...
+channelserver-1        | WARNINGS:
+channelserver-1        | ?: (staticfiles.W004) The directory '/usr/src/app/escriptorium/static/dist' in the STATICFILES_DIRS setting does not exist.
+celery-main-1          | MigrationSchemaMissing: Unable to create the django_migrations table (duplicate 
+channelserver-1        | Operations to perform:
+celery-main-1          | key value violates unique constraint "pg_class_relname_nsp_index"
+channelserver-1        |   Apply all migrations: admin, auth, authtoken, captcha, contenttypes, core, easy_thumbnails, imports, language_support, reporting, sessions, sites, users
+channelserver-1        | Running migrations:
+channelserver-1        |   No migrations to apply.
+channelserver-1        |   Your models in app(s): 'core', 'users' have changes that are not yet reflected in a migration, and so won't be applied.
+celery-main-1          | DETAIL:  Key (relname, relnamespace)=(django_migrations_id_seq, 2200) already 
+celery-main-1          | exists.
+channelserver-1        |   Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+celery-main-1          | )
+celery-main-1          |  
+celerybeat-1           | Try 'celery --help' for help.
+celerybeat-1           | 
+celery-main-1          |  -------------- celery@76820b1c717c v5.3.6 (emerald-rush)
+celery-main-1          | --- ***** ----- 
+celerybeat-1           | Error: No such option: -E
+celery-main-1          | -- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.34 2025-10-19 12:41:19
+celery-main-1          | - *** --- * --- 
+celery-main-1          | - ** ---------- [config]
+celery-main-1          | - ** ---------- .> app:         escriptorium:0x78bc5b085ca0
+celery-main-1          | - ** ---------- .> transport:   redis://redis:6379/0
+celery-main-1          | - ** ---------- .> results:     redis://redis:6379/
+celery-main-1          | - *** --- * --- .> concurrency: 10 (prefork)
+celery-main-1          | -- ******* ---- .> task events: ON
+celery-main-1          | --- ***** ----- 
+celery-main-1          |  -------------- [queues]
+celery-main-1          |                 .> default          exchange=default(direct) key=default
+celery-main-1          |                 
+celery-main-1          | 
+celery-main-1          | [tasks]
+celery-main-1          |   . core.tasks.align
+celery-main-1          |   . core.tasks.convert
+celery-main-1          |   . core.tasks.forced_align
+celery-main-1          |   . core.tasks.generate_part_thumbnails
+celery-main-1          |   . core.tasks.lossless_compression
+celery-main-1          |   . core.tasks.recalculate_masks
+celery-main-1          |   . core.tasks.replace_line_transcriptions_text
+celery-main-1          |   . core.tasks.segment
+celery-main-1          |   . core.tasks.segtrain
+celery-main-1          |   . core.tasks.train
+celery-main-1          |   . core.tasks.transcribe
+celery-main-1          |   . escriptorium.celery.debug_task
+celery-main-1          |   . imports.tasks.document_export
+celery-main-1          |   . imports.tasks.document_import
+celery-main-1          |   . users.tasks.async_email
+celery-main-1          | 
+celery-main-1          | [2025-10-19 12:41:22,427: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-main-1          | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-main-1          | If you wish to retain the existing behavior for retrying connections on startup,
+celery-main-1          | you should set broker_connection_retry_on_startup to True.
+celery-main-1          |   warnings.warn(
+celery-main-1          | 
+celery-main-1          | [2025-10-19 12:41:22,446: INFO/MainProcess] Connected to redis://redis:6379/0
+celery-main-1          | [2025-10-19 12:41:22,452: WARNING/MainProcess] /usr/local/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+celery-main-1          | whether broker connection retries are made during startup in Celery 6.0 and above.
+celery-main-1          | If you wish to retain the existing behavior for retrying connections on startup,
+celery-main-1          | you should set broker_connection_retry_on_startup to True.
+celery-main-1          |   warnings.warn(
+celery-main-1          | 
+celery-main-1          | [2025-10-19 12:41:22,457: INFO/MainProcess] mingle: searching for neighbors
+celery-main-1          | [2025-10-19 12:41:23,497: INFO/MainProcess] mingle: all alone
+celery-main-1          | [2025-10-19 12:41:23,533: INFO/MainProcess] celery@76820b1c717c ready.
+celery-main-1          | [2025-10-19 12:41:30,728: INFO/MainProcess] sync with celery@25b53f158929

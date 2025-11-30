@@ -1,0 +1,304 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "OCR Engine Comparison Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comparison.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="comparison-container">
+    <!-- Header -->
+    <div class="comparison-header">
+        <h1><i class="fas fa-tachometer-alt"></i> {% trans "OCR Comparison Dashboard" %}</h1>
+        <p>{% trans "Overview of all OCR engine comparisons and document analysis" %}</p>
+        <div class="header-actions">
+            <a href="{% url 'comparison:selector' %}" class="btn btn-light">
+                <i class="fas fa-plus"></i> {% trans "New Comparison" %}
+            </a>
+            <a href="{% url 'documents:list' %}" class="btn btn-outline-light">
+                <i class="fas fa-file-alt"></i> {% trans "Documents" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-section">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-file-alt text-primary"></i>
+                    </div>
+                    <div class="stats-content">
+                        <h3>{{ documents.count }}</h3>
+                        <p>{% trans "Documents Available" %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-dragon text-info"></i>
+                    </div>
+                    <div class="stats-content">
+                        <h3 id="kraken-count">-</h3>
+                        <p>{% trans "Kraken Results" %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-eye text-success"></i>
+                    </div>
+                    <div class="stats-content">
+                        <h3 id="tesseract-count">-</h3>
+                        <p>{% trans "Tesseract Results" %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-balance-scale text-warning"></i>
+                    </div>
+                    <div class="stats-content">
+                        <h3 id="comparable-count">-</h3>
+                        <p>{% trans "Ready to Compare" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents List -->
+    <div class="documents-section">
+        <div class="section-header">
+            <h2>{% trans "Documents with OCR Results" %}</h2>
+            <div class="section-actions">
+                <input type="text" class="form-control search-input" id="document-search" 
+                       placeholder="{% trans 'Search documents...' %}">
+                <select class="form-control filter-select" id="engine-filter">
+                    <option value="">{% trans "All Engines" %}</option>
+                    <option value="kraken">{% trans "Kraken Only" %}</option>
+                    <option value="tesseract">{% trans "Tesseract Only" %}</option>
+                    <option value="both">{% trans "Both Engines" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="documents-grid" id="documents-grid">
+            {% for document in documents %}
+            <div class="document-card" data-document-id="{{ document.id }}">
+                <div class="document-header">
+                    <h4>{{ document.name }}</h4>
+                    <small class="text-muted">{{ document.created_at|date:"d/m/Y" }}</small>
+                </div>
+                
+                <div class="document-body">
+                    <div class="document-info">
+                        <p><strong>{% trans "Parts:" %}</strong> {{ document.parts.count }}</p>
+                        <p><strong>{% trans "Owner:" %}</strong> {{ document.owner.username }}</p>
+                    </div>
+                    
+                    <div class="transcription-engines">
+                        <div class="engine-status kraken-status" data-engine="kraken" data-doc="{{ document.id }}">
+                            <i class="fas fa-dragon"></i>
+                            <span class="engine-name">Kraken</span>
+                            <span class="status-badge">-</span>
+                        </div>
+                        <div class="engine-status tesseract-status" data-engine="tesseract" data-doc="{{ document.id }}">
+                            <i class="fas fa-eye"></i>
+                            <span class="engine-name">Tesseract</span>
+                            <span class="status-badge">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="document-actions">
+                    <a href="{% url 'comparison:document' document.id %}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-microscope"></i> {% trans "View Comparisons" %}
+                    </a>
+                    <a href="{% url 'documents:show' document.pk %}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-eye"></i> {% trans "View Document" %}
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-documents">
+                <div class="no-data">
+                    <i class="fas fa-folder-open"></i>
+                    <h3>{% trans "No Documents Found" %}</h3>
+                    <p>{% trans "Upload documents and run OCR to see comparison options" %}</p>
+                    <a href="{% url 'documents:create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> {% trans "Upload Document" %}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Recent Comparisons -->
+    <div class="recent-section">
+        <div class="section-header">
+            <h2>{% trans "Recent Comparisons" %}</h2>
+            <a href="#" class="btn btn-sm btn-outline-primary">{% trans "View All" %}</a>
+        </div>
+        
+        <div class="recent-comparisons" id="recent-comparisons">
+            <!-- Will be loaded via JavaScript -->
+            <div class="loading-placeholder">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">{% trans "Loading..." %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    loadDashboardData();
+    setupFiltering();
+    loadRecentComparisons();
+    
+    function loadDashboardData() {
+        // Load transcription counts for each document
+        $('.engine-status').each(function() {
+            const engine = $(this).data('engine');
+            const docId = $(this).data('doc');
+            const statusElement = $(this);
+            
+            $.get(`/api/documents/${docId}/transcriptions/?engine=${engine}`)
+                .done(function(data) {
+                    const count = data.count || 0;
+                    statusElement.find('.status-badge')
+                        .text(count)
+                        .removeClass('badge-secondary')
+                        .addClass(count > 0 ? 'badge-success' : 'badge-secondary');
+                    
+                    updateStats();
+                })
+                .fail(function() {
+                    statusElement.find('.status-badge').text('?');
+                });
+        });
+    }
+    
+    function updateStats() {
+        let krakenTotal = 0;
+        let tesseractTotal = 0;
+        let comparableCount = 0;
+        
+        $('.document-card').each(function() {
+            const krakenCount = parseInt($(this).find('.kraken-status .status-badge').text()) || 0;
+            const tesseractCount = parseInt($(this).find('.tesseract-status .status-badge').text()) || 0;
+            
+            krakenTotal += krakenCount;
+            tesseractTotal += tesseractCount;
+            
+            if (krakenCount > 0 && tesseractCount > 0) {
+                comparableCount++;
+                $(this).addClass('comparable');
+            }
+        });
+        
+        $('#kraken-count').text(krakenTotal);
+        $('#tesseract-count').text(tesseractTotal);
+        $('#comparable-count').text(comparableCount);
+    }
+    
+    function setupFiltering() {
+        $('#document-search').on('input', function() {
+            const searchTerm = $(this).val().toLowerCase();
+            filterDocuments(searchTerm, $('#engine-filter').val());
+        });
+        
+        $('#engine-filter').change(function() {
+            const engineFilter = $(this).val();
+            filterDocuments($('#document-search').val().toLowerCase(), engineFilter);
+        });
+    }
+    
+    function filterDocuments(searchTerm, engineFilter) {
+        $('.document-card').each(function() {
+            const documentName = $(this).find('h4').text().toLowerCase();
+            const matchesSearch = !searchTerm || documentName.includes(searchTerm);
+            
+            let matchesEngine = true;
+            if (engineFilter === 'kraken') {
+                matchesEngine = parseInt($(this).find('.kraken-status .status-badge').text()) > 0;
+            } else if (engineFilter === 'tesseract') {
+                matchesEngine = parseInt($(this).find('.tesseract-status .status-badge').text()) > 0;
+            } else if (engineFilter === 'both') {
+                const hasKraken = parseInt($(this).find('.kraken-status .status-badge').text()) > 0;
+                const hasTesseract = parseInt($(this).find('.tesseract-status .status-badge').text()) > 0;
+                matchesEngine = hasKraken && hasTesseract;
+            }
+            
+            $(this).toggle(matchesSearch && matchesEngine);
+        });
+    }
+    
+    function loadRecentComparisons() {
+        $.get('/api/comparison/recent/')
+            .done(function(data) {
+                displayRecentComparisons(data.comparisons || []);
+            })
+            .fail(function() {
+                $('#recent-comparisons').html(`
+                    <div class="no-data">
+                        <i class="fas fa-info-circle"></i>
+                        <p>{% trans "No recent comparisons available" %}</p>
+                    </div>
+                `);
+            });
+    }
+    
+    function displayRecentComparisons(comparisons) {
+        if (comparisons.length === 0) {
+            $('#recent-comparisons').html(`
+                <div class="no-data">
+                    <i class="fas fa-info-circle"></i>
+                    <p>{% trans "No comparisons yet" %}</p>
+                    <small>{% trans "Start your first comparison above" %}</small>
+                </div>
+            `);
+            return;
+        }
+        
+        const html = comparisons.map(comp => `
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    <h5>${comp.document_name}</h5>
+                    <small class="text-muted">${comp.created_at}</small>
+                </div>
+                <div class="comparison-body">
+                    <div class="engine-badges">
+                        <span class="badge badge-primary">Kraken</span>
+                        <span class="badge badge-success">Tesseract</span>
+                    </div>
+                    <div class="accuracy-info">
+                        <span class="accuracy-score">${comp.accuracy}%</span>
+                        <small>{% trans "accuracy" %}</small>
+                    </div>
+                </div>
+                <div class="comparison-actions">
+                    <a href="${comp.view_url}" class="btn btn-sm btn-outline-primary">
+                        {% trans "View Results" %}
+                    </a>
+                </div>
+            </div>
+        `).join('');
+        
+        $('#recent-comparisons').html(html);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="he" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eScriptorium - Homepage</title>
+
+    
+    <link rel="icon" href="/static/images/favicon.ico">
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+      // set the dark-mode theme early to avoid unpleasant blinking.
+      const activeTheme = localStorage.getItem("user-theme");
+      if (activeTheme === "dark-mode") {
+          document.documentElement.className = "dark-mode";
+      }
+    </script>
+
+    
+    <link href="/static/vendor.css" rel="stylesheet" type="text/css">
+    <link href="/static/main.css" rel="stylesheet" type="text/css">
+    
+    <link href="/static/globalNavigation.css" rel="stylesheet" type="text/css">
+    
+    <link href="/static/css/flags.css" rel="stylesheet" type="text/css">
+    <!-- RTL support for Hebrew - BiblIA -->
+    
+    <link href="/static/css/rtl-hebrew.css" rel="stylesheet" type="text/css">
+    
+    
+    
+  </head>
+  <body id="escriptorium" class="escr-body homepage">
+    
+    <div id="vue-global-nav">
+      <global-navigation
+        :is-authenticated="false"
+        :search-disabled="false"
+      ></global-navigation>
+    </div>
+    
+
+    <main><section>
+    <div id="main" class="container-fluid escr-vue-enabled">
+    
+<div class="jumbotron text-center bg-light">
+    
+        <div class="text-center">
+  <h1 class="jumbotron-heading display-4">
+    <i class="fas fa-scroll me-3"></i>
+    BiblIA eScriptorium
+  </h1>
+  <p class="lead text-muted mb-4">
+    Advanced Hebrew OCR & HTR Platform for Historical Manuscripts
+  </p>
+  <div class="hebrew-content mb-4" style="direction: rtl; text-align: right; font-family: 'Arial', 'Hebrew', sans-serif;">
+    <h2 class="h4 text-primary">פלטפורמת BiblIA eScriptorium</h2>
+    <p class="lead">
+      מערכת מתקדמת לזיהוי אותומטי של טקסטים עבריים בכתבי יד היסטוריים
+    </p>
+  </div>
+  <div class="alert alert-info" role="alert">
+    <i class="fas fa-info-circle me-2"></i>
+    This specialized instance focuses on Hebrew manuscript digitization and OCR research.
+    Access is provided for research institutions and collaborative projects.
+  </div>
+</div>
+
+    
+    
+        <a class="btn btn-primary" href="/login/" role="button">Sign in</a>
+    
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-3 text-center">
+            <img class="rounded-circle" src="/static/images/t5.png" alt="Generic placeholder image" width="140" height="140">
+            <h3 class="mb-3">Automatic<br>Transcription</h3>
+            <p class="text-muted">Apply OCR/HTR to images of printed and handwritten documents using shared open models.</p>
+        </div>
+
+        <div class="col-lg-3 text-center">
+            <img class="rounded-circle" src="/static/images/t4.png" alt="Generic placeholder image" width="140" height="140">
+            <h3 class="mb-3">Manual<br>Transcription</h3>
+            <p class="text-muted">Make use of an ergonomic user interface leveraging modern browser technology to edit segmentations and transcriptions.</p>
+        </div>
+
+        <div class="col-lg-3 text-center">
+            <img class="rounded-circle" src="/static/images/t2.png" alt="Generic placeholder image" width="140" height="140">
+            <h3 class="mb-3">Train<br>Models</h3>
+            <p class="text-muted">Create new models or finetune existing ones to improve automatic recognition.</p>
+        </div>
+
+        <div class="col-lg-3 text-center">
+            <img class="rounded-circle" src="/static/images/t6.png" alt="" width="140" height="140">
+            <h3 class="mb-3">Import/<br>Export</h3>
+            <p class="text-muted">Import and export models and texts transcriptions in a variety of formats. Access data through a full REST API.</p>
+        </div>
+    </div>
+
+</div>
+<div style="display:flex; gap:2rem; flex-wrap:wrap;">
+    
+        <!-- hosted by -->
+        <div class="container my-5 home-contrib-container d-flex align-items-center min-vh-25" style="flex:1;">
+            <div class="row g-4 justify-content-center w-100">
+                
+
+<div class="col-lg-6">
+  <div class="card h-100 border-0 text-center">
+    <h3 class="mb-3">Service hosted and maintained by</h3>
+    <p class="text-muted mb-3">Inria Paris</p>
+    <div class="my-0 container-fluid text-center">
+      <a href="https://inria.fr/fr" class="pl-4" target="_blank">
+        <img src="/static/images/inria.png" alt="Inria logo" height="60">
+      </a>
+      <a href="http://almanach.inria.fr/index-en.html" class="pl-4" target="_blank">
+        <img src="/static/images/almanach_txt.png" alt="Almanach logo" height="100">
+      </a>
+    </div>
+  </div>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- Originally developed by -->
+    <div class="container my-5 home-contrib-container d-flex align-items-center min-vh-25" style="flex:1;">
+        <div class="row g-4 justify-content-center w-100">
+            <div class="col-lg-12">
+                <div class="card h-100 border-0 text-center">
+                    <h3 class="mb-3">Service originally developed by</h3>
+                    <p class="text-muted mb-3">École Pratique des Hautes Études (EPHE)</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.ephe.psl.eu" class="pl-4" target="_blank">
+                            <img src="/static/images/ephe.png" alt="EPHE logo" height="100">
+                        </a>
+                    </div>
+                    <p class="text-muted mt-3">
+                        See <a href="/contributors/">contributors history</a> או <a href="/credits/">credits</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="my-5 container-fluid text-center">
+        <a href="https://scripta.psl.eu/en/" class="pl-4" target="_blank"><img src="/static/images/pslscripta.png" alt="Scripta PSL logo" height="50"></a>
+        <a href="https://biblissima.fr/" target="_blank"><img src="/static/images/biblissima-logo.png" alt="Biblissima+ logo" height="100"></a>
+        <a href="https://www.resilience-ri.eu/" class="pl-4" target="_blank"><img src="/static/images/resilience.png" alt="Resilience logo" height="60"></a>
+        <a href="https://erc.europa.eu/" class="pl-4 pb-2" target="_blank"><img src="/static/images/European_Research_Council_logo.png" alt="ERC logo" height="100"></a>
+        <a href="https://lectaurep.hypotheses.org/" class="pl-4 pb-2" target="_blank"><img src="/static/images/lectaurep.png" alt="Lectaurep logo" height="100"></a>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="my-5 container-fluid text-center">
+            <a href="https://psl.eu" class="pl-4" target="_blank"><img src="/static/images/psl.png" alt="PSL logo" height="60"></a>
+            <a href="https://ec.europa.eu/info/index_en" class="pl-4" target="_blank"><img src="/static/images/eu-logo.png" alt="European commission logo" height="80"></a>
+            <a href="https://www.gouvernement.fr/le-programme-d-investissements-d-avenir" class="pl-4" target="_blank"><img src="/static/images/pia.png" alt="PIA logo" height="80"></a>
+            <a href="https://mellon.org/" class="pl-4" target="_blank"><img src="/static/images/mellon.svg" alt="MELLON logo" height="80"></a>
+            <a href="https://www.culture.gouv.fr/" class="pl-4" target="_blank"><img src="/static/images/LogoMCHP.PNG" alt="MCC logo" height="120"></a>
+            <a href="https://www.dim-humanites-numeriques.fr/" class="pl-4" target="_blank"><img src="/static/images/logo_DIMSTCN_regioncouleur_RVB.png" alt="DIM-STCN logo" height="100"></a>
+
+            <a href="https://www.ephe.psl.eu" class="pl-4" target="_blank"><img src="/static/images/ephe.png" alt="EPHE logo" height="100"></a>
+
+            <!-- a href="https://ec.europa.eu/programmes/horizon2020/" class="pl-4" target="_blank"><img src="/static/images/h2020.jpg" alt="Horizon 2020 logo" height="80"></a -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="my-5 container-fluid text-center">
+            <a href="https://openiti.org/" class="pl-4" target="_blank"><img src="/static/images/openiti.png" alt="DIM Region ile de france logo" height="80"></a>
+            <a href="https://teklia.com/" class="pl-4" target="_blank"><img src="/static/images/teklia.png" alt="Teklia logo" height="40"></a>
+            <a href="https://inria.fr/fr" class="pl-4" target="_blank"><img src="/static/images/inria.png" alt="Inria logo" height="60"></a>
+            <a href="http://www.archeo.ens.fr" class="pl-4" target="_blank"><img src="/static/images/aoroc.jpg" alt="AOROC logo" height="60"></a>
+            <a href="http://almanach.inria.fr/index-en.html" class="pl-4" target="_blank"><img src="/static/images/almanach_txt.png" alt="Almanach logo" height="100"></a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- example to create another row -->
+<div class="row">
+    <div class="my-5 container-fluid text-center">
+        <a href="http://www.python.org" target="_blank">
+            <img src="/static/python.png" alt="custom logo" height="50">
+        </a>
+        <a href="http://www.djangoproject.com" target="_blank">
+            <img src="/static/django.png" alt="custom logo" height="50">
+        </a>
+    </div>
+</div>
+
+
+
+<footer class="bg-light mt-5 pt-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <h5>Resources</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://escriptorium.readthedocs.io/" target="_blank">Tutorial</a></li>
+                    <li><a href="https://gitlab.com/scripta/escriptorium" target="_blank">eScriptorium open source code</a> Version passthistobuildcmd</li>
+                    <li><a href="https://escripta.hypotheses.org/" target="_blank">eScriptorium Blog</a></li>
+                    <li><a href="http://kraken.re/" target="_blank">Kraken version 5.2.9</a></li>
+                    <li><a href="https://gitlab.inria.fr/scripta/escriptorium/-/wikis/home" target="_blank">Wiki</a></li>
+                    <li><a href="https://groupes.renater.fr/sympa/subscribe/escriptorium-users" target="_blank">Users mailing list</a></li>
+                </ul>
+            </div>
+
+            <div class="col-4">
+                <h5>Acknowledgements</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/contributors/">Contributors</a></li>
+                        <li><a href="/credits/">Credits</a></li>
+                    </ul>
+            </div>
+
+            <div class="col-4">
+                <h5>Legal mentions</h5>
+                <ul class="list-unstyled text-muted text-sm" style="font-size: 80%;">
+                    <li>Ce travail a bénéficié d’une aide de l’État gérée par l’Agence Nationale de la Recherche au titre du Programme d’Investissements d’Avenir portant la référence ANR-21-ESRE-0005.</li>
+                    <li class="mt-1">This project was partially funded through the RESILIENCE project, funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation.</li>
+                    <li class="mt-1">Partially funded by a grant from The Andrew W. Mellon Foundation.</li>
+                </ul>
+            </div>
+            
+            
+<div class="col-6">
+    <h5>
+      <i class="fas fa-cog me-2"></i>
+      מופעל על ידי
+    </h5>
+    <ul class="list-unstyled">
+        <li><a href="https://www.python.org" target="_blank"><i class="fab fa-python me-1"></i>Python</a></li>
+        <li><a href="https://www.djangoproject.com" target="_blank">Django Framework</a></li>
+        <li><a href="https://vuejs.org" target="_blank"><i class="fab fa-vuejs me-1"></i>Vue.js</a></li>
+        <li><a href="http://kraken.re/" target="_blank">Kraken OCR Engine</a></li>
+    </ul>
+</div>
+<div class="col-6" style="direction: rtl; text-align: right;">
+    <h5>
+      <i class="fas fa-heart me-2"></i>
+      מחקר עברי
+    </h5>
+    <ul class="list-unstyled">
+        <li>פרויקט BiblIA Dataset</li>
+        <li>מחקר כתבי יד עבריים</li>
+        <li>טכנולוגיות OCR/HTR</li>
+        <li>קהילת המחקר הפתוח</li>
+    </ul>
+</div>
+
+            
+        </div>
+    </div>
+</footer>
+
+    </div>
+    </section></main>
+
+    <script src="/static/vendor.js"></script>
+
+    
+    <script src="/static/main.js"></script>
+    
+    <script src="/static/globalNavigation.js"></script>
+    
+    <script>
+     const DEBUG = false;
+    </script>
+    
+    
+    
+  </body>
+</html>

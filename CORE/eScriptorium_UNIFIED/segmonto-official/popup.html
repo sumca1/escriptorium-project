@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>eScriptorium Segmonto Live Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style type="text/css">
+    body, html {
+      min-width: 800px;
+    }
+   .dot1 {
+         animation: visibility 3s linear infinite;
+    }
+     @keyframes visibility {
+         0% {
+             opacity: 1;
+        }
+         65% {
+             opacity: 1;
+        }
+         66% {
+             opacity: 0;
+        }
+         100% {
+             opacity: 0;
+        }
+    }
+     .dot2 {
+         animation: visibility2 3s linear infinite;
+    }
+     @keyframes visibility2 {
+         0% {
+             opacity: 0;
+        }
+         21% {
+             opacity: 0;
+        }
+         22% {
+             opacity: 1;
+        }
+         65% {
+             opacity: 1;
+        }
+         66% {
+             opacity: 0;
+        }
+         100% {
+             opacity: 0;
+        }
+    }
+     .dot3 {
+         animation: visibility3 3s linear infinite;
+    }
+     @keyframes visibility3 {
+         0% {
+             opacity: 0;
+        }
+         43% {
+             opacity: 0;
+        }
+         44% {
+             opacity: 1;
+        }
+         65% {
+             opacity: 1;
+        }
+         66% {
+             opacity: 0;
+        }
+         100% {
+             opacity: 0;
+        }
+    }
+
+  </style>
+</head>
+<body style="background-color: #EEEEEE; padding:1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="border rounded p-2" style="background-color: white;">
+        <div class="text-center">
+          <p class="lead">A live-checker for checking the compliancy of your data on eScriptorium with SegmOnto vocabularies.</p>
+        </div>
+        <hr />
+        <form class="form" id="form">
+          <div class="form-group row">
+            <label for="auth-token" class="col-sm-2 col-form-label">API Token</label>
+            <div class="col-sm-10">
+              <input type="password" name="auth" class="form-control" id="auth-token" aria-describedby="authorizationHelp" placeholder="e.g.  bf74732c30f492296bf99b4a06ad543e" value="">
+              <small id="authorizationHelp" class="form-text text-muted">This information is available under your Profile (<em>Hello Username</em>) > <em>API key</em>. This information is not stored anywhere on our end.</small>
+            </div>
+          </div>
+          <div class="form-group row" style="display:none;">
+            <label for="url" class="col-sm-2 col-form-label">URL on eScriptorium</label>
+            <div class="col-sm-10">
+              <input type="url" name="url" class="form-control" id="url" aria-describedby="urlHelp" placeholder="e.g. https://escriptorium.inria.fr/document/123/part/1234/edit/">
+              <small id="urlHelp" class="form-text text-muted">URL of a page in your document (single page checking) or URL of a document (check all pages).</small>
+            </div>
+          </div>
+          <div class="form-group text-center mt-2">
+            <input type="submit" class="btn btn-primary" value="Check my data !" />
+          </div>
+        </form>
+        <div id="results" style="font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New; font-size: .8em;">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <script type="text/javascript" src="content.js"></script>
+</body>
+</html>

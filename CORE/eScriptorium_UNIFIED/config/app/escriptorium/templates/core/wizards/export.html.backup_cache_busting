@@ -1,0 +1,114 @@
+{% extends 'core/wizards/_base.html' %}
+{% load i18n bootstrap static %}
+
+{% block wizard_fields %}
+<h1 class="sr-only">{% trans "Export Document" %} - {% trans "Document Export Wizard" %}</h1>
+{% endblock %}
+
+{% block wizard_help %}
+<p>{% trans "Export your document transcription in various formats including PDF and DOCX with RTL support." %}</p>
+{% endblock %}
+
+{% block wizard_styles %}
+<link rel="stylesheet" href="{% static 'css/export-wizard.css' %}">
+{% endblock %}
+
+{% block wizard_action %}action="{% url 'api:document-export' pk=object.pk %}" target="_blank"{% endblock %}
+
+{% block wizard_fields %}
+{% csrf_token %}
+{% render_field export_form.transcription %}
+{% render_field export_form.file_format %}
+
+<!-- PDF/DOCX Export Options -->
+<div id="pdf-docx-options">
+  <hr>
+  <h6>{% trans "PDF/DOCX Export Settings" %}</h6>
+  
+  <!-- Layout Style for PDF -->
+  <div class="form-group" id="pdf-layout-group">
+    <label for="pdf_layout">{% trans "Layout Style" %}</label>
+    <select name="pdf_layout" id="pdf_layout" class="form-control">
+      <option value="text_only">{% trans "Text Only" %}</option>
+      <option value="image_only">{% trans "Image Only" %}</option>
+      <option value="image_text_overlay">{% trans "Image with Text Overlay" %}</option>
+      <option value="image_text_side_by_side">{% trans "Image and Text Side by Side" %}</option>
+    </select>
+  </div>
+  
+  <!-- Font Size -->
+  <div class="form-group">
+    <label for="font_size">{% trans "Font Size" %}</label>
+    <input type="number" name="font_size" id="font_size" class="form-control" value="12" min="8" max="24">
+  </div>
+  
+  <!-- Line Spacing -->
+  <div class="form-group">
+    <label for="line_spacing">{% trans "Line Spacing" %}</label>
+    <input type="number" name="line_spacing" id="line_spacing" class="form-control" value="1.5" min="1.0" max="3.0" step="0.1">
+  </div>
+  
+  <!-- Include Metadata -->
+  <div class="form-check">
+    <input type="checkbox" name="include_metadata" id="include_metadata" class="form-check-input" checked>
+    <label for="include_metadata" class="form-check-label">{% trans "Include Metadata" %}</label>
+  </div>
+  
+  <!-- Include Images (DOCX only) -->
+  <div class="form-check" id="docx-images-group">
+    <input type="checkbox" name="include_images" id="include_images_docx" class="form-check-input">
+    <label for="include_images_docx" class="form-check-label">{% trans "Include Images" %}</label>
+  </div>
+  
+  <!-- Paragraph per Line (DOCX only) -->
+  <div class="form-check" id="docx-paragraph-group">
+    <input type="checkbox" name="paragraph_per_line" id="paragraph_per_line" class="form-check-input" checked>
+    <label for="paragraph_per_line" class="form-check-label">{% trans "Paragraph per Line" %}</label>
+  </div>
+</div>
+
+<!-- Original Export Options -->
+{% render_field export_form.include_images %}
+{% render_field export_form.include_characters %}
+<label>{% trans "Region types" %}</label>
+{% render_field export_form.region_types %}
+
+<script>
+$(document).ready(function() {
+  // Show/hide PDF/DOCX options based on file format
+  function updateExportOptions() {
+    var format = $('#id_file_format').val();
+    var pdfDocxOptions = $('#pdf-docx-options');
+    var pdfLayoutGroup = $('#pdf-layout-group');
+    var docxImagesGroup = $('#docx-images-group');
+    var docxParagraphGroup = $('#docx-paragraph-group');
+    
+    if (format === 'pdf' || format === 'docx') {
+      pdfDocxOptions.addClass('visible');
+      
+      // Show/hide format-specific options
+      if (format === 'pdf') {
+        pdfLayoutGroup.removeClass('hidden');
+        docxImagesGroup.addClass('hidden');
+        docxParagraphGroup.addClass('hidden');
+      } else if (format === 'docx') {
+        pdfLayoutGroup.addClass('hidden');
+        docxImagesGroup.removeClass('hidden');
+        docxParagraphGroup.removeClass('hidden');
+      }
+    } else {
+      pdfDocxOptions.removeClass('visible');
+    }
+  }
+  
+  // Bind change event
+  var fileFormatSelect = $('#id_file_format');
+  fileFormatSelect.on('change', updateExportOptions);
+  
+  // Initial call
+  updateExportOptions();
+});
+</script>
+{% endblock %}
+
+{% block wizard_submit %}{% trans "Export" %}{% endblock %}

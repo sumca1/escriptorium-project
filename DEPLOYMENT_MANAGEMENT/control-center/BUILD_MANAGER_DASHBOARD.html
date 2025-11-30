@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ לוח בקרה - מפקח בניית eScriptorium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .status-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .status-error {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-info {
+            background: #2196f3;
+            color: white;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .task-item:hover {
+            background: #e8f4f8;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .task-completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .chatbot-activity {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-right: 4px solid #2196f3;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .activity-time {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .pattern-card {
+            background: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .pattern-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        .pattern-solution {
+            font-size: 0.9em;
+            color: #533f03;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 5px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .metric-box {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .docker-status {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .container-box {
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .container-up {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .container-down {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .log-viewer {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 3px 0;
+        }
+
+        .log-success {
+            color: #4ec9b0;
+        }
+
+        .log-error {
+            color: #f48771;
+        }
+
+        .log-warning {
+            color: #ce9178;
+        }
+
+        .refresh-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .timeline {
+            position: relative;
+            padding-right: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .timeline-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            right: -8px;
+            color: #2196f3;
+            font-size: 1.5em;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ לוח בקרה - מפקח בניית eScriptorium</h1>
+            <div class="subtitle">ניהול ותיאום צוות צ'אטבוטים | עדכון אחרון: <span id="lastUpdate">טוען...</span></div>
+        </header>
+
+        <!-- Metrics Overview -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 סטטיסטיקות כלליות</div>
+                    <span class="status-badge status-info" id="projectStatus">פעיל</span>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-value" id="tasksCompleted">6</div>
+                        <div class="metric-label">משימות הושלמו</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value" id="tasksPending">3</div>
+                        <div class="metric-label">משימות ממתינות</div>
+                    </div>
+                    <div class="metric-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="metric-value" id="medalsAwarded">5</div>
+                        <div class="metric-label">🏅 מדליות הוענקו</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value" id="knownPatterns">6</div>
+                        <div class="metric-label">דפוסים ידועים</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🎯 התקדמות כוללת</div>
+                    <span id="overallProgress">67%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 67%;">67%</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="runBuild()">🔨 הרץ Build מלא</button>
+                    <button class="btn btn-primary" onclick="runQuickBuild()">⚡ Build מהיר</button>
+                    <button class="btn btn-warning" onclick="viewLogs()">📋 הצג לוגים</button>
+                    <button class="btn btn-info" onclick="openManagerReport()">📄 דוח מנהל</button>
+                    <button class="btn btn-danger" onclick="refreshData()">🔄 רענן נתונים</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medal System Card - NEW! -->
+        <div class="card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333;">
+            <div class="card-header" style="border-bottom-color: rgba(0,0,0,0.1);">
+                <div class="card-title" style="color: #d84315;">🏅 מערכת המדליות - AI Models Performance</div>
+                <span class="status-badge" style="background: #d84315;">5 מדליות הוענקו היום</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 15px;">
+                <!-- Gold Medals -->
+                <div style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); padding: 15px; border-radius: 10px; color: #333;">
+                    <h3 style="margin-bottom: 10px;">🥇 מדליות זהב (100 נק')</h3>
+                    <div style="font-size: 0.9em; line-height: 1.6;">
+                        <strong>Claude 4.5:</strong> 2 🥇<br>
+                        • Build optimization (70% faster)<br>
+                        • Docker health automation<br>
+                        <br>
+                        <strong>GPT-4:</strong> 1 🥇<br>
+                        • Creative Hebrew translations<br>
+                    </div>
+                </div>
+
+                <!-- Silver Medals -->
+                <div style="background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%); padding: 15px; border-radius: 10px; color: #333;">
+                    <h3 style="margin-bottom: 10px;">🥈 מדליות כסף (50 נק')</h3>
+                    <div style="font-size: 0.9em; line-height: 1.6;">
+                        <strong>Claude 4.5:</strong> 2 🥈<br>
+                        • Translation accuracy<br>
+                        • Error pattern documentation<br>
+                        <br>
+                        <strong>GPT-4:</strong> 1 🥈<br>
+                        • npm optimization strategy<br>
+                    </div>
+                </div>
+
+                <!-- Star Awards & Bronze -->
+                <div style="background: linear-gradient(135deg, #cd7f32 0%, #f4a460 100%); padding: 15px; border-radius: 10px; color: #fff;">
+                    <h3 style="margin-bottom: 10px;">⭐ כוכב מצטיין + 🥉 ארד</h3>
+                    <div style="font-size: 0.9em; line-height: 1.6;">
+                        <strong>⭐ Gemini Pro:</strong> 1 Star<br>
+                        • Creative Docker restart logic<br>
+                        <br>
+                        <strong>🥉 Claude 4.5:</strong> 2 Bronze<br>
+                        • Documentation improvements<br>
+                        • Bug fixes<br>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 10px;">
+                <h4 style="margin-bottom: 10px; color: #d84315;">📊 ביצועים לפי סוג משימה:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; font-size: 0.9em;">
+                    <div>
+                        <strong>Build & Deploy:</strong><br>
+                        🥇 Claude 4.5 (best)<br>
+                        🥈 GPT-4 (good)
+                    </div>
+                    <div>
+                        <strong>תרגומים:</strong><br>
+                        🥇 GPT-4 (creative)<br>
+                        🥈 Claude 4.5 (accurate)
+                    </div>
+                    <div>
+                        <strong>Docker & DevOps:</strong><br>
+                        🥇 Claude 4.5 (automation)<br>
+                        ⭐ Gemini Pro (creative)
+                    </div>
+                    <div>
+                        <strong>Debug & Troubleshooting:</strong><br>
+                        🥇 Claude 4.5 (pattern recognition)<br>
+                        🥈 GPT-4 (systematic)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Command Center - NEW! -->
+        <div class="card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); color: #006064;">
+            <div class="card-header" style="border-bottom-color: rgba(0,0,0,0.1);">
+                <div class="card-title" style="color: #00695c;">🎯 מרכז הפיקוד - Command Center</div>
+                <span class="status-badge" style="background: #00695c;" id="commandCenterStatus">טוען נתונים...</span>
+            </div>
+            
+            <!-- Dashboard Summary Widget -->
+            <div style="background: rgba(255,255,255,0.8); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <h4 style="margin-bottom: 10px; color: #00695c;">📊 סיכום מהיר</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="text-align: center; padding: 10px; background: #fff; border-radius: 8px;">
+                        <div style="font-size: 2em; font-weight: bold; color: #00695c;" id="ccTotalSessions">0</div>
+                        <div style="font-size: 0.9em;">סשנים כולל</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px; background: #fff; border-radius: 8px;">
+                        <div style="font-size: 2em; font-weight: bold; color: #00695c;" id="ccActiveStages">0</div>
+                        <div style="font-size: 0.9em;">שלבים פעילים</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px; background: #fff; border-radius: 8px;">
+                        <div style="font-size: 2em; font-weight: bold; color: #00695c;" id="ccTotalPatterns">0</div>
+                        <div style="font-size: 0.9em;">דפוסים מתועדים</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px; border-radius: 8px;" id="ccSignificantChangeBox">
+                        <div style="font-size: 1.5em; font-weight: bold;" id="ccSignificantChange">-</div>
+                        <div style="font-size: 0.9em;">שינוי משמעותי ממתין</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage Map Widget -->
+            <div style="background: rgba(255,255,255,0.8); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <h4 style="margin-bottom: 10px; color: #00695c;">🗺️ מפת שלבים (Stage Map)</h4>
+                <div id="ccStageMap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; font-size: 0.9em;">
+                    <div style="padding: 10px; background: #fff; border-radius: 8px; border-left: 4px solid #ccc;">
+                        <strong>טוען שלבים...</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Feed Widget -->
+            <div style="background: rgba(255,255,255,0.8); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <h4 style="margin-bottom: 10px; color: #00695c;">📰 ציר זמן פעילות (Event Feed)</h4>
+                <div id="ccEventFeed" style="max-height: 300px; overflow-y: auto;">
+                    <div style="padding: 10px; background: #fff; border-radius: 8px; margin-bottom: 8px; font-size: 0.9em;">
+                        טוען אירועים אחרונים...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patterns Explorer Widget -->
+            <div style="background: rgba(255,255,255,0.8); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <h4 style="margin-bottom: 10px; color: #00695c;">🔍 דפוסים ופתרונות (Patterns Explorer)</h4>
+                <div id="ccPatternsExplorer">
+                    <table style="width: 100%; background: #fff; border-radius: 8px; overflow: hidden; font-size: 0.9em;">
+                        <thead style="background: #00695c; color: white;">
+                            <tr>
+                                <th style="padding: 10px; text-align: right;">דפוס</th>
+                                <th style="padding: 10px; text-align: center;">תדירות</th>
+                                <th style="padding: 10px; text-align: right;">פתרון</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ccPatternsTableBody">
+                            <tr>
+                                <td colspan="3" style="padding: 20px; text-align: center;">טוען דפוסים...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="margin-top: 15px;">
+                <button class="btn btn-primary" onclick="refreshCommandCenter()" style="background: #00695c;">🔄 רענן מרכז פיקוד</button>
+                <button class="btn btn-info" onclick="viewCommandCenterDocs()" style="background: #0277bd;">📖 תיעוד מלא</button>
+            </div>
+        </div>
+
+        <!-- Task List and Docker Status -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📋 רשימת משימות</div>
+                    <span class="status-badge status-success">6/9 הושלמו</span>
+                </div>
+                <ul class="task-list" id="taskList">
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox" checked disabled>
+                        <span class="task-completed">בדיקת סטטוס הקונטיינרים של Docker</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox" checked disabled>
+                        <span class="task-completed">בדיקת בעיות ידועות מ-CURRENT_STATE.md</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox" checked disabled>
+                        <span class="task-completed">תיקון בעיית npm/node_modules (חלקי)</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>השלמת תרגומים חסרים (~74 CER + 10 SegmOnto)</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>Build מלא עם ניקוי</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>אימות deployment של קבצים</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>הפעלת המערכת ובדיקת health</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>בדיקת תרגום בממשק</span>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span>עדכון SESSION_LOG ו-CURRENT_STATE</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🐳 סטטוס Docker Containers</div>
+                    <span class="status-badge status-warning">15 עצרו</span>
+                </div>
+                <div class="docker-status" id="dockerStatus">
+                    <div class="container-box container-down">web-1 ⏹️</div>
+                    <div class="container-box container-down">nginx-1 ⏹️</div>
+                    <div class="container-box container-down">db-1 ⏹️</div>
+                    <div class="container-box container-down">redis-1 ⏹️</div>
+                    <div class="container-box container-down">elasticsearch-1 ⏹️</div>
+                    <div class="container-box container-down">celery-default ⏹️</div>
+                    <div class="container-box container-down">celery-long ⏹️</div>
+                    <div class="container-box container-down">celery-low ⏹️</div>
+                    <div class="container-box container-down">celery-convert ⏹️</div>
+                    <div class="container-box container-down">celery-beat ⏹️</div>
+                    <div class="container-box container-down">flower-1 ⏹️</div>
+                    <div class="container-box container-down">fastapi-1 ⏹️</div>
+                    <div class="container-box container-down">passim-1 ⏹️</div>
+                    <div class="container-box container-down">mail-1 ⏹️</div>
+                    <div class="container-box container-down">channelserver-1 ⏹️</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="startDocker()">▶️ הפעל Docker</button>
+                    <button class="btn btn-danger" onclick="stopDocker()">⏹️ עצור Docker</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatbot Activity and Known Patterns -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🤖 פעילות צ'אטבוטים אחרונה</div>
+                    <span class="status-badge status-info">13 סשנים</span>
+                </div>
+                <div class="timeline" id="chatbotTimeline">
+                    <div class="timeline-item" style="border-right: 4px solid #4caf50;">
+                        <div class="activity-time">29/10/2025 - 16:30 🆕</div>
+                        <strong>🤖 MCP Integration COMPLETE!</strong><br>
+                        יצר MCP Server מלא (447 שורות) + 6 כלי אוטומציה + PowerShell integration<br>
+                        <em>קבצים: eScriptorium_mcp_server.py, ps_mcp_bridge.py, mcp.ps1</em><br>
+                        <small style="color: #4caf50;">✅ כלים זמינים: .\mcp.ps1 status|docker|scan|deploy|seo</small>
+                    </div>
+                    <div class="timeline-item" style="border-right: 4px solid #2196f3;">
+                        <div class="activity-time">29/10/2025 - 15:45</div>
+                        <strong>📦 Deployment Package READY!</strong><br>
+                        יצר SETUP_ONE_CLICK.ps1 + מדריך התקנה למחשב חדש (30-45 דק' התקנה)<br>
+                        <em>קבצים: SETUP_ONE_CLICK.ps1, INSTALLATION_CHECKLIST.md</em>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="activity-time">27/10/2025 - 14:35</div>
+                        <strong>Copilot Session #12</strong><br>
+                        יצר מערכת מפקח בניה אוטומטי + לוח בקרה HTML<br>
+                        <em>קבצים: project-manager.instructions.md, BUILD_MANAGER_DASHBOARD.html</em>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="activity-time">27/10/2025 - 13:20</div>
+                        <strong>Copilot Session #11</strong><br>
+                        הוסיף פס התקדמות אדום (Show-RedProgressBar) ל-build-and-deploy.ps1<br>
+                        <em>קבצים: scripts/build-and-deploy.ps1</em>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="activity-time">27/10/2025 - 12:05</div>
+                        <strong>Copilot Session #10</strong><br>
+                        תיקון בעיית npm install - ניקוי cache ו-node_modules<br>
+                        <em>זמן: 8 דקות</em>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="activity-time">26/10/2025 - 16:45</div>
+                        <strong>Copilot Session #9</strong><br>
+                        יצר סקריפט compile-translations.ps1 + deploy-translations.ps1<br>
+                        <em>קבצים: 2 סקריפטים חדשים</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">⚠️ דפוסים ידועים (Knowledge Base)</div>
+                    <span class="status-badge status-warning">7 דפוסים</span>
+                </div>
+                <div class="chatbot-activity">
+                    <div class="pattern-card">
+                        <div class="pattern-title">דפוס #1: npm install נכשל</div>
+                        <div>תסמינים: MODULE_NOT_FOUND: caniuse-lite</div>
+                        <div class="pattern-solution">✅ פתרון: .\scripts\build-and-deploy.ps1 -Full (5-8 דק')</div>
+                    </div>
+                    <div class="pattern-card">
+                        <div class="pattern-title">דפוס #2: תרגומים לא מופיעים</div>
+                        <div>תסמינים: שינוי he.json אבל עדיין באנגלית</div>
+                        <div class="pattern-solution">✅ פתרון: נקה cache + פרוס מחדש (3-5 דק')</div>
+                    </div>
+                    <div class="pattern-card">
+                        <div class="pattern-title">דפוס #3: Docker containers לא עולים</div>
+                        <div>תסמינים: Container "web-1" is unhealthy</div>
+                        <div class="pattern-solution">✅ פתרון: בדוק לוגים + אתחול (2-5 דק')</div>
+                    </div>
+                    <div class="pattern-card">
+                        <div class="pattern-title">דפוס #4: Build אורך יותר מדי</div>
+                        <div>תסמינים: npm install מוחק 45K קבצים (10-15 דק')</div>
+                        <div class="pattern-solution">✅ פתרון: השתמש ב-Quick mode (חיסכון 7-10 דק')</div>
+                    </div>
+                    <div class="pattern-card">
+                        <div class="pattern-title">דפוס #6: duplicated .po entries</div>
+                        <div>תסמינים: duplicate message definition</div>
+                        <div class="pattern-solution">✅ פתרון: remove_po_duplicates.py (1-2 דק')</div>
+                    </div>
+                    <div class="pattern-card" style="background: #e8f5e8; border-right: 4px solid #4caf50;">
+                        <div class="pattern-title">🆕 דפוס #7: MCP Tools זמינים</div>
+                        <div>שימוש: כלי אוטומציה מתקדמים לניהול הפרויקט</div>
+                        <div class="pattern-solution">✅ פתרון: .\mcp.ps1 [status|docker|scan|deploy|seo] (מיידי)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Build Logs -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📜 לוג בנייה אחרון</div>
+                <span class="status-badge status-success">הצלחה</span>
+            </div>
+            <div class="log-viewer" id="buildLog">
+                <div class="log-entry log-success">2025-10-27 11:30:45 | ✅ Docker: Docker version 28.4.0</div>
+                <div class="log-entry log-success">2025-10-27 11:30:46 | ✅ npm version: 10.9.0</div>
+                <div class="log-entry log-success">2025-10-27 11:30:47 | ✅ Python 3.11.9</div>
+                <div class="log-entry">2025-10-27 11:30:48 | ℹ️  Starting environment repair...</div>
+                <div class="log-entry">2025-10-27 11:30:49 | ℹ️  Running: npm cache clean --force</div>
+                <div class="log-entry log-success">2025-10-27 11:31:05 | ✅ npm cache cleaned</div>
+                <div class="log-entry">2025-10-27 11:31:06 | ℹ️  Installing dependencies...</div>
+                <div class="log-entry log-success">2025-10-27 11:32:15 | ✅ npm install completed (324.8 MB)</div>
+                <div class="log-entry log-warning">2025-10-27 11:32:16 | ⚠️  45,263 files in node_modules</div>
+                <div class="log-entry log-success">2025-10-27 11:32:17 | ✅ Build successful</div>
+                <div class="log-entry log-success">2025-10-27 11:32:18 | ✅ Complete build & deploy cycle successful</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="refresh-indicator" id="refreshIndicator">
+        🔄 מרענן נתונים...
+    </div>
+
+    <script>
+        // Update last update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('he-IL', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            document.getElementById('lastUpdate').textContent = timeString;
+        }
+
+        // Refresh data
+        function refreshData() {
+            const indicator = document.getElementById('refreshIndicator');
+            indicator.style.display = 'block';
+            
+            setTimeout(() => {
+                updateTime();
+                indicator.style.display = 'none';
+                alert('✅ הנתונים עודכנו בהצלחה!');
+            }, 1000);
+        }
+
+        // Run full build
+        function runBuild() {
+            if (confirm('האם להריץ build מלא? זה יקח 10-15 דקות')) {
+                alert('🔨 מריץ: .\\scripts\\build-and-deploy.ps1\n\nצפה בהתקדמות בטרמינל...');
+                // כאן תוכל להוסיף קריאה לסקריפט דרך PowerShell
+            }
+        }
+
+        // Run quick build
+        function runQuickBuild() {
+            if (confirm('האם להריץ build מהיר? זה יקח 3-5 דקות')) {
+                alert('⚡ מריץ: .\\scripts\\build-and-deploy.ps1 -Quick\n\nצפה בהתקדמות בטרמינל...');
+            }
+        }
+
+        // View logs
+        function viewLogs() {
+            alert('📋 לוגים זמינים ב:\n\n' +
+                  '• logs/build-*.log - לוגי build\n' +
+                  '• logs/history.log - היסטוריה\n' +
+                  '• SESSION_LOG.md - פעילות \'צ\'אטבוטים\n' +
+                  '• CURRENT_STATE.md - מצב נוכחי');
+        }
+
+        // Open manager report (generated by scripts/generate-manager-report.ps1)
+        function openManagerReport() {
+            // attempt to open the generated HTML report in a new tab/window
+            try {
+                window.open('REPORT_FOR_MANAGER.html', '_blank');
+            } catch (e) {
+                alert('לא ניתן לפתוח את דוח המנהל אוטומטית. קובץ נמצא ב-root של eScriptorium_CLEAN: REPORT_FOR_MANAGER.html');
+            }
+        }
+
+        // ============= COMMAND CENTER FUNCTIONS =============
+        
+        let commandCenterData = null;
+
+        // Load command center data from JSON
+        async function loadCommandCenterData() {
+            try {
+                const response = await fetch('data/command_center.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                commandCenterData = await response.json();
+                renderCommandCenter();
+                document.getElementById('commandCenterStatus').textContent = '✅ נתונים עודכנו';
+                document.getElementById('commandCenterStatus').style.background = '#4caf50';
+            } catch (error) {
+                console.error('❌ שגיאה בטעינת נתוני מרכז הפיקוד:', error);
+                document.getElementById('commandCenterStatus').textContent = '⚠️ לא ניתן לטעון נתונים';
+                document.getElementById('commandCenterStatus').style.background = '#ff9800';
+                
+                // Show friendly error message
+                document.getElementById('ccStageMap').innerHTML = 
+                    '<div style="padding: 20px; background: #fff3cd; border-radius: 8px; color: #856404;">' +
+                    '<strong>⚠️ קובץ נתונים לא נמצא</strong><br>' +
+                    'הרץ את הפקודה: <code>python scripts\\command_center_export.py</code><br>' +
+                    'כדי לייצר את קובץ <code>data/command_center.json</code>' +
+                    '</div>';
+            }
+        }
+
+        // Render all command center widgets
+        function renderCommandCenter() {
+            if (!commandCenterData) return;
+
+            renderDashboardSummary();
+            renderStageMap();
+            renderEventFeed();
+            renderPatternsExplorer();
+        }
+
+        // Render Dashboard Summary Widget
+        function renderDashboardSummary() {
+            const summary = commandCenterData.summary || {};
+            const stages = commandCenterData.stages || [];
+            const patterns = commandCenterData.patterns || [];
+            
+            // Update metrics
+            document.getElementById('ccTotalSessions').textContent = 
+                (summary.recent_sessions || []).length || '0';
+            document.getElementById('ccActiveStages').textContent = stages.length || '0';
+            document.getElementById('ccTotalPatterns').textContent = patterns.length || '0';
+            
+            // Significant change indicator
+            const sigChangeBox = document.getElementById('ccSignificantChangeBox');
+            const sigChangeText = document.getElementById('ccSignificantChange');
+            
+            if (summary.significant_change_pending === true) {
+                sigChangeBox.style.background = '#ff5722';
+                sigChangeBox.style.color = 'white';
+                sigChangeText.textContent = '⚠️ כן';
+            } else {
+                sigChangeBox.style.background = '#4caf50';
+                sigChangeBox.style.color = 'white';
+                sigChangeText.textContent = '✅ לא';
+            }
+        }
+
+        // Render Stage Map Widget
+        function renderStageMap() {
+            const stages = commandCenterData.stages || [];
+            const stageMapDiv = document.getElementById('ccStageMap');
+            
+            if (stages.length === 0) {
+                stageMapDiv.innerHTML = 
+                    '<div style="padding: 15px; background: #fff; border-radius: 8px; color: #666;">' +
+                    'אין שלבים פעילים כרגע. הוסף תג <strong>STAGE:</strong> לסשנים ב-SESSION_LOG.md' +
+                    '</div>';
+                return;
+            }
+
+            let html = '';
+            stages.forEach(stage => {
+                const stageColor = getStageColor(stage.stage_name);
+                html += `
+                    <div style="padding: 12px; background: #fff; border-radius: 8px; border-left: 4px solid ${stageColor};">
+                        <strong style="color: ${stageColor};">${stage.stage_name}</strong><br>
+                        <span style="font-size: 0.85em; color: #666;">
+                            ${stage.session_count} סשנים | אחרון: ${stage.last_session || 'לא ידוע'}
+                        </span>
+                    </div>
+                `;
+            });
+            
+            stageMapDiv.innerHTML = html;
+        }
+
+        // Render Event Feed Widget
+        function renderEventFeed() {
+            const events = commandCenterData.event_feed || [];
+            const feedDiv = document.getElementById('ccEventFeed');
+            
+            if (events.length === 0) {
+                feedDiv.innerHTML = 
+                    '<div style="padding: 15px; background: #fff; border-radius: 8px; color: #666;">' +
+                    'אין אירועים מתועדים. הוסף סשנים ל-SESSION_LOG.md' +
+                    '</div>';
+                return;
+            }
+
+            let html = '';
+            events.slice(0, 20).forEach(event => {  // Show last 20 events
+                const icon = event.significant_change ? '🔴' : '📝';
+                const bgColor = event.significant_change ? '#ffebee' : '#fff';
+                
+                html += `
+                    <div style="padding: 10px; background: ${bgColor}; border-radius: 8px; margin-bottom: 8px; font-size: 0.9em; border-right: 3px solid #00695c;">
+                        ${icon} <strong>${event.date} ${event.time}</strong> - ${event.chatbot || 'לא ידוע'}<br>
+                        <span style="color: #555;">${event.task || 'אין תיאור'}</span>
+                        ${event.pattern ? `<br><span style="font-size: 0.85em; color: #00695c;">🏷️ ${event.pattern}</span>` : ''}
+                        ${event.stage ? `<br><span style="font-size: 0.85em; color: #0277bd;">📍 ${event.stage}</span>` : ''}
+                    </div>
+                `;
+            });
+            
+            feedDiv.innerHTML = html;
+        }
+
+        // Render Patterns Explorer Widget
+        function renderPatternsExplorer() {
+            const patterns = commandCenterData.patterns || [];
+            const tableBody = document.getElementById('ccPatternsTableBody');
+            
+            if (patterns.length === 0) {
+                tableBody.innerHTML = 
+                    '<tr><td colspan="3" style="padding: 20px; text-align: center; color: #666;">' +
+                    'אין דפוסים מתועדים. הוסף תג <strong>PATTERN:</strong> לסשנים' +
+                    '</td></tr>';
+                return;
+            }
+
+            let html = '';
+            patterns.forEach(pattern => {
+                html += `
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 10px; text-align: right;">
+                            <strong style="color: #00695c;">${pattern.pattern_name}</strong>
+                        </td>
+                        <td style="padding: 10px; text-align: center;">
+                            <span style="background: #00695c; color: white; padding: 4px 12px; border-radius: 12px; font-weight: bold;">
+                                ${pattern.frequency}
+                            </span>
+                        </td>
+                        <td style="padding: 10px; text-align: right; font-size: 0.9em; color: #555;">
+                            ${pattern.solution || 'בדוק מאגר דפוסים'}
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+        }
+
+        // Get color for stage
+        function getStageColor(stageName) {
+            const colors = {
+                'phase-0': '#9c27b0',
+                'phase-1': '#2196f3',
+                'phase-2': '#4caf50',
+                'phase-3': '#ff9800',
+                'phase-4': '#f44336',
+                'design': '#673ab7',
+                'implementation': '#03a9f4',
+                'testing': '#8bc34a',
+                'deployment': '#ff5722',
+                'maintenance': '#607d8b'
+            };
+            
+            // Try to match stage name
+            for (const [key, color] of Object.entries(colors)) {
+                if (stageName.toLowerCase().includes(key)) {
+                    return color;
+                }
+            }
+            
+            return '#00695c';  // Default color
+        }
+
+        // Refresh command center data
+        async function refreshCommandCenter() {
+            document.getElementById('commandCenterStatus').textContent = '🔄 מרענן...';
+            document.getElementById('commandCenterStatus').style.background = '#2196f3';
+            await loadCommandCenterData();
+        }
+
+        // View command center documentation
+        function viewCommandCenterDocs() {
+            alert('📖 תיעוד מרכז הפיקוד:\n\n' +
+                  '• COMMAND_CENTER.md - תיעוד מלא\n' +
+                  '• SESSION_LOG.md - היסטוריית סשנים\n' +
+                  '• CURRENT_STATE.md - מצב נוכחי\n' +
+                  '• _META/ - קטלוגים ופתרונות\n\n' +
+                  'ליצירת נתונים:\n' +
+                  'python scripts\\command_center_export.py');
+        }
+
+        // ============= END COMMAND CENTER FUNCTIONS =============
+
+        // Start Docker
+        function startDocker() {
+            if (confirm('האם להפעיל את כל הקונטיינרים?')) {
+                alert('▶️ מריץ: docker-compose up -d\n\nאנא המתן...');
+                // כאן תוכל להוסיף קריאה לפקודה
+            }
+        }
+
+        // Stop Docker
+        function stopDocker() {
+            if (confirm('האם לעצור את כל הקונטיינרים?')) {
+                alert('⏹️ מריץ: docker-compose stop\n\nעוצר קונטיינרים...');
+            }
+        }
+
+        // Initialize
+        updateTime();
+        setInterval(updateTime, 1000); // Update every second
+
+        // ============= REAL-TIME SYSTEM STATUS =============
+        
+        let systemStatus = null;
+
+        // Load real-time system status from JSON
+        async function loadSystemStatus() {
+            try {
+                const response = await fetch('system_status.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                systemStatus = await response.json();
+                updateDockerStatus();
+                updatePortsStatus();
+                console.log('✅ System status updated');
+            } catch (error) {
+                console.error('❌ Error loading system status:', error);
+            }
+        }
+
+        // Update Docker containers display
+        function updateDockerStatus() {
+            if (!systemStatus || !systemStatus.docker) return;
+
+            const dockerDiv = document.getElementById('dockerStatus');
+            const summary = systemStatus.summary;
+            
+            // Update header badge
+            const statusBadge = document.querySelector('.status-badge');
+            if (summary.dockerHealthy) {
+                statusBadge.textContent = `✅ ${systemStatus.docker.containers.length} פעילים`;
+                statusBadge.className = 'status-badge status-success';
+            } else {
+                statusBadge.textContent = '❌ Docker כבוי';
+                statusBadge.className = 'status-badge status-danger';
+            }
+
+            // Update container boxes
+            let html = '';
+            systemStatus.docker.containers.forEach(container => {
+                const shortName = container.name.replace('escriptorium_clean-', '');
+                const status = container.healthy ? '✅' : '❌';
+                const className = container.healthy ? 'container-up' : 'container-down';
+                html += `<div class="container-box ${className}">${shortName} ${status}</div>`;
+            });
+
+            dockerDiv.innerHTML = html || '<div style="padding: 10px; color: #999;">אין containers פעילים</div>';
+        }
+
+        // Update Ports status (add new widget if needed)
+        function updatePortsStatus() {
+            if (!systemStatus || !systemStatus.ports) return;
+
+            // You can add a ports widget here
+            console.log(`🔌 Ports: ${systemStatus.summary.portsHealthy}/${systemStatus.summary.totalPorts} open`);
+        }
+
+        // Load command center data on page load
+        loadCommandCenterData();
+        loadSystemStatus(); // NEW: Load system status
+
+        // Auto-refresh data every 30 seconds
+        setInterval(() => {
+            updateTime();
+            loadSystemStatus(); // NEW: Refresh system status
+        }, 30000);
+
+        // Auto-refresh command center every 2 minutes
+        setInterval(() => {
+            loadCommandCenterData();
+        }, 120000);
+
+        console.log('🏗️ לוח בקרה מפקח הבניה הופעל בהצלחה!');
+        console.log('📊 עדכונים אוטומטיים כל 30 שניות');
+        console.log('🎯 מרכז הפיקוד מתעדכן כל 2 דקות');
+        console.log('🔄 System status updates every 30 seconds');
+    </script>
+</body>
+</html>

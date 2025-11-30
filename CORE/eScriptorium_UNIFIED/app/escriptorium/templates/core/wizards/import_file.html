@@ -1,0 +1,26 @@
+{% extends 'core/wizards/import.html' %}
+{% load i18n bootstrap %}
+
+{% block selected_images %}
+<h1 class="sr-only">{% trans "Import XML Files" %} - {% trans "Import Segmentation and Transcriptions" %}</h1>
+{% endblock %}
+
+{% block wizard_action %}action="{% url 'api:document-imports' pk=object.pk %}"{% endblock %}
+
+{% block wizard_fields %}
+{{ block.super }}
+{% if not import_form.current_import.ongoing %}
+<h5>{% trans "Import segmentation & transcriptions from XML." %}</h5>
+<div class="form-group">
+  {% render_field import_form.name %}
+  {% render_field import_form.override %}
+  {% if not has_disk_storage_left %}
+    {% render_field import_form.upload_file class="js-proc-settings" accept=".xml,.alto" multiple="multiple" %}
+  {% else %}
+    {% render_field import_form.upload_file class="js-proc-settings" accept=".xml,.alto,.zip" multiple="multiple" %}
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block wizard_submit %}{% trans "Start importing" %}{% endblock %}

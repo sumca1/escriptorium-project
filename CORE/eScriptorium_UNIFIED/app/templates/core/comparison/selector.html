@@ -1,0 +1,207 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "OCR Engine Comparison - Selector" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comparison.css' %}?v={{ STATIC_VERSION }}">
+{% endblock %}
+
+{% block content %}
+<div class="comparison-container">
+    <!-- Header -->
+    <div class="comparison-header">
+        <h1><i class="fas fa-microscope"></i> {% trans "OCR Engine Comparison" %}</h1>
+        <p>{% trans "Compare Kraken vs Tesseract OCR results to analyze accuracy and performance" %}</p>
+    </div>
+
+    <!-- Selection Interface -->
+    <div class="selection-interface">
+        <div class="row">
+            <!-- Kraken Transcriptions -->
+            <div class="col-md-6">
+                <div class="engine-section kraken-section">
+                    <div class="engine-header">
+                        <h3><i class="fas fa-dragon"></i> {% trans "Kraken OCR Results" %}</h3>
+                        <span class="badge badge-primary">{{ kraken_transcriptions.count }} {% trans "transcriptions" %}</span>
+                    </div>
+                    
+                    <div class="transcriptions-list">
+                        {% for trans in kraken_transcriptions %}
+                        <div class="transcription-card" data-trans-id="{{ trans.id }}" data-engine="kraken">
+                            <div class="card-header">
+                                <h5>{{ trans.document.name }}</h5>
+                                <small class="text-muted">{{ trans.created_at|date:"d/m/Y H:i" }}</small>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>{% trans "Document:" %}</strong> {{ trans.document.name }}</p>
+                                <p><strong>{% trans "Created:" %}</strong> {{ trans.created_at|date:"d/m/Y H:i" }}</p>
+                                <p><strong>{% trans "Lines:" %}</strong> {{ trans.linetranscription_set.count }}</p>
+                                <button class="btn btn-sm btn-outline-primary select-transcription" 
+                                        data-trans-id="{{ trans.id }}" 
+                                        data-engine="kraken">
+                                    {% trans "Select for Comparison" %}
+                                </button>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-data">
+                            <i class="fas fa-info-circle"></i>
+                            <p>{% trans "No Kraken transcriptions available" %}</p>
+                            <small>{% trans "Run OCR with Kraken engine first" %}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tesseract Transcriptions -->
+            <div class="col-md-6">
+                <div class="engine-section tesseract-section">
+                    <div class="engine-header">
+                        <h3><i class="fas fa-eye"></i> {% trans "Tesseract OCR Results" %}</h3>
+                        <span class="badge badge-success">{{ tesseract_transcriptions.count }} {% trans "transcriptions" %}</span>
+                    </div>
+                    
+                    <div class="transcriptions-list">
+                        {% for trans in tesseract_transcriptions %}
+                        <div class="transcription-card" data-trans-id="{{ trans.id }}" data-engine="tesseract">
+                            <div class="card-header">
+                                <h5>{{ trans.document.name }}</h5>
+                                <small class="text-muted">{{ trans.created_at|date:"d/m/Y H:i" }}</small>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>{% trans "Document:" %}</strong> {{ trans.document.name }}</p>
+                                <p><strong>{% trans "Created:" %}</strong> {{ trans.created_at|date:"d/m/Y H:i" }}</p>
+                                <p><strong>{% trans "Lines:" %}</strong> {{ trans.linetranscription_set.count }}</p>
+                                <button class="btn btn-sm btn-outline-success select-transcription" 
+                                        data-trans-id="{{ trans.id }}" 
+                                        data-engine="tesseract">
+                                    {% trans "Select for Comparison" %}
+                                </button>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-data">
+                            <i class="fas fa-info-circle"></i>
+                            <p>{% trans "No Tesseract transcriptions available" %}</p>
+                            <small>{% trans "Run OCR with Tesseract engine first" %}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Actions -->
+    <div class="comparison-actions" id="comparison-actions" style="display: none;">
+        <div class="selected-info">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="selected-transcription" id="selected-kraken">
+                        <h5><i class="fas fa-dragon text-primary"></i> {% trans "Kraken Selected:" %}</h5>
+                        <p id="kraken-info">{% trans "None selected" %}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="selected-transcription" id="selected-tesseract">
+                        <h5><i class="fas fa-eye text-success"></i> {% trans "Tesseract Selected:" %}</h5>
+                        <p id="tesseract-info">{% trans "None selected" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary btn-lg" id="start-comparison" disabled>
+                <i class="fas fa-microscope"></i> {% trans "Start Comparison" %}
+            </button>
+            <button class="btn btn-secondary" id="clear-selection">
+                <i class="fas fa-times"></i> {% trans "Clear Selection" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">{% trans "Loading..." %}</span>
+                </div>
+                <h5 class="mt-3">{% trans "Analyzing OCR Results..." %}</h5>
+                <p class="text-muted">{% trans "This may take a few moments" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Transcription Selection Logic
+let selectedKraken = null;
+let selectedTesseract = null;
+
+$(document).ready(function() {
+    // Handle transcription selection
+    $('.select-transcription').click(function() {
+        const transId = $(this).data('trans-id');
+        const engine = $(this).data('engine');
+        const card = $(this).closest('.transcription-card');
+        const docName = card.find('h5').text();
+        const created = card.find('small').text();
+        
+        if (engine === 'kraken') {
+            // Clear previous selection
+            $('.kraken-section .transcription-card').removeClass('selected');
+            card.addClass('selected');
+            selectedKraken = transId;
+            $('#kraken-info').html(`<strong>${docName}</strong><br><small>${created}</small>`);
+        } else {
+            // Clear previous selection  
+            $('.tesseract-section .transcription-card').removeClass('selected');
+            card.addClass('selected');
+            selectedTesseract = transId;
+            $('#tesseract-info').html(`<strong>${docName}</strong><br><small>${created}</small>`);
+        }
+        
+        updateComparisonState();
+    });
+    
+    // Clear selection
+    $('#clear-selection').click(function() {
+        selectedKraken = null;
+        selectedTesseract = null;
+        $('.transcription-card').removeClass('selected');
+        $('#kraken-info').text('{% trans "None selected" %}');
+        $('#tesseract-info').text('{% trans "None selected" %}');
+        updateComparisonState();
+    });
+    
+    // Start comparison
+    $('#start-comparison').click(function() {
+        if (selectedKraken && selectedTesseract) {
+            $('#loadingModal').modal('show');
+            const url = `{% url "comparison:viewer" %}?trans1=${selectedKraken}&trans2=${selectedTesseract}`;
+            window.location.href = url;
+        }
+    });
+    
+    function updateComparisonState() {
+        const canCompare = selectedKraken && selectedTesseract;
+        $('#start-comparison').prop('disabled', !canCompare);
+        
+        if (selectedKraken || selectedTesseract) {
+            $('#comparison-actions').slideDown();
+        } else {
+            $('#comparison-actions').slideUp();
+        }
+    }
+});
+</script>
+{% endblock %}

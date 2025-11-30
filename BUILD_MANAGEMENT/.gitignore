@@ -1,0 +1,14 @@
+# Test results
+*.xml
+*.log
+coverage/
+.coverage
+htmlcov/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# CI/CD
+.github-workflow-runs/

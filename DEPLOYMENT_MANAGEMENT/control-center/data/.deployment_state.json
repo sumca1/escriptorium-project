@@ -1,0 +1,27 @@
+{
+  "system": {
+    "dockerRunning": false,
+    "containersActive": 0,
+    "imagesCount": 0,
+    "volumesCount": 0,
+    "lastCheck": null
+  },
+  "deployments": {
+    "total": 0,
+    "successful": 0,
+    "failed": 0,
+    "lastRun": null,
+    "activeEnvironment": null
+  },
+  "scripts": {
+    "available": 0,
+    "lastRun": null,
+    "executionTime": 0
+  },
+  "autoFixes": {
+    "available": 10,
+    "executed": 0,
+    "successRate": 0
+  },
+  "lastUpdate": null
+}

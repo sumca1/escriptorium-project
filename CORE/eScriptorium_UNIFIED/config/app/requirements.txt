@@ -1,0 +1,75 @@
+albumentations
+beautifulsoup4~=4.7.1
+bleach~=5.0.1
+celery~=5.3.6
+channels~=3.0.4
+channels-redis~=3.4.0
+daphne~=3.0.2
+Django~=4.2.13
+django-cleanup~=8.1.0
+django-country-and-language-flags
+django-filter
+django-ordered-model~=3.7
+django-prometheus~=2.3.1
+django-redis~=5.4.0
+django-simple-captcha~=0.6.0
+django-solo>=1.1
+djangorestframework~=3.15.1
+drf-nested-routers~=0.91
+easy-thumbnails~=2.8.1
+elasticsearch~=7.17.0
+kraken[cuda]>=5.2.9,~=5.2
+oitei~=1.1.1
+polib>=1.1.1  # For PO file deduplication and translation management
+git+https://github.com/dasmiq/passim.git@v2.0.1#egg=passim
+Pillow>=5.4.1
+psutil
+psycopg2-binary
+pyvips~=2.1.12
+redis~=4.4.4
+requests>=2.21
+sentry-sdk>=1.10
+torch[cuda]
+uWSGI~=2.0.20
+
+# ============================================
+# TESSERACT SUPPORT - BiblIA Enhancement
+# Added: 2025-10-05 for OCR engine comparison
+# ============================================
+pytesseract>=0.3.10
+tesserocr>=2.6.2
+
+# ============================================
+# FASTAPI INTEGRATION - Performance Enhancement
+# Added: 2025-10-19 for real-time image processing
+# Quick Win: 300-400% performance improvement
+# ============================================
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+websockets==12.0
+opencv-python-headless==4.8.1.78  # For image processing
+
+# ============================================
+# ERROR CORRECTION MODULE - BiblIA Enhancement
+# Added: 2025-10-20 for spell checking and error detection
+# Focus: Hebrew spell checking with Hunspell integration
+# ============================================
+python-Levenshtein>=0.25.1  # String similarity calculations
+pyspellchecker>=0.8.3       # Multilingual spell checking
+pyarabic>=0.6.15            # Arabic text processing (for Hebrew confusion chars)
+numpy>=1.23.0,<1.24.0       # Pinned to 1.23.x for kraken compatibility (kraken requires numpy~=1.23.0)
+cyhunspell>=2.0.2,<2.0.3    # Hunspell Python bindings (Cython-based) - pinned to 2.0.2 as 2.0.3 not released yet
+langdetect>=1.0.9           # Language detection
+pandas>=2.0.0               # Data analysis for CERberus engine and comparison views
+
+# ============================================
+# PDF/DOCX EXPORT - BiblIA Enhancement
+# Added: 2025-10-23 for advanced document export
+# Features: Searchable PDF, formatted DOCX, RTL support
+# ============================================
+reportlab>=4.0.5            # PDF generation with full Unicode support
+python-docx>=1.1.0          # DOCX creation with RTL support
+Pillow>=10.0.0              # Image handling (already included, ensuring version)
+python-bidi>=0.4.2          # BiDi algorithm for RTL text
+arabic-reshaper>=3.0.0      # Arabic text reshaping for PDF

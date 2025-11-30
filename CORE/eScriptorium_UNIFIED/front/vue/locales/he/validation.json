@@ -1,0 +1,14 @@
+{
+  "Detect Errors": "גלה שגיאות",
+  "Error Correction": "תיקון שגיאות",
+  "Found Errors:": "שגיאות שנמצאו:",
+  "Must be a valid URL starting with http:// or https://": "הכתובת חייבת להיות תקינה ולהתחיל ב-http:// או https://.",
+  "Must be a valid URL starting with http:// or https://.": "הכתובת חייבת להיות תקינה ולהתחיל ב-http:// או https://",
+  "Position is required and must be between 1 and": "נדרש מיקום וחייב להיות בין 1 ל-",
+  "couldn't_decode_invalid_manifest_({error})": "לא ניתן לפענח מניפסט לא תקין ({error})",
+  "error_while_fetching_{filename}_{error}": "שגיאה בעת שליפת {filename}: {error}",
+  "errors": "שגיאות",
+  "parse_error_in_{filename}_{xmlfile}_{error}_skipping_it.": "שגיאת ניתוח ב-{filename}: {xmlfile}: {error}, מדלג על זה.",
+  "required": "חובה",
+  "search.error": "שגיאת חיפוש"
+}

@@ -1,0 +1,2059 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eScriptorium 0.13\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-21 15:00+0000\n"
+"PO-Revision-Date: 2025-09-21 19:15+0000\n"
+"Last-Translator: BiblIA Team <team@biblia.org>\n"
+"Language-Team: Hebrew <team@biblia.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Replacements applied with some errors"
+msgstr "ההחלפות בוצעו עם שגיאות מסוימות"
+
+msgid "Project created successfully!"
+msgstr "הפרויקט נוצר בהצלחה!"
+
+msgid "Project updated successfully!"
+msgstr "הפרויקט עודכן בהצלחה!"
+
+msgid "Document created successfully!"
+msgstr "המסמך נוצר בהצלחה!"
+
+msgid "Document saved successfully!"
+msgstr "המסמך נשמר בהצלחה!"
+
+msgid "Ontology saved successfully!"
+msgstr "האונטולוגיה נשמרה בהצלחה!"
+
+msgid "Document shared successfully!"
+msgstr "המסמך שותף בהצלחה!"
+
+msgid "Project shared successfully!"
+msgstr "הפרויקט שותף בהצלחה!"
+
+msgid "Document archived successfully!"
+msgstr "המסמך הועבר לארכיון בהצלחה!"
+
+msgid "Document published successfully!"
+msgstr "המסמך פורסם בהצלחה!"
+
+msgid "Model uploaded successfully!"
+msgstr "המודל הועלה בהצלחה!"
+
+msgid "Model deleted successfully!"
+msgstr "המודל נמחק בהצלחה!"
+
+msgid "Right added successfully!"
+msgstr "ההרשאה נוספה בהצלחה!"
+
+msgid "Right deleted successfully!"
+msgstr "ההרשאה נמחקה בהצלחה!"
+
+msgid "Error while fetching {filename}: {error}"
+msgstr "שגיאה בעת שליפת {filename}: {error}"
+
+msgid "Successfully sent {count} invitations."
+msgstr "{count} הזמנות נשלחו בהצלחה."
+
+msgid "Message : Please precise your institution or research center if applicable"
+msgstr "הודעה: נא לציין מוסד או מרכז מחקר אם רלוונטי"
+
+msgid "Profile successfully saved."
+msgstr "הפרופיל נשמר בהצלחה."
+
+msgid "Team successfully created."
+msgstr "הצוות נוצר בהצלחה."
+
+msgid "User successfully invited to the team."
+msgstr "המשתמש הוזמן לצוות בהצלחה."
+
+msgid "Message successfully sent."
+msgstr "ההודעה נשלחה בהצלחה."
+
+msgid "Either use model_name to create a new model, add a model pk to retrain an existing one, or both to create a new model from an existing one."
+msgstr "יש להשתמש בשם מודל ליצירת מודל חדש, להוסיף מזהה מודל לאימון חוזר, או שניהם ליצירת מודל חדש ממודל קיים."
+
+msgid "Either use model_name to create a new model, or add a model pk to retrain an existing one."
+msgstr "יש להשתמש בשם מודל ליצירת מודל חדש, או להוסיף מזהה מודל לאימון חוזר."
+
+msgid "You cannot find and replace text across multiple projects at once, please pick a single project before submitting your request."
+msgstr "לא ניתן לבצע חיפוש והחלפה במספר פרויקטים יחד. נא לבחור פרויקט אחד לפני שליחה."
+
+msgid "Created"
+msgstr "נוצר"
+
+msgid "Block type {0} was automatically added to the ontology"
+msgstr "סוג בלוק {0} נוסף אוטומטית לאונטולוגיה"
+
+msgid "Line type {0} was automatically added to the ontology"
+msgstr "סוג שורה {0} נוסף אוטומטית לאונטולוגיה"
+
+msgid "If checked, the aligner will use all transcribed pages of the document to find matches. If unchecked, it will compare each page to the text separately."
+msgstr "אם מסומן, המיישר ישתמש בכל הדפים המתומללים למציאת התאמות. אם לא, כל דף יושווה בנפרד."
+
+msgid "Pages per segmentation task"
+msgstr "דפים לכל משימת חלוקה"
+
+msgid "Pages per transcription task"
+msgstr "דפים לכל משימת תמלול"
+
+msgid "Parse error in {filename}: {page}: {error}, skipping it."
+msgstr "שגיאת ניתוח ב-{filename}: {page}: {error}, מדלג."
+
+msgid "Default PAGE Import"
+msgstr "ייבוא PAGE ברירת מחדל"
+
+msgid "Page not found."
+msgstr "הדף לא נמצא."
+
+msgid "Search in all your projects"
+msgstr "חפש בכל הפרויקטים שלך"
+
+msgid "My Models"
+msgstr "המודלים שלי"
+
+msgid "Change password"
+msgstr "שנה סיסמה"
+
+msgid "Task reports"
+msgstr "דוחות משימות"
+
+msgid "Tasks monitoring"
+msgstr "מעקב משימות"
+
+msgid "Leaderboard"
+msgstr "טבלת מובילים"
+
+msgid "Site administration"
+msgstr "ניהול האתר"
+
+msgid "Contact"
+msgstr "צור קשר"
+
+msgid "Invite"
+msgstr "הזמן"
+
+msgid "Contributors"
+msgstr "תורמים"
+
+msgid "The contributors list will be available here soon."
+msgstr "רשימת התורמים תוצג כאן בקרוב."
+
+msgid "Credits"
+msgstr "קרדיטים"
+
+msgid "eScriptorium and kraken are Free and Open-Source Software developed by a team in the laboratoire AOROC (CNRS PSL, UMR 8546) at the École Pratique des Hautes Études – Université PSL."
+msgstr "eScriptorium ו-Kraken הם תוכנות חופשיות וקוד פתוח שפותחו במעבדת AOROC (CNRS PSL, UMR 8546) ב-École Pratique des Hautes Études – Université PSL."
+
+msgid "The credits list will be available here soon."
+msgstr "רשימת הקרדיטים תוצג כאן בקרוב."
+
+msgid "Create a new Document"
+msgstr "צור מסמך חדש"
+
+msgid "Share this Document"
+msgstr "שתף מסמך זה"
+
+msgid "Migrate to another project"
+msgstr "העבר לפרויקט אחר"
+
+msgid "Do you really want to delete the document?"
+msgstr "האם למחוק את המסמך?"
+
+msgid "Metadata"
+msgstr "מטא-נתונים"
+
+msgid "Publish"
+msgstr "פרסם"
+
+msgid "nav-doc-tab"
+msgstr "nav-doc-tab"
+
+msgid "Drop images here or click to upload."
+msgstr "גרור תמונות לכאן או לחץ להעלאה."
+
+msgid "Unselect all"
+msgstr "בטל בחירה"
+
+msgid "Loading"
+msgstr "טוען"
+
+msgid "You don't have any CPU minutes left"
+msgstr "לא נותרו לך דקות CPU"
+
+msgid "You don't have any GPU minutes left"
+msgstr "לא נותרו לך דקות GPU"
+
+msgid "You don't have any disk storage left"
+msgstr "לא נותר שטח אחסון"
+
+msgid "Train a segmenter/recognizer model."
+msgstr "אמן מודל חלוקה/זיהוי."
+
+msgid "Cancel training"
+msgstr "בטל אימון"
+
+msgid "Segment selected images."
+msgstr "חלק את התמונות שנבחרו."
+
+msgid "Start transcribing selected images."
+msgstr "התחל לתמלל את התמונות שנבחרו."
+
+msgid "Align transcribed images to a textual witness (reference text)."
+msgstr "ישר תמונות מתומללות לטקסט ייחוס."
+
+msgid "Delete this image and all its data (segmentation, transcriptions)"
+msgstr "מחק תמונה זו וכל נתוניה (חלוקה, תמלולים)"
+
+msgid "Cancel tasks"
+msgstr "בטל משימות"
+
+msgid "Compressing"
+msgstr "מכווץ"
+
+msgid "My Documents"
+msgstr "המסמכים שלי"
+
+msgid "Manage tags"
+msgstr "נהל תגיות"
+
+msgid "Share this Project"
+msgstr "שתף פרויקט זה"
+
+msgid "Do you really want to remove the document from your list?"
+msgstr "להסיר את המסמך מהרשימה?"
+
+msgid "Create new Document"
+msgstr "צור מסמך חדש"
+
+msgid "Filters"
+msgstr "מסננים"
+
+msgid "Preview"
+msgstr "תצוגה מקדימה"
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Last modified"
+msgstr "עודכן לאחרונה"
+
+msgid "Image count"
+msgstr "מספר תמונות"
+
+msgid "Tags"
+msgstr "תגיות"
+
+msgid "Actions"
+msgstr "פעולות"
+
+msgid "Shared with"
+msgstr "שותף עם"
+
+msgid "Last modified on"
+msgstr "עודכן בתאריך"
+
+msgid "Unpublished"
+msgstr "לא פורסם"
+
+msgid "Edit last updated Element"
+msgstr "ערוך את הרכיב האחרון שעודכן"
+
+msgid "Back to document list"
+msgstr "חזרה לרשימת המסמכים"
+
+msgid "Description"
+msgstr "תיאור"
+
+msgid "Images"
+msgstr "תמונות"
+
+msgid "All levels"
+msgstr "כל הרמות"
+
+msgid "Document Ontology"
+msgstr "אונטולוגיית מסמך"
+
+msgid "Lines and Regions typologies:"
+msgstr "טיפוסי שורות ואזורים:"
+
+msgid "The default configuration only contains semantic types."
+msgstr "הגדרת ברירת המחדל כוללת רק טיפוסים סמנטיים."
+
+msgid "It is not recommended to mix semantic, stylistic and layout types."
+msgstr "לא מומלץ לשלב טיפוסים סמנטיים, סגנוניים ומבניים."
+
+msgid "Annotations:"
+msgstr "הערות:"
+
+msgid "Each Annotation can store values for different components."
+msgstr "כל הערה יכולה להכיל ערכים לרכיבים שונים."
+
+msgid "Annotation types allow to regroup the corresponding buttons in the editing interface (and may be used as a hint for import/export)."
+msgstr "סוגי הערות מאפשרים לאגד כפתורים מתאימים בממשק העריכה (ויכולים לשמש כרמז לייבוא/ייצוא)."
+
+msgid "Region types"
+msgstr "סוגי אזורים"
+
+msgid "Add a region type"
+msgstr "הוסף סוג אזור"
+
+msgid "Line types"
+msgstr "סוגי שורות"
+
+msgid "Add a line type"
+msgstr "הוסף סוג שורה"
+
+msgid "Part types"
+msgstr "סוגי חלקים"
+
+msgid "Add a part type"
+msgstr "הוסף סוג חלק"
+
+msgid "Annotations components"
+msgstr "רכיבי הערות"
+
+msgid "Image Annotations"
+msgstr "הערות תמונה"
+
+msgid "Text Annotations"
+msgstr "הערות טקסט"
+
+msgid "Task Monitoring"
+msgstr "מעקב משימות"
+
+msgid "Homepage"
+msgstr "דף הבית"
+
+msgid "eScriptorium: A Digital Text Production Pipeline for Print and Handwritten Texts using machine learning techniques."
+msgstr "eScriptorium: מערכת דיגיטלית לעיבוד טקסטים מודפסים וכתבי יד באמצעות למידת מכונה."
+
+msgid "Automatic<br>Transcription"
+msgstr "תמלול<br>אוטומטי"
+
+msgid "Apply OCR/HTR to images of printed and handwritten documents using shared open models."
+msgstr "הפעל OCR/HTR על תמונות מסמכים מודפסים וכתבי יד בעזרת מודלים פתוחים."
+
+msgid "Manual<br>Transcription"
+msgstr "תמלול<br>ידני"
+
+msgid "Make use of an ergonomic user interface leveraging modern browser technology to edit segmentations and transcriptions."
+msgstr "השתמש בממשק נוח לעריכת חלוקות ותמלולים בטכנולוגיה מתקדמת."
+
+msgid "Train<br>Models"
+msgstr "אמן<br>מודלים"
+
+msgid "Create new models or finetune existing ones to improve automatic recognition."
+msgstr "צור מודלים חדשים או שפר קיימים לשיפור הזיהוי."
+
+msgid "Service originally developed by"
+msgstr "המערכת פותחה במקור על ידי"
+
+msgid "École Pratique des Hautes Études (EPHE)"
+msgstr "École Pratique des Hautes Études (EPHE)"
+
+msgid "See"
+msgstr "ראה"
+
+msgid "contributors history"
+msgstr "היסטוריית תורמים"
+
+msgid "Resources"
+msgstr "משאבים"
+
+msgid "Tutorial"
+msgstr "מדריך"
+
+msgid "eScriptorium open source code"
+msgstr "קוד פתוח של eScriptorium"
+
+msgid "eScriptorium Blog"
+msgstr "בלוג eScriptorium"
+
+msgid "Acknowledgements"
+msgstr "תודות"
+
+msgid "Legal mentions"
+msgstr "הערות משפטיות"
+
+msgid "Upload a model"
+msgstr "העלה מודל"
+
+msgid "Migrate"
+msgstr "העבר"
+
+msgid "Role"
+msgstr "תפקיד"
+
+msgid "Script"
+msgstr "כתב"
+
+msgid "Trained from"
+msgstr "אומן מתוך"
+
+msgid "Training Status"
+msgstr "מצב אימון"
+
+msgid "Accuracy"
+msgstr "דיוק"
+
+msgid "Errors"
+msgstr "שגיאות"
+
+msgid "Right"
+msgstr "הרשאה"
+
+msgid "Model name"
+msgstr "שם מודל"
+
+msgid "Model role"
+msgstr "תפקיד המודל"
+
+msgid "Model script"
+msgstr "כתב המודל"
+
+msgid "Filter by script"
+msgstr "סינון לפי כתב"
+
+msgid "Parent from which the model was trained"
+msgstr "הורה שממנו אומן המודל"
+
+msgid "Is currently training"
+msgstr "באימון כעת"
+
+msgid "Is done training"
+msgstr "האימון הושלם"
+
+msgid "Gathering data"
+msgstr "אוסף נתונים"
+
+msgid "Number of errors/Total number of characters"
+msgstr "מספר שגיאות/סה\"
+
+msgid "Toggle versions"
+msgstr "החלף גרסאות"
+
+msgid "Share model"
+msgstr "שתף מודל"
+
+msgid "Unbind model from the document"
+msgstr "נתק מודל מהמסמך"
+
+msgid "Delete model"
+msgstr "מחק מודל"
+
+msgid "Delete right"
+msgstr "מחק הרשאה"
+
+msgid "shares"
+msgstr "שיתופים"
+
+msgid "Recipient type"
+msgstr "סוג נמען"
+
+msgid "User full name"
+msgstr "שם מלא של המשתמש"
+
+msgid "Group name"
+msgstr "שם קבוצה"
+
+msgid "Stop sharing"
+msgstr "הפסק שיתוף"
+
+msgid "Add right"
+msgstr "הוסף הרשאה"
+
+msgid "Couldn't connect to Elasticsearch, please contact your instance administrator."
+msgstr "לא ניתן להתחבר ל-Elasticsearch, פנה למנהל המערכת."
+
+msgid "First page"
+msgstr "עמוד ראשון"
+
+msgid "Last page"
+msgstr "עמוד אחרון"
+
+msgid "Please Sign In"
+msgstr "התחבר"
+
+msgid "Please login to see this page."
+msgstr "התחבר כדי לצפות בדף זה."
+
+msgid "Your password has successfully been changed."
+msgstr "הסיסמה שונתה בהצלחה."
+
+msgid "Old password:"
+msgstr "סיסמה ישנה:"
+
+msgid "New password:"
+msgstr "סיסמה חדשה:"
+
+msgid "New password confirmation:"
+msgstr "אישור סיסמה חדשה:"
+
+msgid "Lost your password?"
+msgstr "שכחת סיסמה?"
+
+msgid "Change my password"
+msgstr "שנה את הסיסמה שלי"
+
+msgid "Your password has been set.  You may go ahead and"
+msgstr "הסיסמה הוגדרה. ניתן להמשיך ול-"
+
+msgid "log in"
+msgstr "להתחבר"
+
+msgid "Reset your password"
+msgstr "אפס סיסמה"
+
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "נא להכניס את הסיסמה החדשה פעמיים לאימות."
+
+msgid "Confirm password:"
+msgstr "אשר סיסמה:"
+
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly."
+msgstr "שלחנו הוראות לאיפוס סיסמה, אם קיים חשבון עם כתובת זו."
+
+msgid "If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr "אם לא קיבלת דוא\"
+
+msgid "Forgotten your password? Enter your email address below, and we’ll email instructions for setting a new one."
+msgstr "שכחת סיסמה? הכנס דוא\"
+
+msgid "Document report"
+msgstr "דוח מסמך"
+
+msgid "Data metrics"
+msgstr "מדדי נתונים"
+
+msgid "Total number of document parts"
+msgstr "סה"
+
+msgid "A document part corresponds to one image loaded within a document."
+msgstr "חלק מסמך הוא תמונה אחת במסמך."
+
+msgid "Transcribed document parts"
+msgstr "חלקי מסמך מתומללים"
+
+msgid "The number of transcribed images in the selected transcription(s)."
+msgstr "מספר התמונות המתומללות בתמלול הנבחר."
+
+msgid "Vocabulary"
+msgstr "אוצר מילים"
+
+msgid "Reload vocabulary"
+msgstr "רענן את אוצר המילים"
+
+msgid "No vocabulary found in the selected transcription(s)."
+msgstr "לא נמצא אוצר מילים בתמלול הנבחר."
+
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr "אוצר המילים הוא רשימת כל התווים בתמלול עם שכיחותם."
+
+msgid "Project reports"
+msgstr "דוחות פרויקט"
+
+msgid "Total number of regions"
+msgstr "סה\"
+
+msgid "A region is a polygon drawn on a document part, grouping one, several or no line(s)."
+msgstr "אזור הוא מצולע שמצויר על חלק מסמך ויכול להכיל שורה אחת, כמה שורות או אפילו אף לא שורה."
+
+msgid "Total number of lines"
+msgstr "סה\"
+
+msgid "Total number of words"
+msgstr "סה\"
+
+msgid "A word is any series of one or more characters, excepted punctuation signs and white spaces."
+msgstr "מילה היא רצף של תו אחד או יותר בלי סימני פיסוק ובלי רווחים."
+
+msgid "Total number of characters"
+msgstr "סה\"
+
+msgid "A character is any symbol used in the transcription, including punctuation, excepted white spaces."
+msgstr "תו הוא כל סימן שמופיע בתמלול (כולל סימני פיסוק) חוץ מרווחים."
+
+msgid "Annotation"
+msgstr "הערה"
+
+msgid "Current use of document tags"
+msgstr "שימוש נוכחי בתגיות מסמך"
+
+msgid "Current use of part tags"
+msgstr "שימוש נוכחי בתגיות חלק"
+
+msgid "Current use of regions type"
+msgstr "שימוש נוכחי בסוגי אזורים"
+
+msgid "Current use of lines type"
+msgstr "שימוש נוכחי בסוגי שורות"
+
+msgid "Project activity"
+msgstr "פעילות פרויקט"
+
+msgid "Created on"
+msgstr "נוצר בתאריך"
+
+msgid "Last update on"
+msgstr "עודכן בתאריך"
+
+msgid "Total"
+msgstr "סה\"
+
+msgid "Last week"
+msgstr "שבוע אחרון"
+
+msgid "Last day"
+msgstr "יום אחרון"
+
+msgid "Disk usage"
+msgstr "שימוש בדיסק"
+
+msgid "CPU usage"
+msgstr "שימוש ב-CPU"
+
+msgid "GPU usage"
+msgstr "שימוש ב-GPU"
+
+msgid "No. of tasks"
+msgstr "מספר משימות"
+
+msgid "Runtime"
+msgstr "זמן ריצה"
+
+msgid "All time"
+msgstr "כל הזמנים"
+
+msgid "Status:"
+msgstr "סטטוס:"
+
+msgid "Queued at:"
+msgstr "הוכנס לתור ב:"
+
+msgid "Started at:"
+msgstr "התחיל ב:"
+
+msgid "Ended at:"
+msgstr "הסתיים ב:"
+
+msgid "Calculated from your images and models"
+msgstr "מחושב מהתמונות והמודלים שלך"
+
+msgid "CPU usage over the last week"
+msgstr "שימוש CPU בשבוע האחרון"
+
+msgid "GPU usage over the last week"
+msgstr "שימוש GPU בשבוע האחרון"
+
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren't listed below."
+msgstr "ערכי שימוש CPU/GPU כוללים גם עיבוד אוטומטי של תמונות בעת העלאה, משימות אלו לא מופיעות למטה."
+
+msgid "Task report"
+msgstr "דוח משימה"
+
+msgid "Started at"
+msgstr "התחיל ב"
+
+msgid "Done at"
+msgstr "הסתיים ב"
+
+msgid "Duration"
+msgstr "משך"
+
+msgid "State"
+msgstr "מצב"
+
+msgid "CPU cost"
+msgstr "עלות CPU"
+
+msgid "GPU cost"
+msgstr "עלות GPU"
+
+msgid "You don't have any task report yet."
+msgstr "אין לך עדיין דוחות משימה."
+
+msgid "Task Usage"
+msgstr "שימוש במשימות"
+
+msgid "Account Expired"
+msgstr "החשבון פג תוקף"
+
+msgid "Your account has expired. Please reach out to the person who invited you for assistance."
+msgstr "החשבון שלך פג תוקף. פנה למזמין לעזרה."
+
+msgid "Back to profile"
+msgstr "חזרה לפרופיל"
+
+msgid "Team:"
+msgstr "צוות:"
+
+msgid "Invite a user to this team."
+msgstr "הזמן משתמש לצוות זה."
+
+msgid "Transfer ownership"
+msgstr "העבר בעלות"
+
+msgid "No other user in this team."
+msgstr "אין משתמשים נוספים בצוות זה."
+
+msgid "example:"
+msgstr "דוגמה:"
+
+msgid "Hello"
+msgstr "שלום"
+
+msgid "is inviting you to join"
+msgstr "מזמין אותך להצטרף אל"
+
+msgid "his/her team"
+msgstr "הצוות שלו/שלה"
+
+msgid "on"
+msgstr "ב"
+
+msgid "eScriptorium!"
+msgstr "eScriptorium!"
+
+msgid "All you need to do is click on the link below:"
+msgstr "כל שעליך לעשות הוא ללחוץ על הקישור למטה:"
+
+msgid "Sincerely, the eScriptorium team."
+msgstr "בברכה, צוות eScriptorium."
+
+msgid "You don't have any disk storage left."
+msgstr "לא נותר לך שטח אחסון."
+
+msgid "You don't have any CPU minutes left."
+msgstr "לא נותרו לך דקות CPU."
+
+msgid "You don't have any GPU minutes left."
+msgstr "לא נותרו לך דקות GPU."
+
+msgid "Horizontal l2r"
+msgstr "אופקי משמאל לימין"
+
+msgid "Horizontal r2l"
+msgstr "אופקי מימין לשמאל"
+
+msgid "Vertical l2r"
+msgstr "אנכי משמאל לימין"
+
+msgid "Vertical r2l"
+msgstr "אנכי מימין לשמאל"
+
+msgid "Max offset"
+msgstr "היסט מרבי (Max Offset)"
+
+msgid "Enables max-offset and disables beam search. Maximum number of characters (20–80) difference between the aligned witness text and the original transcription."
+msgstr "מפעיל שימוש ב'היסט מרבי' (Max Offset) ומבטל חיפוש Beam. זהו מספר התווים המרבי (20–80) שמותר להבדל בין טקסט הייחוס המיושר לתמלול המקורי."
+
+msgid "Beam size"
+msgstr "גודל Beam (Beam Size)"
+
+msgid "Enables beam search; if this and max offset are left unset, beam search will be on and beam size set to 20. Higher beam size (1-100) will result in slower computation but more accurate results."
+msgstr "מפעיל חיפוש Beam (Beam Search). אם לא הוגדר גם Max Offset וגם ערך כאן, חיפוש Beam מופעל אוטומטית וערך ברירת המחדל הוא 20. ערך Beam גבוה יותר (1–100) יאט את החישוב אך עשוי לשפר דיוק."
+
+msgid "Gap"
+msgstr "פער"
+
+msgid "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text. To force end-to-end alignment of two documents, increase to 1,000,000."
+msgstr "המרחק בין n-grams ייחודיים תואמים; 600 מתאים ל-OCR נקי או טקסטים בהם קטעים מיושרים לחלקים שונים בטקסט הייחוס. לאכיפת יישור מקצה לקצה, הגדל ל-1,000,000."
+
+msgid "Merge aligned text with existing transcription"
+msgstr "מזג טקסט מיושר עם התמלול הקיים"
+
+msgid "If checked, the aligner will reuse the text of the original transcription when alignment could not be performed; if unchecked, those lines will be blank."
+msgstr "אם מסומן, המיישר ישתמש בטקסט התמלול המקורי כאשר לא ניתן לבצע יישור; אם לא, שורות אלו יישארו ריקות."
+
+msgid "Use full transcribed document"
+msgstr "השתמש בכל המסמך המתומלל"
+
+msgid "Line length match threshold"
+msgstr "סף התאמת אורך שורה"
+
+msgid "Minimum proportion (0.0–1.0) of aligned line length to original transcription, below which matches are ignored. At 0.0, all matches are accepted."
+msgstr "יחס מינימלי (0.0–1.0) בין אורך שורה מיושרת לתמלול המקורי, מתחתיו ההתאמות מתעלמות. ב-0.0 כל ההתאמות מתקבלות."
+
+msgid "Region types to include in the alignment."
+msgstr "סוגי אזורים לכלול ביישור."
+
+msgid "Layer name"
+msgstr "שם שכבה"
+
+msgid "Name for the new transcription layer produced by this alignment. If you reuse an existing layer name, the layer will be overwritten; use caution."
+msgstr "שם לשכבת התמלול החדשה שתיווצר ביישור זה. שימוש בשם שכבה קיים ידרוס את השכבה; יש להיזהר."
+
+msgid "You must supply a textual witness (reference text)."
+msgstr "יש לספק טקסט ייחוס (טקסט רפרנס)."
+
+msgid "You may only supply one witness text (file upload or existing text)."
+msgstr "ניתן לספק טקסט ייחוס אחד בלבד (קובץ או טקסט קיים)."
+
+msgid "Alignment layer name cannot be the same as the transcription you are trying to align."
+msgstr "שם שכבת היישור לא יכול להיות זהה לתמלול שאתה מנסה ליישר."
+
+msgid "Max offset and beam size cannot both be non-zero."
+msgstr "אי אפשר להגדיר גם Max Offset וגם Beam Size שניהם כערכים גדולים מאפס בו-זמנית."
+
+msgid "Lines and regions"
+msgstr "שורות ואזורים"
+
+msgid "Lines Baselines and Masks"
+msgstr "שורות – קווי בסיס ומסכות"
+
+msgid "Only lines Masks"
+msgstr "רק מסכות שורות"
+
+msgid "Regions"
+msgstr "אזורים"
+
+msgid "Upload local file"
+msgstr "העלה קובץ מקומי"
+
+msgid "'lines' is mandatory."
+msgstr "\"
+
+msgid "Canceled."
+msgstr "בוטל."
+
+msgid "Text to search in all of your projects, surround one or more terms with quotation marks to deactivate fuzziness"
+msgstr "טקסט לחיפוש בכל הפרויקטים שלך, הקף מונחים במרכאות לביטול חיפוש מטושטש"
+
+msgid "Word by word"
+msgstr "מילה במילה"
+
+msgid "Regular expression"
+msgstr "ביטוי רגולרי"
+
+msgid "eScriptorium is not compatible with bounding box models."
+msgstr "eScriptorium אינו תואם למודלים של תיבות גבול."
+
+msgid "The model is already training."
+msgstr "המודל כבר באימון."
+
+msgid "Either choose a model name or overwrite an existing one."
+msgstr "בחר שם למודל או דרוס קיים."
+
+msgid "You can't overwrite the existing file of a model you don't own."
+msgstr "אינך יכול לדרוס קובץ של מודל שאינך הבעלים שלו."
+
+msgid "Empty Ground Truth data."
+msgstr "נתוני אמת קרקע ריקים."
+
+msgid "Text to find"
+msgstr "טקסט לחיפוש"
+
+msgid "Color"
+msgstr "צבע"
+
+msgid "Allow Comments"
+msgstr "אפשר תגובות"
+
+msgid "Rectangle"
+msgstr "מלבן"
+
+msgid "Polygon"
+msgstr "מצולע"
+
+msgid "Background Color"
+msgstr "צבע רקע"
+
+msgid "Text Color"
+msgstr "צבע טקסט"
+
+msgid "Bold"
+msgstr "מודגש"
+
+msgid "Italic"
+msgstr "נטוי"
+
+msgid "Top to bottom"
+msgstr "מלמעלה למטה"
+
+msgid "Share with users"
+msgstr "שתף עם משתמשים"
+
+msgid "Share with teams"
+msgstr "שתף עם צוותים"
+
+msgid "Draft"
+msgstr "טיוטה"
+
+msgid "Published"
+msgstr "פורסם"
+
+msgid "Archived"
+msgstr "בארכיון"
+
+msgid "Left to right"
+msgstr "משמאל לימין"
+
+msgid "Right to left"
+msgstr "מימין לשמאל"
+
+msgid "Baseline"
+msgstr "קו בסיס"
+
+msgid "Topline"
+msgstr "קו עליון"
+
+msgid "Centered"
+msgstr "מרוכז"
+
+msgid "The position of the line relative to the polygon."
+msgstr "מיקום הקו ביחס למצולע."
+
+msgid "Couldn't find the alignment task."
+msgstr "לא ניתן למצוא את משימת היישור."
+
+msgid "Converting"
+msgstr "ממיר"
+
+msgid "Converted"
+msgstr "הומר"
+
+msgid "Segmenting"
+msgstr "בתהליך חלוקה"
+
+msgid "Segmented"
+msgstr "החלוקה הושלמה"
+
+msgid "Transcribing"
+msgstr "בתהליך תמלול"
+
+msgid "Aligning"
+msgstr "בתהליך יישור"
+
+msgid "Aligned"
+msgstr "היישור הושלם"
+
+msgid "Element"
+msgstr "רכיב"
+
+msgid "%(value)s is not a polygon - a 2 dimensional array."
+msgstr "%(value)s אינו מצולע - מערך דו-ממדי."
+
+msgid "Polygon needs to have at least 2 points, it has %(length)d: %(value)s."
+msgstr "מצולע חייב להכיל לפחות 2 נקודות, יש לו %(length)d: %(value)s."
+
+msgid "Polygon needs to have at least 3 points, it has %(length)d: %(value)s."
+msgstr "מצולע חייב להכיל לפחות 3 נקודות, יש לו %(length)d: %(value)s."
+
+msgid "Both baseline and mask are empty."
+msgstr "גם קו הבסיס וגם המסכה ריקים."
+
+msgid "Recognize"
+msgstr "זהה"
+
+msgid "Couldn't find the training task."
+msgstr "לא ניתן למצוא את משימת האימון."
+
+msgid "Underline"
+msgstr "קו תחתון"
+
+msgid "Training finished!"
+msgstr "האימון הושלם!"
+
+msgid "Segmentation done!"
+msgstr "החלוקה הושלמה!"
+
+msgid "Transcription done!"
+msgstr "התמלול הושלם!"
+
+msgid "Alignment done!"
+msgstr "היישור הושלם!"
+
+msgid "Your replacements are being applied..."
+msgstr "ההחלפות שלך מיושמות..."
+
+msgid "All replacements failed"
+msgstr "כל ההחלפות נכשלו"
+
+msgid "Replacements applied!"
+msgstr "ההחלפות יושמו!"
+
+msgid "The document is unreachable, unreadable or the host timed out."
+msgstr "המסמך אינו נגיש, לא קריא או שהשרת לא הגיב בזמן."
+
+msgid "You're not allowed to import files from this domain, please contact your instance administrator."
+msgstr "אין לך הרשאה לייבא קבצים מהדומיין הזה, פנה למנהל המערכת שלך."
+
+msgid "The name of the target transcription. Will default to '{format} Import'."
+msgstr "שם התמלול היעד. ברירת מחדל: '{format} Import'."
+
+msgid "Destroys existing regions, lines and any bound transcription before importing."
+msgstr "הורס אזורים, שורות וכל תמלול קשור לפני הייבוא."
+
+msgid "Resume previous import"
+msgstr "המשך ייבוא קודם"
+
+msgid "Choose one type of import."
+msgstr "בחר סוג ייבוא אחד."
+
+msgid "Will significantly increase the time to produce and download the export."
+msgstr "יגדיל משמעותית את זמן ההפקה וההורדה של הייצוא."
+
+msgid "Include character bounding boxes."
+msgstr "כלול תיבות גבול של תווים."
+
+msgid "Include images"
+msgstr "כלול תמונות"
+
+msgid "Export %(document_name)s"
+msgstr "ייצא את %(document_name)s"
+
+msgid "Zip Import"
+msgstr "ייבוא Zip"
+
+msgid "Zip file appears to be corrupted."
+msgstr "קובץ ה-Zip נראה פגום."
+
+msgid "METS Import"
+msgstr "ייבוא METS"
+
+msgid "Default ALTO Import"
+msgstr "ייבוא ALTO ברירת מחדל"
+
+msgid "Details"
+msgstr "פרטים"
+
+msgid "Export done!"
+msgstr "הייצוא הושלם!"
+
+msgid "You do not have permission to send invitations."
+msgstr "אין לך הרשאה לשלוח הזמנות."
+
+msgid "CSV file with emails"
+msgstr "קובץ CSV עם כתובות אימייל"
+
+msgid "Upload a CSV file with one email per line."
+msgstr "העלה קובץ CSV עם כתובת אימייל אחת בכל שורה."
+
+msgid "Emails"
+msgstr "אימיילים"
+
+msgid "Enter one email per line."
+msgstr "הזן אימייל אחד בכל שורה."
+
+msgid "Optional: set an expiry date for these accounts"
+msgstr "אופציונלי: קבע תאריך תפוגה לחשבונות אלו"
+
+msgid "Email or username."
+msgstr "אימייל או שם משתמש."
+
+msgid "Sent"
+msgstr "נשלח"
+
+msgid "Received"
+msgstr "התקבל"
+
+msgid "Accepted"
+msgstr "אושר"
+
+msgid "{username} accepted your invitation!"
+msgstr "{username} קיבל את ההזמנה שלך!"
+
+msgid "Disk storage"
+msgstr "אחסון דיסק"
+
+msgid "CPU minutes"
+msgstr "דקות CPU"
+
+msgid "GPU minutes"
+msgstr "דקות GPU"
+
+msgid "Fake report"
+msgstr "דוח דמה"
+
+msgid "default ({name})"
+msgstr "ברירת מחדל ({name})"
+
+msgid "Overwrite existing model file"
+msgstr "דרוס קובץ מודל קיים"
+
+msgid "Migrate with associated tags"
+msgstr "העבר עם תגיות משויכות"
+
+msgid "Instance setting"
+msgstr "הגדרת מופע"
+
+msgid "Instance settings"
+msgstr "הגדרות מופע"
+
+msgid "Document was successfully migrated to the selected project!"
+msgstr "המסמך הועבר בהצלחה לפרויקט הנבחר!"
+
+msgid "Test import"
+msgstr "ייבוא בדיקה"
+
+msgid "Test report for export task"
+msgstr "דוח בדיקה למשימת ייצוא"
+
+msgid "METS import from an archive"
+msgstr "ייבוא METS מארכיון"
+
+msgid "report_label"
+msgstr "תווית דוח"
+
+msgid "Optional: Set the user's account expiry date"
+msgstr "רשות: הגדר תוקף לחשבון המשתמש"
+
+msgid "Optional: set an expiry date for this user's account"
+msgstr "רשות: הגדר תוקף לחשבון משתמש זה"
+
+msgid "Toggle navigation"
+msgstr "החלף ניווט"
+
+msgid "my-1 mr-1"
+msgstr "my-1 mr-1"
+
+msgid "Pagination"
+msgstr "דפדוף"
+
+msgid "PDF is not a valid image, please use the dedicated Import function."
+msgstr "קובץ PDF אינו תמונה תקינה. נא להשתמש בפעולת הייבוא הייעודית."
+
+msgid "You don"
+msgstr "אין לך הרשאה לבצע פעולה זו."
+
+msgid "Import in %(document_name)s"
+msgstr "ייבוא אל %(document_name)s"
+
+msgid "'lines"
+msgstr "'שורות' (lines)"
+
+msgid "You can"
+msgstr "באפשרותך"
+
+msgid "You need to choose a model to override if the override option is checked."
+msgstr "אם בחרת באפשרות דריסה, עליך לבחור מודל לדריסה."
+
+msgid "An optional URL pointing to an external document that explains content editing and authorship guidelines for this project, in order to guide a team or group towards consistent practices for manual segmentation/transcription."
+msgstr "כתובת (URL) אופציונלית למסמך חיצוני עם הנחיות עריכה וכתיבה לפרויקט, כדי לסייע לצוות לעבוד בצורה עקבית בחלוקה/תמלול ידני."
+
+msgid "If checked, enable toggling on and off colorized overlays for automatic transcription (OCR/HTR) confidences."
+msgstr "אם מסומן, אפשר להפעיל או לכבות שכבת צבע שמציגה את רמת הביטחון של התמלול האוטומטי (OCR/HTR)."
+
+msgid "The model did not converge, probably because of lack of data."
+msgstr "המודל לא התכנס, כנראה בגלל חוסר בנתונים."
+
+msgid "Something went wrong during the segmenter training process!"
+msgstr "משהו השתבש במהלך אימון מחלק החלוקה!"
+
+msgid "The name of the target transcription. Will default to"
+msgstr "שם התמלול היעד. ברירת מחדל:"
+
+msgid "exp: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+msgstr "דוגמה: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+
+msgid "This data is only present for transcriptions coming from automatic recognition and is invalidated by manual edition."
+msgstr "הנתון הזה קיים רק בתמלולים שנוצרו בזיהוי אוטומטי, והוא מתבטל בעריכה ידנית."
+
+msgid "A file containing a document ontology in JSON format"
+msgstr "קובץ המכיל אונטולוגיית מסמך בפורמט JSON"
+
+msgid "No match found for file {} with filename"
+msgstr "לא נמצאה התאמה לקובץ {} עם שם הקובץ"
+
+msgid "Invalid baseline {baseline} in {filen} line {linen}"
+msgstr "קו בסיס לא תקין {baseline} בקובץ {filen} שורה {linen}"
+
+msgid "Invalid coordinates for {tag} in {filen} line {line}"
+msgstr "קואורדינטות לא תקינות עבור {tag} בקובץ {filen} שורה {line}"
+
+msgid "Import finished with warnings!"
+msgstr "הייבוא הסתיים עם אזהרות!"
+
+msgid "Import done!"
+msgstr "הייבוא הושלם!"
+
+msgid "The following emails were invalid and were skipped: {emails}"
+msgstr "כתובות האימייל הבאות לא תקינות ולכן לא נכללו: {emails}"
+
+msgid "Please provide either a CSV file or enter emails directly."
+msgstr "נא לצרף קובץ CSV או להקליד כתובות אימייל ישירות."
+
+msgid "Update a Document"
+msgstr "עדכן מסמך"
+
+msgid "Select all"
+msgstr "בחר הכל"
+
+msgid "Select a specific transcription to search in."
+msgstr "בחר תמלול מסוים לחיפוש."
+
+msgid "Import/<br>Export"
+msgstr "ייבוא/<br>ייצוא"
+
+msgid "Import and export models and texts transcriptions in a variety of formats. Access data through a full REST API."
+msgstr "ייבוא וייצוא מודלים ותמלולים במגוון פורמטים. ניתן לגשת לנתונים גם דרך ממשק API מלא."
+
+msgid "Import an ontology in this document"
+msgstr "ייבא אונטולוגיה למסמך זה"
+
+msgid "The prefix of the target transcription. Will default to"
+msgstr "קידומת התמלול היעד. ברירת מחדל:"
+
+msgid "Gathering data can take time and the model won"
+msgstr "איסוף הנתונים עשוי לקחת זמן, והמודל לא יתחיל באימון עד לסיום."
+
+msgid "Your account doesn"
+msgstr "החשבון שלך אינו פעיל או שאין לך הרשאה."
+
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr "קישור איפוס הסיסמה אינו תקף, ייתכן שכבר נעשה בו שימוש. נא לבקש איפוס סיסמה חדש."
+
+msgid "Confidence is an estimate of the automatic transcription model to approximate its own accuracy per character."
+msgstr "רמת הביטחון היא הערכה של המודל האוטומטי לגבי הדיוק שלו בכל תו."
+
+msgid "The validity of this figure will depend on specific cases and models and is not necessarily an indication of result quality."
+msgstr "המשמעות של ערך זה תלויה במודל ובמקרה, ואינה בהכרח מעידה על איכות התוצאה."
+
+msgid "A line is a segment of text identified on a document part, usually associated with a polygon (mask) and a transcription."
+msgstr "שורה היא קטע טקסט שמזוהה בחלק מסמך, לרוב עם מצולע (מסכה) ותמלול."
+
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren"
+msgstr "ערכי שימוש CPU/GPU כוללים גם עיבוד אוטומטי של תמונות בעת העלאה, משימות אלו לא מופיעות ברשימה."
+
+msgid "Make sure to use a correct email as you will not receive an error message if it is not the case (in order to avoid phishing)."
+msgstr "ודא שהזנת כתובת אימייל נכונה – לא תתקבל הודעת שגיאה במקרה של טעות (למניעת פישינג)."
+
+msgid "Available %s"
+msgstr "%s זמינים"
+
+msgid "Type into this box to filter down the list of available %s."
+msgstr "הקלד כאן כדי לסנן את רשימת ה-%s הזמינים."
+
+msgid "Choose all"
+msgstr "בחר הכל"
+
+msgid "Click to choose all %s at once."
+msgstr "לחץ כדי לבחור את כל ה-%s בבת אחת."
+
+msgid "Chosen %s"
+msgstr "%s שנבחרו"
+
+msgid "Type into this box to filter down the list of selected %s."
+msgstr "הקלד כאן כדי לסנן את רשימת ה-%s שנבחרו."
+
+msgid "Remove all"
+msgstr "הסר הכל"
+
+msgid "Click to remove all chosen %s at once."
+msgstr "לחץ כדי להסיר את כל ה-%s שנבחרו בבת אחת."
+
+msgid "%(sel)s of %(cnt)s selected"
+msgstr "%(sel)s מתוך %(cnt)s נבחרו"
+
+msgid "You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."
+msgstr "יש לך שינויים שלא נשמרו בשדות העריכה. אם תבצע פעולה, השינויים יאבדו."
+
+msgid "You have selected an action, but you haven’t saved your changes to individual fields yet. Please click OK to save. You’ll need to re-run the action."
+msgstr "בחרת פעולה אך לא שמרת את השינויים בשדות. לחץ על OK לשמירה – תצטרך להפעיל שוב את הפעולה."
+
+msgid "You have selected an action, and you haven’t made any changes on individual fields. You’re probably looking for the Go button rather than the Save button."
+msgstr "בחרת פעולה אך לא שינית שדות. כנראה שאתה מחפש את כפתור 'בצע' ולא 'שמור'."
+
+msgid "Choose a Time"
+msgstr "בחר שעה"
+
+msgid "Choose a time"
+msgstr "בחר שעה"
+
+msgid "Choose a Date"
+msgstr "בחר תאריך"
+
+msgid "abbrev. month January"
+msgstr "ינו'"
+
+msgid "abbrev. month February"
+msgstr "פבר'"
+
+msgid "abbrev. month March"
+msgstr "מרץ'"
+
+msgid "abbrev. month April"
+msgstr "אפר'"
+
+msgid "abbrev. month May"
+msgstr "מאי"
+
+msgid "abbrev. month June"
+msgstr "יונ'"
+
+msgid "abbrev. month July"
+msgstr "יול'"
+
+msgid "abbrev. month August"
+msgstr "אוג'"
+
+msgid "abbrev. month September"
+msgstr "ספט'"
+
+msgid "abbrev. month October"
+msgstr "אוק'"
+
+msgid "abbrev. month November"
+msgstr "נוב'"
+
+msgid "abbrev. month December"
+msgstr "דצמ'"
+
+msgid "one letter Sunday"
+msgstr "א'"
+
+msgid "one letter Monday"
+msgstr "ב'"
+
+msgid "one letter Tuesday"
+msgstr "ג'"
+
+msgid "one letter Wednesday"
+msgstr "ד'"
+
+msgid "one letter Thursday"
+msgstr "ה'"
+
+msgid "one letter Saturday"
+msgstr "ש'"
+
+msgid "'+t.operator+"
+msgstr "פעולה"
+
+msgid "English"
+msgstr "אנגלית"
+
+msgid "Hebrew"
+msgstr "עברית"
+
+msgid "French"
+msgstr "צרפתית"
+
+msgid "German"
+msgstr "גרמנית"
+
+msgid "Change your password"
+msgstr "שנה את הסיסמה שלך"
+
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "שכחת סיסמה? הכנס דוא\"
+
+msgid "Email address:"
+msgstr "כתובת אימייל:"
+
+msgid "Reset my password"
+msgstr "אפס את הסיסמה שלי"
+
+msgid "Register to eScriptorium"
+msgstr "הרשם ל-eScriptorium"
+
+msgid "Signup"
+msgstr "הרשמה"
+
+msgid "Profile Settings"
+msgstr "הגדרות פרופיל"
+
+msgid "Information"
+msgstr "מידע"
+
+msgid "API key"
+msgstr "מפתח API"
+
+msgid "Files"
+msgstr "קבצים"
+
+msgid "Teams"
+msgstr "צוותים"
+
+msgid "Invitations"
+msgstr "הזמנות"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Update"
+msgstr "עדכן"
+
+msgid "Create"
+msgstr "צור"
+
+msgid "You don't have any saved files yet."
+msgstr "עדיין אין לך קבצים שמורים."
+
+msgid "You don't have permission to view or edit this document."
+msgstr "אין לך הרשאה לצxxxxxxxxxxxx את המסמך הזה."
+
+msgid "Create a new Team"
+msgstr "צור צוות חדש"
+
+msgid "Pending Invitations"
+msgstr "הזמנות ממתינות"
+
+msgid "Accept"
+msgstr "קבל"
+
+msgid "My Teams"
+msgstr "הצוותים שלי"
+
+msgid "Leave"
+msgstr "עזוב"
+
+msgid "You are not part of any team yet."
+msgstr "אתה עדיין לא חלק מאף צוות."
+
+msgid "Share with"
+msgstr "שתף עם"
+
+msgid "Users"
+msgstr "משתמשים"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Share"
+msgstr "שתף"
+
+msgid "Owner"
+msgstr "בעלים"
+
+msgid "Do you really want to remove the project from your list?"
+msgstr "האם אתה באמת רוצה להסיר את הפרויקט מהרשימה שלך?"
+
+msgid "Remove from list"
+msgstr "הסר מהרשימה"
+
+msgid "API Authentication Token:"
+msgstr "טוקן אימות API:"
+
+msgid "Copy to clipboard."
+msgstr "העתק ללוח."
+
+msgid "Regenerate Token."
+msgstr "יצר טוקן מחדש."
+
+msgid "example: "
+msgstr "דוגמה: "
+
+msgid "Invite Users"
+msgstr "הזמן משתמשים"
+
+msgid "Invite mode"
+msgstr "מצב הזמנה"
+
+msgid "Single"
+msgstr "יחיד"
+
+msgid "Bulk"
+msgstr "קבוצתי"
+
+msgid "Recipient's information"
+msgstr "מידע על הנמען"
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "Upload CSV file"
+msgstr "העלה קובץ CSV"
+
+msgid "OR"
+msgstr "או"
+
+msgid "Paste emails (one per line)"
+msgstr "הדבק אימיילים (אחד בכל שורה)"
+
+msgid "Team"
+msgstr "צוות"
+
+msgid "Expiry date (optional)"
+msgstr "תאריך תפוגה (אופציונלי)"
+
+msgid "Send Invitations"
+msgstr "שלח הזמנות"
+
+msgid "Recipient"
+msgstr "נמען"
+
+msgid "Group"
+msgstr "קבוצה"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Content"
+msgstr "תוכן"
+
+msgid "Replacement preview"
+msgstr "תצוגה מקדימה של החלפה"
+
+msgid "Image preview"
+msgstr "תצוגה מקדימה של תמונה"
+
+msgid "Score"
+msgstr "ציון"
+
+msgid "Edit"
+msgstr "ערוך"
+
+msgid "You didn't send any invitations yet."
+msgstr "עדיין לא שלחת הזמנות."
+
+msgid "No results matched your search."
+msgstr "אין תוצאות התואמות לחיפוש שלך."
+
+msgid "Image preview is not available for this search result"
+msgstr "תצוגה מקדימה של תמונה לא זמינה עבור תוצאת חיפוש זו"
+
+msgid "Add invitation"
+msgstr "הוסף הזמנה"
+
+msgid "Bulk Invite"
+msgstr "הזמנה קבוצתית"
+
+msgid "My Projects"
+msgstr "הפרויקטים שלי"
+
+msgid "Create new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Update a Project"
+msgstr "עדכן פרויקט"
+
+msgid "Create a new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Documents"
+msgstr "מסמכים"
+
+msgid "Reports"
+msgstr "דוחות"
+
+msgid "Ontology"
+msgstr "אונטולוגיה"
+
+msgid "Search in projects"
+msgstr "חיפוש בפרויקטים"
+
+msgid "Search text in projects"
+msgstr "חיפוש טקסט בפרויקטים"
+
+msgid "Search feature is deactivated on this instance."
+msgstr "תכונת החיפוש מושבתת במופע הזה."
+
+msgid "Search"
+msgstr "חפש"
+
+msgid "Find"
+msgstr "מצא"
+
+msgid "Couldn't xxxxxct to Elasticsearch, please contact your instance administrator."
+msgstr "לא הצלחתי להתחבר ל-Elasticsearch, אנא פנה למנהל המופע שלך."
+
+msgid "Reason:"
+msgstr "סיבה:"
+
+msgid "Find and replace in projects"
+msgstr "מצא והחלף בפרויקטים"
+
+msgid "Find and replace text in projects"
+msgstr "מצא והחלף טקסט בפרויקטים"
+
+msgid "Replace all"
+msgstr "החלף הכל"
+
+msgid "Filter results by this part"
+msgstr "סנן תוצאות לפי חלק זה"
+
+msgid "Filter results by this document"
+msgstr "סנן תוצאות לפי מסמך זה"
+
+msgid "Filter results by this transcription level"
+msgstr "סנן תוצאות לפי רמת התמלול"
+
+msgid "Results"
+msgstr "תוצאות"
+
+msgid "Previous line"
+msgstr "שורה קודמת"
+
+msgid "Line transcription"
+msgstr "תמלול שורה"
+
+msgid "Next line"
+msgstr "שורה הבאה"
+
+msgid "Search terms found in previous or next line."
+msgstr "מונחי חיפוש נמצאו בשורה קודמת או הבאה."
+
+msgid "in document"
+msgstr "במסמך"
+
+msgid "Full image cropped according to the transcription bounding box"
+msgstr "תמונה מלאה חתוכה לפי מסגרת התמלול"
+
+msgid "Search score"
+msgstr "ציון חיפוש"
+
+msgid "Go to document part editing page"
+msgstr "עבור לדף עריכת חלק המסמך"
+
+msgid "Import is already ongoing, please wait for it to be finished or cancel it."
+msgstr "הייבוא כבר מתבצע, אנא המתן עד שיסתיים או בטל אותו."
+
+msgid "Resume previous import."
+msgstr "המשך ייבוא קודם."
+
+msgid "Start importing"
+msgstr "התחל ייבוא"
+
+msgid "Import images from IIIF."
+msgstr "ייבא תמונות מ-IIIF."
+
+msgid "Import images from a PDF document."
+msgstr "ייבא תמונות ממסמך PDF."
+
+msgid "A single pdf with one image per page."
+msgstr "PDF יחיד עם תמונה אחת לכל עמוד."
+
+msgid "Import segmentation & transcriptions from XML."
+msgstr "ייבא פילוח ותמלולים מ-XML."
+
+msgid "Import images/segmentation/transcriptions described by METS."
+msgstr "ייבא תמונות/פילוח/תמלולים המתוארים ב-METS."
+
+msgid "The prefix of the target transcription. Will default to \"METS Import\""
+msgstr "קידומת התמלול. ברירת מחדל: \"
+
+msgid "From a remote METS file"
+msgstr "מקובץ METS מרוחק"
+
+msgid "Or from a local archive"
+msgstr "או מארכיון מקומי"
+
+msgid "A single ZIP archive described by a METS file contained inside it."
+msgstr "ארכיון ZIP יחיד המתואר על ידי קובץ METS שנמצא בתוכו."
+
+msgid "Export"
+msgstr "ייצא"
+
+msgid "(PLACEHOLDER)"
+msgstr "(מקום שומר מקום)"
+
+msgid "New model"
+msgstr "מודל חדש"
+
+msgid "Or select an existing one"
+msgstr "או בחר אחד קיים"
+
+msgid "Train"
+msgstr "אמן"
+
+msgid "The training data will be generated from the selected images and transcription."
+msgstr "נתוני האימון יווצרו מהתמונות והתמלול שנבחרו."
+
+msgid "Empty lines will be ignored."
+msgstr "שורות ריקות יתעלמו."
+
+msgid "Gathering data can take time and the model won't be available in the models tab until then."
+msgstr "איסוף נתונים עלול לקחת זמן והמודל לא יהיה זמין בלשונית המודלים עד אז."
+
+msgid "image(s) selected."
+msgstr "תמונה/ות נבחרו."
+
+msgid "Make sure that the segmentation is good before going forward because resegmenting will delete all bound transcriptions."
+msgstr "וודא שהפילוח טוב לפני המשך כי פילוח מחדש ימחק את כל התמלולים הקשורים."
+
+msgid "Select a model"
+msgstr "בחר מודל"
+
+msgid "Select a transcription"
+msgstr "בחר תמלול"
+
+msgid "Transcribe"
+msgstr "תמלל"
+
+msgid "Beware that re-segmenting will delete any existing transcriptions!"
+msgstr "זהירות, פילוח מחדש ימחק כל תמלול קיים!"
+
+msgid "Segment"
+msgstr "פלח"
+
+msgid "Choose a transcription and a textual witness (reference text) to align to the transcription."
+msgstr "בחר תמלול ועד טקסטואלי (טקסט ייחוס) ליישור עם התמלול."
+
+msgid "Upload or select a textual witness"
+msgstr "העלה או בחר עד טקסטואלי"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Align"
+msgstr "יישר"
+
+msgid "Funded salaries of two developers for XX years…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים..."
+
+msgid "Powered by"
+msgstr "מופעל על ידי"
+
+msgid "Service hosted and maintained by"
+msgstr "שירות מארח ומתוחזק על ידי"
+
+msgid "Inria Paris"
+msgstr "Inria פריס"
+
+msgid "Institutions & Funding"
+msgstr "מוסדות ומימון"
+
+msgid "Other Contributions"
+msgstr "תרומות אחרות"
+
+msgid "In addition to the support of AOROC and the EPHE, eScriptorium has benefitted from a significant number of institutions and funding sources, including the following:"
+msgstr "מופעל על ידי"
+
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Your username and password didn't match. Please try again."
+msgstr "שם המשתמש והסיסמה שלך לא תואמים. אנא נסה שוב."
+
+msgid "Hello {{username}}"
+msgstr "שלום {{username}}"
+
+msgid "Password"
+msgstr "סיסמה"
+
+msgid "Login"
+msgstr "התחברות"
+
+msgid "Sign in"
+msgstr "כניסה"
+
+msgid "Lost password?"
+msgstr "שכחת סיסמה?"
+
+msgid "Forgotten your password?"
+msgstr "שכחת את הסיסמה?"
+
+msgid "Remember me"
+msgstr "זכור אותי"
+
+msgid "Log out"
+msgstr "התנתק"
+
+msgid "Logout"
+msgstr "התנתקות"
+
+msgid "Home"
+msgstr "בית"
+
+msgid "Dashboard"
+msgstr "לוח בקרה"
+
+msgid "Projects"
+msgstr "פרויקטים"
+
+msgid "Models"
+msgstr "מודלים"
+
+msgid "Profile"
+msgstr "פרופיל"
+
+msgid "Help"
+msgstr "עזרה"
+
+msgid "About"
+msgstr "אודות"
+
+msgid "Back"
+msgstr "חזור"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Cancel"
+msgstr "ביטול"
+
+msgid "Delete"
+msgstr "מחק"
+
+msgid "Confirm"
+msgstr "אשר"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Loading..."
+msgstr "טוען..."
+
+msgid "Please wait..."
+msgstr "אנא המתן..."
+
+msgid "This field is required."
+msgstr "שדה זה חובה."
+
+msgid "Please enter a valid email address."
+msgstr "אנא הכנס כתובת אימייל תקינה."
+
+msgid "Passwords do not match."
+msgstr "הסיסמאות אינן תואמות."
+
+msgid "Invalid username or password."
+msgstr "שם משתמש או סיסמה שגויים."
+
+msgid "View"
+msgstr "צפה"
+
+msgid "Download"
+msgstr "הורד"
+
+msgid "Upload"
+msgstr "העלה"
+
+msgid "Import"
+msgstr "ייבא"
+
+msgid "Submit"
+msgstr "שלח"
+
+msgid "Apply"
+msgstr "החל"
+
+msgid "Reset"
+msgstr "איפוס"
+
+msgid "Today"
+msgstr "היום"
+
+msgid "Yesterday"
+msgstr "אתמול"
+
+msgid "Tomorrow"
+msgstr "מחר"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Time"
+msgstr "שעה"
+
+msgid "Active"
+msgstr "פעיל"
+
+msgid "Inactive"
+msgstr "לא פעיל"
+
+msgid "Pending"
+msgstr "ממתין"
+
+msgid "Completed"
+msgstr "הושלם"
+
+msgid "Failed"
+msgstr "נכשל"
+
+msgid "Success"
+msgstr "הצליח"
+
+msgid "Error"
+msgstr "שגיאה"
+
+msgid "Warning"
+msgstr "אזהרה"
+
+msgid "email address"
+msgstr "כתובת אימייל"
+
+msgid "Use the legacy version of the user interface. If unchecked, features that have not yet been ported to the new interface may become unavailable. Likewise, if checked, newer features may become unavailable."
+msgstr "השתמש בגרסה הישנה של ממשק המשתמש. אם לא מסומן, תכונות שעדיין לא הועברו לממשק החדש עלולות להפוך לא זמינות. כמו כן, אם מסומן, תכונות חדשות יותר עלולות להפוך לא זמינות."
+
+msgid "Contact message"
+msgstr "הודעת יצירת קשר"
+
+msgid "Contact messages"
+msgstr "הודעות יצירת קשר"
+
+msgid "All projects"
+msgstr "כל הפרויקטים"
+
+msgid "Text to replace"
+msgstr "טקסט להחלפה"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Model"
+msgstr "מודל"
+
+msgid "-- New --"
+msgstr "-- חדש --"
+
+msgid "If checked, deletes existing segmentation <b>and bound transcriptions</b> first!"
+msgstr "אם מסומן, מוחק קודם פילוח קיים <b>ותמלולים קשורים</b>!"
+
+msgid "The transcription on which to perform alignment."
+msgstr "התמלול שעליו לבצע יישור."
+
+msgid "The reference text for alignment; must be a .txt file."
+msgstr "טקסט הייחוס ליישור; חייב להיות קובץ .txt."
+
+msgid "Reuse a previously-uploaded reference text."
+msgstr "השתמש מחדש בטקסט ייחוס שהועלה קודם."
+
+msgid "N-gram"
+msgstr "N-gram"
+
+msgid "Length (2–25) of token sequences to compare; 25 should work well for at least moderately clean OCR. For very poor OCR, lower to 3 or 4."
+msgstr "אורך (2-25) של רצפי טוקנים להשוואה; 25 אמור לעבוד טוב לפחות עבור OCR נקי בינוני. עבור OCR גרוע מאוד, הורד ל-3 או 4."
+
+msgid "Queued"
+msgstr "בתור"
+
+msgid "Running"
+msgstr "רץ"
+
+msgid "Crashed"
+msgstr "קרס"
+
+msgid "Finished"
+msgstr "הסתיים"
+
+msgid "Canceled"
+msgstr "בוטל"
+
+msgid "Invitation sent successfully!"
+msgstr "ההזמנה נשלחה בהצלחה!"
+
+msgid "You do not have permission to invite users."
+msgstr "אין לך הרשאה להזמין משתמשים."
+
+msgid "Successfully registered, you can now log in!"
+msgstr "נרשמת בהצלחה, כעת תוכל להתחבר!"
+
+msgid "You are now a member of Team {team_name}!"
+msgstr "אתה כעת חבר בצוות {team_name}!"
+
+msgid "User {user} successfully removed from the team {team_name}."
+msgstr "המשתמש {user} הוסר בהצלחה מהצוות {team_name}."
+
+msgid "You successfully left {team}."
+msgstr "עזבת בהצלחה את {team}."
+
+msgid "Successfully transferred ownership to {user}."
+msgstr "הבעלות הועברה בהצלחה ל{user}."
+
+msgid "Successfully sent %(count)d invitations."
+msgstr "נשלחו בהצלחה %(count)d הזמנות."
+
+msgid "Skipped invalid: %(emails)s"
+msgstr "דולג על לא תקין: %(emails)s"
+
+msgid "Invitation sent to %(email)s."
+msgstr "ההזמנה נשלחה אל %(email)s."
+
+msgid "Something went wrong during the ontology import..."
+msgstr "משהו השתבש במהלך ייבוא האונטולוגיה..."
+
+msgid "Ontology import finished with warnings."
+msgstr "ייבוא האונטולוגיה הסתיים עם אזהרות."
+
+msgid "Ontology import finished successfully!"
+msgstr "ייבוא האונטולוגיה הסתיים בהצלחה!"
+
+msgid "Document"
+msgstr "מסמך"
+
+msgid "Page"
+msgstr "עמוד"
+
+msgid "Line"
+msgstr "שורה"
+
+msgid "Word"
+msgstr "מילה"
+
+msgid "Character"
+msgstr "תו"
+
+msgid "Text"
+msgstr "טקסט"
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "File"
+msgstr "קובץ"
+
+msgid "Folder"
+msgstr "תיקייה"
+
+msgid "Size"
+msgstr "גודל"
+
+msgid "Format"
+msgstr "פורמט"
+
+msgid "Quality"
+msgstr "איכות"
+
+msgid "Resolution"
+msgstr "רזולוציה"
+
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Send invitation"
+msgstr "שלח הזמנה"
+
+msgid "Remove user from group"
+msgstr "הסר משתמש מקבוצה"
+
+msgid "%(sender)s has invited you to join the team %(team_name)s on eScriptorium."
+msgstr "%(sender)s הזמין אותך להצטרף לצוות %(team_name)s ב-eScriptorium."
+
+msgid "Owned by %(owner)s"
+msgstr "בבעלות %(owner)s"
+
+msgid "Funded salaries of two developers for XX years, as well as …"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם..."
+
+msgid "Funded …???"
+msgstr "מימן...???"
+
+msgid "Funded the acquisition of HPC hardware and servers…"
+msgstr "מימן רכישת חומרת HPC ושרתים..."
+
+msgid "Funded the development of the virtual keyboard with Teklia."
+msgstr "מימן את פיתוח המקלדת הוירטואלית עם Teklia."
+
+msgid "Funded salaries of two developers for XX years, as well as sustaining the HPC…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם קיום ה-HPC..."
+
+msgid "Funded advanced line-joining interface…"
+msgstr "מימן ממשק מתקדם לחיבור שורות..."
+
+msgid "Funded UI development…"
+msgstr "מימן פיתוח ממשק משתמש..."
+
+msgid "Funded SLURM-based task execution…"
+msgstr "מימן ביצוע משימות מבוסס SLURM..."
+
+msgid "We are also very grateful for other types of contribution, such as open datasets (particularly those on HTR-United), open models, tickets reporting bugs and improvements, documentation, organising training sessions, producing plugins and other tools…"
+msgstr "אנו גם מאוד אסירי תודה לסוגים אחרים של תרומה, כגון מערכי נתונים פתוחים (במיוחד אלה ב-HTR-United), מודלים פתוחים, כרטיסים המדווחים על באגים ושיפורים, תיעוד, ארגון מפגשי הכשרה, הפקת תוספים וכלים אחרים..."
+
+msgid "You have selected an action, but you haven't saved your changes to individual fields yet. Please click OK to save. You'll need to re-run the action."
+msgstr "בחרת פעולה אך לא שמרת את השינויים בשדות. לחץ על OK לשמירה – תצטרך להפעיל שוב את הפעולה."
+
+msgid "You have selected an action, and you haven't made any changes on individual fields. You're probably looking for the Go button rather than the Save button."
+msgstr "בחרת פעולה אך לא שינית שדות. כנראה שאתה מחפש את כפתור 'בצע' ולא 'שמור'."

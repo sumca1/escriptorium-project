@@ -1,0 +1,1835 @@
+# תבנית תרגום נוחה - BiblIA eScriptorium
+# =====================================
+# נוצר: 21/09/2025 19:32
+# מחרוזות לתרגום: 397
+#
+# הוראות לתרגום:
+# 1. מלא את השדה msgstr="" בתרגום עברי
+# 2. שמור על המרכאות והתווים המיוחדים
+# 3. אחרי השלמת התרגום, הרץ את merge_translations.py
+#
+# ==========================================
+
+
+# קובץ: apps/api/serializers.py
+# =============================
+
+# #1 - שורה 63
+msgid "PDF is not a valid image, please use the dedicated Import function."
+msgstr ""
+
+# #2 - שורה 626
+msgid "You don"
+msgstr ""
+
+# #3 - שורה 874
+msgid "Lines and regions"
+msgstr ""
+
+# #4 - שורה 875
+msgid "Lines Baselines and Masks"
+msgstr ""
+
+# #5 - שורה 876
+msgid "Only lines Masks"
+msgstr ""
+
+# #6 - שורה 880
+msgid "Horizontal l2r"
+msgstr ""
+
+# #7 - שורה 881
+msgid "Horizontal r2l"
+msgstr ""
+
+# #8 - שורה 882
+msgid "Vertical l2r"
+msgstr ""
+
+# #9 - שורה 883
+msgid "Vertical r2l"
+msgstr ""
+
+# #10 - שורה 968
+msgid "Either use model_name to create a new model, add a model pk to retrain an existing one, or both to create a new model from an existing one."
+msgstr ""
+
+# #11 - שורה 1031
+msgid "Upload local file"
+msgstr ""
+
+# #12 - שורה 1126
+msgid "Import in %(document_name)s"
+msgstr ""
+
+# #13 - שורה 1171
+msgid "Either use model_name to create a new model, or add a model pk to retrain an existing one."
+msgstr ""
+
+# #14 - שורה 1309
+msgid "Max offset"
+msgstr ""
+
+# #15 - שורה 1310
+msgid "Enables max-offset and disables beam search. Maximum number of characters (20–80) difference between the aligned witness text and the original transcription."
+msgstr ""
+
+# #16 - שורה 1316
+msgid "Beam size"
+msgstr ""
+
+# #17 - שורה 1317
+msgid "Enables beam search; if this and max offset are left unset, beam search will be on and beam size set to 20. Higher beam size (1-100) will result in slower computation but more accurate results."
+msgstr ""
+
+# #18 - שורה 1328
+msgid "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text. To force end-to-end alignment of two documents, increase to 1,000,000."
+msgstr ""
+
+# #19 - שורה 1331
+msgid "Merge aligned text with existing transcription"
+msgstr ""
+
+# #20 - שורה 1334
+msgid "If checked, the aligner will reuse the text of the original transcription when alignment could not be performed; if unchecked, those lines will be blank."
+msgstr ""
+
+# #21 - שורה 1337
+msgid "Use full transcribed document"
+msgstr ""
+
+# #22 - שורה 1340
+msgid "If checked, the aligner will use all transcribed pages of the document to find matches. If unchecked, it will compare each page to the text separately."
+msgstr ""
+
+# #23 - שורה 1343
+msgid "Line length match threshold"
+msgstr ""
+
+# #24 - שורה 1344
+msgid "Minimum proportion (0.0–1.0) of aligned line length to original transcription, below which matches are ignored. At 0.0, all matches are accepted."
+msgstr ""
+
+# #25 - שורה 1353
+msgid "Region types to include in the alignment."
+msgstr ""
+
+# #26 - שורה 1357
+msgid "Layer name"
+msgstr ""
+
+# #27 - שורה 1358
+msgid "Name for the new transcription layer produced by this alignment. If you reuse an existing layer name, the layer will be overwritten; use caution."
+msgstr ""
+
+# #28 - שורה 1379
+msgid "You must supply a textual witness (reference text)."
+msgstr ""
+
+# #29 - שורה 1383
+msgid "You may only supply one witness text (file upload or existing text)."
+msgstr ""
+
+# #30 - שורה 1388
+msgid "Alignment layer name cannot be the same as the transcription you are trying to align."
+msgstr ""
+
+# #31 - שורה 1395
+msgid "Max offset and beam size cannot both be non-zero."
+msgstr ""
+
+
+# קובץ: apps/api/views.py
+# =======================
+
+# #32 - שורה 421
+msgid "Canceled."
+msgstr ""
+
+# #33 - שורה 745
+msgid "'lines"
+msgstr ""
+
+
+# קובץ: apps/core/forms.py
+# ========================
+
+# #34 - שורה 137
+msgid "Text to search in all of your projects, surround one or more terms with quotation marks to deactivate fuzziness"
+msgstr ""
+
+# #35 - שורה 156
+msgid "Word by word"
+msgstr ""
+
+# #36 - שורה 156
+msgid "Regular expression"
+msgstr ""
+
+# #37 - שורה 178
+msgid "Text to find"
+msgstr ""
+
+# #38 - שורה 190
+msgid "You cannot find and replace text across multiple projects at once, please pick a single project before submitting your request."
+msgstr ""
+
+# #39 - שורה 190
+msgid "You can"
+msgstr ""
+
+# #40 - שורה 406
+msgid "Allow Comments"
+msgstr ""
+
+# #41 - שורה 531
+msgid "eScriptorium is not compatible with bounding box models."
+msgstr ""
+
+# #42 - שורה 543
+msgid "You don"
+msgstr ""
+
+# #43 - שורה 643
+msgid "Lines and regions"
+msgstr ""
+
+# #44 - שורה 644
+msgid "Lines Baselines and Masks"
+msgstr ""
+
+# #45 - שורה 645
+msgid "Only lines Masks"
+msgstr ""
+
+# #46 - שורה 652
+msgid "Horizontal l2r"
+msgstr ""
+
+# #47 - שורה 653
+msgid "Horizontal r2l"
+msgstr ""
+
+# #48 - שורה 654
+msgid "Vertical l2r"
+msgstr ""
+
+# #49 - שורה 655
+msgid "Vertical r2l"
+msgstr ""
+
+# #50 - שורה 788
+msgid "Max offset"
+msgstr ""
+
+# #51 - שורה 789
+msgid "Enables max-offset and disables beam search. Maximum number of characters (20–80) difference between the aligned witness text and the original transcription."
+msgstr ""
+
+# #52 - שורה 795
+msgid "Beam size"
+msgstr ""
+
+# #53 - שורה 796
+msgid "Enables beam search; if this and max offset are left unset, beam search will be on and beam size set to 20. Higher beam size (1-100) will result in slower computation but more accurate results."
+msgstr ""
+
+# #54 - שורה 807
+msgid "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text. To force end-to-end alignment of two documents, increase to 1,000,000."
+msgstr ""
+
+# #55 - שורה 810
+msgid "Merge aligned text with existing transcription"
+msgstr ""
+
+# #56 - שורה 813
+msgid "If checked, the aligner will reuse the text of the original transcription when alignment could not be performed; if unchecked, those lines will be blank."
+msgstr ""
+
+# #57 - שורה 816
+msgid "Use full transcribed document"
+msgstr ""
+
+# #58 - שורה 819
+msgid "If checked, the aligner will use all transcribed pages of the document to find matches. If unchecked, it will compare each page to the text separately."
+msgstr ""
+
+# #59 - שורה 822
+msgid "Line length match threshold"
+msgstr ""
+
+# #60 - שורה 823
+msgid "Minimum proportion (0.0–1.0) of aligned line length to original transcription, below which matches are ignored. At 0.0, all matches are accepted."
+msgstr ""
+
+# #61 - שורה 833
+msgid "Region types to include in the alignment."
+msgstr ""
+
+# #62 - שורה 837
+msgid "Layer name"
+msgstr ""
+
+# #63 - שורה 838
+msgid "Name for the new transcription layer produced by this alignment. If you reuse an existing layer name, the layer will be overwritten; use caution."
+msgstr ""
+
+# #64 - שורה 865
+msgid "You must supply a textual witness (reference text)."
+msgstr ""
+
+# #65 - שורה 869
+msgid "You may only supply one witness text (file upload or existing text)."
+msgstr ""
+
+# #66 - שורה 877
+msgid "Alignment layer name cannot be the same as the transcription you are trying to align."
+msgstr ""
+
+# #67 - שורה 884
+msgid "Max offset and beam size cannot both be non-zero."
+msgstr ""
+
+# #68 - שורה 967
+msgid "The model is already training."
+msgstr ""
+
+# #69 - שורה 970
+msgid "Either choose a model name or overwrite an existing one."
+msgstr ""
+
+# #70 - שורה 973
+msgid "You need to choose a model to override if the override option is checked."
+msgstr ""
+
+# #71 - שורה 1066
+msgid "Empty Ground Truth data."
+msgstr ""
+
+
+# קובץ: apps/core/models.py
+# =========================
+
+# #72 - שורה 228
+msgid "Background Color"
+msgstr ""
+
+# #73 - שורה 229
+msgid "Text Color"
+msgstr ""
+
+# #74 - שורה 379
+msgid "Horizontal l2r"
+msgstr ""
+
+# #75 - שורה 380
+msgid "Horizontal r2l"
+msgstr ""
+
+# #76 - שורה 381
+msgid "Vertical l2r"
+msgstr ""
+
+# #77 - שורה 382
+msgid "Vertical r2l"
+msgstr ""
+
+# #78 - שורה 383
+msgid "Top to bottom"
+msgstr ""
+
+# #79 - שורה 450
+msgid "An optional URL pointing to an external document that explains content editing and authorship guidelines for this project, in order to guide a team or group towards consistent practices for manual segmentation/transcription."
+msgstr ""
+
+# #80 - שורה 460
+msgid "Share with users"
+msgstr ""
+
+# #81 - שורה 466
+msgid "Share with teams"
+msgstr ""
+
+# #82 - שורה 523
+msgid "Left to right"
+msgstr ""
+
+# #83 - שורה 524
+msgid "Right to left"
+msgstr ""
+
+# #84 - שורה 555
+msgid "The position of the line relative to the polygon."
+msgstr ""
+
+# #85 - שורה 578
+msgid "If checked, enable toggling on and off colorized overlays for automatic transcription (OCR/HTR) confidences."
+msgstr ""
+
+# #86 - שורה 1201
+msgid "Canceled."
+msgstr ""
+
+# #87 - שורה 1651
+msgid "%(value)s is not a polygon - a 2 dimensional array."
+msgstr ""
+
+# #88 - שורה 1661
+msgid "Polygon needs to have at least 2 points, it has %(length)d: %(value)s."
+msgstr ""
+
+# #89 - שורה 1671
+msgid "Polygon needs to have at least 3 points, it has %(length)d: %(value)s."
+msgstr ""
+
+# #90 - שורה 1834
+msgid "Both baseline and mask are empty."
+msgstr ""
+
+
+# קובץ: apps/core/tasks.py
+# ========================
+
+# #91 - שורה 335
+msgid "The model did not converge, probably because of lack of data."
+msgstr ""
+
+# #92 - שורה 344
+msgid "Something went wrong during the segmenter training process!"
+msgstr ""
+
+# #93 - שורה 352
+msgid "Training finished!"
+msgstr ""
+
+# #94 - שורה 433
+msgid "Segmentation done!"
+msgstr ""
+
+# #95 - שורה 512
+msgid "Transcription done!"
+msgstr ""
+
+# #96 - שורה 856
+msgid "Alignment done!"
+msgstr ""
+
+# #97 - שורה 877
+msgid "Your replacements are being applied..."
+msgstr ""
+
+# #98 - שורה 924
+msgid "All replacements failed"
+msgstr ""
+
+# #99 - שורה 926
+msgid "Replacements applied with some errors"
+msgstr ""
+
+# #100 - שורה 928
+msgid "Replacements applied!"
+msgstr ""
+
+
+# קובץ: apps/core/views.py
+# ========================
+
+# #101 - שורה 396
+msgid "Project created successfully!"
+msgstr ""
+
+# #102 - שורה 410
+msgid "Project updated successfully!"
+msgstr ""
+
+# #103 - שורה 512
+msgid "Document created successfully!"
+msgstr ""
+
+# #104 - שורה 554
+msgid "Document saved successfully!"
+msgstr ""
+
+# #105 - שורה 596
+msgid "Ontology saved successfully!"
+msgstr ""
+
+# #106 - שורה 685
+msgid "Document shared successfully!"
+msgstr ""
+
+# #107 - שורה 722
+msgid "Project shared successfully!"
+msgstr ""
+
+# #108 - שורה 766
+msgid "Document archived successfully!"
+msgstr ""
+
+# #109 - שורה 768
+msgid "Document published successfully!"
+msgstr ""
+
+# #110 - שורה 926
+msgid "Model uploaded successfully!"
+msgstr ""
+
+# #111 - שורה 967
+msgid "Model deleted successfully!"
+msgstr ""
+
+# #112 - שורה 1004
+msgid "Right added successfully!"
+msgstr ""
+
+# #113 - שורה 1034
+msgid "Right deleted successfully!"
+msgstr ""
+
+# #114 - שורה 1064
+msgid "Document was successfully migrated to the selected project!"
+msgstr ""
+
+
+# קובץ: apps/imports/forms.py
+# ===========================
+
+# #115 - שורה 39
+msgid "The document is unreachable, unreadable or the host timed out."
+msgstr ""
+
+# #116 - שורה 77
+msgid "The name of the target transcription. Will default to"
+msgstr ""
+
+# #117 - שורה 84
+msgid "Destroys existing regions, lines and any bound transcription before importing."
+msgstr ""
+
+# #118 - שורה 88
+msgid "exp: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+msgstr ""
+
+# #119 - שורה 91
+msgid "Resume previous import"
+msgstr ""
+
+# #120 - שורה 149
+msgid "You don"
+msgstr ""
+
+# #121 - שורה 161
+msgid "Choose one type of import."
+msgstr ""
+
+# #122 - שורה 201
+msgid "Import in %(document_name)s"
+msgstr ""
+
+# #123 - שורה 218
+msgid "Include images"
+msgstr ""
+
+# #124 - שורה 219
+msgid "Will significantly increase the time to produce and download the export."
+msgstr ""
+
+# #125 - שורה 222
+msgid "Include character bounding boxes."
+msgstr ""
+
+# #126 - שורה 223
+msgid "This data is only present for transcriptions coming from automatic recognition and is invalidated by manual edition."
+msgstr ""
+
+# #127 - שורה 254
+msgid "Export %(document_name)s"
+msgstr ""
+
+# #128 - שורה 260
+msgid "A file containing a document ontology in JSON format"
+msgstr ""
+
+
+# קובץ: apps/imports/parsers.py
+# =============================
+
+# #129 - שורה 169
+msgid "Parse error in {filename}: {page}: {error}, skipping it."
+msgstr ""
+
+# #130 - שורה 185
+msgid "Zip Import"
+msgstr ""
+
+# #131 - שורה 198
+msgid "Zip file appears to be corrupted."
+msgstr ""
+
+# #132 - שורה 339
+msgid "METS Import"
+msgstr ""
+
+# #133 - שורה 667
+msgid "No match found for file {} with filename"
+msgstr ""
+
+# #134 - שורה 770
+msgid "Default ALTO Import"
+msgstr ""
+
+# #135 - שורה 837
+msgid "Block type {0} was automatically added to the ontology"
+msgstr ""
+
+# #136 - שורה 855
+msgid "Invalid baseline {baseline} in {filen} line {linen}"
+msgstr ""
+
+# #137 - שורה 901
+msgid "Line type {0} was automatically added to the ontology"
+msgstr ""
+
+# #138 - שורה 927
+msgid "Default PAGE Import"
+msgstr ""
+
+# #139 - שורה 1030
+msgid "Invalid coordinates for {tag} in {filen} line {line}"
+msgstr ""
+
+# #140 - שורה 1211
+msgid "Error while fetching {filename}: {error}"
+msgstr ""
+
+
+# קובץ: apps/imports/tasks.py
+# ===========================
+
+# #141 - שורה 70
+msgid "Import finished with warnings!"
+msgstr ""
+
+# #142 - שורה 74
+msgid "Import done!"
+msgstr ""
+
+# #143 - שורה 137
+msgid "Export done!"
+msgstr ""
+
+
+# קובץ: apps/users/admin.py
+# =========================
+
+# #144 - שורה 130
+msgid "You do not have permission to send invitations."
+msgstr ""
+
+# #145 - שורה 139
+msgid "Successfully sent {count} invitations."
+msgstr ""
+
+# #146 - שורה 141
+msgid "The following emails were invalid and were skipped: {emails}"
+msgstr ""
+
+
+# קובץ: apps/users/forms.py
+# =========================
+
+# #147 - שורה 47
+msgid "CSV file with emails"
+msgstr ""
+
+# #148 - שורה 48
+msgid "Upload a CSV file with one email per line."
+msgstr ""
+
+# #149 - שורה 54
+msgid "Enter one email per line."
+msgstr ""
+
+# #150 - שורה 65
+msgid "Optional: set an expiry date for these accounts"
+msgstr ""
+
+# #151 - שורה 81
+msgid "Please provide either a CSV file or enter emails directly."
+msgstr ""
+
+# #152 - שורה 132
+msgid "Email or username."
+msgstr ""
+
+# #153 - שורה 242
+msgid "Message : Please precise your institution or research center if applicable"
+msgstr ""
+
+
+# קובץ: apps/users/management/commands/check_quotas.py
+# ====================================================
+
+# #154 - שורה 43
+msgid "Disk storage"
+msgstr ""
+
+# #155 - שורה 44
+msgid "CPU minutes"
+msgstr ""
+
+# #156 - שורה 45
+msgid "GPU minutes"
+msgstr ""
+
+
+# קובץ: apps/users/models.py
+# ==========================
+
+# #157 - שורה 246
+msgid "{username} accepted your invitation!"
+msgstr ""
+
+
+# קובץ: apps/users/views.py
+# =========================
+
+# #158 - שורה 255
+msgid "Profile successfully saved."
+msgstr ""
+
+# #159 - שורה 327
+msgid "Team successfully created."
+msgstr ""
+
+# #160 - שורה 350
+msgid "User successfully invited to the team."
+msgstr ""
+
+# #161 - שורה 370
+msgid "Message successfully sent."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/403.html
+# =====================================
+
+# #162 - שורה 6
+msgid "You don"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/404.html
+# =====================================
+
+# #163 - שורה 6
+msgid "Page not found."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/base.html
+# ======================================
+
+# #164 - שורה 85
+msgid "Search in all your projects"
+msgstr ""
+
+# #165 - שורה 118
+msgid "My Models"
+msgstr ""
+
+# #166 - שורה 129
+msgid "Change password"
+msgstr ""
+
+# #167 - שורה 132
+msgid "Task reports"
+msgstr ""
+
+# #168 - שורה 133
+msgid "Tasks monitoring"
+msgstr ""
+
+# #169 - שורה 137
+msgid "Site administration"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/contributors.html
+# ===================================================
+
+# #170 - שורה 19
+msgid "The contributors list will be available here soon."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/credits.html
+# ==============================================
+
+# #171 - שורה 13
+msgid "eScriptorium and kraken are Free and Open-Source Software developed by a team in the laboratoire AOROC (CNRS PSL, UMR 8546) at the École Pratique des Hautes Études – Université PSL."
+msgstr ""
+
+# #172 - שורה 22
+msgid "The credits list will be available here soon."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_form.html
+# ====================================================
+
+# #173 - שורה 3
+msgid "Update a Document"
+msgstr ""
+
+# #174 - שורה 3
+msgid "Create a new Document"
+msgstr ""
+
+# #175 - שורה 15
+msgid "Share this Document"
+msgstr ""
+
+# #176 - שורה 24
+msgid "Migrate to another project"
+msgstr ""
+
+# #177 - שורה 38
+msgid "Do you really want to delete the document?"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_images.html
+# ======================================================
+
+# #178 - שורה 17
+msgid "Drop images here or click to upload."
+msgstr ""
+
+# #179 - שורה 19
+msgid "You don"
+msgstr ""
+
+# #180 - שורה 26
+msgid "Select all"
+msgstr ""
+
+# #181 - שורה 27
+msgid "Unselect all"
+msgstr ""
+
+# #182 - שורה 100
+msgid "Train a segmenter/recognizer model."
+msgstr ""
+
+# #183 - שורה 113
+msgid "Cancel training"
+msgstr ""
+
+# #184 - שורה 125
+msgid "Segment selected images."
+msgstr ""
+
+# #185 - שורה 136
+msgid "Start transcribing selected images."
+msgstr ""
+
+# #186 - שורה 148
+msgid "Align transcribed images to a textual witness (reference text)."
+msgstr ""
+
+# #187 - שורה 168
+msgid "Delete this image and all its data (segmentation, transcriptions)"
+msgstr ""
+
+# #188 - שורה 171
+msgid "Cancel tasks"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_list.html
+# ====================================================
+
+# #189 - שורה 3
+msgid "My Documents"
+msgstr ""
+
+# #190 - שורה 9
+msgid "Create new Document"
+msgstr ""
+
+# #191 - שורה 10
+msgid "Manage tags"
+msgstr ""
+
+# #192 - שורה 14
+msgid "Share this Project"
+msgstr ""
+
+# #193 - שורה 50
+msgid "Last modified"
+msgstr ""
+
+# #194 - שורה 53
+msgid "Image count"
+msgstr ""
+
+# #195 - שורה 85
+msgid "Shared with"
+msgstr ""
+
+# #196 - שורה 87
+msgid "Last modified on"
+msgstr ""
+
+# #197 - שורה 111
+msgid "Edit last updated Element"
+msgstr ""
+
+# #198 - שורה 121
+msgid "Do you really want to delete the document?"
+msgstr ""
+
+# #199 - שורה 128
+msgid "Do you really want to remove the document from your list?"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_nav.html
+# ===================================================
+
+# #200 - שורה 3
+msgid "Update a Document"
+msgstr ""
+
+# #201 - שורה 3
+msgid "Create a new Document"
+msgstr ""
+
+# #202 - שורה 14
+msgid "Back to document list"
+msgstr ""
+
+# #203 - שורה 94
+msgid "Select a specific transcription to search in."
+msgstr ""
+
+# #204 - שורה 96
+msgid "All levels"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_ontology.html
+# ========================================================
+
+# #205 - שורה 4
+msgid "Document Ontology"
+msgstr ""
+
+# #206 - שורה 39
+msgid "Lines and Regions typologies:"
+msgstr ""
+
+# #207 - שורה 40
+msgid "The default configuration only contains semantic types."
+msgstr ""
+
+# #208 - שורה 41
+msgid "It is not recommended to mix semantic, stylistic and layout types."
+msgstr ""
+
+# #209 - שורה 44
+msgid "Annotations:"
+msgstr ""
+
+# #210 - שורה 45
+msgid "Each Annotation can store values for different components."
+msgstr ""
+
+# #211 - שורה 47
+msgid "Annotation types allow to regroup the corresponding buttons in the editing interface (and may be used as a hint for import/export)."
+msgstr ""
+
+# #212 - שורה 53
+msgid "Region types"
+msgstr ""
+
+# #213 - שורה 60
+msgid "Add a region type"
+msgstr ""
+
+# #214 - שורה 70
+msgid "Line types"
+msgstr ""
+
+# #215 - שורה 76
+msgid "Add a line type"
+msgstr ""
+
+# #216 - שורה 87
+msgid "Part types"
+msgstr ""
+
+# #217 - שורה 93
+msgid "Add a part type"
+msgstr ""
+
+# #218 - שורה 103
+msgid "Annotations components"
+msgstr ""
+
+# #219 - שורה 126
+msgid "Image Annotations"
+msgstr ""
+
+# #220 - שורה 179
+msgid "Text Annotations"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/document_part_edit.html
+# =========================================================
+
+# #221 - שורה 3
+msgid "Update a Document"
+msgstr ""
+
+# #222 - שורה 3
+msgid "Create a new Document"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/documents_tasks_list.html
+# ===========================================================
+
+# #223 - שורה 3
+msgid "Tasks monitoring"
+msgstr ""
+
+# #224 - שורה 6
+msgid "Task Monitoring"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/home.html
+# ===========================================
+
+# #225 - שורה 14
+msgid "eScriptorium: A Digital Text Production Pipeline for Print and Handwritten Texts using machine learning techniques."
+msgstr ""
+
+# #226 - שורה 25
+msgid "Automatic<br>Transcription"
+msgstr ""
+
+# #227 - שורה 26
+msgid "Apply OCR/HTR to images of printed and handwritten documents using shared open models."
+msgstr ""
+
+# #228 - שורה 31
+msgid "Manual<br>Transcription"
+msgstr ""
+
+# #229 - שורה 32
+msgid "Make use of an ergonomic user interface leveraging modern browser technology to edit segmentations and transcriptions."
+msgstr ""
+
+# #230 - שורה 37
+msgid "Train<br>Models"
+msgstr ""
+
+# #231 - שורה 38
+msgid "Create new models or finetune existing ones to improve automatic recognition."
+msgstr ""
+
+# #232 - שורה 43
+msgid "Import/<br>Export"
+msgstr ""
+
+# #233 - שורה 44
+msgid "Import and export models and texts transcriptions in a variety of formats. Access data through a full REST API."
+msgstr ""
+
+# #234 - שורה 64
+msgid "Service originally developed by"
+msgstr ""
+
+# #235 - שורה 65
+msgid "École Pratique des Hautes Études (EPHE)"
+msgstr ""
+
+# #236 - שורה 72
+msgid "contributors history"
+msgstr ""
+
+# #237 - שורה 128
+msgid "eScriptorium open source code"
+msgstr ""
+
+# #238 - שורה 129
+msgid "eScriptorium Blog"
+msgstr ""
+
+# #239 - שורה 145
+msgid "Legal mentions"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/migrate/migrate_document.html
+# ===============================================================
+
+# #240 - שורה 9
+msgid "Migrate to another project"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/models_list/main.html
+# =======================================================
+
+# #241 - שורה 13
+msgid "Upload a model"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/models_list/rights/delete.html
+# ================================================================
+
+# #242 - שורה 5
+msgid "Delete right"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/models_list/rights/main.html
+# ==============================================================
+
+# #243 - שורה 19
+msgid "Recipient type"
+msgstr ""
+
+# #244 - שורה 21
+msgid "User full name"
+msgstr ""
+
+# #245 - שורה 24
+msgid "Group name"
+msgstr ""
+
+# #246 - שורה 28
+msgid "Stop sharing"
+msgstr ""
+
+# #247 - שורה 51
+msgid "Add right"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/models_list/table.html
+# ========================================================
+
+# #248 - שורה 19
+msgid "Trained from"
+msgstr ""
+
+# #249 - שורה 20
+msgid "Training Status"
+msgstr ""
+
+# #250 - שורה 28
+msgid "Model name"
+msgstr ""
+
+# #251 - שורה 29
+msgid "Model role"
+msgstr ""
+
+# #252 - שורה 30
+msgid "Model script"
+msgstr ""
+
+# #253 - שורה 35
+msgid "Filter by script"
+msgstr ""
+
+# #254 - שורה 42
+msgid "Parent from which the model was trained"
+msgstr ""
+
+# #255 - שורה 46
+msgid "Is currently training"
+msgstr ""
+
+# #256 - שורה 47
+msgid "Is done training"
+msgstr ""
+
+# #257 - שורה 49
+msgid "Gathering data"
+msgstr ""
+
+# #258 - שורה 54
+msgid "Cancel training"
+msgstr ""
+
+# #259 - שורה 58
+msgid "Number of errors/Total number of characters"
+msgstr ""
+
+# #260 - שורה 86
+msgid "Share model"
+msgstr ""
+
+# #261 - שורה 95
+msgid "Unbind model from the document"
+msgstr ""
+
+# #262 - שורה 104
+msgid "Delete model"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/ocrmodel_form.html
+# ====================================================
+
+# #263 - שורה 5
+msgid "Upload a model"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/ontology/import_ontology.html
+# ===============================================================
+
+# #264 - שורה 10
+msgid "Import an ontology in this document"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/wizards/import_mets.html
+# ==========================================================
+
+# #265 - שורה 15
+msgid "The prefix of the target transcription. Will default to"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/core/wizards/train.html
+# ====================================================
+
+# #266 - שורה 7
+msgid "Gathering data can take time and the model won"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/includes/pagination.html
+# =====================================================
+
+# #267 - שורה 24
+msgid "First page"
+msgstr ""
+
+# #268 - שורה 60
+msgid "Last page"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/login.html
+# ====================================================
+
+# #269 - שורה 8
+msgid "Please Sign In"
+msgstr ""
+
+# #270 - שורה 21
+msgid "Your account doesn"
+msgstr ""
+
+# #271 - שורה 24
+msgid "Please login to see this page."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_change_done.html
+# ===================================================================
+
+# #272 - שורה 13
+msgid "Your password has successfully been changed."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_change_form.html
+# ===================================================================
+
+# #273 - שורה 8
+msgid "Change Password"
+msgstr ""
+
+# #274 - שורה 34
+msgid "Old password:"
+msgstr ""
+
+# #275 - שורה 40
+msgid "New password:"
+msgstr ""
+
+# #276 - שורה 46
+msgid "New password confirmation:"
+msgstr ""
+
+# #277 - שורה 52
+msgid "Change my password"
+msgstr ""
+
+# #278 - שורה 57
+msgid "Lost your password?"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_reset_complete.html
+# ======================================================================
+
+# #279 - שורה 13
+msgid "Your password has been set.  You may go ahead and"
+msgstr ""
+
+# #280 - שורה 13
+msgid "log in"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_reset_confirm.html
+# =====================================================================
+
+# #281 - שורה 13
+msgid "Reset your password"
+msgstr ""
+
+# #282 - שורה 19
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr ""
+
+# #283 - שורה 26
+msgid "New password:"
+msgstr ""
+
+# #284 - שורה 31
+msgid "Confirm password:"
+msgstr ""
+
+# #285 - שורה 34
+msgid "Change my password"
+msgstr ""
+
+# #286 - שורה 39
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_reset_done.html
+# ==================================================================
+
+# #287 - שורה 13
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+# #288 - שורה 14
+msgid "If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/registration/password_reset_form.html
+# ==================================================================
+
+# #289 - שורה 17
+msgid "Forgotten your password? Enter your email address below, and we’ll email instructions for setting a new one."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/reporting/document_report.html
+# ===========================================================
+
+# #290 - שורה 3
+msgid "Document report"
+msgstr ""
+
+# #291 - שורה 33
+msgid "Data metrics"
+msgstr ""
+
+# #292 - שורה 39
+msgid "Total number of document parts"
+msgstr ""
+
+# #293 - שורה 41
+msgid "A document part corresponds to one image loaded within a document."
+msgstr ""
+
+# #294 - שורה 49
+msgid "Transcribed document parts"
+msgstr ""
+
+# #295 - שורה 51
+msgid "The number of transcribed images in the selected transcription(s)."
+msgstr ""
+
+# #296 - שורה 61
+msgid "Confidence is an estimate of the automatic transcription model to approximate its own accuracy per character."
+msgstr ""
+
+# #297 - שורה 62
+msgid "The validity of this figure will depend on specific cases and models and is not necessarily an indication of result quality."
+msgstr ""
+
+# #298 - שורה 74
+msgid "Reload vocabulary"
+msgstr ""
+
+# #299 - שורה 104
+msgid "No vocabulary found in the selected transcription(s)."
+msgstr ""
+
+# #300 - שורה 106
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/reporting/project_reports.html
+# ===========================================================
+
+# #301 - שורה 3
+msgid "Project reports"
+msgstr ""
+
+# #302 - שורה 22
+msgid "Data metrics"
+msgstr ""
+
+# #303 - שורה 28
+msgid "Total number of document parts"
+msgstr ""
+
+# #304 - שורה 30
+msgid "A document part corresponds to one image loaded within a document."
+msgstr ""
+
+# #305 - שורה 38
+msgid "Total number of regions"
+msgstr ""
+
+# #306 - שורה 40
+msgid "A region is a polygon drawn on a document part, grouping one, several or no line(s)."
+msgstr ""
+
+# #307 - שורה 48
+msgid "Total number of lines"
+msgstr ""
+
+# #308 - שורה 50
+msgid "A line is a segment of text identified on a document part, usually associated with a polygon (mask) and a transcription."
+msgstr ""
+
+# #309 - שורה 60
+msgid "Total number of words"
+msgstr ""
+
+# #310 - שורה 62
+msgid "A word is any series of one or more characters, excepted punctuation signs and white spaces."
+msgstr ""
+
+# #311 - שורה 70
+msgid "Total number of characters"
+msgstr ""
+
+# #312 - שורה 72
+msgid "A character is any symbol used in the transcription, including punctuation, excepted white spaces."
+msgstr ""
+
+# #313 - שורה 84
+msgid "Reload vocabulary"
+msgstr ""
+
+# #314 - שורה 114
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr ""
+
+# #315 - שורה 127
+msgid "Current use of document tags"
+msgstr ""
+
+# #316 - שורה 145
+msgid "Current use of part tags"
+msgstr ""
+
+# #317 - שורה 157
+msgid "Current use of regions type"
+msgstr ""
+
+# #318 - שורה 177
+msgid "Current use of lines type"
+msgstr ""
+
+# #319 - שורה 195
+msgid "Project activity"
+msgstr ""
+
+# #320 - שורה 201
+msgid "Created on"
+msgstr ""
+
+# #321 - שורה 210
+msgid "Last update on"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/reporting/quotas_leaderboard.html
+# ==============================================================
+
+# #322 - שורה 14
+msgid "Last week"
+msgstr ""
+
+# #323 - שורה 17
+msgid "Last day"
+msgstr ""
+
+# #324 - שורה 23
+msgid "Disk usage"
+msgstr ""
+
+# #325 - שורה 24
+msgid "CPU usage"
+msgstr ""
+
+# #326 - שורה 25
+msgid "GPU usage"
+msgstr ""
+
+# #327 - שורה 26
+msgid "No. of tasks"
+msgstr ""
+
+# #328 - שורה 45
+msgid "All time"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/reporting/taskreport_detail.html
+# =============================================================
+
+# #329 - שורה 7
+msgid "Status:"
+msgstr ""
+
+# #330 - שורה 8
+msgid "Queued at:"
+msgstr ""
+
+# #331 - שורה 9
+msgid "Started at:"
+msgstr ""
+
+# #332 - שורה 10
+msgid "Ended at:"
+msgstr ""
+
+# #333 - שורה 11
+msgid "CPU usage"
+msgstr ""
+
+# #334 - שורה 12
+msgid "GPU usage"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/reporting/taskreport_list.html
+# ===========================================================
+
+# #335 - שורה 5
+msgid "Task Usage"
+msgstr ""
+
+# #336 - שורה 11
+msgid "Disk usage"
+msgstr ""
+
+# #337 - שורה 15
+msgid "You don"
+msgstr ""
+
+# #338 - שורה 20
+msgid "Calculated from your images and models"
+msgstr ""
+
+# #339 - שורה 34
+msgid "CPU usage"
+msgstr ""
+
+# #340 - שורה 43
+msgid "CPU usage over the last week"
+msgstr ""
+
+# #341 - שורה 57
+msgid "GPU usage"
+msgstr ""
+
+# #342 - שורה 66
+msgid "GPU usage over the last week"
+msgstr ""
+
+# #343 - שורה 80
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren"
+msgstr ""
+
+# #344 - שורה 85
+msgid "Task report"
+msgstr ""
+
+# #345 - שורה 86
+msgid "Started at"
+msgstr ""
+
+# #346 - שורה 87
+msgid "Done at"
+msgstr ""
+
+# #347 - שורה 90
+msgid "CPU cost"
+msgstr ""
+
+# #348 - שורה 91
+msgid "GPU cost"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/users/account_expired.html
+# =======================================================
+
+# #349 - שורה 9
+msgid "Account Expired"
+msgstr ""
+
+# #350 - שורה 10
+msgid "Your account has expired. Please reach out to the person who invited you for assistance."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/users/email/invitation_html.html
+# =============================================================
+
+# #351 - שורה 3
+msgid "is inviting you to join"
+msgstr ""
+
+# #352 - שורה 3
+msgid "his/her team"
+msgstr ""
+
+# #353 - שורה 3
+msgid "eScriptorium!"
+msgstr ""
+
+# #354 - שורה 4
+msgid "All you need to do is click on the link below:"
+msgstr ""
+
+# #355 - שורה 6
+msgid "Sincerely, the eScriptorium team."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/users/group_detail_invite.html
+# ===========================================================
+
+# #356 - שורה 5
+msgid "Back to profile"
+msgstr ""
+
+# #357 - שורה 8
+msgid "Team:"
+msgstr ""
+
+# #358 - שורה 16
+msgid "Invite a user to this team."
+msgstr ""
+
+# #359 - שורה 21
+msgid "Make sure to use a correct email as you will not receive an error message if it is not the case (in order to avoid phishing)."
+msgstr ""
+
+# #360 - שורה 41
+msgid "Transfer ownership"
+msgstr ""
+
+# #361 - שורה 54
+msgid "No other user in this team."
+msgstr ""
+
+
+# קובץ: escriptorium/templates/users/profile_api_key.html
+# =======================================================
+
+# #362 - שורה 16
+msgid "example:"
+msgstr ""
+
+
+# קובץ: escriptorium/templates/users/profile_files.html
+# =====================================================
+
+# #363 - שורה 11
+msgid "You don"
+msgstr ""
+
+
+# קובץ: static/admin/js/SelectFilter2.js
+# ======================================
+
+# #364 - שורה 38
+msgid "Available %s"
+msgstr ""
+
+# #365 - שורה 60
+msgid "Type into this box to filter down the list of available %s."
+msgstr ""
+
+# #366 - שורה 69
+msgid "Choose all"
+msgstr ""
+
+# #367 - שורה 69
+msgid "Click to choose all %s at once."
+msgstr ""
+
+# #368 - שורה 83
+msgid "Chosen %s"
+msgstr ""
+
+# #369 - שורה 105
+msgid "Type into this box to filter down the list of selected %s."
+msgstr ""
+
+# #370 - שורה 120
+msgid "Remove all"
+msgstr ""
+
+# #371 - שורה 120
+msgid "Click to remove all chosen %s at once."
+msgstr ""
+
+
+# קובץ: static/admin/js/actions.js
+# ================================
+
+# #372 - שורה 67
+msgid "%(sel)s of %(cnt)s selected"
+msgstr ""
+
+# #373 - שורה 161
+msgid "You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."
+msgstr ""
+
+# #374 - שורה 174
+msgid "You have selected an action, but you haven’t saved your changes to individual fields yet. Please click OK to save. You’ll need to re-run the action."
+msgstr ""
+
+# #375 - שורה 175
+msgid "You have selected an action, and you haven’t made any changes on individual fields. You’re probably looking for the Go button rather than the Save button."
+msgstr ""
+
+
+# קובץ: static/admin/js/admin/DateTimeShortcuts.js
+# ================================================
+
+# #376 - שורה 128
+msgid "Choose a Time"
+msgstr ""
+
+# #377 - שורה 139
+msgid "Choose a time"
+msgstr ""
+
+# #378 - שורה 255
+msgid "Choose a Date"
+msgstr ""
+
+
+# קובץ: static/admin/js/calendar.js
+# =================================
+
+# #379 - שורה 25
+msgid "abbrev. month January"
+msgstr ""
+
+# #380 - שורה 26
+msgid "abbrev. month February"
+msgstr ""
+
+# #381 - שורה 27
+msgid "abbrev. month March"
+msgstr ""
+
+# #382 - שורה 28
+msgid "abbrev. month April"
+msgstr ""
+
+# #383 - שורה 29
+msgid "abbrev. month May"
+msgstr ""
+
+# #384 - שורה 30
+msgid "abbrev. month June"
+msgstr ""
+
+# #385 - שורה 31
+msgid "abbrev. month July"
+msgstr ""
+
+# #386 - שורה 32
+msgid "abbrev. month August"
+msgstr ""
+
+# #387 - שורה 33
+msgid "abbrev. month September"
+msgstr ""
+
+# #388 - שורה 34
+msgid "abbrev. month October"
+msgstr ""
+
+# #389 - שורה 35
+msgid "abbrev. month November"
+msgstr ""
+
+# #390 - שורה 36
+msgid "abbrev. month December"
+msgstr ""
+
+# #391 - שורה 39
+msgid "one letter Sunday"
+msgstr ""
+
+# #392 - שורה 40
+msgid "one letter Monday"
+msgstr ""
+
+# #393 - שורה 41
+msgid "one letter Tuesday"
+msgstr ""
+
+# #394 - שורה 42
+msgid "one letter Wednesday"
+msgstr ""
+
+# #395 - שורה 43
+msgid "one letter Thursday"
+msgstr ""
+
+# #396 - שורה 45
+msgid "one letter Saturday"
+msgstr ""
+
+
+# קובץ: static/vendor.js
+# ======================
+
+# #397 - שורה 2
+msgid "'+t.operator+"
+msgstr ""

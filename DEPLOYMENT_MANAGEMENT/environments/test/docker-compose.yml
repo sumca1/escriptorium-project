@@ -1,0 +1,135 @@
+# ========================================
+# 🟡 TEST Environment - Testing
+# ========================================
+# מטרה: בדיקות לפני deploy
+# Volumes: רק media/logs (לא קוד!)
+# Build: קפוא - snapshot של הקוד
+# Port: 8001
+
+version: '3.8'
+
+x-app:
+  &app
+  build:
+    context: ../../../CORE/eScriptorium_UNIFIED
+    dockerfile: Dockerfile
+    args:
+      - ENVIRONMENT=test
+      - BUILD_TYPE=test
+  env_file:
+    - ../../../CORE/eScriptorium_UNIFIED/config/variables.env
+    - .env.test
+  environment:
+    - TZ=Asia/Jerusalem
+    - DEBUG=False
+    - ENVIRONMENT=test
+  volumes:
+    # רק media/logs - לא קוד!
+    - static:/usr/src/app/static
+    - media:/usr/src/app/media
+    - logs:/usr/src/app/logs
+  command: /bin/true
+
+services:
+
+  # ============================================
+  # eScriptorium Core Services
+  # ============================================
+
+  web:
+    <<: *app
+    container_name: escriptorium_test_web
+    command: uwsgi --ini /usr/src/app/uwsgi.ini
+    restart: unless-stopped
+    expose:
+      - 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://nginx:80/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - db
+      - redis
+      - nginx
+    networks:
+      - escriptorium-test-net
+
+  channelserver:
+    <<: *app
+    container_name: escriptorium_test_channels
+    command: daphne --bind 0.0.0.0 --port 5000 -v 1 escriptorium.asgi:application
+    restart: unless-stopped
+    expose:
+      - 5000
+    depends_on:
+      - db
+      - redis
+    networks:
+      - escriptorium-test-net
+
+  db:
+    image: postgres:15-alpine
+    container_name: escriptorium_test_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=escriptorium_test
+      - POSTGRES_USER=escriptorium
+      - POSTGRES_PASSWORD=escriptorium_test_pass
+      - TZ=Asia/Jerusalem
+    volumes:
+      - postgres_test:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    networks:
+      - escriptorium-test-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: escriptorium_test_redis
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jerusalem
+    ports:
+      - "6380:6379"
+    networks:
+      - escriptorium-test-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: escriptorium_test_nginx
+    restart: unless-stopped
+    environment:
+      - SERVERNAME=test.localhost
+      - TZ=Asia/Jerusalem
+    volumes:
+      - ../../../CORE/eScriptorium_UNIFIED/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - static:/usr/src/app/static:ro
+      - media:/usr/src/app/media:ro
+    ports:
+      - "8081:80"
+    depends_on:
+      - web
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - escriptorium-test-net
+
+volumes:
+  postgres_test:
+    name: escriptorium_test_postgres
+  static:
+    name: escriptorium_test_static
+  media:
+    name: escriptorium_test_media
+  logs:
+    name: escriptorium_test_logs
+
+networks:
+  escriptorium-test-net:
+    name: escriptorium-test-net
+    driver: bridge

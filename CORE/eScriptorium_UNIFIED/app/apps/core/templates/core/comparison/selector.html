@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Select Transcriptions for Comparison" %} - BiblIA{% endblock %}
+
+{% block extra_css %}
+<style>
+    .selector-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    
+    .selector-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .selector-header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+    
+    .selector-header p {
+        margin: 10px 0 0 0;
+        opacity: 0.9;
+        font-size: 1.1em;
+    }
+    
+    .selector-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .transcription-selector {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .transcription-selector h2 {
+        margin: 0 0 20px 0;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .transcription-selector h2 .engine-icon {
+        font-size: 1.5em;
+    }
+    
+    .transcription-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    .transcription-option {
+        padding: 15px;
+        border: 2px solid #eee;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .transcription-option:hover {
+        border-color: #667eea;
+        background: #f8f9ff;
+    }
+    
+    .transcription-option input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin: 0;
+    }
+    
+    .transcription-info {
+        flex: 1;
+    }
+    
+    .transcription-info .name {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .transcription-info .meta {
+        font-size: 0.85em;
+        color: #999;
+        margin-top: 3px;
+    }
+    
+    .transcription-option.selected {
+        border-color: #667eea;
+        background: #f0f4ff;
+    }
+    
+    .actions-section {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    
+    .actions-section .info {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f0f4ff;
+        border-radius: 8px;
+        color: #667eea;
+    }
+    
+    .comparison-button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .comparison-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    .comparison-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .empty-state {
+        padding: 40px;
+        text-align: center;
+        color: #999;
+    }
+    
+    .empty-state svg {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+    
+    @media (max-width: 768px) {
+        .selector-body {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="selector-container">
+    <div class="selector-header">
+        <h1>⚖️ {% trans "Compare OCR Engines" %}</h1>
+        <p>{% trans "Select two transcriptions to compare Kraken vs Tesseract results" %}</p>
+    </div>
+    
+    {% if transcriptions %}
+    <div class="selector-body">
+        <!-- Kraken Selector -->
+        <div class="transcription-selector">
+            <h2><span class="engine-icon">🐙</span> {% trans "Kraken Output" %}</h2>
+            <div class="transcription-list" id="krakenList">
+                {% for trans in kraken_transcriptions %}
+                <label class="transcription-option" data-trans-id="{{ trans.id }}" data-engine="kraken">
+                    <input type="radio" name="trans1" value="{{ trans.id }}" />
+                    <div class="transcription-info">
+                        <div class="name">{{ trans.document.name }}</div>
+                        <div class="meta">
+                            {% trans "Part:" %} {{ trans.part.name }} | 
+                            {% trans "Lines:" %} {{ trans.line_count|default:"-" }}
+                        </div>
+                    </div>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Tesseract Selector -->
+        <div class="transcription-selector">
+            <h2><span class="engine-icon">🔤</span> {% trans "Tesseract Output" %}</h2>
+            <div class="transcription-list" id="tesseractList">
+                {% for trans in tesseract_transcriptions %}
+                <label class="transcription-option" data-trans-id="{{ trans.id }}" data-engine="tesseract">
+                    <input type="radio" name="trans2" value="{{ trans.id }}" />
+                    <div class="transcription-info">
+                        <div class="name">{{ trans.document.name }}</div>
+                        <div class="meta">
+                            {% trans "Part:" %} {{ trans.part.name }} | 
+                            {% trans "Lines:" %} {{ trans.line_count|default:"-" }}
+                        </div>
+                    </div>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="actions-section">
+        <div class="info" id="selectionInfo" style="display:none;">
+            <strong>{% trans "Selected:" %}</strong>
+            <span id="selectedNames"></span>
+        </div>
+        <button class="comparison-button" id="compareButton" disabled onclick="startComparison()">
+            {% trans "🔍 Start Comparison" %}
+        </button>
+    </div>
+    
+    {% else %}
+    <div class="empty-state">
+        <h2>{% trans "No Transcriptions Available" %}</h2>
+        <p>{% trans "Please process some documents with both Kraken and Tesseract engines first." %}</p>
+        <p><a href="{% url 'project-list' %}">{% trans "Go to Projects" %}</a></p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+let selectedKraken = null;
+let selectedTesseract = null;
+
+document.querySelectorAll('input[name="trans1"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        selectedKraken = e.target.value;
+        updateSelection();
+        updateLabel('krakenList');
+    });
+});
+
+document.querySelectorAll('input[name="trans2"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        selectedTesseract = e.target.value;
+        updateSelection();
+        updateLabel('tesseractList');
+    });
+});
+
+function updateLabel(listId) {
+    document.querySelectorAll(`#${listId} .transcription-option`).forEach(label => {
+        if (label.querySelector('input:checked')) {
+            label.classList.add('selected');
+        } else {
+            label.classList.remove('selected');
+        }
+    });
+}
+
+function updateSelection() {
+    const button = document.getElementById('compareButton');
+    const info = document.getElementById('selectionInfo');
+    
+    if (selectedKraken && selectedTesseract) {
+        button.disabled = false;
+        info.style.display = 'block';
+        
+        const krakenName = document.querySelector(`input[value="${selectedKraken}"]`).closest('.transcription-option').querySelector('.name').textContent;
+        const tesseractName = document.querySelector(`input[value="${selectedTesseract}"]`).closest('.transcription-option').querySelector('.name').textContent;
+        
+        document.getElementById('selectedNames').innerHTML = 
+            `🐙 ${krakenName} <strong>vs</strong> 🔤 ${tesseractName}`;
+    } else {
+        button.disabled = true;
+        info.style.display = 'none';
+    }
+}
+
+function startComparison() {
+    if (selectedKraken && selectedTesseract) {
+        window.location.href = `/comparison/viewer/?trans1=${selectedKraken}&trans2=${selectedTesseract}`;
+    }
+}
+
+// Allow clicking anywhere on the label to select the radio
+document.querySelectorAll('.transcription-option').forEach(label => {
+    label.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'INPUT') {
+            label.querySelector('input').click();
+        }
+    });
+});
+</script>
+{% endblock %}

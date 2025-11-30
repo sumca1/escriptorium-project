@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Ground Truth Corpora" %} - TABA{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+          <i class="fas fa-database"></i>
+          {% trans "Ground Truth Corpora" %}
+        </h1>
+        <a href="{% url 'taba:dashboard' %}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> {% trans "Back to Dashboard" %}
+        </a>
+      </div>
+
+      {% if corpora %}
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Language" %}</th>
+                <th>{% trans "Source Type" %}</th>
+                <th>{% trans "Texts" %}</th>
+                <th>{% trans "Characters" %}</th>
+                <th>{% trans "Created" %}</th>
+                <th>{% trans "Actions" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for corpus in corpora %}
+              <tr>
+                <td>
+                  <strong>{{ corpus.name }}</strong>
+                  {% if corpus.description %}
+                  <br><small class="text-muted">{{ corpus.description|truncatewords:15 }}</small>
+                  {% endif %}
+                </td>
+                <td>
+                  <span class="badge badge-info">{{ corpus.language|upper }}</span>
+                </td>
+                <td>
+                  <span class="badge badge-secondary">{{ corpus.get_source_type_display }}</span>
+                </td>
+                <td class="text-right">
+                  <strong>{{ corpus.total_texts }}</strong>
+                </td>
+                <td class="text-right">
+                  {{ corpus.total_characters|default:"0"|intcomma }}
+                </td>
+                <td>
+                  {{ corpus.created_at|date:"d/m/Y" }}
+                </td>
+                <td>
+                  <a href="{% url 'taba:corpus-detail' corpus.pk %}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-eye"></i> {% trans "View" %}
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {% if is_paginated %}
+      <nav aria-label="Page navigation" class="mt-3">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">{% trans "First" %}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+          </li>
+          {% endif %}
+
+          <li class="page-item disabled">
+            <span class="page-link">
+              {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+            </span>
+          </li>
+
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last" %}</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+
+      {% else %}
+      <div class="alert alert-info">
+        <h4><i class="fas fa-info-circle"></i> {% trans "No Ground Truth Corpora Yet" %}</h4>
+        <p>{% trans "You haven't created any Ground Truth corpora yet. Create one in the Django admin to get started." %}</p>
+        <a href="/admin/taba_pipeline/groundtruthcorpus/add/" class="btn btn-primary">
+          <i class="fas fa-plus"></i> {% trans "Create Corpus in Admin" %}
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+# Override for version: גרסה מ-18 ספטמבר
+# Created: 2025-10-19 15:40:32
+x-app:
+  &app
+  image: escriptorium_clean-web:latest
+
+services:
+  channelserver:
+    image: escriptorium_clean-channelserver:latest
+  celery-low:
+    image: escriptorium_clean-celery-low-priority:latest
+  web:
+    image: escriptorium_clean-web:latest
+  celery-gpu:
+    image: escriptorium_clean-celery-gpu:latest

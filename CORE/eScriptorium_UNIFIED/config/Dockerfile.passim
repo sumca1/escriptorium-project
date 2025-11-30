@@ -1,0 +1,41 @@
+# Dockerfile for Text Alignment Service (Passim-inspired)
+# Purpose: Detect text reuse and align similar passages between documents
+# Uses Python algorithms instead of Java Passim for easier integration
+
+FROM python:3.8-slim
+
+LABEL maintainer="BiblIA Project"
+LABEL description="Text alignment service for eScriptorium (Passim-inspired)"
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create working directory
+WORKDIR /passim
+
+# Install Python libraries for text alignment
+RUN pip install --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org \
+    flask==2.0.3 \
+    werkzeug==2.0.3 \
+    numpy>=1.19.0 \
+    python-Levenshtein>=0.12.0 \
+    jellyfish>=0.9.0 \
+    scikit-learn>=0.24.0
+
+# Create directories
+RUN mkdir -p /passim/data /passim/output
+
+# Copy alignment service code (we'll create this)
+COPY passim_service.py /passim/
+
+# Expose port for REST API
+EXPOSE 9090
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV FLASK_APP=passim_service
+
+# Run Flask service
+CMD ["python", "-m", "flask", "run", "--host", "0.0.0.0", "--port", "9090"]

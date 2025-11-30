@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>{% trans "Unbind Model" %}</h2>
+    
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-unlink"></i>
+        {% trans "This will remove the model from the document but won't delete the model itself." %}
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <p class="lead">
+            {% blocktrans %}
+            Are you sure you want to unbind this model from the document?
+            {% endblocktrans %}
+        </p>
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning">
+                <i class="fas fa-unlink"></i> {% trans "Confirm Unbind" %}
+            </button>
+            <a href="{% url 'user-models' %}" class="btn btn-secondary">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock body %}

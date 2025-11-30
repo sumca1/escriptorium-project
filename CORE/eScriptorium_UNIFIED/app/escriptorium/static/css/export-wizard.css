@@ -1,0 +1,88 @@
+/**
+ * export-wizard.css
+ * Styles for PDF/DOCX export wizard
+ * Part of BiblIA Dataset enhancements
+ */
+
+/* PDF/DOCX export options container */
+#pdf-docx-options {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+}
+
+#pdf-docx-options.visible {
+    display: block;
+}
+
+#pdf-docx-options h6 {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+#pdf-docx-options hr {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Format-specific option groups */
+#pdf-layout-group,
+#docx-images-group,
+#docx-paragraph-group {
+    transition: opacity 0.2s ease-in-out;
+}
+
+#pdf-layout-group.hidden,
+#docx-images-group.hidden,
+#docx-paragraph-group.hidden {
+    display: none;
+}
+
+/* Form field spacing */
+#pdf-docx-options .form-group {
+    margin-bottom: 1rem;
+}
+
+#pdf-docx-options .form-check {
+    margin-bottom: 0.5rem;
+}
+
+/* Input styling */
+#pdf-docx-options input[type="number"] {
+    max-width: 120px;
+}
+
+#pdf-docx-options select {
+    max-width: 100%;
+}
+
+/* Checkbox labels */
+#pdf-docx-options .form-check-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Help text */
+#pdf-docx-options small.form-text {
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+/* RTL support for Hebrew/Arabic */
+[dir="rtl"] #pdf-docx-options {
+    text-align: right;
+}
+
+[dir="rtl"] #pdf-docx-options .form-check-input {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+[dir="rtl"] #pdf-docx-options label {
+    text-align: right;
+}

@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "OCR Engine Comparison" %} - BiblIA{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comparison.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="viewer-container">
+    <!-- Header -->
+    <div class="viewer-header">
+        <h1>🔬 {% trans "OCR Engine Comparison" %}</h1>
+        <div class="subtitle">{% trans "Side-by-side comparison of Kraken vs Tesseract" %}</div>
+    </div>
+    
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <h3>{% trans "CER" %}</h3>
+            <div class="metric-value" id="cer-value">-</div>
+            <div class="metric-label">{% trans "Character Error Rate" %}</div>
+        </div>
+        
+        <div class="metric-card">
+            <h3>{% trans "WER" %}</h3>
+            <div class="metric-value" id="wer-value">-</div>
+            <div class="metric-label">{% trans "Word Error Rate" %}</div>
+        </div>
+        
+        <div class="metric-card">
+            <h3>{% trans "Accuracy" %}</h3>
+            <div class="metric-value" id="accuracy-value">-</div>
+            <div class="metric-label">%</div>
+        </div>
+        
+        <div class="metric-card">
+            <h3>{% trans "Similarity" %}</h3>
+            <div class="metric-value" id="similarity-value">-</div>
+            <div class="metric-label">%</div>
+        </div>
+    </div>
+    
+    <!-- Engine Info Cards -->
+    <div class="engines-grid">
+        <div class="engine-card kraken">
+            <h2>🐙 {% trans "Kraken" %}</h2>
+            <div class="engine-info">
+                <div class="info-row">
+                    <span class="info-label">{% trans "Model:" %}</span>
+                    <span class="info-value" id="kraken-model">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Confidence:" %}</span>
+                    <span class="info-value" id="kraken-confidence">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Lines:" %}</span>
+                    <span class="info-value" id="kraken-lines">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Created:" %}</span>
+                    <span class="info-value" id="kraken-created">-</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="engine-card tesseract">
+            <h2>🔷 {% trans "Tesseract" %}</h2>
+            <div class="engine-info">
+                <div class="info-row">
+                    <span class="info-label">{% trans "Model:" %}</span>
+                    <span class="info-value" id="tesseract-model">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Confidence:" %}</span>
+                    <span class="info-value" id="tesseract-confidence">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Lines:" %}</span>
+                    <span class="info-value" id="tesseract-lines">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{% trans "Created:" %}</span>
+                    <span class="info-value" id="tesseract-created">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Comparison Panel -->
+    <div class="comparison-panel">
+        <div class="comparison-controls">
+            <div class="controls-left">
+                <h2>📝 {% trans "Line-by-Line Comparison" %}</h2>
+            </div>
+            <div class="controls-right">
+                <button class="btn btn-primary" onclick="exportComparison()">
+                    <i class="fas fa-download"></i> {% trans "Export CSV" %}
+                </button>
+                <button class="btn btn-secondary" onclick="copyResults()">
+                    <i class="fas fa-copy"></i> {% trans "Copy" %}
+                </button>
+            </div>
+        </div>
+        
+        <!-- Loading State -->
+        <div id="loading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>{% trans "Loading comparison data..." %}</p>
+        </div>
+        
+        <!-- Error State -->
+        <div id="error" class="error-message hidden"></div>
+        
+        <!-- Side-by-Side Comparison -->
+        <div id="comparison-content" class="side-by-side hidden">
+            <div class="line-numbers" id="line-numbers"></div>
+            
+            <div class="transcription-column">
+                <div class="column-header kraken">
+                    🐙 {% trans "Kraken" %}
+                </div>
+                <div class="transcription-lines" id="kraken-lines-content"></div>
+            </div>
+            
+            <div class="transcription-column">
+                <div class="column-header tesseract">
+                    🔷 {% trans "Tesseract" %}
+                </div>
+                <div class="transcription-lines" id="tesseract-lines-content"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Charts Section -->
+    <div class="charts-section hidden" id="charts-section">
+        <h2>📊 {% trans "Visual Analytics" %}</h2>
+        <div class="charts-grid">
+            <div class="chart-container">
+                <div class="chart-title">{% trans "CER Comparison" %}</div>
+                <canvas id="cerChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">{% trans "Confidence Distribution" %}</div>
+                <canvas id="confidenceChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">{% trans "Line-by-Line Accuracy" %}</div>
+                <canvas id="accuracyChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="{% static 'js/comparison-viewer.js' %}"></script>
+{% endblock %}

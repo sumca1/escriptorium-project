@@ -1,0 +1,202 @@
+{% extends 'core/search/base.html' %}
+{% load i18n bootstrap %}
+
+{% block head_title %}
+{% trans "Find and replace in projects" %}
+{% endblock %}
+
+{% block meta_description %}{% trans "Find and replace text across all transcribed documents in eScriptorium - Batch text editing for manuscripts" %}{% endblock %}
+
+{% block title %}
+<div style="display: flex; justify-content: space-between; align-items: center; max-width: 100%;">
+  <span>{% trans "Find and replace text in projects" %}</span>
+  <div id="help-button-mount"></div>
+</div>
+{% endblock %}
+
+{% block extra_form_field_before %}
+<div class="col-auto">{% render_field form.mode group=True %}</div>
+{% endblock %}
+
+{% block extra_form_field_after %}
+<div class="col">{% render_field form.replacement group=True %}</div>
+{% endblock %}
+
+{% block action_button %}{% trans "Find" %}{% endblock %}
+
+{% block replacement_button %}
+  {% if page_obj and request.GET.replacement %}
+    <form method="post" class="inline-form float-right">
+      {% csrf_token %}
+      <button type="submit" name="apply_replace" value="{% trans 'Replace all' %}" class="btn btn-success">
+        {% trans 'Replace all' %}
+      </button>
+    </form>
+  {% endif %}
+{% endblock %}
+
+{% block part_title %}
+<a
+  title="{% trans 'Filter results by this part' %}"
+  href="?query={{ request.GET.query }}&project={{ request.GET.project }}&document={{ result.object.line.document_part.document.id }}&part={{ result.object.line.document_part.id }}"
+>
+  {{ result.object.line.document_part.title }}
+</a>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+
+<!-- Progress Indicator Mount Point -->
+<div id="progress-indicator-mount"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    // Original form validation
+    $('#search-form').on('submit', function(ev) {
+      if ($('#id_replacement').val() && !$('#id_project').val()) {
+        alert('You cannot find and replace text across multiple projects at once, please pick a single project before submitting your request.');
+        ev.preventDefault();
+      }
+    });
+    
+    // Mount HelpButton if Vue is available
+    if (typeof Vue !== 'undefined' && window.VueComponents && window.VueComponents.HelpButton) {
+      const helpApp = Vue.createApp({
+        template: '<HelpButton topic="find-replace" />',
+        components: { 
+          HelpButton: window.VueComponents.HelpButton 
+        }
+      });
+      helpApp.mount('#help-button-mount');
+    }
+    
+    // Mount ProgressIndicator if Vue is available
+    if (typeof Vue !== 'undefined' && window.VueComponents && window.VueComponents.ProgressIndicator) {
+      const progressApp = Vue.createApp({
+        template: `
+          <ProgressIndicator 
+            :active="progressActive"
+            :title="progressData.title"
+            :total="progressData.total"
+            :processed="progressData.processed"
+            :errors="progressData.errors"
+            :elapsedTime="progressData.elapsedTime"
+            :estimatedRemaining="progressData.estimatedRemaining"
+            :speed="progressData.speed"
+            :canceling="progressData.canceling"
+            @cancel="handleCancel"
+          />
+        `,
+        components: { 
+          ProgressIndicator: window.VueComponents.ProgressIndicator 
+        },
+        data() {
+          return {
+            progressActive: false,
+            progressData: {
+              title: 'מבצע החלפות...',
+              total: 0,
+              processed: 0,
+              errors: 0,
+              elapsedTime: 0,
+              estimatedRemaining: 0,
+              speed: 0,
+              canceling: false
+            },
+            ws: null,
+            taskId: null
+          };
+        },
+        methods: {
+          connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws/tasks/`;
+            
+            this.ws = new WebSocket(wsUrl);
+            
+            this.ws.onmessage = (event) => {
+              const data = JSON.parse(event.data);
+              
+              if (data.type === 'replace:start') {
+                this.progressActive = true;
+                this.progressData.total = data.total || 0;
+                this.progressData.processed = 0;
+                this.taskId = data.task_id;
+              }
+              else if (data.type === 'replace:progress') {
+                if (data.task_id === this.taskId) {
+                  this.progressData.processed = data.processed || 0;
+                  this.progressData.errors = data.errors || 0;
+                  this.progressData.elapsedTime = data.elapsed_time || 0;
+                  this.progressData.estimatedRemaining = data.estimated_remaining || 0;
+                  this.progressData.speed = data.speed || 0;
+                }
+              }
+              else if (data.type === 'replace:done') {
+                if (data.task_id === this.taskId) {
+                  this.progressData.processed = data.total || this.progressData.total;
+                  this.progressActive = false;
+                  
+                  // Show completion message
+                  setTimeout(() => {
+                    alert(`החלפה הושלמה!\nעובדו: ${data.processed} שורות\nשגיאות: ${data.errors}`);
+                    window.location.reload();
+                  }, 500);
+                }
+              }
+            };
+            
+            this.ws.onerror = (error) => {
+              console.error('WebSocket error:', error);
+            };
+            
+            this.ws.onclose = () => {
+              console.log('WebSocket closed');
+              // Auto-reconnect after 3 seconds
+              setTimeout(() => this.connectWebSocket(), 3000);
+            };
+          },
+          
+          handleCancel() {
+            if (this.taskId && confirm('האם אתה בטוח שברצונך לבטל את הפעולה?')) {
+              this.progressData.canceling = true;
+              
+              // Send cancel request via WebSocket
+              if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                this.ws.send(JSON.stringify({
+                  type: 'cancel_task',
+                  task_id: this.taskId
+                }));
+              }
+              
+              // Also try HTTP API
+              fetch(`/api/tasks/${this.taskId}/cancel/`, {
+                method: 'POST',
+                headers: {
+                  'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+              }).then(() => {
+                this.progressActive = false;
+                this.progressData.canceling = false;
+              }).catch((error) => {
+                console.error('Cancel failed:', error);
+                this.progressData.canceling = false;
+              });
+            }
+          }
+        },
+        mounted() {
+          this.connectWebSocket();
+        },
+        beforeUnmount() {
+          if (this.ws) {
+            this.ws.close();
+          }
+        }
+      });
+      progressApp.mount('#progress-indicator-mount');
+    }
+ });
+</script>
+{% endblock %}

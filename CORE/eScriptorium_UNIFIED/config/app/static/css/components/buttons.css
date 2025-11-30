@@ -1,0 +1,645 @@
+/**
+ * BiblIA eScriptorium - Button Components
+ * גרסה: 1.0.0
+ * 
+ * כל סגנוני הכפתורים במערכת
+ */
+
+/* ========================================
+   BASE BUTTON - כפתור בסיס
+   ======================================== */
+
+.btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  
+  /* Sizing */
+  height: var(--button-height-md);
+  padding: 0 var(--space-4);
+  
+  /* Typography */
+  font-family: var(--font-family-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  
+  /* Appearance */
+  border: var(--border-1) solid transparent;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+  
+  /* Transitions */
+  transition: var(--transition-all);
+  
+  /* Remove default button styles */
+  appearance: none;
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========================================
+   BUTTON VARIANTS - וריאציות
+   ======================================== */
+
+/**
+ * Primary Button (כפתור ראשי)
+ */
+.btn-primary {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-on-primary);
+  border-color: var(--color-primary-500);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+
+/**
+ * Secondary Button (כפתור משני)
+ */
+.btn-secondary {
+  background-color: var(--color-secondary-500);
+  color: var(--color-text-on-secondary);
+  border-color: var(--color-secondary-500);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-600);
+  border-color: var(--color-secondary-600);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+  background-color: var(--color-secondary-700);
+  border-color: var(--color-secondary-700);
+}
+
+/**
+ * Outline Button (כפתור מתאר)
+ */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-500);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-600);
+}
+
+.btn-outline:active {
+  background-color: var(--color-primary-100);
+}
+
+/**
+ * Ghost Button (כפתור שקוף)
+ */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-gray-100);
+}
+
+.btn-ghost:active {
+  background-color: var(--color-gray-200);
+}
+
+/**
+ * Text/Link Button (כפתור טקסט)
+ */
+.btn-link {
+  background-color: transparent;
+  color: var(--color-primary-600);
+  border-color: transparent;
+  padding: 0;
+  height: auto;
+}
+
+.btn-link:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+/**
+ * Danger/Error Button (כפתור מסוכן)
+ */
+.btn-danger {
+  background-color: var(--color-error);
+  color: var(--color-text-on-primary);
+  border-color: var(--color-error);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-error-dark);
+  border-color: var(--color-error-dark);
+  box-shadow: var(--shadow-error);
+}
+
+/**
+ * Success Button (כפתור הצלחה)
+ */
+.btn-success {
+  background-color: var(--color-success);
+  color: var(--color-text-on-primary);
+  border-color: var(--color-success);
+}
+
+.btn-success:hover {
+  background-color: var(--color-success-dark);
+  border-color: var(--color-success-dark);
+  box-shadow: var(--shadow-success);
+}
+
+/**
+ * Warning Button (כפתור אזהרה)
+ */
+.btn-warning {
+  background-color: var(--color-warning);
+  color: var(--color-text-on-secondary);
+  border-color: var(--color-warning);
+}
+
+.btn-warning:hover {
+  background-color: var(--color-warning-dark);
+  border-color: var(--color-warning-dark);
+}
+
+/**
+ * Info Button (כפתור מידע)
+ */
+.btn-info {
+  background-color: var(--color-info);
+  color: var(--color-text-on-primary);
+  border-color: var(--color-info);
+}
+
+.btn-info:hover {
+  background-color: var(--color-info-dark);
+  border-color: var(--color-info-dark);
+}
+
+/* ========================================
+   BUTTON SIZES - גדלים
+   ======================================== */
+
+/**
+ * Extra Small
+ */
+.btn-xs {
+  height: 28px;
+  padding: 0 var(--space-2);
+  font-size: var(--text-xs);
+  border-radius: var(--radius-base);
+}
+
+/**
+ * Small
+ */
+.btn-sm {
+  height: var(--button-height-sm);
+  padding: 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/**
+ * Medium (default)
+ */
+.btn-md {
+  height: var(--button-height-md);
+  padding: 0 var(--space-4);
+  font-size: var(--text-base);
+}
+
+/**
+ * Large
+ */
+.btn-lg {
+  height: var(--button-height-lg);
+  padding: 0 var(--space-6);
+  font-size: var(--text-lg);
+}
+
+/**
+ * Extra Large
+ */
+.btn-xl {
+  height: var(--button-height-xl);
+  padding: 0 var(--space-8);
+  font-size: var(--text-xl);
+  border-radius: var(--radius-xl);
+}
+
+/* ========================================
+   BUTTON SHAPES - צורות
+   ======================================== */
+
+/**
+ * Rounded (מעוגל)
+ */
+.btn-rounded {
+  border-radius: var(--radius-full);
+}
+
+/**
+ * Square (ריבועי)
+ */
+.btn-square {
+  border-radius: 0;
+}
+
+/**
+ * Circle (עגול - לאייקונים)
+ */
+.btn-circle {
+  border-radius: var(--radius-full);
+  padding: 0;
+  width: var(--button-height-md);
+}
+
+.btn-circle.btn-sm {
+  width: var(--button-height-sm);
+}
+
+.btn-circle.btn-lg {
+  width: var(--button-height-lg);
+}
+
+/* ========================================
+   BUTTON GROUPS - קבוצות כפתורים
+   ======================================== */
+
+.btn-group {
+  display: inline-flex;
+  gap: 0;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right-width: 0;
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  border-right-width: var(--border-1);
+}
+
+/* RTL Support for button groups */
+[dir="rtl"] .btn-group .btn {
+  border-right-width: var(--border-1);
+  border-left-width: 0;
+}
+
+[dir="rtl"] .btn-group .btn:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+[dir="rtl"] .btn-group .btn:last-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+  border-right-width: var(--border-1);
+  border-left-width: var(--border-1);
+}
+
+/* ========================================
+   ICON BUTTONS - כפתורים עם אייקונים
+   ======================================== */
+
+/**
+ * Icon only button
+ */
+.btn-icon {
+  padding: 0;
+  width: var(--button-height-md);
+  justify-content: center;
+}
+
+.btn-icon.btn-sm {
+  width: var(--button-height-sm);
+}
+
+.btn-icon.btn-lg {
+  width: var(--button-height-lg);
+}
+
+/**
+ * Button with icon and text
+ */
+.btn .icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  flex-shrink: 0;
+}
+
+.btn-sm .icon {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.btn-lg .icon,
+.btn-xl .icon {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+}
+
+/* Icon position */
+.btn .icon-left {
+  margin-right: var(--space-2);
+}
+
+.btn .icon-right {
+  margin-left: var(--space-2);
+}
+
+[dir="rtl"] .btn .icon-left {
+  margin-right: 0;
+  margin-left: var(--space-2);
+}
+
+[dir="rtl"] .btn .icon-right {
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+/* ========================================
+   LOADING STATE - מצב טעינה
+   ======================================== */
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: btn-spin 0.6s linear infinite;
+}
+
+/* Loading spinner color override */
+.btn-loading.btn-primary::after,
+.btn-loading.btn-success::after,
+.btn-loading.btn-danger::after,
+.btn-loading.btn-info::after {
+  border-color: rgba(255, 255, 255, 0.4);
+  border-right-color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   BLOCK BUTTON - כפתור מלא
+   ======================================== */
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* ========================================
+   BUTTON WITH BADGE - כפתור עם תג
+   ======================================== */
+
+.btn-badge {
+  position: relative;
+}
+
+.btn-badge .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: var(--font-bold);
+  line-height: 18px;
+  background-color: var(--color-error);
+  color: white;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-background);
+}
+
+[dir="rtl"] .btn-badge .badge {
+  right: auto;
+  left: -4px;
+}
+
+/* ========================================
+   DROPDOWN BUTTON - כפתור נפתח
+   ======================================== */
+
+.btn-dropdown {
+  position: relative;
+}
+
+.btn-dropdown::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: var(--space-2);
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+[dir="rtl"] .btn-dropdown::after {
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+/* ========================================
+   SOCIAL BUTTONS - כפתורים חברתיים
+   ======================================== */
+
+.btn-github {
+  background-color: #24292e;
+  color: white;
+  border-color: #24292e;
+}
+
+.btn-github:hover {
+  background-color: #1b1f23;
+  border-color: #1b1f23;
+}
+
+.btn-google {
+  background-color: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+.btn-google:hover {
+  background-color: #357ae8;
+  border-color: #357ae8;
+}
+
+.btn-facebook {
+  background-color: #1877f2;
+  color: white;
+  border-color: #1877f2;
+}
+
+.btn-facebook:hover {
+  background-color: #0c63d4;
+  border-color: #0c63d4;
+}
+
+/* ========================================
+   RESPONSIVE - תגובתי
+   ======================================== */
+
+@media (max-width: 640px) {
+  .btn {
+    font-size: var(--text-sm);
+  }
+  
+  .btn-lg {
+    height: var(--button-height-md);
+    font-size: var(--text-base);
+  }
+  
+  .btn-xl {
+    height: var(--button-height-lg);
+    font-size: var(--text-lg);
+  }
+  
+  /* Stack button groups on mobile */
+  .btn-group-responsive {
+    flex-direction: column;
+  }
+  
+  .btn-group-responsive .btn {
+    border-radius: 0;
+    border-width: var(--border-1);
+    border-bottom-width: 0;
+  }
+  
+  .btn-group-responsive .btn:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+  }
+  
+  .btn-group-responsive .btn:last-child {
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    border-bottom-width: var(--border-1);
+  }
+}
+
+/* ========================================
+   DARK MODE - מצב כהה
+   ======================================== */
+
+[data-theme="dark"] .btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .btn-outline {
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-400);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: var(--color-primary-300);
+}
+
+/* ========================================
+   ACCESSIBILITY - נגישות
+   ======================================== */
+
+/**
+ * High contrast mode support
+ */
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+  
+  .btn:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+/**
+ * Reduced motion
+ */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  
+  .btn:active {
+    transform: none;
+  }
+  
+  .btn-loading::after {
+    animation: none;
+  }
+}

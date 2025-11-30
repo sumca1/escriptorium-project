@@ -1,0 +1,123 @@
+{% comment %}
+BiblIA Unified Translation System - דוגמה מעשית
+=================================================
+
+קובץ דוגמה שמראה איך להשתמש במערכת התרגום החדשה.
+
+תאריך: 2 בנובמבר 2025
+סטטוס: ✅ מוכן לשימוש!
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans 'BiblIA Translation Demo' %}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            direction: rtl;
+        }
+        .demo-box {
+            background: #f5f5f5;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        h1 { color: #2196F3; }
+        h2 { color: #FF9800; }
+        code {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 {% trans 'BiblIA Translation Demo' %}</h1>
+    
+    <div class="demo-box">
+        <h2>✅ {% trans 'Basic Translations' %}</h2>
+        
+        <p><strong>{% trans 'Home' %}:</strong> <span class="success">{% trans 'Home' %}</span></p>
+        <p><strong>{% trans 'Close' %}:</strong> <span class="success">{% trans 'Close' %}</span></p>
+        <p><strong>{% trans 'Save' %}:</strong> <span class="success">{% trans 'Save' %}</span></p>
+        <p><strong>{% trans 'Cancel' %}:</strong> <span class="success">{% trans 'Cancel' %}</span></p>
+        
+        <hr>
+        
+        <p><code>{% verbatim %}{% trans 'Home' %}{% endverbatim %}</code> → {% trans 'Home' %}</p>
+    </div>
+    
+    <div class="demo-box">
+        <h2>📝 {% trans 'Form Labels' %}</h2>
+        
+        <form>
+            <label><strong>{% trans 'Name' %}:</strong> <input type="text" placeholder="{% trans 'Name' %}"></label><br><br>
+            <label><strong>{% trans 'Description' %}:</strong> <textarea placeholder="{% trans 'Description' %}"></textarea></label><br><br>
+            
+            <button type="submit">{% trans 'Save' %}</button>
+            <button type="button">{% trans 'Cancel' %}</button>
+        </form>
+    </div>
+    
+    <div class="demo-box">
+        <h2>🔍 {% trans 'Filter Example' %}</h2>
+        
+        <p>{% trans 'Using the translate filter' %}:</p>
+        <ul>
+            <li>{{ 'Home'|translate }}</li>
+            <li>{{ 'My Projects'|translate }}</li>
+            <li>{{ 'Create New'|translate }}</li>
+        </ul>
+        
+        <code>{% verbatim %}{{ 'Home'|translate }}{% endverbatim %}</code>
+    </div>
+    
+    <div class="demo-box">
+        <h2>📊 {% trans 'Statistics' %}</h2>
+        
+        <p>{% trans 'Total translations available' %}: <strong class="success">3,466</strong></p>
+        <p>{% trans 'Categories' %}:</p>
+        <ul>
+            <li>UI: 251</li>
+            <li>Forms: 141</li>
+            <li>Messages: 146</li>
+            <li>Tooltips: 9</li>
+            <li>Pages: 337</li>
+            <li>General: 2,582</li>
+        </ul>
+    </div>
+    
+    <div class="demo-box">
+        <h2>💡 {% trans 'How It Works' %}</h2>
+        
+        <ol>
+            <li>{% trans 'All translations stored in' %} <code>translations/unified_he.json</code></li>
+            <li>{% trans 'Simple loader' %}: <code>translations/translation_loader.py</code></li>
+            <li>{% trans 'Template tags automatically available' %} (no {% verbatim %}{% load %}{% endverbatim %} needed!)</li>
+            <li>{% trans 'Fallback to key if translation missing' %}</li>
+        </ol>
+        
+        <p class="success">✅ {% trans 'No compilation needed' %} - {% trans 'Just edit JSON and refresh' %}!</p>
+    </div>
+    
+    <hr>
+    
+    <p style="text-align: center; color: #888;">
+        <small>
+            {% trans 'Powered by BiblIA Unified Translation System' %} | 
+            {% trans 'Created' %}: 2 בנובמבר 2025
+        </small>
+    </p>
+</body>
+</html>

@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Model Evaluation - CERberus" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+.cer-result-card {
+    transition: transform 0.2s;
+}
+.cer-result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.result-excellent { border-left: 4px solid #28a745; }
+.result-good { border-left: 4px solid #17a2b8; }
+.result-fair { border-left: 4px solid #ffc107; }
+.result-poor { border-left: 4px solid #dc3545; }
+.char-stats-table {
+    font-size: 0.9rem;
+}
+.option-card {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.option-card.active {
+    background-color: #007bff;
+    color: white;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                <i class="fas fa-dog"></i>
+                {% trans "Model Evaluation - CERberus" %}
+            </h2>
+            <p class="text-muted">
+                {% trans "Evaluate OCR/HTR accuracy by calculating Character Error Rate (CER) between reference and hypothesis texts" %}
+            </p>
+            <hr>
+        </div>
+    </div>
+    
+    <!-- Status Check -->
+    {% if not cerberus_available %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning">
+                <h5><i class="fas fa-exclamation-triangle"></i> {% trans "CERberus Module Not Available" %}</h5>
+                <p>{% trans "The CERberus Python module could not be loaded. Please check the installation." %}</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    
+    <!-- Tabs -->
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="cerberusTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="text-tab" data-toggle="tab" href="#text-mode" role="tab">
+                        <i class="fas fa-keyboard"></i> {% trans "Text Mode" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="document-tab" data-toggle="tab" href="#document-mode" role="tab">
+                        <i class="fas fa-file-alt"></i> {% trans "Document Mode" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="tab-content mt-3" id="cerberusTabContent">
+        <!-- Text Mode -->
+        <div class="tab-pane fade show active" id="text-mode" role="tabpanel">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <i class="fas fa-edit"></i>
+                                {% trans "Enter Text for Evaluation" %}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="text-cer-form">
+                                <div class="row">
+                                    <!-- Reference Text -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="reference-text">
+                                                <strong>{% trans "Reference Text (Ground Truth)" %}:</strong>
+                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="{% trans 'The correct text you want to compare against' %}"></i>
+                                            </label>
+                                            <textarea 
+                                                class="form-control" 
+                                                id="reference-text"
+                                                rows="10"
+                                                dir="auto"
+                                                placeholder="{% trans 'Paste your ground truth text here...' %}"
+                                                required
+                                            ></textarea>
+                                            <small class="form-text text-muted">
+                                                <span id="ref-char-count">0</span> {% trans "characters" %}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Hypothesis Text -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="hypothesis-text">
+                                                <strong>{% trans "Hypothesis Text (OCR/HTR Output)" %}:</strong>
+                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="{% trans 'The text produced by your OCR/HTR model' %}"></i>
+                                            </label>
+                                            <textarea 
+                                                class="form-control" 
+                                                id="hypothesis-text"
+                                                rows="10"
+                                                dir="auto"
+                                                placeholder="{% trans 'Paste your OCR/HTR output here...' %}"
+                                                required
+                                            ></textarea>
+                                            <small class="form-text text-muted">
+                                                <span id="hyp-char-count">0</span> {% trans "characters" %}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Options (Collapsible) -->
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <button 
+                                            class="btn btn-sm btn-outline-secondary" 
+                                            type="button" 
+                                            data-toggle="collapse" 
+                                            data-target="#cer-options"
+                                        >
+                                            <i class="fas fa-cog"></i>
+                                            {% trans "Evaluation Options" %}
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="collapse mt-3" id="cer-options">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6>{% trans "Ignore Settings" %}:</h6>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="ignore-case">
+                                                        <label class="custom-control-label" for="ignore-case">
+                                                            {% trans "Ignore Case" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="ignore-punctuation">
+                                                        <label class="custom-control-label" for="ignore-punctuation">
+                                                            {% trans "Ignore Punctuation" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="ignore-whitespace">
+                                                        <label class="custom-control-label" for="ignore-whitespace">
+                                                            {% trans "Ignore Whitespace" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="ignore-numbers">
+                                                        <label class="custom-control-label" for="ignore-numbers">
+                                                            {% trans "Ignore Numbers" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="ignore-newlines">
+                                                        <label class="custom-control-label" for="ignore-newlines">
+                                                            {% trans "Ignore Newlines" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr>
+                                            <h6>{% trans "Advanced Settings" %}:</h6>
+                                            <div class="form-group">
+                                                <label for="ignore-chars">{% trans "Ignore Specific Characters" %}:</label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="ignore-chars"
+                                                    placeholder="{% trans 'e.g., .,!?' %}"
+                                                >
+                                                <small class="form-text text-muted">
+                                                    {% trans "Enter characters to ignore (without spaces)" %}
+                                                </small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="discard-chars">{% trans "Discard Lines With Characters" %}:</label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="discard-chars"
+                                                    placeholder="{% trans 'e.g., #@' %}"
+                                                >
+                                                <small class="form-text text-muted">
+                                                    {% trans "Lines containing these characters will be excluded" %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="calculate-cer-btn">
+                                            <i class="fas fa-calculator"></i>
+                                            {% trans "Calculate CER" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <!-- Loading Indicator -->
+                            <div id="text-loading" class="mt-4 text-center" style="display: none;">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">{% trans "Loading..." %}</span>
+                                </div>
+                                <p class="mt-2">{% trans "Calculating CER..." %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Document Mode -->
+        <div class="tab-pane fade" id="document-mode" role="tabpanel">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <i class="fas fa-file-alt"></i>
+                                {% trans "Compare Document Transcriptions" %}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="document-cer-form">
+                                <div class="form-group">
+                                    <label for="document-select">
+                                        <strong>{% trans "Select Document" %}:</strong>
+                                    </label>
+                                    <select class="form-control" id="document-select" required>
+                                        <option value="">{% trans "Choose a document..." %}</option>
+                                        {% for doc in user_documents %}
+                                        <option value="{{ doc.id }}">
+                                            {{ doc.name }} ({{ doc.parts.count }} {% trans "parts" %})
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    {% trans "This feature will be available once transcription selection is implemented" %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Section -->
+    <div class="row mt-4" id="results-section" style="display: none;">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>
+                        <i class="fas fa-chart-line"></i>
+                        {% trans "Evaluation Results" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Main CER Result -->
+                    <div id="main-results"></div>
+                    
+                    <!-- Character Statistics -->
+                    <div id="char-stats" class="mt-4"></div>
+                    
+                    <!-- Export Button -->
+                    <div class="mt-3">
+                        <button class="btn btn-success" id="export-results-btn">
+                            <i class="fas fa-download"></i>
+                            {% trans "Export Results (JSON)" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Character counting
+    document.getElementById('reference-text').addEventListener('input', function() {
+        document.getElementById('ref-char-count').textContent = this.value.length;
+    });
+    
+    document.getElementById('hypothesis-text').addEventListener('input', function() {
+        document.getElementById('hyp-char-count').textContent = this.value.length;
+    });
+    
+    // Enable tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    // Handle text CER form submission
+    document.getElementById('text-cer-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        calculateTextCER();
+    });
+    
+    function calculateTextCER() {
+        const reference = document.getElementById('reference-text').value;
+        const hypothesis = document.getElementById('hypothesis-text').value;
+        
+        if (!reference || !hypothesis) {
+            alert("{% trans 'Please enter both reference and hypothesis texts' %}");
+            return;
+        }
+        
+        const options = {
+            reference: reference,
+            hypothesis: hypothesis,
+            ignore_case: document.getElementById('ignore-case').checked,
+            ignore_punctuation: document.getElementById('ignore-punctuation').checked,
+            ignore_whitespace: document.getElementById('ignore-whitespace').checked,
+            ignore_numbers: document.getElementById('ignore-numbers').checked,
+            ignore_newlines: document.getElementById('ignore-newlines').checked,
+            ignore_chars: document.getElementById('ignore-chars').value || null,
+            discard_chars: document.getElementById('discard-chars').value || null
+        };
+        
+        // Show loading
+        document.getElementById('text-loading').style.display = 'block';
+        document.getElementById('results-section').style.display = 'none';
+        document.getElementById('calculate-cer-btn').disabled = true;
+        
+        fetch('/api/cerberus/calculate/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify(options)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('text-loading').style.display = 'none';
+            document.getElementById('calculate-cer-btn').disabled = false;
+            
+            if (data.success) {
+                displayResults(data.result);
+            } else {
+                alert('{% trans "Error" %}: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('text-loading').style.display = 'none';
+            document.getElementById('calculate-cer-btn').disabled = false;
+            alert('{% trans "Failed to calculate CER. Please try again." %}');
+        });
+    }
+    
+    function displayResults(result) {
+        document.getElementById('results-section').style.display = 'block';
+        
+        // Determine result quality
+        let quality = 'poor';
+        let qualityClass = 'result-poor';
+        if (result.CER <= 5) {
+            quality = 'excellent';
+            qualityClass = 'result-excellent';
+        } else if (result.CER <= 10) {
+            quality = 'good';
+            qualityClass = 'result-good';
+        } else if (result.CER <= 20) {
+            quality = 'fair';
+            qualityClass = 'result-fair';
+        }
+        
+        // Main results
+        const mainHTML = `
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="card cer-result-card ${qualityClass}">
+                        <div class="card-body">
+                            <h2 class="display-4">${result.CER}%</h2>
+                            <p class="text-muted">{% trans "Character Error Rate" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card cer-result-card">
+                        <div class="card-body">
+                            <h3>${result.numCor}</h3>
+                            <p class="text-muted small">{% trans "Correct" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card cer-result-card">
+                        <div class="card-body">
+                            <h3>${result.numSub}</h3>
+                            <p class="text-muted small">{% trans "Substitutions" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card cer-result-card">
+                        <div class="card-body">
+                            <h3>${result.numIns}</h3>
+                            <p class="text-muted small">{% trans "Insertions" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card cer-result-card">
+                        <div class="card-body">
+                            <h3>${result.numDel}</h3>
+                            <p class="text-muted small">{% trans "Deletions" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <p><strong>{% trans "Total Characters" %}:</strong> ${result.numCount}</p>
+                    ${result.original_lines_count ? `<p><strong>{% trans "Lines Analyzed" %}:</strong> ${result.original_lines_count}</p>` : ''}
+                </div>
+            </div>
+        `;
+        document.getElementById('main-results').innerHTML = mainHTML;
+        
+        // Character statistics (if available)
+        if (result.char_stats && result.char_stats.length > 0) {
+            let statsHTML = `
+                <h6>{% trans "Character Statistics" %} (Top 20):</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped char-stats-table">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Character" %}</th>
+                                <th>{% trans "Count" %}</th>
+                                <th>{% trans "Correct" %}</th>
+                                <th>{% trans "Incorrect" %}</th>
+                                <th>{% trans "Accuracy" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            result.char_stats.slice(0, 20).forEach(stat => {
+                const accuracy = ((stat.correct / stat.count) * 100).toFixed(1);
+                statsHTML += `
+                    <tr>
+                        <td dir="auto"><code>${escapeHtml(stat.character)}</code></td>
+                        <td>${stat.count}</td>
+                        <td>${stat.correct}</td>
+                        <td>${stat.incorrect}</td>
+                        <td>${accuracy}%</td>
+                    </tr>
+                `;
+            });
+            
+            statsHTML += '</tbody></table></div>';
+            document.getElementById('char-stats').innerHTML = statsHTML;
+        }
+        
+        // Store for export
+        window.cerResults = result;
+        
+        // Scroll to results
+        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Export results
+    document.getElementById('export-results-btn').addEventListener('click', function() {
+        if (window.cerResults) {
+            const data = JSON.stringify(window.cerResults, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cer_results_' + new Date().toISOString().slice(0,10) + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    });
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+{% endblock %}

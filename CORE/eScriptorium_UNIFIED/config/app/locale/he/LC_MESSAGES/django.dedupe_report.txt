@@ -1,0 +1,14 @@
+Original entries (approx): 1237
+Unique msgids kept: 1228
+Duplicates removed: 9
+
+List of duplicates (first 200 shown):
+duplicate_idx=1155 first_idx=756 msgid='Description'
+duplicate_idx=1157 first_idx=745 msgid='Owner'
+duplicate_idx=1168 first_idx=162 msgid='Created At'
+duplicate_idx=1172 first_idx=270 msgid='Total Characters'
+duplicate_idx=1182 first_idx=894 msgid='Content'
+duplicate_idx=1186 first_idx=186 msgid='Metadata'
+duplicate_idx=1197 first_idx=441 msgid='Document'
+duplicate_idx=1201 first_idx=1174 msgid='Ground Truth Corpus'
+duplicate_idx=1223 first_idx=544 msgid='Running'

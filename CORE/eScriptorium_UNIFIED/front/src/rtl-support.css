@@ -1,0 +1,486 @@
+/**
+ * RTL (Right-to-Left) Support for Hebrew & Arabic
+ * Version: 1.0
+ * Date: 2025-10-30
+ * 
+ * This CSS file provides comprehensive RTL support for eScriptorium
+ * when using Hebrew or Arabic languages.
+ */
+
+/* ============================================
+   GLOBAL RTL SETTINGS
+   ============================================ */
+
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    text-align: right;
+}
+
+/* ============================================
+   NAVIGATION & HEADER
+   ============================================ */
+
+/* Editor Navigation Bar */
+[dir="rtl"] .escr-editor-nav {
+    direction: rtl;
+}
+
+[dir="rtl"] .escr-editor-nav-meta {
+    text-align: right;
+}
+
+[dir="rtl"] .escr-editor-nav-actions {
+    margin-left: 0;
+    margin-right: auto;
+    order: -1; /* Move actions to the right side */
+}
+
+/* Global Navigation */
+[dir="rtl"] .escr-global-nav {
+    direction: rtl;
+}
+
+[dir="rtl"] .navbar-nav {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar-brand {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+/* Dropdown menus */
+[dir="rtl"] .dropdown-menu {
+    text-align: right;
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+}
+
+/* ============================================
+   PANELS & SIDEBARS
+   ============================================ */
+
+/* Editor Panels */
+[dir="rtl"] .panel {
+    text-align: right;
+}
+
+[dir="rtl"] .panel-icon {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .panel-header {
+    text-align: right;
+}
+
+/* Sidebar */
+[dir="rtl"] .escr-sidebar {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .sidebar-content {
+    text-align: right;
+}
+
+/* Panel toggles */
+[dir="rtl"] .panel-toggle {
+    left: auto;
+    right: 0;
+}
+
+/* ============================================
+   BUTTONS & BUTTON GROUPS
+   ============================================ */
+
+[dir="rtl"] .btn-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .btn-toolbar {
+    flex-direction: row-reverse;
+}
+
+/* Button icons */
+[dir="rtl"] .btn i {
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .btn i:first-child {
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+/* ============================================
+   FORMS & INPUTS
+   ============================================ */
+
+[dir="rtl"] .form-group {
+    text-align: right;
+}
+
+[dir="rtl"] .form-control {
+    text-align: right;
+}
+
+[dir="rtl"] label {
+    text-align: right;
+}
+
+[dir="rtl"] .form-check {
+    text-align: right;
+    padding-right: 1.25rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] .form-check-input {
+    margin-right: -1.25rem;
+    margin-left: 0;
+}
+
+/* Input groups */
+[dir="rtl"] .input-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .input-group-prepend {
+    margin-left: -1px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .input-group-append {
+    margin-right: -1px;
+    margin-left: 0;
+}
+
+/* ============================================
+   MODALS & DIALOGS
+   ============================================ */
+
+[dir="rtl"] .modal-header {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-body {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-footer {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .modal-footer > * {
+    margin-left: 0;
+    margin-right: 0.25rem;
+}
+
+[dir="rtl"] .close {
+    float: left;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+[dir="rtl"] .table {
+    text-align: right;
+}
+
+[dir="rtl"] .table th,
+[dir="rtl"] .table td {
+    text-align: right;
+}
+
+[dir="rtl"] .table-responsive {
+    direction: rtl;
+}
+
+/* ============================================
+   LISTS & LIST GROUPS
+   ============================================ */
+
+[dir="rtl"] .list-group {
+    padding-right: 0;
+}
+
+[dir="rtl"] .list-group-item {
+    text-align: right;
+}
+
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+    padding-right: 2rem;
+    padding-left: 0;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+[dir="rtl"] .card {
+    text-align: right;
+}
+
+[dir="rtl"] .card-header {
+    text-align: right;
+}
+
+[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+[dir="rtl"] .card-footer {
+    text-align: right;
+}
+
+/* ============================================
+   ALERTS & NOTIFICATIONS
+   ============================================ */
+
+[dir="rtl"] .alert {
+    text-align: right;
+}
+
+[dir="rtl"] .alert-dismissible .close {
+    left: 0;
+    right: auto;
+}
+
+[dir="rtl"] .toast {
+    text-align: right;
+}
+
+/* ============================================
+   BREADCRUMBS
+   ============================================ */
+
+[dir="rtl"] .breadcrumb {
+    padding-right: 0;
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+    padding-left: 0;
+    padding-right: 0.5rem;
+    content: "\\";
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item {
+    padding-right: 0.5rem;
+    padding-left: 0;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+[dir="rtl"] .pagination {
+    flex-direction: row-reverse;
+}
+
+/* ============================================
+   TOOLTIPS & POPOVERS
+   ============================================ */
+
+[dir="rtl"] .tooltip {
+    text-align: right;
+}
+
+[dir="rtl"] .popover {
+    text-align: right;
+}
+
+/* ============================================
+   EDITOR SPECIFIC
+   ============================================ */
+
+/* Transcription panels */
+[dir="rtl"] .transcription-panel {
+    text-align: right;
+}
+
+[dir="rtl"] .line-transcription {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Segmentation tools */
+[dir="rtl"] .segmentation-toolbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .toolbar-group {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] .toolbar-group:last-child {
+    margin-right: 0;
+}
+
+/* Line numbers */
+[dir="rtl"] .line-number {
+    left: auto;
+    right: 0;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+[dir="rtl"] .float-left {
+    float: right !important;
+}
+
+[dir="rtl"] .float-right {
+    float: left !important;
+}
+
+[dir="rtl"] .mr-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+[dir="rtl"] .ml-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+    text-align: left !important;
+}
+
+/* Margin utilities */
+[dir="rtl"] .mr-1 { margin-left: 0.25rem !important; margin-right: 0 !important; }
+[dir="rtl"] .mr-2 { margin-left: 0.5rem !important; margin-right: 0 !important; }
+[dir="rtl"] .mr-3 { margin-left: 1rem !important; margin-right: 0 !important; }
+[dir="rtl"] .mr-4 { margin-left: 1.5rem !important; margin-right: 0 !important; }
+[dir="rtl"] .mr-5 { margin-left: 3rem !important; margin-right: 0 !important; }
+
+[dir="rtl"] .ml-1 { margin-right: 0.25rem !important; margin-left: 0 !important; }
+[dir="rtl"] .ml-2 { margin-right: 0.5rem !important; margin-left: 0 !important; }
+[dir="rtl"] .ml-3 { margin-right: 1rem !important; margin-left: 0 !important; }
+[dir="rtl"] .ml-4 { margin-right: 1.5rem !important; margin-left: 0 !important; }
+[dir="rtl"] .ml-5 { margin-right: 3rem !important; margin-left: 0 !important; }
+
+/* Padding utilities */
+[dir="rtl"] .pr-1 { padding-left: 0.25rem !important; padding-right: 0 !important; }
+[dir="rtl"] .pr-2 { padding-left: 0.5rem !important; padding-right: 0 !important; }
+[dir="rtl"] .pr-3 { padding-left: 1rem !important; padding-right: 0 !important; }
+[dir="rtl"] .pr-4 { padding-left: 1.5rem !important; padding-right: 0 !important; }
+[dir="rtl"] .pr-5 { padding-left: 3rem !important; padding-right: 0 !important; }
+
+[dir="rtl"] .pl-1 { padding-right: 0.25rem !important; padding-left: 0 !important; }
+[dir="rtl"] .pl-2 { padding-right: 0.5rem !important; padding-left: 0 !important; }
+[dir="rtl"] .pl-3 { padding-right: 1rem !important; padding-left: 0 !important; }
+[dir="rtl"] .pl-4 { padding-right: 1.5rem !important; padding-left: 0 !important; }
+[dir="rtl"] .pl-5 { padding-right: 3rem !important; padding-left: 0 !important; }
+
+/* ============================================
+   SPECIFIC COMPONENT FIXES
+   ============================================ */
+
+/* Document list */
+[dir="rtl"] .document-list-item {
+    text-align: right;
+}
+
+/* Image viewer */
+[dir="rtl"] .image-viewer-controls {
+    flex-direction: row-reverse;
+}
+
+/* Search box */
+[dir="rtl"] .search-box {
+    text-align: right;
+}
+
+[dir="rtl"] .search-icon {
+    left: auto;
+    right: 10px;
+}
+
+/* Tags */
+[dir="rtl"] .tag {
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+/* Status badges */
+[dir="rtl"] .badge {
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Slide animations should reverse direction */
+[dir="rtl"] .slide-enter-active {
+    animation-direction: reverse;
+}
+
+[dir="rtl"] .slide-leave-active {
+    animation-direction: reverse;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    [dir="rtl"] {
+        direction: rtl;
+        text-align: right;
+    }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    [dir="rtl"] .mobile-nav {
+        flex-direction: row-reverse;
+    }
+    
+    [dir="rtl"] .mobile-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+[dir="rtl"] .sr-only {
+    /* Screen readers should still read in correct direction */
+    direction: rtl;
+}
+
+/* ============================================
+   CUSTOM SCROLLBARS (for WebKit browsers)
+   ============================================ */
+
+[dir="rtl"] ::-webkit-scrollbar {
+    /* Keep scrollbar on left side for RTL */
+}
+
+[dir="rtl"] .panel-content {
+    scrollbar-gutter: stable both-edges;
+}

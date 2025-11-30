@@ -1,0 +1,629 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block head_title %}{% trans "Model Checker" %} - eScriptorium{% endblock %}
+
+{% block extra_css %}
+<style>
+    .model-checker-container {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+    }
+    
+    .checker-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2.5rem 2rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    }
+    
+    .checker-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+    
+    .checker-header p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+        margin-bottom: 0;
+    }
+    
+    .action-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .action-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+    
+    .action-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+    }
+    
+    .action-card .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .action-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    
+    .action-card p {
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .model-selector {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .model-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .model-item {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .model-item:hover {
+        border-color: #667eea;
+        background-color: #f8f9ff;
+    }
+    
+    .model-item.selected {
+        border-color: #667eea;
+        background-color: #f0f3ff;
+    }
+    
+    .model-item input[type="checkbox"] {
+        margin-right: 0.5rem;
+    }
+    
+    .results-container {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: none;
+    }
+    
+    .results-container.active {
+        display: block;
+    }
+    
+    .analysis-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .analysis-section:last-child {
+        border-bottom: none;
+    }
+    
+    .analysis-section h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .stat-card {
+        background: #f8f9fa;
+        padding: 1.25rem;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+    }
+    
+    .stat-card .label {
+        font-size: 0.85rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-card .value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+    }
+    
+    .badge {
+        display: inline-block;
+        padding: 0.35rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+    }
+    
+    .badge-success {
+        background: #d4edda;
+        color: #155724;
+    }
+    
+    .badge-warning {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    .badge-info {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+    
+    .badge-danger {
+        background: #f8d7da;
+        color: #721c24;
+    }
+    
+    .recommendation-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .recommendation-list li {
+        background: #f8f9ff;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+    }
+    
+    .recommendation-list li::before {
+        content: "💡";
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+    
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    
+    .loading-overlay.active {
+        display: flex;
+    }
+    
+    .loading-spinner {
+        background: white;
+        padding: 2rem 3rem;
+        border-radius: 12px;
+        text-align: center;
+    }
+    
+    .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #667eea;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-secondary {
+        background: white;
+        border: 2px solid #667eea;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        color: #667eea;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: #f8f9ff;
+    }
+    
+    .error-message {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #dc3545;
+        margin: 1rem 0;
+        display: none;
+    }
+    
+    .error-message.active {
+        display: block;
+    }
+    
+    .hebrew-text {
+        font-family: 'Arial', 'Noto Sans Hebrew', sans-serif;
+        direction: rtl;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="model-checker-container">
+    <!-- Header -->
+    <div class="checker-header">
+        <h1>🔍 {% trans "Model Checker" %}</h1>
+        <p class="hebrew-text">כלי מתקדם לניתוח ובדיקת מודלי OCR - זיהוי עברית, ניתוח charset, הערכת איכות והשוואה</p>
+    </div>
+    
+    <!-- Action Cards -->
+    <div class="action-cards">
+        <div class="action-card" onclick="showMode('analyze')">
+            <div class="icon">🔬</div>
+            <h3>{% trans "Analyze Single Model" %}</h3>
+            <p class="hebrew-text">ניתוח מפורט של מודל בודד - charset, Hebrew detection, quality estimate</p>
+        </div>
+        
+        <div class="action-card" onclick="showMode('compare')">
+            <div class="icon">⚖️</div>
+            <h3>{% trans "Compare Models" %}</h3>
+            <p class="hebrew-text">השוואה מקבילה של 2+ מודלים - מצא את המודל הטוב ביותר</p>
+        </div>
+        
+        <div class="action-card" onclick="showMode('scan')">
+            <div class="icon">📊</div>
+            <h3>{% trans "Quick Scan" %}</h3>
+            <p class="hebrew-text">סריקה מהירה של כל המודלים שלך - סקירה כללית</p>
+        </div>
+    </div>
+    
+    <!-- Model Selector (for analyze/compare modes) -->
+    <div class="model-selector" id="model-selector" style="display: none;">
+        <h2 id="selector-title">{% trans "Select Models" %}</h2>
+        <p id="selector-desc" class="hebrew-text">בחר מודלים לניתוח</p>
+        
+        <div class="model-grid" id="model-grid">
+            {% for model in user.owned_models.all %}
+            <div class="model-item" onclick="toggleModel({{ model.id }}, this)">
+                <input type="checkbox" name="selected_models" value="{{ model.id }}" id="model_{{ model.id }}">
+                <label for="model_{{ model.id }}">
+                    <strong>{{ model.name }}</strong><br>
+                    <small class="text-muted">{{ model.file.size|filesizeformat }}</small>
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+            <button class="btn-primary" onclick="runAnalysis()">
+                <span id="run-btn-text">{% trans "Run Analysis" %}</span>
+            </button>
+            <button class="btn-secondary" onclick="cancelSelection()">{% trans "Cancel" %}</button>
+        </div>
+    </div>
+    
+    <!-- Results Container -->
+    <div class="results-container" id="results-container">
+        <h2>{% trans "Analysis Results" %}</h2>
+        <div id="results-content"></div>
+        <button class="btn-secondary" onclick="resetChecker()" style="margin-top: 1.5rem;">
+            {% trans "New Analysis" %}
+        </button>
+    </div>
+    
+    <!-- Error Message -->
+    <div class="error-message" id="error-message"></div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p class="hebrew-text">מנתח מודלים...</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let currentMode = null;
+const csrfToken = '{{ csrf_token }}';
+
+function showMode(mode) {
+    currentMode = mode;
+    const selector = document.getElementById('model-selector');
+    const title = document.getElementById('selector-title');
+    const desc = document.getElementById('selector-desc');
+    const runBtn = document.getElementById('run-btn-text');
+    
+    // Reset selections
+    document.querySelectorAll('.model-item').forEach(item => {
+        item.classList.remove('selected');
+        item.querySelector('input').checked = false;
+    });
+    
+    if (mode === 'scan') {
+        // Direct scan - no model selection needed
+        runQuickScan();
+    } else {
+        selector.style.display = 'block';
+        
+        if (mode === 'analyze') {
+            title.textContent = '{% trans "Select a Model" %}';
+            desc.textContent = 'בחר מודל אחד לניתוח מפורט';
+            runBtn.textContent = '{% trans "Analyze Model" %}';
+        } else {
+            title.textContent = '{% trans "Select Models to Compare" %}';
+            desc.textContent = 'בחר 2 מודלים או יותר להשוואה';
+            runBtn.textContent = '{% trans "Compare Models" %}';
+        }
+    }
+}
+
+function toggleModel(modelId, element) {
+    const checkbox = element.querySelector('input');
+    const isSelected = !checkbox.checked;
+    
+    // For analyze mode - only allow one selection
+    if (currentMode === 'analyze' && isSelected) {
+        document.querySelectorAll('.model-item').forEach(item => {
+            item.classList.remove('selected');
+            item.querySelector('input').checked = false;
+        });
+    }
+    
+    checkbox.checked = isSelected;
+    element.classList.toggle('selected', isSelected);
+}
+
+function cancelSelection() {
+    document.getElementById('model-selector').style.display = 'none';
+    currentMode = null;
+}
+
+function runAnalysis() {
+    const selected = Array.from(document.querySelectorAll('input[name="selected_models"]:checked'))
+        .map(cb => cb.value);
+    
+    if (selected.length === 0) {
+        showError('אנא בחר לפחות מודל אחד');
+        return;
+    }
+    
+    if (currentMode === 'compare' && selected.length < 2) {
+        showError('אנא בחר לפחות 2 מודלים להשוואה');
+        return;
+    }
+    
+    if (currentMode === 'analyze' && selected.length > 1) {
+        showError('אנא בחר מודל אחד בלבד');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('action', currentMode);
+    
+    if (currentMode === 'analyze') {
+        formData.append('model_id', selected[0]);
+    } else {
+        selected.forEach(id => formData.append('model_ids[]', id));
+    }
+    
+    executeRequest(formData);
+}
+
+function runQuickScan() {
+    const formData = new FormData();
+    formData.append('action', 'scan');
+    executeRequest(formData);
+}
+
+function executeRequest(formData) {
+    showLoading();
+    
+    fetch('{% url "model-checker" %}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoading();
+        
+        if (data.success) {
+            displayResults(data);
+        } else {
+            showError(data.error || 'Unknown error occurred');
+        }
+    })
+    .catch(error => {
+        hideLoading();
+        showError('Network error: ' + error.message);
+    });
+}
+
+function displayResults(data) {
+    const container = document.getElementById('results-content');
+    document.getElementById('model-selector').style.display = 'none';
+    
+    if (currentMode === 'analyze') {
+        container.innerHTML = renderAnalysis(data.analysis, data.model_name);
+    } else if (currentMode === 'compare') {
+        container.innerHTML = renderComparison(data.comparison);
+    } else if (currentMode === 'scan') {
+        container.innerHTML = renderScan(data);
+    }
+    
+    document.getElementById('results-container').classList.add('active');
+}
+
+function renderAnalysis(analysis, modelName) {
+    const hebrew = analysis.hebrew_detection;
+    const charset = analysis.charset_info;
+    const quality = analysis.quality_estimate;
+    const basic = analysis.basic_info;
+    
+    return `
+        <div class="analysis-section">
+            <h3>📦 ${modelName}</h3>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="label">גודל קובץ</div>
+                    <div class="value">${basic.size_mb} MB</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">סוג קובץ</div>
+                    <div class="value">${basic.file_type}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Hebrew Score</div>
+                    <div class="value">${hebrew.score}/100</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">איכות כללית</div>
+                    <div class="value">${quality.overall_score}/10</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="analysis-section">
+            <h3>🔤 Charset Analysis</h3>
+            ${charset.success ? `
+                <p><strong>Total characters:</strong> ${charset.charset_size || 'N/A'}</p>
+                <p><strong>Hebrew characters:</strong> ${charset.hebrew_chars_count || 0} (${charset.hebrew_percentage || 0}%)</p>
+                ${charset.sample_chars ? `<p><strong>Sample:</strong> ${charset.sample_chars}</p>` : ''}
+            ` : `<p>Could not analyze charset</p>`}
+        </div>
+        
+        <div class="analysis-section">
+            <h3>✅ Hebrew Detection</h3>
+            <p><span class="badge ${hebrew.is_hebrew ? 'badge-success' : 'badge-warning'}">
+                ${hebrew.is_hebrew ? 'Hebrew Model' : 'Not Hebrew'}
+            </span></p>
+            <p><strong>Confidence:</strong> ${hebrew.confidence}</p>
+            <p>${hebrew.reasoning}</p>
+        </div>
+        
+        ${analysis.recommendations.length > 0 ? `
+        <div class="analysis-section">
+            <h3>💡 Recommendations</h3>
+            <ul class="recommendation-list">
+                ${analysis.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+            </ul>
+        </div>
+        ` : ''}
+    `;
+}
+
+function renderComparison(comparison) {
+    return `
+        <div class="analysis-section">
+            <h3>⚖️ Model Comparison</h3>
+            <p>Comparison results will appear here...</p>
+            <pre>${JSON.stringify(comparison, null, 2)}</pre>
+        </div>
+    `;
+}
+
+function renderScan(data) {
+    return `
+        <div class="analysis-section">
+            <h3>📊 Quick Scan Results</h3>
+            <p><strong>Models scanned:</strong> ${data.models_scanned}</p>
+            ${data.results.map(r => `
+                <div style="margin: 1rem 0; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <h4>${r.name}</h4>
+                    <p>Hebrew: ${r.analysis.hebrew_detection.is_hebrew ? '✅' : '❌'} 
+                       (Score: ${r.analysis.hebrew_detection.score}/100)</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function resetChecker() {
+    document.getElementById('results-container').classList.remove('active');
+    document.getElementById('model-selector').style.display = 'none';
+    currentMode = null;
+}
+
+function showLoading() {
+    document.getElementById('loading-overlay').classList.add('active');
+}
+
+function hideLoading() {
+    document.getElementById('loading-overlay').classList.remove('active');
+}
+
+function showError(message) {
+    const errorEl = document.getElementById('error-message');
+    errorEl.textContent = message;
+    errorEl.classList.add('active');
+    setTimeout(() => errorEl.classList.remove('active'), 5000);
+}
+</script>
+{% endblock %}

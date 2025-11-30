@@ -1,0 +1,172 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TABA Pipeline 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-26 12:00+0000\n"
+"PO-Revision-Date: 2025-10-26 12:00+0000\n"
+"Last-Translator: BiblIA Team <team@biblia.org>\n"
+"Language-Team: Hebrew <team@biblia.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# TABA Models
+msgid "Corpus Name"
+msgstr "שם קורפוס"
+
+msgid ""
+"Name of the ground truth corpus (e.g., 'Sefaria Tanakh', 'Hebrew Literature "
+"Collection')"
+msgstr "שם קורפוס אמת המידה (לדוגמה: 'תנך ספריא', 'אוסף הספרות העברית')"
+
+msgid "Type of source for this corpus"
+msgstr "סוג המקור עבור הקורפוס הזה"
+
+msgid "Sefaria API"
+msgstr "API ספריא"
+
+msgid "Source Path"
+msgstr "נתיב מקור"
+
+msgid "Path to source files or API endpoint"
+msgstr "נתיב לקבצי מקור או נקודת קצה של API"
+
+msgid "Total Texts"
+msgstr "סך הטקסטים"
+
+msgid "Number of texts in this corpus"
+msgstr "מספר הטקסטים בקורפוס הזה"
+
+msgid "Total Characters"
+msgstr "סך התווים"
+
+msgid "Total character count in corpus"
+msgstr "ספירת תווים כללית בקורפוס"
+
+msgid "Ground Truth Corpus"
+msgstr "קורפוס אמת מידה"
+
+msgid "Ground Truth Corpora"
+msgstr "קורפוסי אמת מידה"
+
+msgid "The corpus this text belongs to"
+msgstr "הקורפוס שהטקסט הזה שייך אליו"
+
+msgid "Original filename of the source document"
+msgstr "שם הקובץ המקורי של המסמך המקור"
+
+msgid "Clean text content ready for alignment with OCR"
+msgstr "תוכן טקסט נקי מוכן ליישור עם OCR"
+
+msgid "Language code (e.g., 'heb' for Hebrew, 'ara' for Arabic)"
+msgstr "קוד שפה (לדוגמה: 'heb' לעברית, 'ara' לערבית)"
+
+msgid "Additional metadata about this text (author, date, etc.)"
+msgstr "מטאדטה נוסף על הטקסט הזה (מחבר, תאריך וכו')"
+
+msgid "Character Count"
+msgstr "ספירת תווים"
+
+msgid "Total number of characters in this text"
+msgstr "מספר כולל של תווים בטקסט הזה"
+
+msgid "Word Count"
+msgstr "ספירת מילים"
+
+msgid "Total number of words in this text"
+msgstr "מספר כולל של מילים בטקסט הזה"
+
+msgid "Ground Truth Text"
+msgstr "טקסט אמת מידה"
+
+msgid "Ground Truth Texts"
+msgstr "טקסטי אמת מידה"
+
+msgid "Job Name"
+msgstr "שם עבודה"
+
+msgid "Descriptive name for this alignment job"
+msgstr "שם תיאורי לעבודת היישור הזו"
+
+msgid "Source document containing OCR to be aligned"
+msgstr "מסמך המקור המכיל OCR שיש ליישר"
+
+msgid "OCR Transcription"
+msgstr "תמלול OCR"
+
+msgid "OCR transcription to align with ground truth"
+msgstr "תמלול OCR ליישור עם אמת המידה"
+
+msgid "Corpus of clean texts to align against"
+msgstr "קורפוס של טקסטים נקיים ליישור מולם"
+
+msgid "N-gram Order"
+msgstr "סדר N-gram"
+
+msgid "Character n-gram order for Passim alignment (default: 7)"
+msgstr "סדר תווי n-gram עבור יישור Passim (ברירת מחדל: 7)"
+
+msgid "CPU Cores"
+msgstr "ליבות CPU"
+
+msgid "Number of CPU cores to use for alignment"
+msgstr "מספר ליבות CPU לשימוש ביישור"
+
+msgid "Memory (GB)"
+msgstr "זיכרון (GB)"
+
+msgid "Memory allocation in GB for alignment process"
+msgstr "הקצאת זיכרון ב-GB לתהליך היישור"
+
+# TABA Dashboard
+msgid "TABA Pipeline Dashboard"
+msgstr "לוח בקרה של TABA Pipeline"
+
+msgid "Auto Ground Truth Generation"
+msgstr "יצירת אמת מידה אוטומטית"
+
+msgid ""
+"Automatically generate training data by aligning OCR with known digital "
+"texts using Passim"
+msgstr ""
+"ייצר נתוני אימון אוטומטית על ידי יישור OCR עם טקסטים דיגיטליים ידועים "
+"באמצעות Passim"
+
+msgid "System Status"
+msgstr "סטטוס מערכת"
+
+msgid "TABA Pipeline"
+msgstr "TABA Pipeline"
+
+msgid "Not Found"
+msgstr "לא נמצא"
+
+msgid "Not Installed"
+msgstr "לא מותקן"
+
+msgid "Setup Required"
+msgstr "נדרשת הקמה"
+
+msgid "Follow the installation guide in"
+msgstr "עקבו אחר מדריך ההתקנה ב"
+
+msgid "GT Corpora"
+msgstr "קורפוסי GT"
+
+msgid "Total Jobs"
+msgstr "סך עבודות"
+
+msgid "Quick Actions"
+msgstr "פעולות מהירות"
+
+msgid "Manage GT Corpora"
+msgstr "ניהול קורפוסי GT"
+
+msgid "Create New Job"
+msgstr "יצירת עבודה חדשה"
+
+msgid "View All Jobs"
+msgstr "הצגת כל העבודות"

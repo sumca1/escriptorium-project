@@ -1,0 +1,286 @@
+{
+  "_comment": "Auto-delete rules learned from STEP 2.5 investigation",
+  "_version": "1.0",
+  "_last_updated": "2025-10-29",
+  
+  "auto_delete_rules": [
+    {
+      "rule_id": "json_test_output",
+      "name": "JSON Test Output Files",
+      "enabled": true,
+      "confidence": 100,
+      "description": "Auto-generated JSON test files from authentication/translation tests",
+      
+      "criteria": {
+        "file_extension": ".json",
+        "name_patterns": [
+          "quick_auth_test_*.json",
+          "*_test_*_\\d{8}_\\d{6}.json",
+          "hebrew_field_test_*.json",
+          "translation_test_results_*.json",
+          "comprehensive_*_test_*.json"
+        ],
+        "git_status": "not_in_git",
+        "reference_check": {
+          "exclude_files": [
+            "DOCKER_COMPLETE_MANIFEST.yml",
+            "STEP_1_RESULTS.json",
+            "STEP_2_RESULTS.json",
+            "*_MANIFEST.yml",
+            "*_RESULTS.json"
+          ],
+          "max_real_references": 0
+        },
+        "age_days_min": 0
+      },
+      
+      "action": {
+        "delete_file": true,
+        "create_backup": false,
+        "add_to_gitignore": true,
+        "gitignore_patterns": [
+          "# Auto-generated test output files",
+          "quick_auth_test_*.json",
+          "*_test_*_*.json",
+          "hebrew_field_test_*.json",
+          "translation_test_results_*.json",
+          "comprehensive_*_test_*.json"
+        ]
+      },
+      
+      "examples": [
+        "quick_auth_test_20251024_003543.json",
+        "hebrew_field_test_extended_20251019_165728.json",
+        "translation_test_results_20251019_185631.json"
+      ]
+    },
+    
+    {
+      "rule_id": "utility_script_duplicate_in_app",
+      "name": "Utility Scripts Duplicated in app/",
+      "enabled": true,
+      "confidence": 95,
+      "description": "Utility/check scripts that were copied into app/ directory but should only exist in root",
+      
+      "criteria": {
+        "is_duplicate": true,
+        "file_extension": ".py",
+        "locations": {
+          "file1": "^[^/\\\\]+\\.py$",
+          "file2": "^app[/\\\\][^/\\\\]+\\.py$"
+        },
+        "name_prefixes": [
+          "check_",
+          "test_",
+          "analyze_",
+          "complete_",
+          "compare_",
+          "find_",
+          "validate_",
+          "diagnose_"
+        ],
+        "is_executable_script": true,
+        "has_shebang": "#!/usr/bin/env python",
+        "import_check": {
+          "imported_by_others": false,
+          "exclude_files": [
+            "*.md",
+            "*.txt",
+            "*_MANIFEST.yml"
+          ]
+        },
+        "dockerfile_check": {
+          "in_dockerfile": false
+        }
+      },
+      
+      "action": {
+        "delete_file": "file2",
+        "keep_file": "file1",
+        "reason": "Utility scripts belong in root, not in app/",
+        "create_backup": true,
+        "add_to_gitignore": false
+      },
+      
+      "examples": [
+        {
+          "keep": "complete_missing_translations.py",
+          "delete": "app/complete_missing_translations.py"
+        },
+        {
+          "keep": "check_typologies.py",
+          "delete": "app/check_typologies.py"
+        }
+      ]
+    },
+    
+    {
+      "rule_id": "test_file_without_git_history",
+      "name": "Test Files Without Git History",
+      "enabled": true,
+      "confidence": 85,
+      "description": "Duplicate test files where one has git history and one doesn't - keep the one with history",
+      
+      "criteria": {
+        "is_duplicate": true,
+        "file_extension": ".py",
+        "name_patterns": [
+          "^test_.*\\.py$",
+          ".*_test\\.py$"
+        ],
+        "git_history": {
+          "one_has_history": true,
+          "one_no_history": true
+        }
+      },
+      
+      "action": {
+        "delete_file": "file_without_git",
+        "keep_file": "file_with_git",
+        "reason": "Keep version with git history (original)",
+        "create_backup": true,
+        "add_to_gitignore": false
+      },
+      
+      "examples": [
+        {
+          "keep": "test_cerberus.py (has git commit febe723b)",
+          "delete": "app/test_cerberus.py (no git history)"
+        }
+      ]
+    },
+    
+    {
+      "rule_id": "old_backup_files",
+      "name": "Old Backup Files",
+      "enabled": true,
+      "confidence": 90,
+      "description": "Backup files older than 30 days that are not in git",
+      
+      "criteria": {
+        "file_patterns": [
+          "*.bak",
+          "*.backup",
+          "*~",
+          "*.old",
+          "*.orig"
+        ],
+        "git_status": "not_in_git",
+        "age_days_min": 30
+      },
+      
+      "action": {
+        "delete_file": true,
+        "create_backup": false,
+        "add_to_gitignore": false
+      },
+      
+      "examples": []
+    }
+  ],
+  
+  "manual_review_rules": [
+    {
+      "rule_id": "both_files_referenced",
+      "name": "Both Files Have Active References",
+      "priority": "HIGH",
+      "description": "Both duplicate files are referenced in actual code (not just manifests)",
+      
+      "criteria": {
+        "is_duplicate": true,
+        "both_have_real_references": true
+      },
+      
+      "reason": "Cannot determine which file is canonical - manual review required"
+    },
+    
+    {
+      "rule_id": "config_files",
+      "name": "Configuration Files",
+      "priority": "CRITICAL",
+      "description": "Configuration files should never be auto-deleted",
+      
+      "criteria": {
+        "file_extensions": [
+          ".env",
+          ".ini",
+          ".conf",
+          ".config",
+          ".yaml",
+          ".yml",
+          ".toml"
+        ],
+        "exclude_patterns": [
+          "*.example",
+          "*.sample",
+          "*.template"
+        ]
+      },
+      
+      "reason": "Config files are critical - small changes can break the system"
+    },
+    
+    {
+      "rule_id": "session2_security_files",
+      "name": "Session 2 Security Fixed Files",
+      "priority": "CRITICAL",
+      "description": "Files that were fixed in Session 2 for security vulnerabilities",
+      
+      "criteria": {
+        "files": [
+          "app/apps/api/views.py",
+          "app/fastapi_app/main.py",
+          "app/biblia_templatetags/biblia_trans.py",
+          "passim_service.py",
+          "app/escriptorium_model_checker.py"
+        ]
+      },
+      
+      "reason": "NEVER auto-delete security-fixed files!"
+    },
+    
+    {
+      "rule_id": "size_threshold",
+      "name": "Large Files",
+      "priority": "MEDIUM",
+      "description": "Files larger than 1MB should be reviewed manually",
+      
+      "criteria": {
+        "size_bytes_min": 1048576
+      },
+      
+      "reason": "Large files may contain important data - verify before delete"
+    },
+    
+    {
+      "rule_id": "different_content_same_name",
+      "name": "Same Name, Different Content",
+      "priority": "HIGH",
+      "description": "Files with same name but different content (not exact duplicates)",
+      
+      "criteria": {
+        "same_filename": true,
+        "different_hash": true
+      },
+      
+      "reason": "May be intentional variants - review context before deleting"
+    }
+  ],
+  
+  "safety_checks": {
+    "require_git_clean": true,
+    "create_backup_json": true,
+    "backup_location": "CLEANUP_BACKUPS/",
+    "dry_run_first": true,
+    "confirmation_threshold": 90,
+    "max_auto_delete_per_run": 50
+  },
+  
+  "logging": {
+    "log_file": "AUTO_CLEANUP_LOG.json",
+    "log_level": "INFO",
+    "log_actions": true,
+    "log_decisions": true,
+    "log_skipped": true
+  }
+}

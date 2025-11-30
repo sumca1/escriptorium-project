@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block head_title %}{% trans "My Projects" %}{% endblock %}
+{% block meta_description %}{% trans "View and manage your eScriptorium projects for document transcription and OCR processing" %}{% endblock %}
+
+{% block nav-proj-list-class %}active{% endblock %}
+
+{% block body %}
+{% if request.user.legacy_mode %}
+<div class="row">
+    <div class="col-md-12 col-md-offset-4">
+        <a href="{% url 'project-create' %}" class="btn btn-success float-sm-right">{% trans 'Create new Project' %}</a>
+    <h1>{% trans "My Projects" %}</h1>
+
+    <table id="project-list" class="table table-hover">
+        <tbody>
+            {% for project in project_list %}
+            <tr onclick="document.location='{% url 'documents-list' slug=project.slug %}'">
+                <td><a href="{% url 'documents-list' slug=project.slug %}">{{project.name}}</a></td>
+                <td title="{% trans "Owner" %}">{{project.owner}}</td>
+                <td>{% blocktrans count n=project.documents_count %}1 document.{% plural %}{{ n }} documents.{% endblocktrans %}</td>
+
+                <td>
+                {% if request.user in project.shared_with_users.all %}
+                <form method="post" class="text-right" action="{% url "delete-project-share" %}" onsubmit="return confirm('{% trans "Do you really want to remove the project from your list?" %}');">{% csrf_token %}
+                    <input type="hidden" name="project" value="{{project.pk}}" />
+                    <button type="submit" value="" onclick='event.stopPropagation();'  class="nav-item btn btn-warning" title="{% trans 'Remove from list' %}"><i class="fas fa-trash"></i></button>
+                </form>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'includes/pagination.html' %}
+    </div>
+</div>
+{% else %}
+    <div id="projects-list">
+        <projects-list></projects-list>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block extrascript %}
+    {% if not request.user.legacy_mode %}
+        <script>
+            // Pass translations to Vue
+            window.TRANSLATIONS = {
+                'Name': "{% trans 'Name' %}",
+                'Project Tags': "{% trans 'Project Tags' %}",
+                '# of Documents': "{% trans '# of Documents' %}",
+                'Owner': "{% trans 'Owner' %}",
+                'Last Update': "{% trans 'Last Update' %}",
+                'Projects': "{% trans 'Projects' %}",
+                'Create New': "{% trans 'Create New' %}",
+                'Delete': "{% trans 'Delete' %}",
+                'Cancel': "{% trans 'Cancel' %}",
+                'Welcome back': "{% trans 'Welcome back' %}",
+                'There are no projects to display.': "{% trans 'There are no projects to display.' %}",
+                'Load more': "{% trans 'Load more' %}",
+                'Delete Project': "{% trans 'Delete Project' %}",
+                'Are you sure you want to delete this project?': "{% trans 'Are you sure you want to delete this project?' %}",
+                'This action cannot be undone.': "{% trans 'This action cannot be undone.' %}"
+            };
+        </script>
+        <script src="{% static 'projectsList.js' %}"></script>
+    {% endif %}
+{% endblock extrascript %}
+
+{% block extrastyle %}
+    {% if not request.user.legacy_mode %}
+        <link href="{% static 'projectsList.css' %}" rel="stylesheet" type="text/css">
+    {% endif %}
+{% endblock extrastyle %}
+
+{% if not request.user.legacy_mode %}
+    {# hide legacy UI alerts #}
+    {% block legacy_alerts %}
+    {% endblock %}
+{% endif %}

@@ -1,0 +1,15 @@
+{
+  "A single ZIP archive described by a METS file contained inside it": "ארכיון ZIP יחיד המתואר על ידי קובץ METS המוטמע בתוכו.",
+  "A single ZIP archive described by a METS file contained inside it.": "ארכיון ZIP יחיד עם קובץ METS בתוכו.",
+  "ALTO": "ALTO",
+  "Enter METS file URI": "הזן כתובת קובץ METS",
+  "Export": "ייצא",
+  "File Format": "פורמט קובץ",
+  "METS": "METS",
+  "OpenITI TEI XML": "OpenITI TEI XML",
+  "Remote METS URI": "כתובת METS מרוחקת",
+  "annotation_types_allow_to_regroup_the_corresponding_buttons_in_the_editing_interface_(and_may_be_used_as_a_hint_for_import/export).": "סוגי הערות מאפשרים לאגד כפתורים מתאימים בממשק העריכה (ויכולים לשמש כרמז לייבוא/ייצוא).",
+  "download": "הורד",
+  "export": "ייצא",
+  "the_name_of_the_target_transcription._will_default_to_'{format}_import'.": "שם התמלול היעד. ברירת מחדל: '{format} Import'."
+}

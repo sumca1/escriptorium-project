@@ -1,0 +1,680 @@
+/**
+ * BiblIA eScriptorium - CSS Reset & Base Styles
+ * גרסה: 1.0.0
+ * 
+ * Modern CSS Reset + Base Styles for BiblIA
+ * Based on modern-normalize + custom additions
+ */
+
+/* ========================================
+   RESET - איפוס
+   ======================================== */
+
+/**
+ * 1. Use a more readable tab size (opinionated).
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* 1 */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1.5; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 3 */
+  -moz-tab-size: 4; /* 1 */
+  tab-size: 4; /* 1 */
+}
+
+/**
+ * Remove default margin and padding
+ */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove list styles on ul, ol elements
+ */
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Set core body defaults
+ */
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/**
+ * Make images easier to work with
+ */
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/**
+ * Inherit fonts for inputs and buttons
+ */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/**
+ * Remove default button styles
+ */
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/**
+ * Remove default link styles
+ */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome
+ */
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove animations for people who've turned them off
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   BASE STYLES - סגנונות בסיס
+   ======================================== */
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+/* RTL Support */
+body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--font-family-hebrew);
+}
+
+body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Arabic Language Support */
+body[lang="ar"],
+[lang="ar"] {
+  font-family: var(--font-family-arabic);
+}
+
+/* Hebrew Language Support */
+body[lang="he"],
+[lang="he"] {
+  font-family: var(--font-family-hebrew);
+}
+
+/* ========================================
+   TYPOGRAPHY - טיפוגרפיה
+   ======================================== */
+
+/**
+ * Headings
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
+
+/**
+ * Paragraphs
+ */
+
+p {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * Links
+ */
+
+a {
+  color: var(--color-primary-600);
+  text-decoration: none;
+  transition: var(--transition-colors);
+}
+
+a:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/**
+ * Strong & Bold
+ */
+
+strong,
+b {
+  font-weight: var(--font-bold);
+}
+
+/**
+ * Emphasis
+ */
+
+em,
+i {
+  font-style: italic;
+}
+
+/**
+ * Small text
+ */
+
+small {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/**
+ * Code
+ */
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-sm);
+}
+
+code {
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-base);
+  color: var(--color-error-dark);
+}
+
+pre {
+  padding: var(--space-4);
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+/**
+ * Keyboard input
+ */
+
+kbd {
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-gray-800);
+  color: var(--color-text-on-dark);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-gray-700);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-xs);
+}
+
+/**
+ * Blockquote
+ */
+
+blockquote {
+  padding: var(--space-4);
+  border-left: 4px solid var(--color-primary-500);
+  background-color: var(--color-gray-50);
+  margin-bottom: var(--space-4);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: 4px solid var(--color-primary-500);
+}
+
+/**
+ * Horizontal Rule
+ */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-divider);
+  margin: var(--space-8) 0;
+}
+
+/* ========================================
+   LISTS - רשימות
+   ======================================== */
+
+/**
+ * Content lists (not navigation)
+ */
+
+.content ul,
+.content ol {
+  list-style: initial;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+[dir="rtl"] .content ul,
+[dir="rtl"] .content ol {
+  padding-left: 0;
+  padding-right: var(--space-6);
+}
+
+.content ul {
+  list-style-type: disc;
+}
+
+.content ol {
+  list-style-type: decimal;
+}
+
+.content li {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+.content li::marker {
+  color: var(--color-primary-500);
+}
+
+/* ========================================
+   TABLES - טבלאות
+   ======================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: var(--space-4);
+}
+
+th,
+td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+th {
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  background-color: var(--color-gray-50);
+}
+
+tr:hover {
+  background-color: var(--color-gray-50);
+}
+
+/* ========================================
+   FORMS - טפסים
+   ======================================== */
+
+/**
+ * Form elements get basic styling
+ */
+
+label {
+  display: block;
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: var(--transition-all);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: var(--focus-ring);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-gray-100);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-hint);
+}
+
+/**
+ * Checkbox & Radio
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  cursor: pointer;
+}
+
+/* ========================================
+   ACCESSIBILITY - נגישות
+   ======================================== */
+
+/**
+ * Screen reader only
+ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/**
+ * Skip to main content
+ */
+
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary-500);
+  color: var(--color-text-on-primary);
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  z-index: var(--z-tooltip);
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/**
+ * Focus visible (keyboard navigation)
+ */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/**
+ * Remove focus for mouse users
+ */
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ========================================
+   SELECTION - בחירה
+   ======================================== */
+
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   SCROLLBAR - פס גלילה
+   ======================================== */
+
+/**
+ * Custom scrollbar (Webkit browsers)
+ */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* ========================================
+   PRINT - הדפסה
+   ======================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

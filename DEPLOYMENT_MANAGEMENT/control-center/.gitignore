@@ -1,0 +1,17 @@
+# Runtime files
+runtime/
+*.pid
+*.log
+
+# Logs
+logs/*.log
+
+# Backups
+backups/
+
+# Node modules
+servers/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db

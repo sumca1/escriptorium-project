@@ -1,0 +1,409 @@
+# ============================================================================
+# ⚠️  DEPRECATED - WHITELIST SYSTEM NOW IN USE
+# ============================================================================
+# This .dockerignore is kept for reference only.
+# Docker builds now use DOCKER_WHITELIST.txt (CLOSED SYSTEM)
+# 
+# WHITELIST BENEFITS:
+# ✅ No more scanning 55,000 files
+# ✅ Explicit control over what goes to Docker
+# ✅ New file? Must be added to DOCKER_WHITELIST.txt manually
+# ✅ Better security - no accidental file inclusion
+#
+# See: DOCKER_WHITELIST.txt (1,240 files, 56.2 MB)
+# ============================================================================
+
+# Version control
+.git/
+.gitignore
+.gitlab-ci.yml
+.github/workflows/
+.github/ISSUE_TEMPLATE/
+.github/  # All GitHub-specific files and workflows
+
+# Docker files (Dockerfile is copied explicitly when needed, backups never needed)
+Dockerfile.*
+Dockerfile.backup*
+docker-compose*.yml
+.dockerignore
+
+# External tools and development utilities (not needed in Docker)
+external_tools/  # Surya, other dev tools (103.62 MB)
+tools/  # Kraken streamlit app, development tools (174.85 MB)
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+ENV/
+*.egg
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node.js and frontend builds
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# NOTE: package-lock.json is NEEDED for npm ci in Dockerfile!
+# NOTE: front/ is needed by the frontend build stage (line 4 of Dockerfile)
+# Do NOT add front/ to .dockerignore!
+
+# Django
+# app/static/ - COMMENTED OUT: We need to include static dirs for Docker build
+# Instead, individual subdirectories are managed:
+# - app/static/admin, app/static/rest_framework (Django built-in) - needed
+# - app/static/dist, app/static/images (empty with .gitkeep) - needed for structure
+app/static/dist/  # Build artifacts (34.44 MB) - will be generated during Docker build
+app/media/
+app/test_media/
+app/logs/
+app/env/
+db.sqlite3
+
+# Compiled translation files (.mo) - will be compiled inside Docker via RUN python manage.py compilemessages
+# Only .po source files are needed; .mo files are generated during build
+*.mo
+app/locale/**/LC_MESSAGES/*.mo
+
+# Translation files - EXCLUDE ALL .po files EXCEPT in app/locale/
+# ONLY these 3 files should reach Docker:
+# ✅ app/locale/fr/LC_MESSAGES/django.po
+# ✅ app/locale/he/LC_MESSAGES/django.po  
+# ✅ app/locale/he/LC_MESSAGES/taba.po
+*.po
+app/translation_template*.po
+translation_template*.po
+temp_*.po
+*_translations.po
+final_*.po
+hebrew_*.po
+cer_*.po
+MISSING_*.po
+
+# Translation backup files
+*.po.backup*
+*.po.bak*
+*.po.new
+*.po.old
+*.po~
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.vagrant/
+
+# Backups and archives (CRITICAL!)
+.backups*/
+backups/
+*.bak
+*.backup
+# Note: Allow specific tar.gz/zip if needed for deployment
+*.tar.gz
+
+# BiblIA Development Files - Reports, Logs, Analysis (DO NOT INCLUDE IN DOCKER!)
+# HTML Reports
+DOCKER_BUILD_*.html
+DOCKER_*.html
+*_DASHBOARD.html
+*_REPORT.html
+SUPERVISOR_*.html
+PROGRESS_BAR_*.html
+SMART_DOCKER_*.html
+test_*.html
+homepage_debug.html
+seo-analytics-report-*.html
+
+# JSON Reports & Analysis
+docker_build_manifest.json
+docker_build_inspector.json
+original_vs_additions.json
+file_classification.json
+precise_file_classification.json
+docker_change_report.json
+*_scan.json
+*_final.json
+*_check.json
+*_results.json
+*_report.json
+*_analysis.json
+container_verification_report.json
+biblia_docker_validation.json
+DUPLICATE_ANALYSIS_REPORT.json
+DEPENDENCY_MAP.json
+part_*_full.json
+verification_results.json
+deployment-test-results.json
+build_results_*.json
+docker_failure_analysis_*.json
+system_check_report_*.json
+system_status.json
+SUPERVISOR_STATUS.json
+hardcoded_strings_report.json
+translation_missing_report.json
+vue_missing_translations.json
+pinkas_*.json
+master-qa-report.json
+analytics-seo-baseline.json
+api_*.json
+b104_check.json
+b301_check.json
+xss_*.json
+test_alignment.json
+project_stats.json
+
+# Markdown Documentation & Reports
+*_REPORT.md
+*_STATUS.md
+*_COMPLETE.md
+*_FIXES*.md
+*_IMPLEMENTATION*.md
+IMPLEMENTATION_ROADMAP.md
+PROJECTS_IMPLEMENTATION_STATUS.md
+QUICK_*.md
+ERROR_CORRECTION_*.md
+HEBREW_PROJECT_*.md
+HOW_TO_*.md
+STEP_*.md
+SYNC_*.md
+SYSTEM_*.md
+TASK_*.md
+TERMINAL_*.md
+UNIFIED_*.md
+VS_CODE_*.md
+FINAL_*.md
+
+# Text Logs & Output Files
+*.log
+*_output.txt
+*_log.txt
+tree_output.txt
+sync_output.txt
+inspector_*.txt
+change_analysis_output.txt
+docker_build_log.txt
+test_logs_*.txt
+translation_report_*.txt
+translation_check_report.txt
+translation_coverage_report.txt
+untranslated_*.txt
+needs_translation_*.txt
+priority_translations_*.txt
+translated_strings_*.txt
+suggested_additions_*.txt
+stats_classification_*.txt
+strings_to_translate.txt
+hardcoded_strings_to_fix.txt
+missing_strings_from_ready.txt
+selected_parts_for_training.txt
+BACKEND_strings_to_translate.txt
+FRONTEND_strings_to_translate.txt
+UNUSED_FILES_REPORT.txt
+SYSTEM_STATUS_VISUAL.txt
+temp_token.txt
+
+# Python Development Scripts (BiblIA Tools)
+detect_*.py
+docker_*.py
+smart_*.py
+precise_*.py
+enhanced_*.py
+validate_*.py
+verify_*.py
+visualize_*.py
+quick_*.py
+remove_po_duplicates.py
+with_progress.py
+
+# YML/YAML Config Files (Development)
+DOCKER_*.yml
+DEPLOYMENT_KNOWLEDGE_BASE.yml
+AUTO_*.json
+
+# Executable Files (Development Tools)
+*.exe
+codacy.exe
+codacy-cli.exe
+
+# CSS Development Files
+rtl-hebrew.css
+
+# Temporary JavaScript
+disable_unified_mode.js
+
+# Cache Files
+.docker_build_cache.json
+.smart_docker_state.json
+mcp-config.json
+latest_scan.json
+*.zip
+*.rar
+
+# Large model files (use external volumes instead)
+tools/kraken-streamlit-app/
+cerberus_source/
+CERberus/
+
+# BiblIA Development Scripts (NOT needed in Docker!)
+scripts/
+cm.py
+passim_service.py
+smart_assistant.py
+build_manager.py
+build_manager_config.json
+automated_tester.ps1
+*.ps1
+
+# BiblIA Documentation & Reports (development only)
+# NOTE: Keep only original eScriptorium .md files: README.md, INSTALL-ubuntu.md, app/apps/imports/README.md
+docs/
+ARCHIVE_DOCS/
+SESSIONS/
+SESSION_*.md
+*_REPORT.html
+*_ANALYSIS.md
+*_ANALYSIS.json
+*_SUMMARY.txt
+*_SUMMARY.md
+*_GUIDE.md
+*_INDEX.md
+*_CHECKLIST.md
+*_PLAN.md
+BUILD_MANAGER_*.txt
+BUILD_MANAGER_*.html
+BUILD_*.md
+CHAT_*.md
+PROJECT_*.md
+DOCKER_*.md
+DOCKERFILE_*.md
+CLEANUP_*.md
+DEPLOYMENT_*.md
+TROUBLESHOOTING.md
+TRAINING_*.md
+TOOLS_*.md
+INSTALLATION_*.md
+CURRENT_STATE.md
+THE_TRUTH_*.md
+NEXT_ACTIONS.md
+MCP_*.md
+SESSION_LOG.md
+*.instructions.md
+ALL_TRANSLATION_DOCS_INDEX.md
+.copilot-instructions.md
+
+# BiblIA Test Files (development only - root level)
+# NOTE: Django app tests in apps/*/tests/ are NEEDED for manage.py test
+# This filters only root-level BiblIA development test files
+test_dedupe_integration.py
+test_enhanced_middleware.py
+test_error_correction.py
+test_websocket.py
+test_validator_catches_duplicates.py
+test_translation_compile_system.py
+*_test.py
+*_tester.py
+check_*.py
+analyze_*.py
+compare_*.py
+diagnose_*.py
+comprehensive_*.py
+create_*_demo_data.py
+demo_*.jpg
+demo_*.png
+demo_*.pdf
+test_images/
+
+# BiblIA Translation Development (use built .mo files instead)
+add_*.py
+apply_*.ps1
+check_*.ps1
+compile_po.py
+complete_*.py
+*_translations.py
+*_translations.txt
+*_translations.po                # Translation source files (dev)
+*_translation_*.po              # Translation working files
+translation_template*.po        # Translation templates
+temp_*.po                       # Temporary .po files
+final_*.po                      # Final compiled .po files
+hebrew_*.po                     # Hebrew dev .po files
+MISSING_TRANSLATIONS*.po        # Missing translations tracker
+cer_translations.po             # Cerberus translations
+comparison_*.txt
+
+# Translation backup files - ALL patterns
+*.po.backup
+*.po.backup.*
+*.po.bak
+*.po.bak.*
+*.po.new
+*.po.old
+*.po~
+*.po.backup_*                   # Dated backups
+
+# Development and testing
+ci/
+variables.env
+.env.local
+.env.*.local
+.editorconfig
+TESTING/
+
+# Build artifacts
+build/
+dist/
+*.o
+*.so
+.cache/
+*.js.map
+*.css.map
+*.gz  # Webpack gzip files (regenerated in build)
+
+# Documentation builds
+docs/_build/
+site/
+
+# ============================================================================
+# WHITELIST SYSTEM FILES (Added 2025-10-29)
+# ============================================================================
+# These files manage the whitelist system but should NOT be in Docker
+DOCKER_WHITELIST.txt                    # The whitelist itself
+DOCKER_WHITELIST_GUIDE.md               # Documentation
+create_docker_whitelist.py              # Whitelist generator
+validate_whitelist.py                   # Whitelist validator
+docker_copy_whitelist.py                # Copy script
+.docker_staging/                        # Staging directory for whitelist files
+.docker_build_cache.json                # Smart build detector cache
+DOCKER_BUILD_STRATEGY.html              # Build strategy report
+smart_docker_build_detector.py          # Build strategy analyzer
+DOCKER_WHITELIST_GUIDE.md               # Whitelist documentation
+DOCKER_WHITELIST_QUICKSTART.md          # Whitelist quick start guide
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+
+# Log files
+*.log
+logs/
+
+# OS and misc
+.dockerignore
+Dockerfile.*
+docker-compose.override.yml
+docker-compose.*.yml

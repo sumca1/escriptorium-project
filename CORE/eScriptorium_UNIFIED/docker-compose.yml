@@ -1,0 +1,325 @@
+# eScriptorium BiblIA Edition + Management System V3.0.0 - Integrated Deployment
+# Combined docker-compose for full stack deployment
+
+x-app:
+  &app
+  build:
+    context: .
+  env_file: ./config/variables.env
+  environment:
+    - TZ=Asia/Jerusalem
+  volumes:
+    - ./app/:/usr/src/app/
+    - static:/usr/src/app/static
+    - media:/usr/src/app/media
+  command: /bin/true
+
+services:
+
+  # ============================================
+  # eScriptorium Core Services
+  # ============================================
+
+  web:
+    <<: *app
+    command: uwsgi --ini /usr/src/app/uwsgi.ini
+    restart: unless-stopped
+    expose:
+      - 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://nginx:80/login', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      nginx:
+        condition: service_started
+    networks:
+      - escriptorium-net
+      - management-net
+
+  channelserver:
+    <<: *app
+    command: /usr/src/app/entrypoint.sh daphne --bind 0.0.0.0 --port 5000 -v 1 escriptorium.asgi:application
+    restart: unless-stopped
+    expose:
+      - 5000
+    networks:
+      - escriptorium-net
+
+  fastapi:
+    <<: *app
+    command: python -m uvicorn fastapi_app.main:app --host 0.0.0.0 --port 8001 --reload
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONPATH=/usr/src/app
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8001/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - escriptorium-net
+      - management-net
+
+  db:
+    image: docker.io/library/postgres:15
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jerusalem
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file: ./config/variables.env
+    networks:
+      - escriptorium-net
+
+  redis:
+    image: "docker.io/redis:alpine"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jerusalem
+    networks:
+      - escriptorium-net
+      - management-net
+
+  nginx:
+    image: registry.gitlab.com/scripta/escriptorium/nginx
+    build: ./nginx
+    restart: unless-stopped
+    environment:
+      - SERVERNAME=${DOMAIN:-localhost}
+      - TZ=Asia/Jerusalem
+    volumes:
+      - static:/usr/src/app/static
+      - media:/usr/src/app/media
+    ports:
+      - 8082:80  # eScriptorium BiblIA Edition (main system)
+    networks:
+      - escriptorium-net
+
+  celery-main:
+    <<: *app
+    restart: unless-stopped
+    environment:
+      - OMP_NUM_THREADS=1
+      - TZ=Asia/Jerusalem
+    command: "celery -A escriptorium worker -l INFO -E -Ofair --prefetch-multiplier 1 -Q default -c ${CELERY_MAIN_CONC:-10} --max-tasks-per-child=10"
+    networks:
+      - escriptorium-net
+      - management-net
+
+  celery-live:
+    <<: *app
+    restart: unless-stopped
+    command: "celery -A escriptorium worker -l INFO -E -Ofair --prefetch-multiplier 1 -Q live -c ${CELERY_LIVE_CONC:-10} --max-tasks-per-child=10"
+    networks:
+      - escriptorium-net
+
+  celery-low-priority:
+    <<: *app
+    restart: unless-stopped
+    command: "celery -A escriptorium worker -l INFO -E -Ofair --prefetch-multiplier 1 -Q low-priority -c ${CELERY_LOW_CONC:-10} --max-tasks-per-child=10"
+    networks:
+      - escriptorium-net
+
+  celery-gpu:
+    <<: *app
+    restart: unless-stopped
+    environment:
+      - KRAKEN_TRAINING_DEVICE=cpu
+      - TZ=Asia/Jerusalem
+    command: "celery -A escriptorium worker -l INFO -E -Ofair --prefetch-multiplier 1 -Q gpu -c 1 --max-tasks-per-child=1"
+    shm_size: '3gb'
+    networks:
+      - escriptorium-net
+
+  flower:
+    image: docker.io/mher/flower
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jerusalem
+    command: ["celery", "--broker=redis://redis:6379/0", "flower", "--port=5555"]
+    ports:
+      - 5555:5555
+    networks:
+      - escriptorium-net
+
+  celerybeat:
+    <<: *app
+    restart: unless-stopped
+    volumes:
+      - ./app/:/usr/src/app/
+      - static:/usr/src/app/static
+      - media:/usr/src/app/media
+    command: celery -E -A escriptorium beat -l INFO
+    networks:
+      - escriptorium-net
+
+  mail:
+    build: ./exim
+    restart: unless-stopped
+    image: registry.gitlab.com/scripta/escriptorium/mail
+    environment:
+      - PRIMARY_HOST=${DOMAIN:-localhost}
+      - ALLOWED_HOSTS=web ; celery-main ; celery-low-priority; docker0
+      - TZ=Asia/Jerusalem
+    expose:
+      - 25
+    networks:
+      - escriptorium-net
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - TZ=Asia/Jerusalem
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    expose:
+      - 9200
+    networks:
+      - escriptorium-net
+
+  passim:
+    build:
+      context: .
+      dockerfile: Dockerfile.passim
+    container_name: escriptorium_clean-passim-1
+    environment:
+      - JAVA_OPTS=-Xmx4g -Xms1g
+      - TZ=Asia/Jerusalem
+    volumes:
+      - passim_data:/passim/data
+      - passim_output:/passim/output
+      - media:/passim/input:ro
+    ports:
+      - "9092:9090"  # Changed from 9090 to avoid conflict with Management metrics
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9090/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - escriptorium-net
+
+  # ============================================
+  # Management System V3.0.0
+  # ============================================
+
+  management-system:
+    build:
+      context: .
+      dockerfile: management/deployment/Dockerfile
+    container_name: escriptorium-management
+    ports:
+      - "8765:8765"  # WebSocket
+      - "8084:8080"  # Health check (changed from 8083)
+      - "9090:9090"  # Metrics (Prometheus format)
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - WORKSPACE_ROOT=/app
+      - ENABLE_METRICS=true
+      - ENABLE_HEALTH_CHECK=true
+      - REDIS_URL=redis://redis:6379/1  # Connect to eScriptorium Redis (different DB)
+    volumes:
+      - ./:/app
+      - management-state:/app/.management_state
+      - logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - management-net
+      - escriptorium-net
+    depends_on:
+      - redis
+      - prometheus
+      - grafana
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: escriptorium-prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./management/deployment/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./management/deployment/prometheus-alerts.yml:/etc/prometheus/prometheus-alerts.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: unless-stopped
+    networks:
+      - management-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: escriptorium-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+    volumes:
+      - ./management/deployment:/etc/grafana/provisioning:ro
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+    networks:
+      - management-net
+    depends_on:
+      - prometheus
+
+# ============================================
+# Volumes
+# ============================================
+
+volumes:
+  # eScriptorium volumes
+  static:
+  media:
+  postgres:
+  esdata:
+  passim_data:
+  passim_output:
+  
+  # Management System volumes
+  management-state:
+    driver: local
+  logs:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+# ============================================
+# Networks
+# ============================================
+
+networks:
+  escriptorium-net:
+    driver: bridge
+    name: escriptorium-network
+  
+  management-net:
+    driver: bridge
+    name: management-network
+

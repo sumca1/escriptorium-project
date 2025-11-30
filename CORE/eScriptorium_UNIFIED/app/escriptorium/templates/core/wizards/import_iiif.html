@@ -1,0 +1,14 @@
+{% extends 'core/wizards/import.html' %}
+{% load i18n bootstrap %}
+
+{% block selected_images %}
+<h1 class="sr-only">{% trans "Import IIIF Manifest" %} - {% trans "Import Images from IIIF" %}</h1>
+{% endblock %}
+
+{% block wizard_fields %}
+{{ block.super }}
+{% if not import_form.current_import.ongoing %}
+<h5>{% trans "Import images from IIIF." %}</h5>
+<div class="form-group">{% render_field import_form.iiif_uri %}</div>
+{% endif %}
+{% endblock %}

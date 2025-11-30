@@ -1,0 +1,23 @@
+{
+  ">red</font>_characters_are_not_present_in_the_compared_transcription.\\n</p>\\n": "\\n<p style=\\\"direction:ltr\\\">\\n    כל שורה היא תמלול שונה כפי שנבדק בחלון ניהול התמלולים <i class=\\\"fas fa-cog\\\"></i>\\n    <br>הצבעים מייצגים את ההבדל ביחס לתמלול הנוכחי,\\n    <br><font color=\\\"green\\\">ירוק</font> מציין תווים שאינם קיימים בתמלול הנוכחי (הניתן לעריכה), בעוד <font color=\\\"red\\\">אדום</font> מציין תווים שאינם קיימים בתמלול המושווה.\\n</p>\\n",
+  "Larger font": "גופן גדול יותר",
+  "Smaller font": "גופן קטן יותר",
+  "Text": "טקסט",
+  "Text (Ctrl+5)": "טקסט (Ctrl+5)",
+  "Text Color": "צבע טקסט",
+  "Text Direction": "כיוון טקסט",
+  "Text Panel": "פאנל טקסט",
+  "Text direction": "כיוון טקסט",
+  "Text to search": "טקסט לחיפוש",
+  "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text": "{\n    \" To force end-to-end alignment of two documents, increase to 1,000,000\": \"המרחק בין n-grams ייחודיים תואמים; 600 אמור לעבוד היטב עבור OCR נקי או טקסטים שבהם פסקאות מתיישרות לחלקים שונים של טקסט העד. כדי לאלץ יישור מקצה לקצה של שני מסמכים, הגדל ל-1,000,000.\"\n  }",
+  "There are no characters to display": "אין תווים להצגה",
+  "There are no characters to display.": "אין תווים להצגה.",
+  "Total Characters": "סה\\\"כ תווים",
+  "__backup_There are no characters to display": "אין תווים להצגה",
+  "by Character": "לפי תו",
+  "character": "תו",
+  "characters": "תווים",
+  "content": "תוכן",
+  "font": "{\n      \"larger\": \"גופן גדול יותר\",\n      \"smaller\": \"גופן קטן יותר\"\n    }",
+  "version": "גרסה"
+}

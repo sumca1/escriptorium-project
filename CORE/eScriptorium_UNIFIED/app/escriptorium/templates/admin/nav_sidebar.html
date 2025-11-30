@@ -1,0 +1,9 @@
+{% load i18n %}
+<h1 class="sr-only">{% trans "Admin Navigation" %} - {% trans "System Administration Panel" %}</h1>
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="{% trans 'Toggle navigation' %}"></button>
+<nav class="sticky" id="nav-sidebar" aria-label="{% trans 'Sidebar' %}">
+  <input type="search" id="nav-filter"
+         placeholder="{% trans 'Start typing to filter…' %}"
+         aria-label="{% trans 'Filter navigation items' %}">
+  {% include 'admin/app_list.html' with app_list=available_apps show_changelinks=False %}
+</nav>

@@ -1,0 +1,92 @@
+
+# Advanced Search - Elasticsearch Integration
+msgid "Advanced Search"
+msgstr "חיפוש מתקדם"
+
+msgid "Search across all your documents using Elasticsearch"
+msgstr "חפש בכל המסמכים שלך באמצעות Elasticsearch"
+
+msgid "Search Query"
+msgstr "שאילתת חיפוש"
+
+msgid "Enter search terms..."
+msgstr "הזן מונחי חיפוש..."
+
+msgid "Search supports fuzzy matching for Hebrew and Arabic text"
+msgstr "החיפוש תומך בהתאמה מטושטשת לטקסט עברי וערבי"
+
+msgid "Show Filters"
+msgstr "הצג מסננים"
+
+msgid "Hide Filters"
+msgstr "הסתר מסננים"
+
+msgid "Minimum Confidence"
+msgstr "רמת ודאות מינימלית"
+
+msgid "Document ID"
+msgstr "מזהה מסמך"
+
+msgid "Project ID"
+msgstr "מזהה פרויקט"
+
+msgid "Loading..."
+msgstr "טוען..."
+
+msgid "Searching..."
+msgstr "מחפש..."
+
+msgid "Elasticsearch Status"
+msgstr "סטטוס Elasticsearch"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Enabled"
+msgstr "מופעל"
+
+msgid "Total Documents"
+msgstr "סך המסמכים"
+
+msgid "Index Size"
+msgstr "גודל אינדקס"
+
+msgid "Elasticsearch is not enabled"
+msgstr "Elasticsearch אינו מופעל"
+
+msgid "Failed to load Elasticsearch status"
+msgstr "נכשל בטעינת סטטוס Elasticsearch"
+
+msgid "Please enter at least 2 characters"
+msgstr "אנא הזן לפחות 2 תווים"
+
+msgid "Search failed"
+msgstr "החיפוש נכשל"
+
+msgid "No results found"
+msgstr "לא נמצאו תוצאות"
+
+msgid "Try different search terms or adjust filters"
+msgstr "נסה מונחי חיפוש אחרים או שנה את המסננים"
+
+msgid "Relevance Score"
+msgstr "ציון רלוונטיות"
+
+msgid "Page"
+msgstr "עמוד"
+
+msgid "Line"
+msgstr "שורה"
+
+msgid "Open Document"
+msgstr "פתח מסמך"
+
+msgid "Found"
+msgstr "נמצאו"
+
+msgid "results"
+msgstr "תוצאות"
+
+msgid "of"
+msgstr "מתוך"
+

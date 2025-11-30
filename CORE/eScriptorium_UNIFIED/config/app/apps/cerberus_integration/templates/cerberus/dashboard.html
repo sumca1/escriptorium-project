@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block head_title %}{% trans "CERberus Dashboard" %} - {{ block.super }}{% endblock %}
+
+{% block bodyclass %}cerberus-dashboard{% endblock %}
+
+{% block extrastyle %}
+<style>
+    .cerberus-dashboard-container {
+        padding: 2rem;
+        background-color: #f5f7fa;
+        min-height: 100vh;
+        direction: rtl;
+    }
+    
+    #cerberus-app {
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="cerberus-app" class="cerberus-dashboard-container">
+    <CERDashboard></CERDashboard>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+    // Set API configuration
+    window.API_BASE_URL = '{{ request.build_absolute_uri "/api" }}';
+</script>
+
+<!-- Load editor translations -->
+<script src="{% static 'editor_translations_he.js' %}?v={{ STATIC_VERSION }}"></script>
+
+<!-- Vue 2.7 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.global.min.js"></script>
+
+<!-- Dashboard components -->
+<script src="{% static 'js/CERDashboard/CERDashboard.js' %}?v={{ STATIC_VERSION }}"></script>
+<script src="{% static 'js/CERDashboard/CERStatsCard.js' %}?v={{ STATIC_VERSION }}"></script>
+<script src="{% static 'js/CERDashboard/CERAnalysisTable.js' %}?v={{ STATIC_VERSION }}"></script>
+<script src="{% static 'js/CERDashboard/CERTrendsChart.js' %}?v={{ STATIC_VERSION }}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Register components
+        Vue.component('CERDashboard', window.CERDashboard);
+        Vue.component('CERStatsCard', window.CERStatsCard);
+        Vue.component('CERAnalysisTable', window.CERAnalysisTable);
+        Vue.component('CERTrendsChart', window.CERTrendsChart);
+        
+        // Mount Vue app
+        new Vue({
+            el: '#cerberus-app'
+        });
+    });
+</script>
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get CSRF token
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    // Fetch dashboard stats
+    fetch('/api/cerberus/analyses/dashboard-stats/', {
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update stats cards
+        document.getElementById('stat-total').textContent = data.total_analyses;
+        document.getElementById('stat-cer').textContent = (data.avg_cer * 100).toFixed(2) + '%';
+        document.getElementById('stat-accuracy').textContent = data.avg_accuracy.toFixed(1) + '%';
+        
+        // Create trends chart
+        const ctx = document.getElementById('trendsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.analyses_by_day.map(d => d.date),
+                datasets: [{
+                    label: '{% trans "Analyses Created" %}',
+                    data: data.analyses_by_day.map(d => d.count),
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Top confusions table
+        const confusionsHtml = data.top_confusions.length > 0 ? `
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans "Confusion" %}</th>
+                        <th class="text-right">{% trans "Count" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.top_confusions.map(conf => `
+                        <tr>
+                            <td>
+                                <div class="confusion-pair">
+                                    <span class="char correct">${conf.correct}</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <span class="char generated">${conf.generated}</span>
+                                </div>
+                            </td>
+                            <td class="text-right">${conf.count}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        ` : '<div class="empty-state"><i class="fas fa-inbox"></i><p>{% trans "No confusions data yet" %}</p></div>';
+        
+        document.getElementById('confusions-container').innerHTML = confusionsHtml;
+        
+        // Problematic characters table
+        const problematicHtml = data.problematic_chars.length > 0 ? `
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans "Character" %}</th>
+                        <th class="text-right">{% trans "Total" %}</th>
+                        <th>{% trans "Accuracy" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.problematic_chars.map(char => `
+                        <tr>
+                            <td><span class="problematic-char">${char.character}</span></td>
+                            <td class="text-right">${char.total}</td>
+                            <td>
+                                ${char.accuracy.toFixed(1)}%
+                                <div class="accuracy-bar">
+                                    <div class="accuracy-bar-fill ${char.accuracy > 80 ? 'good' : 'poor'}" 
+                                         style="width: ${char.accuracy}%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        ` : '<div class="empty-state"><i class="fas fa-inbox"></i><p>{% trans "No character data yet" %}</p></div>';
+        
+        document.getElementById('problematic-container').innerHTML = problematicHtml;
+    })
+    .catch(error => {
+        console.error('Error loading dashboard stats:', error);
+        document.getElementById('stats-grid').innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {% trans "Error loading dashboard data. Please try again." %}
+                </div>
+            </div>
+        `;
+    });
+    
+    // Fetch recent analyses
+    fetch('/api/cerberus/analyses/recent-analyses/?limit=10', {
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const recentHtml = data.length > 0 ? `
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans "Date" %}</th>
+                        <th>{% trans "Document" %}</th>
+                        <th>{% trans "Ground Truth" %}</th>
+                        <th>{% trans "Hypothesis" %}</th>
+                        <th class="text-right">{% trans "CER" %}</th>
+                        <th class="text-right">{% trans "Accuracy" %}</th>
+                        <th class="text-right">{% trans "Errors" %}</th>
+                        <th>{% trans "Action" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.map(analysis => `
+                        <tr>
+                            <td>${new Date(analysis.created_at).toLocaleDateString('he-IL')}</td>
+                            <td>${analysis.document_name}</td>
+                            <td>${analysis.ground_truth_name}</td>
+                            <td>${analysis.hypothesis_name}</td>
+                            <td class="text-right">
+                                <span class="badge badge-${analysis.cer < 0.05 ? 'success' : analysis.cer < 0.15 ? 'warning' : 'danger'}">
+                                    ${(analysis.cer * 100).toFixed(2)}%
+                                </span>
+                            </td>
+                            <td class="text-right">${analysis.accuracy.toFixed(1)}%</td>
+                            <td class="text-right">${analysis.errors}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary" 
+                                   onclick="viewAnalysis(${analysis.id}); return false;">
+                                    <i class="fas fa-eye"></i> {% trans "View" %}
+                                </a>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        ` : '<div class="empty-state"><i class="fas fa-inbox"></i><p>{% trans "No analyses yet. Create your first CER analysis!" %}</p></div>';
+        
+        document.getElementById('recent-container').innerHTML = recentHtml;
+    });
+});
+
+function viewAnalysis(id) {
+    // TODO: Open analysis in modal or navigate to analysis page
+    alert('View analysis #' + id);
+}
+</script>
+{% endblock %}

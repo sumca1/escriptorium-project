@@ -1,0 +1,64 @@
+דוח כיסוי תרגומים - צרפתית מול אנגלית
+==================================================
+
+סך הכל מחרוזות באנגלית: 500
+סך הכל מחרוזות בצרפתית: 500
+מתורגמות בצרפתית: 56
+לא מתורגמות בצרפתית: 444
+חסר בצרפתית: 0
+עודף בצרפתית: 0
+
+
+מחרוזות לא מתורגמות בצרפתית:
+----------------------------------------
+  1. %d invitation was resent.
+  2. %d user disabled.
+  3. (PLACEHOLDER)
+  4. -- New --
+  5. 1 document.
+  6. 1 image.
+  7. A document part corresponds to one image loaded within a document.
+  8. A file containing a document ontology in JSON format
+  9. A single ALTO or PAGE XML file, or a zip file.
+ 10. A single ALTO or PAGE XML file.
+ 11. A single ZIP archive described by a METS file contained inside it.
+ 12. A single pdf with one image per page.
+ 13. API Authentication Token:
+ 14. API key
+ 15. About
+ 16. Accept
+ 17. Accepted
+ 18. Accuracy
+ 19. Actions
+ 20. Add a line type
+ 21. Add a part type
+ 22. Add a region type
+ 23. Add right
+ 24. Align
+ 25. Align transcribed images to a textual witness (reference text).
+ 26. Aligned
+ 27. Aligning
+ 28. Alignment done!
+ 29. All levels
+ 30. All time
+ 31. All you need to do is click on the link below:
+ 32. Allow Comments
+ 33. And in the part named <strong>%(name)s</strong>.
+ 34. And on the transcription level <strong>%(name)s</strong>.
+ 35. Annotation
+ 36. Annotations components
+ 37. Annotations:
+ 38. Average transcription confidence
+ 39. Back to document list
+ 40. Back to profile
+ 41. Background Color
+ 42. Beam size
+ 43. Beware that re-segmenting will delete any existing transcriptions!
+ 44. Binarization done!
+ 45. Binarize
+ 46. Binarize selected images.
+ 47. Block in '{filen}' line N°{line} was skipped because: {error}
+ 48. Block type {0} was automatically added to the ontology
+ 49. Bold
+ 50. Both baseline and mask are empty.
+... ועוד 394 מחרוזות

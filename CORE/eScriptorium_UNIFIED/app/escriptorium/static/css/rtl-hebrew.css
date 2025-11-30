@@ -1,0 +1,92 @@
+/* 
+ * RTL Hebrew Support CSS
+ * BiblIA Dataset Project
+ * Created: 24 October 2025
+ */
+
+/* RTL Support for Hebrew Interface */
+html[lang="he"], 
+body[lang="he"],
+.rtl,
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+/* RTL for navigation and menus */
+html[lang="he"] .nav,
+html[lang="he"] .navbar,
+html[lang="he"] .menu {
+    direction: rtl;
+}
+
+/* RTL for forms */
+html[lang="he"] input,
+html[lang="he"] textarea,
+html[lang="he"] select {
+    text-align: right;
+}
+
+/* RTL for tables */
+html[lang="he"] table {
+    direction: rtl;
+}
+
+/* RTL for lists */
+html[lang="he"] ul,
+html[lang="he"] ol {
+    padding-right: 40px;
+    padding-left: 0;
+}
+
+/* Flip icons in RTL */
+html[lang="he"] .fa-chevron-left::before {
+    content: "\f054"; /* chevron-right */
+}
+
+html[lang="he"] .fa-chevron-right::before {
+    content: "\f053"; /* chevron-left */
+}
+
+/* RTL adjustments for buttons */
+html[lang="he"] .btn {
+    text-align: center;
+}
+
+/* Preserve LTR for code and technical content */
+code, 
+pre, 
+.ltr,
+[dir="ltr"] {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Editor specific RTL support */
+html[lang="he"] #escr-editor {
+    direction: rtl;
+}
+
+/* Unified Editor RTL Support */
+html[lang="he"] .unified-editor-container {
+    direction: rtl;
+}
+
+html[lang="he"] .unified-main-content {
+    grid-template-columns: 320px 1fr 250px; /* Flip sidebars */
+}
+
+html[lang="he"] .unified-sidebar-left {
+    order: 3; /* Move to right */
+}
+
+html[lang="he"] .unified-sidebar-right {
+    order: 1; /* Move to left */
+}
+
+html[lang="he"] .unified-center-area {
+    order: 2; /* Keep in center */
+}
+
+/* Text content direction is set dynamically by document settings via inline styles */
+

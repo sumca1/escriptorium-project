@@ -1,0 +1,14 @@
+[
+  {
+    "file": "/usr/src/app/apps/core/templates/core/comparison/viewer.html",
+    "line": 122,
+    "text": "🐙 Kraken",
+    "full_match": "<div class=\"column-header kraken\">\n                    🐙 Kraken\n                </div>"
+  },
+  {
+    "file": "/usr/src/app/apps/core/templates/core/comparison/viewer.html",
+    "line": 129,
+    "text": "🔷 Tesseract",
+    "full_match": "<div class=\"column-header tesseract\">\n                    🔷 Tesseract\n                </div>"
+  }
+]

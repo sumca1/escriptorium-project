@@ -1,0 +1,1 @@
+# Django migrations for language_support app

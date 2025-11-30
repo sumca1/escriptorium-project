@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Create Alignment Job" %} - TABA{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+          <i class="fas fa-plus-circle"></i>
+          {% trans "Create Alignment Job" %}
+        </h1>
+        <a href="{% url 'taba:job-list' %}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> {% trans "Back" %}
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-edit"></i> {% trans "Job Configuration" %}
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            
+            <!-- Basic Information -->
+            <div class="form-group">
+              <label for="{{ form.name.id_for_label }}">
+                <i class="fas fa-tag"></i> {% trans "Job Name" %} *
+              </label>
+              {{ form.name }}
+              {% if form.name.errors %}
+                <div class="invalid-feedback d-block">{{ form.name.errors }}</div>
+              {% endif %}
+              <small class="form-text text-muted">{% trans "A descriptive name for this alignment job" %}</small>
+            </div>
+
+            <!-- Source Selection -->
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <i class="fas fa-file-alt"></i> {% trans "Source Document & OCR" %}
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="{{ form.document.id_for_label }}">
+                    {% trans "Document" %} *
+                  </label>
+                  {{ form.document }}
+                  {% if form.document.errors %}
+                    <div class="invalid-feedback d-block">{{ form.document.errors }}</div>
+                  {% endif %}
+                  <small class="form-text text-muted">{% trans "Select the document containing OCR results" %}</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="{{ form.ocr_transcription.id_for_label }}">
+                    {% trans "OCR Transcription" %} *
+                  </label>
+                  {{ form.ocr_transcription }}
+                  {% if form.ocr_transcription.errors %}
+                    <div class="invalid-feedback d-block">{{ form.ocr_transcription.errors }}</div>
+                  {% endif %}
+                  <small class="form-text text-muted">{% trans "Select the OCR transcription to align" %}</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ground Truth Corpus -->
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <i class="fas fa-database"></i> {% trans "Ground Truth Corpus" %}
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="{{ form.gt_corpus.id_for_label }}">
+                    {% trans "GT Corpus" %} *
+                  </label>
+                  {{ form.gt_corpus }}
+                  {% if form.gt_corpus.errors %}
+                    <div class="invalid-feedback d-block">{{ form.gt_corpus.errors }}</div>
+                  {% endif %}
+                  <small class="form-text text-muted">
+                    {% trans "Select the Ground Truth corpus to align against" %}
+                    <br>
+                    <a href="{% url 'taba:corpus-list' %}" target="_blank">{% trans "View available corpora" %}</a>
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Passim Parameters -->
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <i class="fas fa-cog"></i> {% trans "Passim Parameters" %}
+                <button type="button" class="btn btn-sm btn-info float-right" data-toggle="collapse" data-target="#passimHelp">
+                  <i class="fas fa-question-circle"></i> {% trans "Help" %}
+                </button>
+              </div>
+              <div class="card-body">
+                <div id="passimHelp" class="collapse mb-3">
+                  <div class="alert alert-info">
+                    <h6>{% trans "Passim Parameter Guide" %}:</h6>
+                    <ul class="small">
+                      <li><strong>N-gram size:</strong> {% trans "Character n-gram order for alignment (default: 7)" %}</li>
+                      <li><strong>CPU Cores:</strong> {% trans "Number of CPU cores to use (default: 6)" %}</li>
+                      <li><strong>Memory:</strong> {% trans "Executor memory in GB (default: 8)" %}</li>
+                      <li><strong>Driver Memory:</strong> {% trans "Driver memory in GB (default: 4)" %}</li>
+                      <li><strong>Levenshtein Threshold:</strong> {% trans "Minimum similarity ratio (0.0-1.0, default: 0.8)" %}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="{{ form.passim_n.id_for_label }}">{% trans "N-gram size" %}</label>
+                      {{ form.passim_n }}
+                      {% if form.passim_n.errors %}
+                        <div class="invalid-feedback d-block">{{ form.passim_n.errors }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="{{ form.passim_cores.id_for_label }}">{% trans "CPU Cores" %}</label>
+                      {{ form.passim_cores }}
+                      {% if form.passim_cores.errors %}
+                        <div class="invalid-feedback d-block">{{ form.passim_cores.errors }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="{{ form.passim_memory.id_for_label }}">{% trans "Memory (GB)" %}</label>
+                      {{ form.passim_memory }}
+                      {% if form.passim_memory.errors %}
+                        <div class="invalid-feedback d-block">{{ form.passim_memory.errors }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="{{ form.passim_driver_memory.id_for_label }}">{% trans "Driver Memory (GB)" %}</label>
+                      {{ form.passim_driver_memory }}
+                      {% if form.passim_driver_memory.errors %}
+                        <div class="invalid-feedback d-block">{{ form.passim_driver_memory.errors }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="{{ form.levenshtein_threshold.id_for_label }}">{% trans "Levenshtein Threshold" %}</label>
+                  {{ form.levenshtein_threshold }}
+                  {% if form.levenshtein_threshold.errors %}
+                    <div class="invalid-feedback d-block">{{ form.levenshtein_threshold.errors }}</div>
+                  {% endif %}
+                  <small class="form-text text-muted">{% trans "Minimum similarity ratio (0.0-1.0). Higher = stricter matching." %}</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-group">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="fas fa-check"></i> {% trans "Create Job" %}
+              </button>
+              <a href="{% url 'taba:job-list' %}" class="btn btn-secondary btn-lg">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+              </a>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="fas fa-info-circle"></i>
+              <strong>{% trans "Note" %}:</strong> 
+              {% trans "After creating the job, you'll need to start it manually from the job detail page." %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  select:focus, input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+</style>
+{% endblock %}

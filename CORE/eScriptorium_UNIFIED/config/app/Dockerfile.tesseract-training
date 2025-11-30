@@ -1,0 +1,177 @@
+FROM python:3.11-slim
+
+# ============================================================================
+# 🔥 TESSERACT TRAINING SUPPORT - Modified Dockerfile
+# This Dockerfile builds eScriptorium with JKamlah's modified Tesseract
+# that supports LSTMF file writing for training OCR models.
+#
+# Build time: ~30-45 minutes (first build)
+# Build command: docker-compose -f docker-compose.tesseract.yml build
+#
+# Based on: JKamlah/tesseract (branch: lstmf-writer)
+# Added: 30 October 2025
+# ============================================================================
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DEBIAN_FRONTEND=non-interactive
+
+# set work directory
+WORKDIR /usr/src/app
+
+# ============================================================================
+# PHASE 1: Install System Dependencies
+# ============================================================================
+
+# Install base packages + Tesseract build dependencies
+RUN apt-get update -q && \
+    apt-get -y -qq install --no-install-recommends \
+    # Base packages (from original Dockerfile)
+    netcat-traditional jpegoptim pngcrush libvips libffi-dev \
+    git build-essential wget curl \
+    # Tesseract build dependencies
+    autoconf automake libtool pkg-config \
+    libpng-dev libjpeg-dev libtiff-dev \
+    libicu-dev libpango1.0-dev \
+    libleptonica-dev \
+    # Python development headers (for tesserocr)
+    python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install OpenJDK (from original Dockerfile)
+RUN echo "Installing jvm" && \
+    apt-get update && \
+    apt-get install -y default-jre default-jdk ant && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME (from original Dockerfile)
+RUN export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))
+
+# ============================================================================
+# PHASE 2: Build Modified Tesseract with LSTMF Writer Support
+# ============================================================================
+
+    # Clone JKamlah's modified Tesseract (with SSL certificate fix)
+    RUN echo "Cloning modified Tesseract with LSTMF writer support..." && \
+        cd /tmp && \
+        git config --global http.sslVerify false && \
+        git clone https://github.com/JKamlah/tesseract.git -b lstmf-writer --depth 1 && \
+        git config --global --unset http.sslVerify && \
+        cd tesseract && \
+        echo "Building Tesseract..." && \
+        ./autogen.sh && \
+        ./configure --prefix=/usr/local && \
+        make -j$(nproc) && \
+        make install && \
+        ldconfig && \
+        echo "Building Tesseract training tools..." && \
+        make training && \
+        make training-install && \
+        ldconfig && \
+        echo "Cleaning up build files..." && \
+        cd / && \
+        rm -rf /tmp/tesseract# Verify installation
+RUN echo "Verifying Tesseract installation..." && \
+    tesseract --version && \
+    echo "Verifying lstmtraining..." && \
+    lstmtraining --help > /dev/null 2>&1 || echo "lstmtraining not found!" && \
+    echo "Verifying combine_tessdata..." && \
+    combine_tessdata --help > /dev/null 2>&1 || echo "combine_tessdata not found!"
+
+# Download Tesseract language data (Hebrew example)
+RUN echo "Downloading Hebrew language data..." && \
+    mkdir -p /usr/local/share/tessdata && \
+    cd /usr/local/share/tessdata && \
+    wget -q https://github.com/tesseract-ocr/tessdata_best/raw/main/heb.traineddata && \
+    wget -q https://github.com/tesseract-ocr/tessdata_best/raw/main/eng.traineddata && \
+    echo "Language data downloaded successfully"
+
+# Set Tesseract data path
+ENV TESSDATA_PREFIX=/usr/local/share/tessdata
+
+# ============================================================================
+# BONUS: Install ocr-fileformat for import support (ABBYY, hOCR, etc.)
+# ============================================================================
+
+RUN echo "Installing ocr-fileformat from UB-Mannheim..." && \
+    cd /opt && \
+    git clone --depth 1 https://github.com/UB-Mannheim/ocr-fileformat.git && \
+    cd ocr-fileformat && \
+    echo "ocr-fileformat installed successfully"
+
+# Set environment variable
+ENV OCR_FILEFORMAT_PATH=/opt/ocr-fileformat
+
+# ============================================================================
+# PHASE 3: Install Python Dependencies
+# ============================================================================
+
+# Add non privileged user to run the app (from original Dockerfile)
+RUN addgroup --system uwsgi && \
+    adduser --system --no-create-home --ingroup uwsgi uwsgi
+
+# Upgrade pip
+RUN pip install --root-user-action ignore -q --upgrade pip
+
+# Install Python packages
+# NOTE: tesserocr will be compiled against the modified Tesseract
+COPY ./requirements.txt /usr/src/app/requirements.txt
+
+# Install tesserocr separately with proper flags
+RUN echo "Installing tesserocr (this may take 5-10 minutes)..." && \
+    CPPFLAGS="-I/usr/local/include" \
+    LDFLAGS="-L/usr/local/lib" \
+    pip install --no-cache-dir --root-user-action ignore -v tesserocr>=2.6.2
+
+# Install remaining Python packages
+RUN pip --no-cache-dir install --root-user-action ignore -q -r requirements.txt
+
+# ============================================================================
+# PHASE 4: Verify Installation
+# ============================================================================
+
+# Test tesserocr Python bindings
+RUN echo "Testing tesserocr Python bindings..." && \
+    python -c "import tesserocr; print('tesserocr version:', tesserocr.tesseract_version())" && \
+    python -c "import tesserocr; api = tesserocr.PyTessBaseAPI; print('Methods with LSTM:', [m for m in dir(api) if 'LSTM' in m])" && \
+    echo "tesserocr installation verified!"
+
+# ============================================================================
+# PHASE 5: Application Setup (same as original)
+# ============================================================================
+
+# Copy application code
+COPY . /usr/src/app/
+
+# Set permissions
+RUN chown -R uwsgi:uwsgi /usr/src/app
+
+# Expose port
+EXPOSE 8000
+
+# Default command (will be overridden by docker-compose)
+CMD ["uwsgi", "--ini", "/usr/src/app/uwsgi.ini"]
+
+# ============================================================================
+# Build Notes:
+# ============================================================================
+# 
+# Expected build time: 30-45 minutes (first build)
+# - Tesseract compilation: ~20 minutes
+# - tesserocr installation: ~5-10 minutes
+# - Other dependencies: ~5 minutes
+#
+# Disk space required: ~2GB (intermediate layers)
+# Final image size: ~1.5GB
+#
+# To build:
+#   docker-compose -f docker-compose.tesseract.yml build
+#
+# To verify after build:
+#   docker run --rm <image-name> python -c "import tesserocr; print(dir(tesserocr.PyTessBaseAPI))"
+#   # Should show 'WriteLSTMFLineData' in the list!
+#
+# ============================================================================

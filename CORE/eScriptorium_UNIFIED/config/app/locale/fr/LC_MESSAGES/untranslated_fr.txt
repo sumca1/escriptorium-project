@@ -1,0 +1,335 @@
+# French translations for eScriptorium.
+# Copyright (C) 2022
+# This file is distributed under the same license as the eScriptorium package.
+# Stefan Weil <sw@weilnetz.de, 2022
+#
+# This file was created like this:
+# django-admin makemessages -l fr
+#
+# To update all translations, run
+# django-admin makemessages --all --add-location file
+#
+# To compile it, run
+# django-admin compilemessages
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eScriptorium 0.11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-11 15:09+0000\n"
+"PO-Revision-Date: 2022-04-07 20:09+0000\n"
+"Last-Translator: Stefan Weil <sw@weilnetz.de>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/escriptorium/web-application/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Weblate 4.12-dev\n"
+
+#: apps/api/serializers.py
+msgid "Either use model_name to create a new model, or add a model pk to retrain an existing one."
+msgstr ""
+
+#: apps/imports/forms.py
+#, python-brace-format
+msgid "The name of the target transcription. Will default to '{format} Import'."
+msgstr ""
+
+#: apps/imports/forms.py
+msgid "Destroys existing regions, lines and any bound transcription before importing."
+msgstr ""
+
+#: apps/imports/forms.py
+msgid "exp: https://gallica.bnf.fr/iiif/ark:/12148/btv1b10224708f/manifest.json"
+msgstr ""
+
+#: apps/imports/forms.py
+msgid "The document pointed to by the given uri doesn't seem to be valid json."
+msgstr ""
+
+#: apps/imports/forms.py
+msgid "Will significantly increase the time to produce and download the export."
+msgstr ""
+
+#: apps/imports/parsers.py
+msgid "You ran out of disk storage. {n_pages - page_nb} pages were left to import (over {n_pages - start_at})"
+msgstr ""
+
+#: apps/imports/parsers.py
+msgid "You ran out of disk storage. {total - index} files were left to import (over {total - start_at})"
+msgstr ""
+
+#: apps/imports/parsers.py
+msgid "No match found for file {} with filename \"{}\"."
+msgstr ""
+
+#: apps/imports/parsers.py
+#, python-brace-format
+msgid "Line in '{filen}' line N°{line} (id: {lineid}) was skipped because: {error}"
+msgstr ""
+
+#: apps/imports/parsers.py
+#, python-brace-format
+msgid "Line without baseline in {filen} line #{linen}, very likely that it will not be usable!"
+msgstr ""
+
+#: apps/imports/parsers.py
+msgid "You ran out of disk storage. {total - i} canvases were left to import (over {total - start_at})"
+msgstr ""
+
+#: apps/users/admin.py
+#, python-format
+msgid "%d invitation was resent."
+msgid_plural "%d invitations were resent."
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/users/forms.py
+msgid "Message : Please precise your institution or research center if applicable"
+msgstr ""
+
+#: escriptorium/templates/core/document_form.html
+msgid "The default configuration only contains semantic types. <br>It is not recommended to mix semantic, stylistic and layout types.<br><b>It is required to hit 'Update' to add your new types to the document.</b>"
+msgstr ""
+
+#: escriptorium/templates/core/document_list.html
+#, python-format
+msgid "1 image."
+msgid_plural "%(n)s images."
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/core/home.html
+msgid "eScriptorium: A Digital Text Production Pipeline for Print and Handwritten Texts using machine learning techniques."
+msgstr ""
+
+#: escriptorium/templates/core/project_list.html
+#, python-format
+msgid "1 document."
+msgid_plural "%(n)s documents."
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/core/search.html
+msgid "Couldn't connect to Elasticsearch, please contact your instance administrator."
+msgstr ""
+
+#: escriptorium/templates/core/search.html
+msgid "You requested to search text in a project you don't have access to. Falling back to searching entered text in all of your projects."
+msgstr ""
+
+#: escriptorium/templates/core/wizards/binarize.html
+msgid "Binarization is NOT a mandatory step any more, and might even decrease quality."
+msgstr ""
+
+#: escriptorium/templates/core/wizards/import.html
+msgid "Import is already ongoing, please wait for it to be finished or cancel it."
+msgstr ""
+
+#: escriptorium/templates/core/wizards/train.html
+msgid "The training data will be generated from the selected images and transcription."
+msgstr ""
+
+#: escriptorium/templates/core/wizards/train.html
+msgid "Gathering data can take time and the model won't be available in the models tab until then."
+msgstr ""
+
+#: escriptorium/templates/core/wizards/transcribe.html
+msgid "Make sure that the segmentation is good before going forward because resegmenting will delete all bound transcriptions."
+msgstr ""
+
+#: escriptorium/templates/includes/help/baseline_editor.html
+msgid ""
+"\n"
+"<p>\n"
+"    <b>Left click</b> on the image to <u>create</u> new line, <b>Right click</b> to <b>add points</b> and <b>Left click</b> again to <u>finish</u> it.\n"
+"    <br/>You can keep the mouse button pressed for free drawing.\n"
+"    <br/>Hitting <b>escape</b> while drawing a line <u>cancels</u> it.\n"
+"    <br/>If regions matter to you switch to region mode first <i class=\"fas fa-th-large\"></i> (R key).\n"
+"    <br/>when in region mode <b>Left click</b> to create a new rectangular region, left click again to finish it.\n"
+"    <br/>lines drawn inside a region will automatically be bound to it.\n"
+"    <br/>When the quality of the segmentation is good, you can prompt the system to calculate masks <i class=\"text-success fas fa-thumbs-up\"></i>,\n"
+"    <br/>once a page already has masks new lines will automatically get a mask and updating a line will also recalculate its mask.\n"
+"    <br/><b>Note</b> that the quality of the masks is highly dependent on the quality of the whole segmentation, not only the corresponding line,\n"
+"    <br/>so make sure to draw all the lines before calculating the masks.\n"
+"    <br>You can also have the option to calculate the masks <i>en masse</i> in the Images tab -> segment -> choose 'Only masks'.\n"
+"</p>\n"
+"<p>\n"
+"    <b>Left click</b> on a line to select it, then you can drag its closest control point.\n"
+"    <br/><b>Double click</b> on the line will create a <u>new control point</u> at the mouse location.\n"
+"    <br/>You can reverse the order of the line's points by selecting a line (or multiple) and using reverse <i class=\"fas fa-arrow-alt-h\"></i> (I key).\n"
+"    <br/>When in region mode, Regions can be edited the same way.\n"
+"    <br/>Selected lines can be linked or unlinked to regions with the corresponding buttons <i class=\"fas fa-link\"></i>(Y key) <i class=\"fas fa-unlink\"> (U key).</i>\n"
+"    <br/>By using the cut mode <i class=\"text-warning fas fa-cut\"></i> (C key) you can cut through lines, splitting them in two or removing part of them.\n"
+"    <br/>If at least two lines are selected a option to join them becomes available <i class=\"fas fa-compress-arrows-alt\"></i> (J key).\n"
+"    <br/>You can go through your changes <u>history</u> back and forth with <b>Ctrl+Z</b>(undo) and <b>Ctrl+Y</b>(redo) or by using the corresponding buttons <i class=\"fas fa-undo\"></i><i class=\"fas fa-redo\"></i>.\n"
+"</p>\n"
+"<p>\n"
+"    <b>Shift+click</b> allows to add or remove a line from the <u>selection</u>,\n"
+"    <br/>Clicking on an empty space clears the selection,\n"
+"    <br/><b>shift and drag</b> creates a <u>lasso</u> selection tool that allows to select control points (they then appear black).\n"
+"    <br/><b>Note:</b> If lines are already selected the lasso will only select points in those lines.\n"
+"    <br/><b>Ctrl+drag</b> allows to move all the selected control points at once (or the selected lines if no control points are selected).\n"
+"\n"
+"    <br/>The red trash <i class=\"text-danger fas fa-trash\"></i> button <b>deletes</b> all selected <b>lines/regions</b>,\n"
+"    <br/>The yellow trash button <i class=\"text-warning fas fa-trash\"></i> only <b>deletes</b> selected control <b>points</b>.\n"
+"</p>\n"
+msgstr ""
+
+#: escriptorium/templates/includes/help/compare_transcriptions.html
+msgid ""
+"\n"
+"<p style=\"direction:ltr\">\n"
+"    Each line is a different transcription as checked in the transcription management window <i class=\"fas fa-cog\"></i>\n"
+"    <br>The colors represent the difference with the current transcription,\n"
+"    <br><font color=\"green\">green</font> characters are not present in the current (editable) transcription while <font color=\"red\">red</font> characters are not present in the compared transcription.\n"
+"</p>\n"
+msgstr ""
+
+#: escriptorium/templates/includes/help/versions.html
+msgid ""
+"\n"
+"<p style=\"direction:ltr\">\n"
+"    Each line corresponds to a an edition of the content, in inverse chronological order (Most recent at the top).\n"
+"    <br>The colors represent the difference with the previous version,\n"
+"    <br><font color=\"green\">green</font> are <b>additions</b> while <font color=\"red\">red</font> are <b>deletions</b>,\n"
+"    <br>meaning red characters are not actually part of the line anymore, they are displayed to easily spot the differences.\n"
+"    <br>You can mouse over the text to see the actual content.\n"
+"    <br>The load state button <i class=\"fas fa-file-upload\"></i> simply revert the content of the line to the corresponding text version.\n"
+"</p>\n"
+msgstr ""
+
+#: escriptorium/templates/includes/help/versions_diff.html
+msgid ""
+"\n"
+"lala\n"
+msgstr ""
+
+#: escriptorium/templates/includes/pagination.html
+#, python-format
+msgid ""
+"\n"
+"                        Show %(page)s\n"
+"                      "
+msgstr ""
+
+#: escriptorium/templates/includes/pagination.html
+#, python-format
+msgid ""
+"\n"
+"                %(page_number)s out of %(num_pages)s\n"
+"              "
+msgstr ""
+
+#: escriptorium/templates/includes/pagination.html
+#, python-format
+msgid ""
+"\n"
+"                %(counter)s out of %(num_pages)s\n"
+"              "
+msgstr ""
+
+#: escriptorium/templates/registration/password_change_form.html
+msgid ""
+"\n"
+"                  Please correct the error below.\n"
+"              "
+msgid_plural ""
+"\n"
+"                  Please correct the errors below.\n"
+"              "
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/registration/password_change_form.html
+msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: escriptorium/templates/registration/password_reset_confirm.html
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: escriptorium/templates/registration/password_reset_confirm.html
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr ""
+
+#: escriptorium/templates/registration/password_reset_done.html
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: escriptorium/templates/registration/password_reset_done.html
+msgid "If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+msgid "A region is a polygon drawn on a document part, grouping one, several or no line(s)."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+msgid "A line is a segment of text identified on a document part, usually associated with a polygon (mask) and a transcription."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+msgid "A word is any series of one or more characters, excepted punctuation signs and white spaces."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+msgid "A character is any symbol used in the transcription, including punctuation, excepted white spaces."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr ""
+
+#: escriptorium/templates/reporting/project_reports.html
+#, python-format
+msgid "Project shared with 1 user"
+msgid_plural "Project shared with %(n)s users"
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/reporting/project_reports.html
+#, python-format
+msgid "Project shared with 1 group"
+msgid_plural "Project shared with %(n)s groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/reporting/project_reports.html
+#, python-format
+msgid "Documents shared with 1 user"
+msgid_plural "Documents shared with %(n)s users"
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/reporting/project_reports.html
+#, python-format
+msgid "Documents shared with 1 group"
+msgid_plural "Documents shared with %(n)s groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: escriptorium/templates/reporting/taskreport_list.html
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren't listed below."
+msgstr ""
+
+#: escriptorium/templates/users/group_detail_invite.html
+msgid "Make sure to use a correct email as you will not receive an error message if it is not the case (in order to avoid phishing)."
+msgstr ""
+
+#: escriptorium/templates/users/invitation_accept_register.html
+#, python-format
+msgid ""
+"\n"
+"      You received an invitation from %(sender)s, please fill the form below to register.\n"
+"    "
+msgstr ""
+
+#: escriptorium/templates/users/profile_group_list.html
+#, python-format
+msgid ""
+"\n"
+"            Invited to %(team_name)s by %(sender)s\n"
+"            "
+msgstr ""

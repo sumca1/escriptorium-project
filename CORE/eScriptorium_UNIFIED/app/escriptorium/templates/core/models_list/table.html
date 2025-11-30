@@ -1,0 +1,435 @@
+{% load i18n %}
+
+<table id="models-table" class="table table-hover">
+  <tr>
+    <th></th>
+    <th>{% trans "Role" %}</th>
+    <th>
+      {% trans "Script" %}
+      {% if script_filter %}
+      <form method="get" action="{% url 'user-models' %}">
+        <input type="text" value="" name="script_filter" hidden/>
+        <button type="submit" title="Remove filter" class="btn btn-outline-primary badge badge-pill badge-primary">
+          Filter: {{ script_filter }} &times;
+        </button>
+      </form>
+      {% endif %}
+    </th>
+    <th>{% trans "Size" %}</th>
+    <th>{% trans "Trained from" %}</th>
+    <th>{% trans "Training Status" %}</th>
+    <th>{% trans "Accuracy" %}</th>
+    {# <th>{% trans "Errors" %}</th> #}
+    <th>{% trans "Right" %}</th>
+    <th>{# buttons #}</th>
+  </tr>
+  {% for model in page_obj %}
+  <tr id="tr-{{model.pk}}" class="model-head" data-id="{{model.pk}}">
+    <td title="{% trans "Model name" %}">{{ model.name }}</td>
+    <td title="{% trans "Model role" %}">{{ model.get_job_display }}</td>
+    <td title="{% trans "Model script" %}">
+      {{ model.script }}
+      {% if model.script and script_filter != model.script.name %}
+      <form class="d-inline" method="get" action="{% url 'user-models' %}">
+        <input type="text" value="{{ model.script.name }}" name="script_filter" hidden/>
+        <button type="submit" class="btn btn-sm btn-link" title="{% trans "Filter by script" %}">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      {% endif %}
+    </td>
+    <td>{{ model.file_size|filesizeformat }}</td>
+    <td title="{% trans "Parent from which the model was trained" %}">
+      <small>{{ model.parent.name }}</small>
+    </td>
+    <td>
+      <i class="training-ongoing fas fa-subway blink {% if not model.training %}hide{% endif %}" title="{% trans "Is currently training" %}"></i>
+      <span class="training-done text-success {% if model.training %}hide{% endif %}" title="{% trans "Is done training" %}">✓</span>
+      <span class="training-error text-danger hide">X</span>
+      <span title="{% trans "Gathering data" %}" class="training-gathering progress hide">
+        <span class="progress-bar" role="progressbar"></span>
+      </span>
+      <form method="POST" class="inline-form" action="{% url 'model-cancel-training' model.pk %}?next={{request.path}}">
+        {% csrf_token %}
+        <button type="submit" class="cancel-training btn btn-sm btn-warning {% if not model.training %}hide{% endif %}" title="{% trans "Cancel training" %}"><i class="fas fa-ban"></i></button>
+      </form>
+    </td>
+    <td id="accuracy-{{model.pk}}" data-value="{{ model.training_accuracy }}" title="{% trans "Accuracy" %}">{% if model.accuracy_percent %}{{ model.accuracy_percent|floatformat:1 }}%{% else %}-{% endif %}</td>
+    {% comment %}<td title="{% trans "Number of errors/Total number of characters" %}">{% if model.training_total %}{{ model.training_errors }}/{{model.training_total}}{% else %}-{% endif %}</td>{% endcomment %}
+    <td>
+      {% if model.owner == request.user %}
+      <span class="badge badge-pill badge-danger">{% trans "Owner" %}</span>
+      {% elif model.public %}
+      <span class="badge badge-pill badge-success">{% trans "Public" %}</span>
+      {% else %}
+      <span class="badge badge-pill badge-primary">{% trans "User" %}</span>
+      {% endif %}
+    </td>
+    <td>
+        {% if model.versions %}
+        <span class="ml-auto" title="{% trans "Toggle versions" %}">
+            <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target=".versions-{{model.pk}}">
+                <i class="fas fa-list-ul"></i>
+            </button>
+        </span>
+        {% endif %}
+
+        <span title="{% trans "Analytics Dashboard" %}">
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#analyticsModal" data-model-id="{{ model.pk }}" data-model-name="{{ model.name }}">
+            <i class="fas fa-chart-line"></i>
+          </button>
+        </span>
+
+        {% if model.file %}
+        <span title="{% trans "Download" %}">
+          <a href="{{ model.file.url }}" class="btn btn-sm btn-success" role="button">
+            <i class="fas fa-file-download"></i>
+          </a>
+        </span>
+        {% endif %}
+
+        {% if model.owner == request.user and not model.public %}
+        <span title="{% trans "Share model" %}">
+          <a href="{% url 'model-rights' model.pk %}" class="btn btn-sm btn-primary">
+            <i class="fas fa-share"></i>
+          </a>
+        </span>
+        {% endif %}
+
+        {% if unbind_model %}
+        {% if document.owner == request.user %}
+        <form method="POST" class="inline-form" action="{% url 'model-unbind' model.pk document.pk %}?next={{request.path}}" title="{% trans "Unbind model from the document" %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-warning">
+            <i class="fas fa-trash"></i>
+          </button>
+        </form>
+        {% endif %}
+        {% else %}
+        {% if model.owner == request.user and not model.training %}
+        <form method="POST" class="inline-form" action="{% url 'model-delete' model.pk %}?next={{request.path}}" title="{% trans "Delete model" %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-danger">
+            <i class="fas fa-trash"></i>
+          </button>
+        </form>
+        {% endif %}
+        {% endif %}
+    </td>
+  </tr>
+  {% for version in model.history %}
+  <tr id="model-version-{{version.revision}}" class="versions-{{model.pk}} collapse">
+
+    <td title="{% trans "Model name" %}" class="pl-5">{{ version.name }} (epoch #{{version.training_epoch}})</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td title="{% trans "Accuracy" %}">{{ version.accuracy_percent|floatformat:1 }}%</td>
+    {% comment %}<td title="{% trans "Number of errors/Total number of characters" %}">{{ version.training_errors }}/{{version.training_total}}</td>{% endcomment %}
+    <td>
+      {% if version.owner == request.user %}
+      <span class="badge badge-pill badge-danger">{% trans "Owner" %}</span>
+      {% elif version.public %}
+      <span class="badge badge-pill badge-success">{% trans "Public" %}</span>
+      {% else %}
+      <span class="badge badge-pill badge-primary">{% trans "User" %}</span>
+      {% endif %}
+    </td>
+    <td>
+      <a href="{{ version.file.url }}" class="btn btn-sm btn-primary" title="{% trans "Download" %}">
+        <i class="fas fa-file-download"></i>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+  {% endfor %}
+</table>
+{% include 'includes/pagination.html' %}
+
+<!-- Analytics Dashboard Modal -->
+<div class="modal fade" id="analyticsModal" tabindex="-1" role="dialog" aria-labelledby="analyticsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="analyticsModalLabel">
+          <i class="fas fa-chart-line"></i> {% trans "Analytics Dashboard" %} - <span id="modal-model-name"></span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="analytics-loading" class="text-center py-5">
+          <i class="fas fa-spinner fa-spin fa-3x text-primary"></i>
+          <p class="mt-3">{% trans "Loading analytics data..." %}</p>
+        </div>
+        <div id="analytics-content" style="display: none;">
+          <!-- Model Info Cards -->
+          <div class="row mb-4">
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Current Accuracy" %}</h6>
+                  <h3 class="card-text text-primary" id="current-accuracy">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Total Epochs" %}</h6>
+                  <h3 class="card-text text-success" id="total-epochs">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Training Lines" %}</h6>
+                  <h3 class="card-text text-info" id="training-lines">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Validation Lines" %}</h6>
+                  <h3 class="card-text text-warning" id="validation-lines">-</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-chart-line"></i> {% trans "Accuracy Over Time" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="accuracyChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-chart-bar"></i> {% trans "Training Duration" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="durationChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-database"></i> {% trans "Training Data Distribution" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="dataChart" style="max-height: 300px;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="analytics-error" class="alert alert-danger" style="display: none;">
+          <i class="fas fa-exclamation-triangle"></i> <span id="error-message"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+<script>
+let analyticsCharts = {
+  accuracy: null,
+  duration: null,
+  data: null
+};
+
+// Get CSRF token from cookie
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+// Ensure jQuery is loaded before setting up AJAX
+if (typeof $ !== 'undefined' && typeof jQuery !== 'undefined') {
+  // Setup AJAX to include CSRF token
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+      }
+    }
+  });
+
+  $('#analyticsModal').on('show.bs.modal', function (event) {
+  const button = $(event.relatedTarget);
+  const modelId = button.data('model-id');
+  const modelName = button.data('model-name');
+  
+  $('#modal-model-name').text(modelName);
+  $('#analytics-loading').show();
+  $('#analytics-content').hide();
+  $('#analytics-error').hide();
+  
+  // Destroy existing charts
+  Object.values(analyticsCharts).forEach(chart => {
+    if (chart) chart.destroy();
+  });
+  
+  // Fetch analytics data
+  $.ajax({
+    url: `/api/models/${modelId}/training-status/`,
+    method: 'GET',
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function(data) {
+      updateAnalytics(modelId, data);
+    },
+    error: function(xhr, status, error) {
+      $('#analytics-loading').hide();
+      $('#analytics-error').show();
+      $('#error-message').text('Failed to load analytics: ' + xhr.status + ' - ' + (xhr.responseJSON?.detail || error));
+      console.error('Analytics error:', xhr, status, error);
+    }
+  });
+});
+
+function updateAnalytics(modelId, statusData) {
+  // Update info cards
+  $('#current-accuracy').text(statusData.accuracy ? statusData.accuracy.toFixed(2) + '%' : 'N/A');
+  $('#training-lines').text(statusData.training_data?.training_lines || 0);
+  $('#validation-lines').text(statusData.training_data?.validation_lines || 0);
+  
+  // Fetch training history
+  $.ajax({
+    url: `/api/models/${modelId}/training-history/`,
+    method: 'GET',
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function(historyData) {
+      $('#total-epochs').text(historyData.epochs?.length || 0);
+      createCharts(historyData);
+      $('#analytics-loading').hide();
+      $('#analytics-content').show();
+    },
+    error: function(xhr) {
+      $('#total-epochs').text('0');
+      console.error('History error:', xhr);
+      $('#analytics-loading').hide();
+      $('#analytics-content').show();
+    }
+  });
+}
+
+function createCharts(historyData) {
+  const epochs = historyData.epochs || [];
+  
+  // Accuracy Chart
+  const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+  analyticsCharts.accuracy = new Chart(accuracyCtx, {
+    type: 'line',
+    data: {
+      labels: epochs.map(e => `Epoch ${e.epoch}`),
+      datasets: [{
+        label: 'Accuracy (%)',
+        data: epochs.map(e => e.accuracy || 0),
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+  
+  // Duration Chart
+  const durationCtx = document.getElementById('durationChart').getContext('2d');
+  analyticsCharts.duration = new Chart(durationCtx, {
+    type: 'bar',
+    data: {
+      labels: epochs.map(e => `Epoch ${e.epoch}`),
+      datasets: [{
+        label: 'Duration (minutes)',
+        data: epochs.map(e => e.duration_minutes || 0),
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  
+  // Data Distribution Chart
+  const dataCtx = document.getElementById('dataChart').getContext('2d');
+  const trainingLines = parseInt($('#training-lines').text()) || 0;
+  const validationLines = parseInt($('#validation-lines').text()) || 0;
+  
+  analyticsCharts.data = new Chart(dataCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Training Lines', 'Validation Lines'],
+      datasets: [{
+        data: [trainingLines, validationLines],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)'
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+} else {
+  console.error('jQuery is not loaded! Analytics modal will not work.');
+}
+</script>

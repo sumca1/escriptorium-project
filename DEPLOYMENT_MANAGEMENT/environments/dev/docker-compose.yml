@@ -1,0 +1,124 @@
+# ========================================
+# 🟢 DEV Environment - Development
+# ========================================
+# מטרה: פיתוח מהיר עם hot-reload
+# Volumes: מחובר ישירות ל-SOURCE
+# Build: מינימלי - רק dependencies
+# Port: 8000
+
+version: '3.8'
+
+x-app:
+  &app
+  build:
+    context: ../../../CORE/eScriptorium_UNIFIED
+    dockerfile: Dockerfile
+    args:
+      - ENVIRONMENT=dev
+  env_file: 
+    - ../../../CORE/eScriptorium_UNIFIED/config/variables.env
+    - .env.dev
+  environment:
+    - TZ=Asia/Jerusalem
+    - DEBUG=True
+    - ENVIRONMENT=dev
+  volumes:
+    # 🔥 HOT RELOAD - קישור ישיר לקוד!
+    - ../../../CORE/eScriptorium_UNIFIED/app:/usr/src/app:cached
+    - ../../../CORE/eScriptorium_UNIFIED/front:/usr/src/front:cached
+    - static:/usr/src/app/static
+    - media:/usr/src/app/media
+    - logs:/usr/src/app/logs
+  command: /bin/true
+
+services:
+
+  # ============================================
+  # eScriptorium Core Services
+  # ============================================
+
+  web:
+    <<: *app
+    container_name: escriptorium_dev_web
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - escriptorium-dev-net
+
+  channelserver:
+    <<: *app
+    container_name: escriptorium_dev_channels
+    command: daphne --bind 0.0.0.0 --port 5000 -v 2 escriptorium.asgi:application
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - escriptorium-dev-net
+
+  db:
+    image: postgres:15-alpine
+    container_name: escriptorium_dev_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=escriptorium_dev
+      - POSTGRES_USER=escriptorium
+      - POSTGRES_PASSWORD=escriptorium
+      - TZ=Asia/Jerusalem
+    volumes:
+      - postgres_dev:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    networks:
+      - escriptorium-dev-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: escriptorium_dev_redis
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jerusalem
+    ports:
+      - "6379:6379"
+    networks:
+      - escriptorium-dev-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: escriptorium_dev_nginx
+    restart: unless-stopped
+    environment:
+      - SERVERNAME=localhost
+      - TZ=Asia/Jerusalem
+    volumes:
+      - ../../../CORE/eScriptorium_UNIFIED/nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+      - static:/usr/src/app/static:ro
+      - media:/usr/src/app/media:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+    networks:
+      - escriptorium-dev-net
+
+volumes:
+  postgres_dev:
+    name: escriptorium_dev_postgres
+  static:
+    name: escriptorium_dev_static
+  media:
+    name: escriptorium_dev_media
+  logs:
+    name: escriptorium_dev_logs
+
+networks:
+  escriptorium-dev-net:
+    name: escriptorium-dev-net
+    driver: bridge

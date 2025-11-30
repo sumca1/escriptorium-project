@@ -1,0 +1,170 @@
+{
+  "errors": [
+    {
+      "code": "DOCKER_001",
+      "title": "שירות Docker לא פעיל",
+      "severity": "critical",
+      "category": "docker",
+      "description": "Docker Desktop אינו רץ או אינו זמין במערכת",
+      "symptoms": [
+        "Error response from daemon",
+        "Cannot connect to the Docker daemon",
+        "Is the docker daemon running?"
+      ],
+      "solution": "הפעל את Docker Desktop והמתן עד שהסטטוס יהיה 'running'",
+      "autoFixCommand": "Start-Process 'C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe'",
+      "autoFixAvailable": true,
+      "documentation": "https://docs.docker.com/desktop/troubleshoot/"
+    },
+    {
+      "code": "DOCKER_002",
+      "title": "Container לא רץ",
+      "severity": "high",
+      "category": "docker",
+      "description": "קונטיינר נדרש אינו פעיל",
+      "symptoms": [
+        "Container not found",
+        "No such container",
+        "Container is not running"
+      ],
+      "solution": "הרץ את הקונטיינרים באמצעות docker-compose up -d",
+      "autoFixCommand": "docker-compose up -d",
+      "autoFixAvailable": true,
+      "documentation": "https://docs.docker.com/compose/"
+    },
+    {
+      "code": "DOCKER_003",
+      "title": "Image לא נמצא",
+      "severity": "high",
+      "category": "docker",
+      "description": "Docker image נדרש אינו קיים במערכת",
+      "symptoms": [
+        "No such image",
+        "Unable to find image",
+        "Image not found"
+      ],
+      "solution": "בנה את ה-image או משוך אותו מ-registry",
+      "autoFixCommand": "docker-compose build",
+      "autoFixAvailable": true,
+      "documentation": "https://docs.docker.com/engine/reference/commandline/build/"
+    },
+    {
+      "code": "BUILD_001",
+      "title": "Build נכשל",
+      "severity": "high",
+      "category": "build",
+      "description": "תהליך הבנייה נכשל עקב שגיאת קומפילציה",
+      "symptoms": [
+        "npm ERR!",
+        "Build failed",
+        "Error: Command failed"
+      ],
+      "solution": "בדוק את הלוגים של הבנייה ונסה לרוץ npm clean install",
+      "autoFixCommand": "npm ci",
+      "autoFixAvailable": false,
+      "documentation": "https://docs.npmjs.com/cli/v9/commands/npm-ci"
+    },
+    {
+      "code": "PORT_001",
+      "title": "Port תפוס",
+      "severity": "medium",
+      "category": "network",
+      "description": "הפורט הנדרש כבר בשימוש",
+      "symptoms": [
+        "Port already in use",
+        "Address already in use",
+        "EADDRINUSE"
+      ],
+      "solution": "עצור את התהליך שתופס את הפורט או שנה את הפורט",
+      "autoFixCommand": "Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess | Stop-Process -Force",
+      "autoFixAvailable": true,
+      "documentation": ""
+    },
+    {
+      "code": "VOLUME_001",
+      "title": "Volume לא נמצא",
+      "severity": "medium",
+      "category": "docker",
+      "description": "Docker volume נדרש אינו קיים",
+      "symptoms": [
+        "No such volume",
+        "Volume not found"
+      ],
+      "solution": "צור את ה-volume באמצעות docker volume create",
+      "autoFixCommand": "docker volume create",
+      "autoFixAvailable": false,
+      "documentation": "https://docs.docker.com/engine/reference/commandline/volume_create/"
+    },
+    {
+      "code": "NETWORK_001",
+      "title": "Network לא נמצא",
+      "severity": "medium",
+      "category": "docker",
+      "description": "Docker network נדרש אינו קיים",
+      "symptoms": [
+        "No such network",
+        "Network not found"
+      ],
+      "solution": "צור את ה-network באמצעות docker network create",
+      "autoFixCommand": "docker network create",
+      "autoFixAvailable": false,
+      "documentation": "https://docs.docker.com/engine/reference/commandline/network_create/"
+    },
+    {
+      "code": "FILE_001",
+      "title": "קובץ תצורה חסר",
+      "severity": "high",
+      "category": "config",
+      "description": "קובץ תצורה נדרש אינו קיים",
+      "symptoms": [
+        "No such file or directory",
+        "Cannot find file",
+        "File not found"
+      ],
+      "solution": "העתק את קובץ הדוגמה או צור קובץ חדש",
+      "autoFixCommand": "Copy-Item variables.env_example variables.env",
+      "autoFixAvailable": false,
+      "documentation": ""
+    },
+    {
+      "code": "PERMISSION_001",
+      "title": "חוסר הרשאות",
+      "severity": "high",
+      "category": "system",
+      "description": "אין הרשאות מספיקות לביצוע הפעולה",
+      "symptoms": [
+        "Permission denied",
+        "Access denied",
+        "Insufficient permissions"
+      ],
+      "solution": "הרץ את הפקודה כמנהל מערכת (Administrator)",
+      "autoFixCommand": "",
+      "autoFixAvailable": false,
+      "documentation": ""
+    },
+    {
+      "code": "DISK_001",
+      "title": "אין מספיק מקום בדיסק",
+      "severity": "critical",
+      "category": "system",
+      "description": "אין מספיק מקום פנוי בדיסק",
+      "symptoms": [
+        "No space left on device",
+        "Disk full",
+        "Insufficient disk space"
+      ],
+      "solution": "פנה מקום בדיסק או נקה images ישנים",
+      "autoFixCommand": "docker system prune -a --volumes -f",
+      "autoFixAvailable": true,
+      "documentation": "https://docs.docker.com/engine/reference/commandline/system_prune/"
+    }
+  ],
+  "categories": [
+    "docker",
+    "build",
+    "network",
+    "config",
+    "system"
+  ],
+  "lastUpdate": "2025-11-14T20:00:00Z"
+}

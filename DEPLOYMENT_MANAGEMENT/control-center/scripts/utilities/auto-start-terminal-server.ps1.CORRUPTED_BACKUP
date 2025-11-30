@@ -1,0 +1,351 @@
+# ========================================# ========================================
+
+# auto-start-terminal-server.ps1# auto-start-terminal-server.ps1
+
+# סקריפט פשוט להפעלת Control Center# הפעלת Terminal Server + Control Center Dashboard
+
+# ========================================# גרסה מותאמת ל-Control Center החדש!
+
+# ========================================
+
+param(
+
+    [int]$Port = 3000,param(
+
+    [switch]$Silent,    [Parameter(Mandatory=$false)]
+
+    [switch]$NoBrowser    [int]$Port = 3001,
+
+)    
+
+    [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = 'Stop'    [switch]$Silent,
+
+    
+
+# פונקציות פשוטות    [Parameter(Mandatory=$false)]
+
+function Write-Info {    [switch]$NoBrowser
+
+    param([string]$Message))
+
+    if (-not $Silent) { Write-Host "ℹ️  $Message" -ForegroundColor Cyan }
+
+}$ErrorActionPreference = "Stop"
+
+
+
+function Write-Success {# צבעים
+
+    param([string]$Message)function Write-Info { param($Message) if (-not $Silent) { Write-Host "ℹ️  $Message" -ForegroundColor Cyan } }
+
+    if (-not $Silent) { Write-Host "✅ $Message" -ForegroundColor Green }function Write-Success { param($Message) if (-not $Silent) { Write-Host "✅ $Message" -ForegroundColor Green } }
+
+}function Write-Warning { param($Message) if (-not $Silent) { Write-Host "⚠️  $Message" -ForegroundColor Yellow } }
+
+
+
+function Write-Warning {Write-Info "מפעיל Terminal Server + Control Center Dashboard..."
+
+    param([string]$Message)
+
+    if (-not $Silent) { Write-Host "⚠️  $Message" -ForegroundColor Yellow }# ========================================
+
+}# פונקציה: בדיקת זמינות פורט
+
+# ========================================
+
+# מציאת נתיביםfunction Test-PortAvailable {
+
+$controlCenterDir = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)    param([int]$PortNumber)
+
+$workspaceRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $controlCenterDir)))    
+
+$smartScriptPath = Join-Path $workspaceRoot "scripts\start-terminal-server.ps1"    try {
+
+$dashboardPath = Join-Path $controlCenterDir "dashboard.html"        $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Any, $PortNumber)
+
+        $listener.Start()
+
+Write-Info "מפעיל Terminal Server + Control Center..."        $listener.Stop()
+
+Write-Host "   📂 Workspace: $workspaceRoot" -ForegroundColor Gray        return $true
+
+Write-Host "   📜 Script: $smartScriptPath" -ForegroundColor Gray    }
+
+Write-Host "   📊 Dashboard: $dashboardPath" -ForegroundColor Gray    catch {
+
+        return $false
+
+# בדוק שהסקריפט הראשי קיים    }
+
+if (-not (Test-Path $smartScriptPath)) {}
+
+    Write-Warning "לא נמצא: $smartScriptPath"
+
+    exit 1# ========================================
+
+}# פונקציה: שחרור פורט (הריגת תהליך)
+
+# ========================================
+
+# הפעל את הסקריפט המרכזיfunction Stop-ProcessOnPort {
+
+Write-Info "מפעיל שרת על פורט $Port..."    param([int]$PortNumber)
+
+& $smartScriptPath -Port $Port -NoBrowser    
+
+    try {
+
+$exitCode = $LASTEXITCODE        $connections = Get-NetTCPConnection -LocalPort $PortNumber -ErrorAction SilentlyContinue
+
+if ($exitCode -ne 0) {        
+
+    Write-Warning "השרת נכשל עם קוד $exitCode"        if ($connections) {
+
+    exit $exitCode            foreach ($conn in $connections) {
+
+}                $processId = $conn.OwningProcess
+
+                $process = Get-Process -Id $processId -ErrorAction SilentlyContinue
+
+Write-Success "השרת פעיל!"                
+
+                if ($process) {
+
+# פתח את הדשבורד הנכון                    Write-Warning "⚠️  פורט $PortNumber תפוס על ידי תהליך: $($process.ProcessName) (PID: $processId)"
+
+if (-not $NoBrowser -and (Test-Path $dashboardPath)) {                    Write-Host "   💀 עוצר את התהליך..." -ForegroundColor Yellow
+
+    Write-Info "פותח Control Center Dashboard..."                    
+
+    Start-Process $dashboardPath                    Stop-Process -Id $processId -Force -ErrorAction SilentlyContinue
+
+    Write-Success "הדשבורד נפתח!"                    Start-Sleep -Milliseconds 500
+
+}                    
+
+                    Write-Success "✅ התהליך נעצר, פורט $PortNumber זמין עכשיו"
+
+Write-Host ""                    return $true
+
+Write-Success "🎉 Control Center מוכן לשימוש!"                }
+
+Write-Host ""            }
+
+        }
+
+exit 0    }
+
+    catch {
+        Write-Host "   ℹ️  לא הצלחתי לזהות תהליך על פורט $PortNumber" -ForegroundColor Gray
+    }
+    
+    return $false
+}
+
+# ========================================
+# פונקציה: מציאת פורט זמין
+# ========================================
+function Find-AvailablePort {
+    param([int]$StartPort, [int]$MaxAttempts = 10)
+    
+    Write-Info "🔍 מחפש פורט זמין החל מ-$StartPort..."
+    
+    for ($i = 0; $i -lt $MaxAttempts; $i++) {
+        $testPort = $StartPort + $i
+        
+        if (Test-PortAvailable -PortNumber $testPort) {
+            Write-Success "✅ פורט $testPort זמין!"
+            return $testPort
+        } else {
+            Write-Host "   ⏭️  פורט $testPort תפוס..." -ForegroundColor Gray
+            
+            # אם זה הניסיון הראשון, נסה לשחרר את הפורט
+            if ($i -eq 0) {
+                Write-Host "   🔧 מנסה לשחרר את הפורט..." -ForegroundColor Yellow
+                $freed = Stop-ProcessOnPort -PortNumber $testPort
+                
+                if ($freed) {
+                    # בדוק שוב אחרי שחרור
+                    if (Test-PortAvailable -PortNumber $testPort) {
+                        Write-Success "✅ פורט $testPort זמין אחרי שחרור!"
+                        return $testPort
+                    }
+                }
+            }
+            
+            Write-Host "   ⏭️  מנסה פורט הבא..." -ForegroundColor Gray
+        }
+    }
+    
+    return $null
+}
+
+# ========================================
+# בדיקה: האם השרת כבר רץ?
+# ========================================
+try {
+    $response = Invoke-WebRequest -Uri "http://localhost:$Port/health" -Method GET -TimeoutSec 2 -ErrorAction SilentlyContinue
+    if ($response.StatusCode -eq 200) {
+        Write-Success "Terminal Server כבר פעיל על פורט $Port!"
+        
+        # פתח רק את הדשבורד
+        if (-not $NoBrowser -and -not $Silent) {
+            $controlCenterPath = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+            $dashboardPath = Join-Path $controlCenterPath "dashboard.html"
+            
+            if (Test-Path $dashboardPath) {
+                Write-Info "פותח את Control Center Dashboard..."
+                Start-Process $dashboardPath
+            }
+        }
+        
+        exit 0
+    }
+} catch {
+    Write-Info "השרת לא פעיל - מחפש פורט זמין..."
+}
+
+# ========================================
+# חיפוש חכם של פורט זמין
+# ========================================
+$availablePort = Find-AvailablePort -StartPort $Port -MaxAttempts 10
+
+if ($null -eq $availablePort) {
+    Write-Warning "❌ לא נמצא פורט זמין בטווח $Port-$($Port+9)"
+    Write-Warning "נסה לסגור תהליכי node ישנים או השתמש בפורט גבוה יותר"
+    exit 1
+}
+
+# עדכן את המשתנה לפורט שנמצא
+$Port = $availablePort
+
+# ========================================
+# הפעלת שרת המסוף - שיטה פשוטה ומדויקת
+# ========================================
+
+# נתיבים
+$controlCenterPath = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$ServerPath = Join-Path $controlCenterPath "terminal-server.js"
+$DashboardPath = Join-Path $controlCenterPath "dashboard.html"
+$LogPath = Join-Path $controlCenterPath "logs\terminal-server.log"
+
+Write-Info "נתיבי עבודה:"
+Write-Info "  Control Center: $controlCenterPath"
+Write-Info "  Server: $ServerPath"
+Write-Info "  Dashboard: $DashboardPath"
+
+# וידוא: Node.js מותקן
+try {
+    $nodeVersion = node --version
+    Write-Info "Node.js גרסה: $nodeVersion"
+} catch {
+    Write-Warning "Node.js לא מותקן! יש להתקין Node.js תחילה."
+    exit 1
+}
+
+# וידוא: terminal-server.js קיים
+if (-not (Test-Path $ServerPath)) {
+    Write-Warning "terminal-server.js לא נמצא ב: $ServerPath"
+    exit 1
+}
+
+# יצירת תיקיית לוגים
+$LogDir = Split-Path $LogPath -Parent
+if (-not (Test-Path $LogDir)) {
+    New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
+}
+
+# הפעלת השרת
+Write-Info "מפעיל Terminal Server ברקע על פורט $Port..."
+
+# השתמש ב-Start-Job והעבר את הפורט כארגומנט לnode
+$job = Start-Job -ScriptBlock {
+    param($ServerPath, $Port, $WorkDir)
+    
+    Set-Location $WorkDir
+    
+    # העבר את הפורט כארגומנט ראשון ל-node
+    & node $ServerPath $Port 2>&1
+} -ArgumentList $ServerPath, $Port, $controlCenterPath
+
+Write-Info "Job ID: $($job.Id)"
+
+# שמור את ה-Job ID
+$jobInfoPath = Join-Path $controlCenterPath ".terminal-server-job.txt"
+$job.Id | Out-File $jobInfoPath -Encoding UTF8
+
+# חכה שהשרת יעלה (5 שניות מקסימום)
+Write-Info "ממתין שהשרת יעלה..."
+$serverStarted = $false
+
+for ($i = 0; $i -lt 5; $i++) {
+    Start-Sleep -Seconds 1
+    
+    try {
+            $response = Invoke-WebRequest -Uri "http://localhost:$Port/health" -Method GET -TimeoutSec 2 -ErrorAction SilentlyContinue
+            if ($response.StatusCode -eq 200) {
+                $serverStarted = $true
+                break
+            }
+        } catch {
+            Write-Host "." -NoNewline
+        }
+    }
+    
+    Write-Host ""
+    
+    if ($serverStarted) {
+        Write-Success "Terminal Server פעיל על פורט $Port! ✓"
+        
+        # עדכן את הדשבורד לפורט הנכון
+        if (Test-Path $DashboardPath) {
+            Write-Info "מעדכן את הדשבורד לפורט $Port..."
+            try {
+                $dashContent = Get-Content $DashboardPath -Raw -Encoding UTF8
+                # עדכן את הפורט בקוד JavaScript
+                $dashContent = $dashContent -replace "localhost:\d+", "localhost:$Port"
+                $dashContent = $dashContent -replace "const PORT = \d+", "const PORT = $Port"
+                Set-Content $DashboardPath -Value $dashContent -Encoding UTF8 -NoNewline
+                Write-Info "הדשבורד עודכן!"
+            } catch {
+                Write-Warning "לא הצלחתי לעדכן את הדשבורד: $_"
+            }
+        }
+        
+        # פתח את הדשבורד
+        if (-not $NoBrowser -and (Test-Path $DashboardPath)) {
+            Write-Info "פותח את Control Center Dashboard..."
+            Start-Sleep -Seconds 1
+            Start-Process $DashboardPath
+            Write-Success "הדשבורד נפתח!"
+        }
+        
+        Write-Host ""
+        Write-Success "═══════════════════════════════════════"
+        Write-Success "  🎉 Control Center מוכן לשימוש!"
+        Write-Success "═══════════════════════════════════════"
+        Write-Host ""
+        Write-Host "🌐 שרת המסוף: http://localhost:$Port" -ForegroundColor Yellow
+        Write-Host "📊 דשבורד: $DashboardPath" -ForegroundColor Yellow
+        Write-Host "📋 Job ID: $($job.Id)" -ForegroundColor Gray
+        Write-Host ""
+        Write-Host "💡 לעצירת השרת: Stop-Job -Id $($job.Id); Remove-Job -Id $($job.Id)" -ForegroundColor Gray
+        Write-Host ""
+        
+        exit 0
+    } else {
+        Write-Warning "השרת התחיל אבל לא מגיב אחרי 5 שניות"
+        Write-Info "בדוק פלט Job: Receive-Job -Id $($job.Id)"
+        
+        # הצג את פלט ה-Job
+        $jobOutput = Receive-Job -Id $job.Id
+        if ($jobOutput) {
+            Write-Host "`nפלט השרת:" -ForegroundColor Yellow
+            $jobOutput | ForEach-Object { Write-Host "  $_" }
+        }
+        
+        exit 1
+    }

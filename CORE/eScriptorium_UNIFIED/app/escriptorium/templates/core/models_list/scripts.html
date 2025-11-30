@@ -1,0 +1,26 @@
+<script>
+'use strict';
+// Ensure jQuery is loaded before running
+if (typeof $ !== 'undefined' && typeof jQuery !== 'undefined') {
+  $(document).ready(function() {
+    // join the ws room
+    {% if document.pk %}
+    joinDocumentRoom('{{document.pk}}');
+    {% endif %}
+    bootModels();
+  });
+} else {
+  console.error('jQuery is not loaded! Cannot initialize models page.');
+  // Try again after a short delay
+  setTimeout(function() {
+    if (typeof $ !== 'undefined') {
+      $(document).ready(function() {
+        {% if document.pk %}
+        joinDocumentRoom('{{document.pk}}');
+        {% endif %}
+        bootModels();
+      });
+    }
+  }, 500);
+}
+</script>

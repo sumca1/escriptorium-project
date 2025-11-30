@@ -1,0 +1,83 @@
+{
+  "namespaces": {
+    "transcription": {
+      "keys": 21,
+      "file": "transcription.json",
+      "size_kb": 2
+    },
+    "documents": {
+      "keys": 88,
+      "file": "documents.json",
+      "size_kb": 7
+    },
+    "editor": {
+      "keys": 157,
+      "file": "editor.json",
+      "size_kb": 23
+    },
+    "images": {
+      "keys": 76,
+      "file": "images.json",
+      "size_kb": 5
+    },
+    "models": {
+      "keys": 27,
+      "file": "models.json",
+      "size_kb": 2
+    },
+    "export": {
+      "keys": 13,
+      "file": "export.json",
+      "size_kb": 1
+    },
+    "common": {
+      "keys": 45,
+      "file": "common.json",
+      "size_kb": 1
+    },
+    "ui": {
+      "keys": 32,
+      "file": "ui.json",
+      "size_kb": 1
+    },
+    "admin": {
+      "keys": 10,
+      "file": "admin.json",
+      "size_kb": 0
+    },
+    "alignment": {
+      "keys": 47,
+      "file": "alignment.json",
+      "size_kb": 2
+    },
+    "search": {
+      "keys": 32,
+      "file": "search.json",
+      "size_kb": 1
+    },
+    "tasks": {
+      "keys": 20,
+      "file": "tasks.json",
+      "size_kb": 1
+    },
+    "users": {
+      "keys": 24,
+      "file": "users.json",
+      "size_kb": 1
+    },
+    "ontology": {
+      "keys": 16,
+      "file": "ontology.json",
+      "size_kb": 0
+    },
+    "validation": {
+      "keys": 12,
+      "file": "validation.json",
+      "size_kb": 0
+    }
+  },
+  "total_keys": 1851,
+  "categorized": 620,
+  "uncategorized": 1231,
+  "coverage_pct": 33.5
+}

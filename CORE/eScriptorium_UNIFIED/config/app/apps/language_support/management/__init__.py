@@ -1,0 +1,1 @@
+# Django management commands for language_support app

@@ -1,0 +1,92 @@
+
+# Advanced Search - Elasticsearch Integration
+msgid "Advanced Search"
+msgstr "Recherche avancée"
+
+msgid "Search across all your documents using Elasticsearch"
+msgstr "Recherchez dans tous vos documents avec Elasticsearch"
+
+msgid "Search Query"
+msgstr "Requête de recherche"
+
+msgid "Enter search terms..."
+msgstr "Entrez les termes de recherche..."
+
+msgid "Search supports fuzzy matching for Hebrew and Arabic text"
+msgstr "La recherche prend en charge la correspondance floue pour le texte hébreu et arabe"
+
+msgid "Show Filters"
+msgstr "Afficher les filtres"
+
+msgid "Hide Filters"
+msgstr "Masquer les filtres"
+
+msgid "Minimum Confidence"
+msgstr "Confiance minimale"
+
+msgid "Document ID"
+msgstr "ID du document"
+
+msgid "Project ID"
+msgstr "ID du projet"
+
+msgid "Loading..."
+msgstr "Chargement..."
+
+msgid "Searching..."
+msgstr "Recherche en cours..."
+
+msgid "Elasticsearch Status"
+msgstr "Statut d'Elasticsearch"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Enabled"
+msgstr "Activé"
+
+msgid "Total Documents"
+msgstr "Total des documents"
+
+msgid "Index Size"
+msgstr "Taille de l'index"
+
+msgid "Elasticsearch is not enabled"
+msgstr "Elasticsearch n'est pas activé"
+
+msgid "Failed to load Elasticsearch status"
+msgstr "Échec du chargement du statut Elasticsearch"
+
+msgid "Please enter at least 2 characters"
+msgstr "Veuillez entrer au moins 2 caractères"
+
+msgid "Search failed"
+msgstr "La recherche a échoué"
+
+msgid "No results found"
+msgstr "Aucun résultat trouvé"
+
+msgid "Try different search terms or adjust filters"
+msgstr "Essayez d'autres termes de recherche ou ajustez les filtres"
+
+msgid "Relevance Score"
+msgstr "Score de pertinence"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "Line"
+msgstr "Ligne"
+
+msgid "Open Document"
+msgstr "Ouvrir le document"
+
+msgid "Found"
+msgstr "Trouvé"
+
+msgid "results"
+msgstr "résultats"
+
+msgid "of"
+msgstr "de"
+

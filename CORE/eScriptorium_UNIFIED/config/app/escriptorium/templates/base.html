@@ -1,0 +1,428 @@
+{% load i18n language_flags_tags static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}<html lang="{{ LANGUAGE_CODE }}" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eScriptorium - {% block head_title %}Digital Library{% endblock %}</title>
+
+    <meta name="description" content="{% block meta_description %}eScriptorium - Advanced OCR and HTR platform for digital text transcription{% endblock %}">
+    <meta name="author" content="eScriptorium Team">
+    <link rel="icon" href="{% static "images/favicon.ico" %}">
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+      // set the dark-mode theme early to avoid unpleasant blinking.
+      const activeTheme = localStorage.getItem("user-theme");
+      if (activeTheme === "dark-mode") {
+          document.documentElement.className = "dark-mode";
+      }
+      
+      // BiblIA: הגדרת עברית כשפת ברירת מחדל אם אין עוגיית שפה
+      (function() {
+          const cookies = document.cookie.split(';').map(c => c.trim());
+          const hasLangCookie = cookies.some(c => c.startsWith('django_language='));
+          
+          if (!hasLangCookie) {
+              console.log("🔵 BiblIA: לא נמצאה עוגיית שפה, מגדיר עברית כברירת מחדל");
+              const expires = new Date(Date.now() + 365*24*60*60*1000).toUTCString();
+              document.cookie = `django_language=he; path=/; expires=${expires}; SameSite=Lax`;
+              
+              // טעינה מחדש כדי להחיל את השפה (רק פעם אחת)
+              if (!sessionStorage.getItem('lang_set')) {
+                  sessionStorage.setItem('lang_set', '1');
+                  console.log("🔄 טוען מחדש כדי להחיל עברית...");
+                  window.location.reload(true);
+              }
+          }
+      })();
+    </script>
+
+    {% block styles %}
+    <link href="{% static 'vendor.css' %}?v={{ STATIC_VERSION }}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main.css' %}?v={{ STATIC_VERSION }}" rel="stylesheet" type="text/css">
+    {% if not user.legacy_mode %}
+    <link href="{% static 'globalNavigation.css' %}?v={{ STATIC_VERSION }}" rel="stylesheet" type="text/css">
+    {% endif %}
+    <link href="{% static 'css/flags.css' %}?v={{ STATIC_VERSION }}" rel="stylesheet" type="text/css">
+    <!-- RTL support for Hebrew - BiblIA -->
+    {% if LANGUAGE_CODE == 'he' %}
+    <link href="{% static 'css/rtl-hebrew.css' %}?v={{ STATIC_VERSION }}" rel="stylesheet" type="text/css">
+    {% endif %}
+    
+    <!-- Unified Editor Mode Button Styles -->
+    <style>
+      #mode-indicator {
+        padding: 2px 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+        color: white !important;
+        margin-left: 5px;
+        display: inline-block;
+      }
+      .nav-item a[onclick*="toggleEditorMode"] {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .nav-item a[onclick*="toggleEditorMode"]:hover #mode-indicator {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      }
+      .nav-item a[onclick*="toggleEditorMode"] .fas {
+        color: #667eea;
+        margin-right: 5px;
+      }
+    </style>
+    
+    {% endblock styles %}
+    {% block extrastyle %}{% endblock extrastyle %}
+  </head>
+  <body id="escriptorium" class="escr-body {% block bodyclass %}{% endblock %}">
+    {% if user.legacy_mode %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static "images/escriptorium_hd.png" %}" alt="" width="30" height="30" class="mb-1">
+        eScriptorium
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{% translate 'Toggle navigation' %}">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item {% block nav-home-class %}{% endblock %}">
+            <a class="nav-link" href="{% url 'home'%}">Home</a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">{% trans 'About' %}</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contactus' %}">{% trans 'Contact' %}</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto mr-auto pt-1">
+          {% if user.is_authenticated and not DISABLE_ELASTICSEARCH and request.resolver_match.view_name != "search" and request.resolver_match.view_name != "find-replace" %}
+          <li class="nav-item">
+            <form method="get" action="{% url 'search' %}" id="searchbar">
+              {% block searchbar_hidden_inputs %}{% endblock %}
+              <div class="input-group">
+                {% block searchbar_transcription_filter %}{% endblock %}
+                <input
+                  id="navbar-searchbox"
+                  name="query"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="{% block searchbar_placeholder %}{% trans "Search in all your projects" %}{% endblock %}"
+                >
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-primary btn-sm mb-2"
+                    type="submit"
+                    title="{% translate 'Search' %}"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+                <div class="input-group-append">
+                  <button
+                    id="find-replace-button"
+                    class="btn btn-secondary btn-sm mb-2"
+                    type="submit"
+                    title="{% translate 'Find & Replace' %}"
+                  >
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </li>
+          {% endif %}
+        </ul>
+
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link {% block nav-proj-list-class %}{% endblock %}" href="{% url 'projects-list' %}">{% trans "My Projects" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user-models' %}">{% trans "My Models" %}</a>
+          </li>
+          
+          <!-- Advanced Tools Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-tools"></i> {% trans "Advanced Tools" %}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="toolsDropdown">
+              <a class="dropdown-item" href="{% url 'analytics-dashboard' %}">
+                <i class="fas fa-chart-line"></i> {% trans "Analytics Dashboard" %}
+              </a>
+              <a class="dropdown-item" href="{% url 'comparison-dashboard' %}">
+                <i class="fas fa-balance-scale"></i> {% trans "Engine Comparison" %}
+              </a>
+              {% if user.is_authenticated and not DISABLE_ELASTICSEARCH %}
+              <a class="dropdown-item" href="{% url 'advanced-search' %}">
+                <i class="fas fa-search-plus"></i> {% trans "Advanced Search" %}
+              </a>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'passim-dashboard' %}">
+                <i class="fas fa-align-left"></i> {% trans "Text Alignment" %}
+              </a>
+              <a class="dropdown-item" href="{% url 'cerberus-dashboard' %}">
+                <i class="fas fa-dog"></i> {% trans "Model Evaluation" %}
+              </a>
+              <a class="dropdown-item" href="{% url 'taba:dashboard' %}">
+                <i class="fas fa-robot"></i> {% trans "Auto Ground Truth" %}
+              </a>
+              {% endif %}
+              <a class="dropdown-item" href="{% url 'error-correction-workspace' %}">
+                <i class="fas fa-spell-check"></i> {% trans "Error Correction" %}
+              </a>
+              <a class="dropdown-item" href="{% url 'error-correction-dashboard' %}">
+                <i class="fas fa-tools"></i> {% trans "Error Tools (Legacy)" %}
+              </a>
+            </div>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="toggleEditorMode(); return false;" title="{% trans 'Switch Editor Mode' %}">
+              <i class="fas fa-th-large"></i> <span id="mode-indicator">{% trans "Unified Mode" %}</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		{% if user.get_short_name %}
+                  {% blocktrans with username=user.get_short_name %}Hello {{username}}{% endblocktrans %}
+                {% else %}
+                  {% blocktrans with username=user.get_username %}Hello {{username}}{% endblocktrans %}
+                {% endif %}
+              </a>
+              <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'password_change' %}">{% trans "Change password" %}</a>
+
+              <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile" %}</a>
+              <a class="dropdown-item" href="{% url 'report-list' %}">{% trans "Task reports" %}</a>
+              <a class="dropdown-item" href="{% url 'documents-tasks-list' %}">{% trans "Tasks monitoring" %}</a>
+              {% if user.is_staff %}
+              <a class="dropdown-item" href="{% url 'quotas-leaderboard' %}">{% trans "Leaderboard" %}</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "Site administration" %}</a>
+              {% endif %}
+
+              <div class="dropdown-divider"></div>
+              {% if perms.users.can_invite %}<a class="dropdown-item" href="{% url 'send-invitation' %}">{% trans 'Invite' %}</a>{% endif %}
+              <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+              </div>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}</a>
+          </li>
+          {% endif %}
+
+          {% get_available_languages as languages %}
+          {% if languages|length > 1 %}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {% flags_for_language 1 LANGUAGE_CODE %}
+              <span class="caret"></span>
+            </a>
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                {% for lang_code, lang_name in languages %}
+                <li>
+                  {% language lang_code %}
+	          <button class="btn" type="submit" name="language" title="{{ lang_name }}" value="{{ lang_code }}">
+                    {% flags_for_language 1 lang_code %} <span class="{% if lang_code in LANGUAGE_CODE %}font-weight-bold{% endif %} ml-1">{{ lang_name }}</span>
+                  </button>
+                  {% endlanguage %}
+                </li>
+                {% endfor %}
+              </ul>
+            </form>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% else %}
+    <div id="vue-global-nav">
+      <global-navigation
+        :is-authenticated="{% if user.is_authenticated %}true{% else %}false{% endif %}"
+        :search-disabled="{% if DISABLE_ELASTICSEARCH %}true{% else %}false{% endif %}"
+      ></global-navigation>
+    </div>
+    
+    <!-- BiblIA: Floating Language Selector for Vue mode -->
+    {% get_available_languages as languages %}
+    {% if languages|length > 1 %}
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 9999;">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="langDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% flags_for_language 1 LANGUAGE_CODE %} {{ LANGUAGE_CODE|upper }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="langDropdown">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            {% for lang_code, lang_name in languages %}
+              <button class="dropdown-item" type="submit" name="language" value="{{ lang_code }}">
+                {% flags_for_language 1 lang_code %} {{ lang_name }}
+              </button>
+            {% endfor %}
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    <main><section>
+    <div id="main" class="container-fluid{% if not request.user.legacy_mode %} escr-vue-enabled{% endif %}">
+    {% block body %}
+    {% endblock body %}
+    </div>
+    </section></main>
+
+    <script src="{% static 'vendor.js' %}?v={{ STATIC_VERSION }}"></script>
+
+    {% block scripts %}
+    <script src="{% static 'main.js' %}?v={{ STATIC_VERSION }}"></script>
+    {% if not user.legacy_mode %}
+    <script src="{% static 'globalNavigation.js' %}?v={{ STATIC_VERSION }}"></script>
+    {% endif %}
+    
+    <!-- Load language-specific translations for Vue.js components -->
+    {% if LANGUAGE_CODE == 'fr' %}
+    <script src="{% static 'editor_translations_fr.js' %}?v={{ STATIC_VERSION }}"></script>
+    {% elif LANGUAGE_CODE == 'he' %}
+    <script src="{% static 'editor_translations_he.js' %}?v={{ STATIC_VERSION }}"></script>
+    {% endif %}
+    
+    <script>
+     const DEBUG = {% if debug %}true{% else %}false{% endif %};
+    </script>
+    {% if user.is_authenticated %} {# no need to open a socket for anonymous users, bots etc #}
+      <script>
+        // Wait for jQuery to be available
+        if (typeof $ !== 'undefined') {
+          $(document).ready(function(){
+            {% block legacy_alerts %}
+              bootWebsocket();
+            {% endblock %}
+
+            $('#find-replace-button').on('click', function(ev) {
+              $('#searchbar').attr('action', '{% url 'find-replace' %}');
+            });
+          });
+        }
+      </script>
+      {% include 'includes/messages.html' %}
+      {% if ENABLE_COOKIE_CONSENT %}
+      <script>
+        // Wait for vendor.js to load (contains userProfile)
+        if (typeof userProfile !== 'undefined') {
+          userProfile.setUserId({{ request.user.id }});
+          userProfile.getCookieConsent();
+        }
+      </script>
+      {% endif %}
+    {% endif %}
+    
+    <!-- Unified Editor Mode Toggle Script -->
+    <script>
+      function toggleEditorMode() {
+        // Save preference first
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentMode = urlParams.get('mode');
+        
+        // Toggle mode preference
+        if (currentMode === 'unified') {
+          // Switch to classic
+          if (typeof userProfile !== 'undefined') {
+            userProfile.set('editor-mode', 'classic');
+          }
+        } else {
+          // Switch to unified
+          if (typeof userProfile !== 'undefined') {
+            userProfile.set('editor-mode', 'unified');
+          }
+        }
+        
+        // If we're already on an editor page, reload with new mode
+        if (window.location.pathname.includes('/edit/')) {
+          if (currentMode === 'unified') {
+            urlParams.delete('mode');
+          } else {
+            urlParams.set('mode', 'unified');
+          }
+          const newUrl = window.location.pathname + '?' + urlParams.toString();
+          window.location.href = newUrl;
+          return;
+        }
+        
+        // If we're on images page, go to first part with edit mode
+        if (window.location.pathname.includes('/images')) {
+          const documentId = window.location.pathname.match(/\/document\/(\d+)/);
+          if (documentId && documentId[1]) {
+            // Redirect to first part with unified mode
+            const mode = currentMode === 'unified' ? '' : '?mode=unified';
+            window.location.href = `/document/${documentId[1]}/part/1/edit/${mode}`;
+            return;
+          }
+        }
+        
+        // If we're on document page, go to images then to editor
+        if (window.location.pathname.includes('/document/')) {
+          const documentId = window.location.pathname.match(/\/document\/(\d+)/);
+          if (documentId && documentId[1]) {
+            const mode = currentMode === 'unified' ? '' : '?mode=unified';
+            window.location.href = `/document/${documentId[1]}/images/`;
+            return;
+          }
+        }
+        
+        // Otherwise, show message to go to a document first
+        alert('{% trans "Please open a document first, then you can switch editor modes" %}');
+      }
+      
+      // Update button text based on current mode
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentMode = urlParams.get('mode');
+        const savedMode = typeof userProfile !== 'undefined' ? userProfile.get('editor-mode') : null;
+        const indicator = document.getElementById('mode-indicator');
+        
+        if (indicator) {
+          // Show current or saved preference
+          const effectiveMode = currentMode || savedMode;
+          if (effectiveMode === 'unified') {
+            indicator.textContent = '{% trans "Classic Mode" %}';
+            indicator.style.background = 'linear-gradient(135deg, #51cf66 0%, #37b24d 100%)';
+          } else {
+            indicator.textContent = '{% trans "Unified Mode" %}';
+            indicator.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+          }
+        }
+      });
+    </script>
+    
+    {% endblock scripts %}
+    {% block extrascript %}{% endblock extrascript %}
+  </body>
+</html>

@@ -1,0 +1,405 @@
+// ========================================
+// מודול דוקר (Docker Module)
+// ========================================
+
+import dataLoader from './data-loader.js';
+import terminalConfig from './terminal-config.js';
+
+export async function init() {
+    console.log('מאתחל מודול דוקר (Initializing Docker Module)');
+    await renderDocker();
+}
+
+async function renderDocker() {
+    const container = document.getElementById('docker-content');
+    
+    // טעינת נתוני Docker אמיתיים
+    const dockerStatus = await dataLoader.getDockerStatus();
+    const runningCount = dockerStatus.containers.filter(c => c.isRunning).length;
+    const totalCount = dockerStatus.containers.length;
+    
+    container.innerHTML = `
+        <div class="stats-grid" style="margin-bottom: 2rem;">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">מכולות פעילות (Running Containers)</span>
+                    <div class="stat-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--success-green);">
+                        🐳
+                    </div>
+                </div>
+                <div class="stat-value">${runningCount}/${totalCount}</div>
+                <div class="stat-change ${runningCount === totalCount ? 'positive' : ''}">
+                    <span>${runningCount === totalCount ? 'הכל פועל' : 'חלקן כבויות'}</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">עדכון אחרון (Last Check)</span>
+                    <div class="stat-icon" style="background: rgba(217, 119, 6, 0.1); color: var(--warning-orange);">
+                        �
+                    </div>
+                </div>
+                <div class="stat-value">עכשיו</div>
+                <div class="stat-change">
+                    <span>רענן לנתונים חדשים</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">סטטוס כללי (Overall Status)</span>
+                    <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--primary-blue-light);">
+                        ⚡
+                    </div>
+                </div>
+                <div class="stat-value">${runningCount === totalCount ? '✅ תקין' : '⚠️ חלקי'}</div>
+                <div class="stat-change ${runningCount === totalCount ? 'positive' : ''}">
+                    <span>${Math.round((runningCount / totalCount) * 100)}% זמינות</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">פעולות (Quick Actions)</span>
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                        🎛️
+                    </div>
+                </div>
+                <div class="stat-value">
+                    <button class="btn btn-sm btn-success" onclick="window.dockerRefresh()" style="font-size: 0.875rem;">
+                        🔄 רענן
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+                <h3 class="card-title">פעולות מהירות (Quick Actions)</h3>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; padding: 0 0.5rem 0.5rem;">
+                <button class="btn btn-success" onclick="window.dockerAction('ps')">
+                    📋 הצג מכולות (List Containers)
+                </button>
+                <button class="btn btn-warning" onclick="window.dockerAction('restart')">
+                    🔄 אתחל הכל (Restart All)
+                </button>
+                <button class="btn btn-primary" onclick="window.dockerAction('logs-web')">
+                    📝 לוגים Web
+                </button>
+                <button class="btn btn-info" onclick="window.dockerAction('stats')">
+                    📊 סטטיסטיקות (Stats)
+                </button>
+            </div>
+        </div>
+
+        <!-- טבלת מכולות -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">רשימת מכולות (Containers List)</h3>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>שם מכולה (Container Name)</th>
+                            <th>מצב (Status)</th>
+                            <th>פעולות (Actions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${dockerStatus.containers.map(container => `
+                            <tr>
+                                <td><strong>${container.name}</strong></td>
+                                <td>
+                                    <span class="status-badge ${container.isRunning ? 'status-success' : 'status-danger'}">
+                                        ${container.isRunning ? '✅ פועל (Running)' : '❌ כבוי (Stopped)'}
+                                    </span>
+                                    <br>
+                                    <small style="color: var(--text-secondary);">${container.status}</small>
+                                </td>
+                                <td>
+                                    ${container.isRunning ? `
+                                        <button class="btn btn-sm btn-warning" onclick="window.dockerContainerAction('${container.name}', 'restart')">
+                                            🔄 אתחל
+                                        </button>
+                                        <button class="btn btn-sm btn-primary" onclick="window.dockerContainerAction('${container.name}', 'logs')">
+                                            📝 לוגים
+                                        </button>
+                                    ` : `
+                                        <button class="btn btn-sm btn-success" onclick="window.dockerContainerAction('${container.name}', 'start')">
+                                            ▶️ הפעל
+                                        </button>
+                                    `}
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    
+    // פונקציות גלובליות
+    window.dockerRefresh = async () => {
+        dataLoader.clearCache();
+        await renderDocker();
+        alert('✅ נתוני Docker עודכנו!');
+    };
+    
+    window.dockerAction = async (action) => {
+        const commands = {
+            'ps': 'docker ps -a',
+            'restart': 'docker-compose restart',
+            'logs-web': 'docker-compose logs web --tail 50',
+            'stats': 'docker stats --no-stream'
+        };
+        
+        const command = commands[action];
+        if (!command) return;
+        
+        try {
+            const result = await terminalConfig.executeCommand(command);
+            alert(`✅ תוצאה:\n\n${result.output || result.error || 'הפעולה הסתיימה'}`);
+        } catch (error) {
+            alert(`❌ שגיאה: ${error.message}`);
+        }
+    };
+    
+    window.dockerContainerAction = async (containerName, action) => {
+        const commands = {
+            'restart': `docker restart ${containerName}`,
+            'start': `docker start ${containerName}`,
+            'logs': `docker logs ${containerName} --tail 50`
+        };
+        
+        const command = commands[action];
+        if (!command) return;
+        
+        try {
+            const result = await terminalConfig.executeCommand(command);
+            alert(`✅ פעולה הצליחה!\n\n${result.output || 'הושלם בהצלחה'}`);
+            await window.dockerRefresh();
+        } catch (error) {
+            alert(`❌ שגיאה: ${error.message}`);
+        }
+    };
+}
+        <!-- טבלת מכולות -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">מכולות פעילות (Active Containers)</h3>
+                <button class="btn btn-primary" onclick="refreshContainers()">
+                    🔄 רענן (Refresh)
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>שם (Name)</th>
+                            <th>תמונה (Image)</th>
+                            <th>מצב (Status)</th>
+                            <th>פורטים (Ports)</th>
+                            <th>זיכרון (Memory)</th>
+                            <th>CPU</th>
+                            <th>פעולות (Actions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>escriptorium-web</strong></td>
+                            <td>escriptorium:latest</td>
+                            <td><span class="status-badge status-success">Running</span></td>
+                            <td>8080:80</td>
+                            <td>512 MB</td>
+                            <td>12%</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.375rem 0.75rem;" onclick="restartContainer('web')">
+                                    🔄 אתחל
+                                </button>
+                                <button class="btn btn-danger" style="padding: 0.375rem 0.75rem;" onclick="stopContainer('web')">
+                                    ⏹️ עצור
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>escriptorium-db</strong></td>
+                            <td>postgres:14</td>
+                            <td><span class="status-badge status-success">Running</span></td>
+                            <td>5432:5432</td>
+                            <td>1.2 GB</td>
+                            <td>8%</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.375rem 0.75rem;" onclick="restartContainer('db')">
+                                    🔄 אתחל
+                                </button>
+                                <button class="btn btn-danger" style="padding: 0.375rem 0.75rem;" onclick="stopContainer('db')">
+                                    ⏹️ עצור
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>escriptorium-redis</strong></td>
+                            <td>redis:7-alpine</td>
+                            <td><span class="status-badge status-success">Running</span></td>
+                            <td>6379:6379</td>
+                            <td>128 MB</td>
+                            <td>3%</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.375rem 0.75rem;" onclick="restartContainer('redis')">
+                                    🔄 אתחל
+                                </button>
+                                <button class="btn btn-danger" style="padding: 0.375rem 0.75rem;" onclick="stopContainer('redis')">
+                                    ⏹️ עצור
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>escriptorium-nginx</strong></td>
+                            <td>nginx:alpine</td>
+                            <td><span class="status-badge status-success">Running</span></td>
+                            <td>80:80, 443:443</td>
+                            <td>256 MB</td>
+                            <td>5%</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.375rem 0.75rem;" onclick="restartContainer('nginx')">
+                                    🔄 אתחל
+                                </button>
+                                <button class="btn btn-danger" style="padding: 0.375rem 0.75rem;" onclick="stopContainer('nginx')">
+                                    ⏹️ עצור
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>escriptorium-celery</strong></td>
+                            <td>escriptorium:latest</td>
+                            <td><span class="status-badge status-success">Running</span></td>
+                            <td>--</td>
+                            <td>384 MB</td>
+                            <td>7%</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.375rem 0.75rem;" onclick="restartContainer('celery')">
+                                    🔄 אתחל
+                                </button>
+                                <button class="btn btn-danger" style="padding: 0.375rem 0.75rem;" onclick="stopContainer('celery')">
+                                    ⏹️ עצור
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- תמונות זמינות -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">
+                <h3 class="card-title">תמונות דוקר (Docker Images)</h3>
+                <button class="btn btn-secondary" onclick="pullImages()">
+                    ⬇️ משוך עדכונים (Pull Updates)
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>תמונה (Image)</th>
+                            <th>תג (Tag)</th>
+                            <th>גודל (Size)</th>
+                            <th>נוצר (Created)</th>
+                            <th>פעולות (Actions)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>escriptorium</strong></td>
+                            <td>latest</td>
+                            <td>2.4 GB</td>
+                            <td>לפני 2 שעות</td>
+                            <td>
+                                <button class="btn btn-primary" style="padding: 0.375rem 0.75rem;" onclick="buildImage('escriptorium')">
+                                    🏗️ בנה מחדש
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>postgres</strong></td>
+                            <td>14</td>
+                            <td>376 MB</td>
+                            <td>לפני שבוע</td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem;" onclick="removeImage('postgres')">
+                                    🗑️ הסר
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>redis</strong></td>
+                            <td>7-alpine</td>
+                            <td>32 MB</td>
+                            <td>לפני שבועיים</td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem;" onclick="removeImage('redis')">
+                                    🗑️ הסר
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>nginx</strong></td>
+                            <td>alpine</td>
+                            <td>24 MB</td>
+                            <td>לפני חודש</td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem;" onclick="removeImage('nginx')">
+                                    🗑️ הסר
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+}
+
+// פונקציות ניהול דוקר
+window.dockerAction = function(action) {
+    console.log(`מבצע פעולת דוקר: ${action}`);
+    alert(`מבצע: ${action} (Executing Docker action: ${action})`);
+};
+
+window.refreshContainers = function() {
+    console.log('מרענן רשימת מכולות...');
+    alert('מרענן מכולות (Refreshing containers list)');
+};
+
+window.restartContainer = function(container) {
+    console.log(`מאתחל מכולה: ${container}`);
+    alert(`מאתחל מכולה: ${container} (Restarting container: ${container})`);
+};
+
+window.stopContainer = function(container) {
+    console.log(`עוצר מכולה: ${container}`);
+    if (confirm(`האם לעצור מכולה: ${container}? (Stop container: ${container}?)`)) {
+        alert(`מכולה ${container} נעצרה (Container ${container} stopped)`);
+    }
+};
+
+window.buildImage = function(image) {
+    console.log(`בונה תמונה: ${image}`);
+    alert(`בונה תמונה: ${image} (Building image: ${image})`);
+};
+
+window.removeImage = function(image) {
+    console.log(`מסיר תמונה: ${image}`);
+    if (confirm(`האם להסיר תמונה: ${image}? (Remove image: ${image}?)`)) {
+        alert(`תמונה ${image} הוסרה (Image ${image} removed)`);
+    }
+};
+
+window.pullImages = function() {
+    console.log('משך עדכוני תמונות...');
+    alert('משך עדכונים לכל התמונות (Pulling image updates)');
+};

@@ -1,0 +1,73 @@
+# 📁 escriptorium/ - מרכז מערכות eScriptorium
+
+> תיקייה זו מכילה את כל מה שקשור ל-eScriptorium - מערכות, ניהול, ממשק, וסקריפטים
+
+---
+
+## 📂 מבנה התיקייה
+
+### 🎯 מערכות eScriptorium
+
+- **eScriptorium_UNIFIED/** - מערכת eScriptorium מאורגנת ומושלמת
+  - כל התכונות של eScriptorium
+  - הרחבות BiblIA (taba_pipeline, cerberus, language_support)
+  - קוד נקי ומסודר
+  
+- **eScriptorium_CLEAN/** - גרסה עובדת ויציבה
+  - 16 Docker containers פעילים
+  - 2,295 תרגומים
+  - הכל עובד!
+
+---
+
+### 🎛️ ניהול ופיקוח (management/)
+
+- **dashboards/** - דשבורדים ויזואליים
+- **state/** - מצב נוכחי ותיעוד
+- **supervisor/** - מערכת פיקוח אוטומטית
+- **reports/** - דוחות והיסטוריה
+
+---
+
+### 🖥️ ממשק משתמש (ui/)
+
+- **control-center/** - מרכז בקרה ראשי
+- **monitoring/** - ממשקי ניטור
+- **assets/** - CSS, JS, תמונות
+
+---
+
+### 🔧 סקריפטים (scripts/)
+
+- **build/** - בנייה וקומפילציה
+- **deploy/** - פריסה והפעלה
+- **maintenance/** - תחזוקה
+- **testing/** - בדיקות
+- **utilities/** - כלי עזר
+
+---
+
+### 📚 תיעוד (docs/)
+
+- **architecture/** - ארכיטקטורה
+- **guides/** - מדריכים
+- **api/** - תיעוד API
+
+---
+
+## 🚀 התחלה מהירה
+
+### הפעלת eScriptorium_UNIFIED:
+```powershell
+cd eScriptorium_UNIFIED
+docker-compose up -d
+```
+
+### גישה למרכז בקרה:
+```powershell
+start ui/control-center/dashboard.html
+```
+
+---
+
+**תאריך יצירה:** 12/11/2025

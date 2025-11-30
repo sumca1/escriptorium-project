@@ -1,0 +1,686 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Analytics Dashboard - Overview" %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h1>
+        <i class="fas fa-chart-line"></i> {% trans "Analytics Dashboard" %}
+        <small class="text-muted">{% trans "Training Overview" %}</small>
+      </h1>
+      <p class="lead">{% trans "Compare performance and training metrics across all models" %}</p>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row mb-4" id="summary-cards">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white">
+        <div class="card-body text-center">
+          <h6 class="card-title">{% trans "Total Models" %}</h6>
+          <h2 class="mb-0" id="total-models">{{ models.count }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-success text-white">
+        <div class="card-body text-center">
+          <h6 class="card-title">{% trans "Active Training" %}</h6>
+          <h2 class="mb-0" id="active-training">-</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-info text-white">
+        <div class="card-body text-center">
+          <h6 class="card-title">{% trans "Avg Accuracy" %}</h6>
+          <h2 class="mb-0" id="avg-accuracy">-</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-warning text-white">
+        <div class="card-body text-center">
+          <h6 class="card-title">{% trans "Total Epochs" %}</h6>
+          <h2 class="mb-0" id="total-epochs">-</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Charts -->
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0"><i class="fas fa-chart-line"></i> {% trans "Models Comparison - Accuracy" %}</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="modelsComparisonChart" height="80"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0"><i class="fas fa-trophy"></i> {% trans "Top 5 Models" %}</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="topModelsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0"><i class="fas fa-clock"></i> {% trans "Training Duration by Model" %}</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="trainingTimeChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0"><i class="fas fa-layer-group"></i> {% trans "Total Epochs by Model" %}</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="epochsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Models Table -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0"><i class="fas fa-table"></i> {% trans "All Models - Detailed View" %}</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover" id="models-detail-table">
+              <thead>
+                <tr>
+                  <th>{% trans "Model Name" %}</th>
+                  <th>{% trans "Script" %}</th>
+                  <th>{% trans "Accuracy" %}</th>
+                  <th>{% trans "Epochs" %}</th>
+                  <th>{% trans "Training Lines" %}</th>
+                  <th>{% trans "Status" %}</th>
+                  <th>{% trans "Actions" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for model in models %}
+                <tr data-model-id="{{ model.pk }}">
+                  <td>
+                    <strong>{{ model.name }}</strong>
+                    <br><small class="text-muted">{{ model.owner.username }}</small>
+                  </td>
+                  <td>{{ model.script|default:"N/A" }}</td>
+                  <td>
+                    <span class="badge badge-{% if model.training_accuracy > 90 %}success{% elif model.training_accuracy > 70 %}info{% else %}warning{% endif %}">
+                      {{ model.training_accuracy|floatformat:2 }}%
+                    </span>
+                  </td>
+                  <td class="epoch-count">-</td>
+                  <td class="training-lines">-</td>
+                  <td>
+                    {% if model.training %}
+                      <span class="badge badge-success"><i class="fas fa-spinner fa-spin"></i> {% trans "Training" %}</span>
+                    {% else %}
+                      <span class="badge badge-secondary">{% trans "Ready" %}</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-primary view-details" data-model-id="{{ model.pk }}" data-model-name="{{ model.name }}" data-toggle="modal" data-target="#analyticsModal">
+                      <i class="fas fa-chart-line"></i> {% trans "Details" %}
+                    </button>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="7" class="text-center text-muted">{% trans "No models found" %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Analytics Modal (same as in models table) -->
+<div class="modal fade" id="analyticsModal" tabindex="-1" role="dialog" aria-labelledby="analyticsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="analyticsModalLabel">
+          <i class="fas fa-chart-line"></i> {% trans "Analytics Dashboard" %} - <span id="modal-model-name"></span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="analytics-loading" class="text-center py-5">
+          <i class="fas fa-spinner fa-spin fa-3x text-primary"></i>
+          <p class="mt-3">{% trans "Loading analytics data..." %}</p>
+        </div>
+        <div id="analytics-content" style="display: none;">
+          <!-- Model Info Cards -->
+          <div class="row mb-4">
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Current Accuracy" %}</h6>
+                  <h3 class="card-text text-primary" id="current-accuracy">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Total Epochs" %}</h6>
+                  <h3 class="card-text text-success" id="total-epochs-modal">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Training Lines" %}</h6>
+                  <h3 class="card-text text-info" id="training-lines-modal">-</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h6 class="card-title text-muted">{% trans "Validation Lines" %}</h6>
+                  <h3 class="card-text text-warning" id="validation-lines-modal">-</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-chart-line"></i> {% trans "Accuracy Over Time" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="accuracyChartModal"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-chart-bar"></i> {% trans "Training Duration" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="durationChartModal"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h6><i class="fas fa-database"></i> {% trans "Training Data Distribution" %}</h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="dataChartModal" style="max-height: 300px;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="analytics-error" class="alert alert-danger" style="display: none;">
+          <i class="fas fa-exclamation-triangle"></i> <span id="error-message"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+<script>
+// Translations for Chart.js
+const i18n = {
+  accuracy: "{% trans 'Accuracy' %}",
+  accuracyPercent: "{% trans 'Accuracy (%)' %}",
+  epoch: "{% trans 'Epoch' %}",
+  epochs: "{% trans 'Epochs' %}",
+  duration: "{% trans 'Duration (minutes)' %}",
+  minutes: "{% trans 'Minutes' %}",
+  trainingLines: "{% trans 'Training Lines' %}",
+  validationLines: "{% trans 'Validation Lines' %}",
+  loss: "{% trans 'Loss' %}",
+  model: "{% trans 'Model' %}",
+  trainingProgress: "{% trans 'Training Progress' %}"
+};
+
+let overviewCharts = {
+  comparison: null,
+  topModels: null,
+  trainingTime: null,
+  epochs: null
+};
+
+let modalCharts = {
+  accuracy: null,
+  duration: null,
+  data: null
+};
+
+// Get CSRF token
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+$.ajaxSetup({
+  beforeSend: function(xhr, settings) {
+    if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+      xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+  }
+});
+
+// Load overview data for all models
+$(document).ready(function() {
+  loadOverviewData();
+});
+
+function loadOverviewData() {
+  const modelIds = [];
+  $('#models-detail-table tbody tr').each(function() {
+    const modelId = $(this).data('model-id');
+    if (modelId) modelIds.push(modelId);
+  });
+
+  let completed = 0;
+  let activeTraining = 0;
+  let totalEpochs = 0;
+  let accuracies = [];
+  const modelsData = [];
+
+  modelIds.forEach(modelId => {
+    $.ajax({
+      url: `/api/models/${modelId}/training-status/`,
+      method: 'GET',
+      xhrFields: { withCredentials: true },
+      success: function(data) {
+        completed++;
+        
+        if (data.is_training) activeTraining++;
+        if (data.accuracy) accuracies.push(data.accuracy);
+        
+        modelsData.push({
+          id: modelId,
+          name: data.model_name || `Model ${modelId}`,
+          accuracy: data.accuracy || 0,
+          trainingLines: data.training_data?.training_lines || 0,
+          durationMinutes: data.training_analytics?.duration_minutes || 0,
+          totalEpochs: data.training_analytics?.total_epochs || 0
+        });
+
+        // Update table row
+        const row = $(`tr[data-model-id="${modelId}"]`);
+        row.find('.training-lines').text(data.training_data?.training_lines || 0);
+
+        // Fetch epoch count
+        $.ajax({
+          url: `/api/models/${modelId}/training-history/`,
+          method: 'GET',
+          xhrFields: { withCredentials: true },
+          success: function(historyData) {
+            const epochs = historyData.epochs?.length || 0;
+            totalEpochs += epochs;
+            row.find('.epoch-count').text(epochs);
+            modelsData.find(m => m.id === modelId).epochs = epochs;
+          }
+        });
+
+        if (completed === modelIds.length) {
+          updateSummaryCards(modelIds.length, activeTraining, accuracies, totalEpochs);
+          createOverviewCharts(modelsData);
+        }
+      },
+      error: function() {
+        completed++;
+        if (completed === modelIds.length) {
+          updateSummaryCards(modelIds.length, activeTraining, accuracies, totalEpochs);
+          createOverviewCharts(modelsData);
+        }
+      }
+    });
+  });
+}
+
+function updateSummaryCards(total, active, accuracies, epochs) {
+  $('#active-training').text(active);
+  $('#total-epochs').text(epochs);
+  
+  if (accuracies.length > 0) {
+    const avgAcc = accuracies.reduce((a, b) => a + b, 0) / accuracies.length;
+    $('#avg-accuracy').text(avgAcc.toFixed(2) + '%');
+  } else {
+    $('#avg-accuracy').text('N/A');
+  }
+}
+
+function createOverviewCharts(modelsData) {
+  // Models Comparison Chart
+  const comparisonCtx = document.getElementById('modelsComparisonChart').getContext('2d');
+  overviewCharts.comparison = new Chart(comparisonCtx, {
+    type: 'bar',
+    data: {
+      labels: modelsData.map(m => m.name),
+      datasets: [{
+        label: i18n.accuracyPercent,
+        data: modelsData.map(m => m.accuracy),
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        borderColor: 'rgb(75, 192, 192)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: i18n.accuracy
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: i18n.model
+          }
+        }
+      }
+    }
+  });
+
+  // Top 5 Models Chart
+  const topModels = modelsData.sort((a, b) => b.accuracy - a.accuracy).slice(0, 5);
+  const topCtx = document.getElementById('topModelsChart').getContext('2d');
+  overviewCharts.topModels = new Chart(topCtx, {
+    type: 'doughnut',
+    data: {
+      labels: topModels.map(m => m.name),
+      datasets: [{
+        data: topModels.map(m => m.accuracy),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)'
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true
+    }
+  });
+
+  // Training Duration Chart (using real data)
+  const timeCtx = document.getElementById('trainingTimeChart').getContext('2d');
+  overviewCharts.trainingTime = new Chart(timeCtx, {
+    type: 'horizontalBar',
+    data: {
+      labels: modelsData.map(m => m.name),
+      datasets: [{
+        label: i18n.duration,
+        data: modelsData.map(m => m.durationMinutes || 0),
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: i18n.minutes
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: i18n.model
+          }
+        }
+      }
+    }
+  });
+
+  // Epochs Chart (using real data)
+  const epochsCtx = document.getElementById('epochsChart').getContext('2d');
+  overviewCharts.epochs = new Chart(epochsCtx, {
+    type: 'bar',
+    data: {
+      labels: modelsData.map(m => m.name),
+      datasets: [{
+        label: i18n.epochs,
+        data: modelsData.map(m => m.totalEpochs || 0),
+        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+        borderColor: 'rgb(255, 206, 86)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: i18n.epochs
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: i18n.model
+          }
+        }
+      }
+    }
+  });
+}
+
+// Modal functionality (same as in models table)
+$('#analyticsModal').on('show.bs.modal', function (event) {
+  const button = $(event.relatedTarget);
+  const modelId = button.data('model-id');
+  const modelName = button.data('model-name');
+  
+  $('#modal-model-name').text(modelName);
+  $('#analytics-loading').show();
+  $('#analytics-content').hide();
+  $('#analytics-error').hide();
+  
+  Object.values(modalCharts).forEach(chart => {
+    if (chart) chart.destroy();
+  });
+  
+  $.ajax({
+    url: `/api/models/${modelId}/training-status/`,
+    method: 'GET',
+    xhrFields: { withCredentials: true },
+    success: function(data) {
+      updateModalAnalytics(modelId, data);
+    },
+    error: function(xhr, status, error) {
+      $('#analytics-loading').hide();
+      $('#analytics-error').show();
+      $('#error-message').text('Failed to load analytics: ' + xhr.status + ' - ' + (xhr.responseJSON?.detail || error));
+    }
+  });
+});
+
+function updateModalAnalytics(modelId, statusData) {
+  $('#current-accuracy').text(statusData.accuracy ? statusData.accuracy.toFixed(2) + '%' : 'N/A');
+  $('#training-lines-modal').text(statusData.training_data?.training_lines || 0);
+  $('#validation-lines-modal').text(statusData.training_data?.validation_lines || 0);
+  
+  $.ajax({
+    url: `/api/models/${modelId}/training-history/`,
+    method: 'GET',
+    xhrFields: { withCredentials: true },
+    success: function(historyData) {
+      $('#total-epochs-modal').text(historyData.epochs?.length || 0);
+      createModalCharts(historyData, statusData);
+      $('#analytics-loading').hide();
+      $('#analytics-content').show();
+    },
+    error: function() {
+      $('#total-epochs-modal').text('0');
+      $('#analytics-loading').hide();
+      $('#analytics-content').show();
+    }
+  });
+}
+
+function createModalCharts(historyData, statusData) {
+  const epochs = historyData.epochs || [];
+  
+  // Accuracy Over Time Chart
+  const accuracyCtx = document.getElementById('accuracyChartModal').getContext('2d');
+  modalCharts.accuracy = new Chart(accuracyCtx, {
+    type: 'line',
+    data: {
+      labels: epochs.map(e => `${i18n.epoch} ${e.epoch}`),
+      datasets: [{
+        label: i18n.accuracyPercent,
+        data: epochs.map(e => e.accuracy || 0),
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { 
+        y: { 
+          beginAtZero: true, 
+          max: 100,
+          title: {
+            display: true,
+            text: i18n.accuracy
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: i18n.trainingProgress
+          }
+        }
+      }
+    }
+  });
+  
+  // Training Duration per Epoch Chart
+  const durationCtx = document.getElementById('durationChartModal').getContext('2d');
+  modalCharts.duration = new Chart(durationCtx, {
+    type: 'bar',
+    data: {
+      labels: epochs.map(e => `${i18n.epoch} ${e.epoch}`),
+      datasets: [{
+        label: i18n.duration,
+        data: epochs.map(e => e.duration_minutes || 0),
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { 
+        y: { 
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: i18n.minutes
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: i18n.epoch
+          }
+        }
+      }
+    }
+  });
+  
+  // Training Data Distribution Chart
+  const dataCtx = document.getElementById('dataChartModal').getContext('2d');
+  const trainingLines = statusData.training_data?.training_lines || 0;
+  const validationLines = statusData.training_data?.validation_lines || 0;
+  
+  modalCharts.data = new Chart(dataCtx, {
+    type: 'doughnut',
+    data: {
+      labels: [i18n.trainingLines, i18n.validationLines],
+      datasets: [{
+        data: [trainingLines, validationLines],
+        backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+</script>
+{% endblock %}

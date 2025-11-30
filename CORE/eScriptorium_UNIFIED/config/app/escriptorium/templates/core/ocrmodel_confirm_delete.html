@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>{% trans "Delete Model" %}</h2>
+    
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        {% trans "This action cannot be undone!" %}
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <p class="lead">
+            {% blocktrans with model_name=object.name %}
+            Are you sure you want to delete the model <strong>{{ model_name }}</strong>?
+            {% endblocktrans %}
+        </p>
+        
+        {% if object.file %}
+        <p class="text-muted">
+            <i class="fas fa-file"></i> {% trans "File:" %} {{ object.file.name }}
+        </p>
+        {% endif %}
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash"></i> {% trans "Confirm Delete" %}
+            </button>
+            <a href="{% url 'user-models' %}" class="btn btn-secondary">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock body %}

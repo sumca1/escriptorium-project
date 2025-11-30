@@ -1,0 +1,494 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Advanced Search" %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <h2 style="margin: 0;">
+                        <i class="fas fa-search"></i>
+                        {% trans "Advanced Search" %}
+                    </h2>
+                    <p class="text-muted" style="margin: 0.5rem 0 0 0;">
+                        {% trans "Search across all your documents using Elasticsearch" %}
+                    </p>
+                </div>
+                <div id="help-button-mount-advanced"></div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <!-- Search Interface -->
+            <div class="card">
+                <div class="card-body">
+                    <form id="advanced-search-form" class="mb-4">
+                        <div class="form-group">
+                            <label for="search-query">
+                                <strong>{% trans "Search Query" %}:</strong>
+                            </label>
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-lg" 
+                                    id="search-query"
+                                    placeholder="{% trans 'Enter search terms...' %}"
+                                    autofocus
+                                >
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary btn-lg" type="submit">
+                                        <i class="fas fa-search"></i>
+                                        {% trans "Search" %}
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="form-text text-muted">
+                                {% trans "Search supports fuzzy matching for Hebrew and Arabic text" %}
+                            </small>
+                        </div>
+                        
+                        <!-- Filters Toggle -->
+                        <button 
+                            class="btn btn-sm btn-outline-secondary mb-3" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#search-filters"
+                        >
+                            <i class="fas fa-filter"></i>
+                            {% trans "Show Filters" %}
+                        </button>
+                        
+                        <!-- Filters -->
+                        <div class="collapse" id="search-filters">
+                            <div class="card card-body bg-light">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="filter-confidence">{% trans "Minimum Confidence" %}:</label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control" 
+                                                id="filter-confidence"
+                                                min="0" 
+                                                max="1" 
+                                                step="0.1"
+                                                placeholder="0.0 - 1.0"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="filter-document">{% trans "Document" %}:</label>
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                id="filter-document"
+                                                placeholder="{% trans 'Document ID' %}"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="filter-project">{% trans "Project" %}:</label>
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                id="filter-project"
+                                                placeholder="{% trans 'Project ID' %}"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Loading State -->
+                    <div id="search-loading" class="text-center py-5" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">{% trans "Loading..." %}</span>
+                        </div>
+                        <p class="mt-3">{% trans "Searching..." %}</p>
+                    </div>
+                    
+                    <!-- Error State -->
+                    <div id="search-error" class="alert alert-danger" style="display: none;"></div>
+                    
+                    <!-- Stats -->
+                    <div id="search-stats" class="alert alert-info" style="display: none;"></div>
+                    
+                    <!-- Results -->
+                    <div id="search-results"></div>
+                    
+                    <!-- Pagination -->
+                    <nav id="search-pagination" style="display: none;">
+                        <ul class="pagination justify-content-center"></ul>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- ES Stats Debug -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Elasticsearch Status" %}
+                </div>
+                <div class="card-body" id="es-stats">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="sr-only">{% trans "Loading..." %}</span>
+                    </div>
+                    {% trans "Loading Elasticsearch stats..." %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    // Translation strings (rendered by Django at template time)
+    const i18n = {
+        status: "{% trans 'Status' %}",
+        enabled: "{% trans 'Enabled' %}",
+        totalDocuments: "{% trans 'Total Documents' %}",
+        indexSize: "{% trans 'Index Size' %}",
+        esNotEnabled: "{% trans 'Elasticsearch is not enabled' %}",
+        failedToLoad: "{% trans 'Failed to load Elasticsearch status' %}",
+        minChars: "{% trans 'Please enter at least 2 characters' %}",
+        searchFailed: "{% trans 'Search failed' %}",
+        noResults: "{% trans 'No results found' %}",
+        tryDifferent: "{% trans 'Try different search terms or adjust filters' %}",
+        relevanceScore: "{% trans 'Relevance Score' %}",
+        page: "{% trans 'Page' %}",
+        line: "{% trans 'Line' %}",
+        openDocument: "{% trans 'Open Document' %}",
+        found: "{% trans 'Found' %}",
+        results: "{% trans 'results' %}",
+        of: "{% trans 'of' %}"
+    };
+    
+    let currentPage = 1;
+    const pageSize = 20;
+    
+    // Load ES Stats
+    function loadESStats() {
+        fetch('/api/search/stats/')
+            .then(response => response.json())
+            .then(data => {
+                const statsDiv = document.getElementById('es-stats');
+                if (data.enabled) {
+                    statsDiv.innerHTML = `
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>${i18n.status}:</strong> 
+                                <span class="badge badge-success">${i18n.enabled}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>${i18n.totalDocuments}:</strong> 
+                                <span class="badge badge-primary">${data.total_documents || 0}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>${i18n.indexSize}:</strong> 
+                                <span class="badge badge-info">${(data.size_mb || 0).toFixed(2)} MB</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    statsDiv.innerHTML = `
+                        <div class="alert alert-warning mb-0">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            ${i18n.esNotEnabled}
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                document.getElementById('es-stats').innerHTML = `
+                    <div class="alert alert-danger mb-0">
+                        <i class="fas fa-times-circle"></i>
+                        ${i18n.failedToLoad}: ${error.message}
+                    </div>
+                `;
+            });
+    }
+    
+    // Perform Search
+    function performSearch(page = 1) {
+        const query = document.getElementById('search-query').value.trim();
+        
+        if (query.length < 2) {
+            showError(i18n.minChars);
+            return;
+        }
+        
+        // Build query params
+        const params = new URLSearchParams({
+            q: query,
+            page: page,
+            page_size: pageSize
+        });
+        
+        const confidence = document.getElementById('filter-confidence').value;
+        const document = document.getElementById('filter-document').value;
+        const project = document.getElementById('filter-project').value;
+        
+        if (confidence) params.append('min_confidence', confidence);
+        if (document) params.append('document', document);
+        if (project) params.append('project', project);
+        
+        // Show loading
+        showLoading();
+        hideError();
+        hideResults();
+        
+        // Fetch results
+        fetch(`/api/search/?${params}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                hideLoading();
+                
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    displayResults(data);
+                    displayStats(data);
+                    currentPage = page;
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                showError(i18n.searchFailed + ': ' + error.message);
+            });
+    }
+    
+    function displayResults(data) {
+        const resultsDiv = document.getElementById('search-results');
+        
+        if (data.total === 0) {
+            resultsDiv.innerHTML = `
+                <div class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4>${i18n.noResults}</h4>
+                    <p class="text-muted">${i18n.tryDifferent}</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        data.results.forEach(result => {
+            const highlights = result.highlight && result.highlight.length > 0 
+                ? result.highlight.join(' ... ') 
+                : result.content;
+            
+            html += `
+                <div class="card mb-3 search-result-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title mb-2">
+                                <i class="fas fa-file-alt text-primary"></i>
+                                ${result.document_name}
+                            </h5>
+                            <span class="badge badge-warning" title="${i18n.relevanceScore}">
+                                <i class="fas fa-star"></i> ${result.score.toFixed(2)}
+                            </span>
+                        </div>
+                        
+                        <div class="text-muted small mb-2">
+                            ${result.project_name ? `<i class="fas fa-folder"></i> ${result.project_name} | ` : ''}
+                            <i class="fas fa-file"></i> ${i18n.page} ${result.page_number} |
+                            <i class="fas fa-stream"></i> ${i18n.line} ${result.line_order}
+                            ${result.confidence ? ` | <i class="fas fa-check-circle"></i> ${(result.confidence * 100).toFixed(0)}%` : ''}
+                        </div>
+                        
+                        <div class="card-text">
+                            <div class="p-2 bg-light border-left border-primary" style="border-left-width: 3px !important;">
+                                ${highlights}
+                            </div>
+                        </div>
+                        
+                        <a href="/document/${result.document_id}/part/${result.document_part_id}/edit/#line-${result.line_id}" 
+                           class="btn btn-sm btn-outline-primary mt-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            ${i18n.openDocument}
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+        
+        resultsDiv.innerHTML = html;
+        
+        // Pagination
+        displayPagination(data);
+    }
+    
+    function displayStats(data) {
+        const statsDiv = document.getElementById('search-stats');
+        statsDiv.style.display = 'block';
+        statsDiv.innerHTML = `
+            <strong>${i18n.found}:</strong> ${data.total} ${i18n.results}
+            ${data.took_ms ? ` (${data.took_ms}ms)` : ''}
+        `;
+    }
+    
+    function displayPagination(data) {
+        const totalPages = Math.ceil(data.total / pageSize);
+        
+        if (totalPages <= 1) {
+            document.getElementById('search-pagination').style.display = 'none';
+            return;
+        }
+        
+        const paginationDiv = document.getElementById('search-pagination');
+        const ul = paginationDiv.querySelector('.pagination');
+        
+        let html = '';
+        
+        // Previous
+        html += `
+            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#" data-page="${currentPage - 1}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </li>
+        `;
+        
+        // Pages
+        for (let i = 1; i <= Math.min(totalPages, 10); i++) {
+            html += `
+                <li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>
+            `;
+        }
+        
+        // Next
+        html += `
+            <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="#" data-page="${currentPage + 1}">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            </li>
+        `;
+        
+        ul.innerHTML = html;
+        paginationDiv.style.display = 'block';
+        
+        // Add click handlers
+        ul.querySelectorAll('a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = parseInt(this.dataset.page);
+                if (page > 0 && page <= totalPages) {
+                    performSearch(page);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+    
+    function showLoading() {
+        document.getElementById('search-loading').style.display = 'block';
+    }
+    
+    function hideLoading() {
+        document.getElementById('search-loading').style.display = 'none';
+    }
+    
+    function showError(message) {
+        const errorDiv = document.getElementById('search-error');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+    
+    function hideError() {
+        document.getElementById('search-error').style.display = 'none';
+    }
+    
+    function hideResults() {
+        document.getElementById('search-results').innerHTML = '';
+        document.getElementById('search-stats').style.display = 'none';
+        document.getElementById('search-pagination').style.display = 'none';
+    }
+    
+    // Event listeners
+    document.getElementById('advanced-search-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        performSearch(1);
+    });
+    
+    // Load ES stats on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadESStats();
+        
+        // Check for query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+        if (query) {
+            document.getElementById('search-query').value = query;
+            performSearch(1);
+        }
+    });
+})();
+</script>
+
+<style>
+.search-result-card {
+    transition: all 0.3s;
+}
+
+.search-result-card:hover {
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.1);
+}
+
+.search-result-card mark {
+    background-color: #ffeb3b;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+[dir="rtl"] .border-left {
+    border-left: none !important;
+    border-right: 3px solid !important;
+}
+</style>
+
+<script>
+// Mount HelpButton for Advanced Search
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Vue !== 'undefined' && window.VueComponents && window.VueComponents.HelpButton) {
+        const helpApp = Vue.createApp({
+            template: '<HelpButton topic="advanced-search" />',
+            components: {
+                HelpButton: window.VueComponents.HelpButton
+            }
+        });
+        
+        const mountPoint = document.getElementById('help-button-mount-advanced');
+        if (mountPoint) {
+            helpApp.mount('#help-button-mount-advanced');
+            console.log('✅ HelpButton mounted for Advanced Search');
+        }
+    } else {
+        console.warn('⚠️ HelpButton not available - Vue or components not loaded');
+    }
+});
+</script>
+{% endblock %}

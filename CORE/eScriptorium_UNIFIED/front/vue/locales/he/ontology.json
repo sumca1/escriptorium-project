@@ -1,0 +1,18 @@
+{
+  "Comma-separated list of accepted values for this component": "רשימה מופרדת בפסיקים של ערכים מותרים לרכיב זה",
+  "Component": "רכיב",
+  "Components": "רכיבים",
+  "Delete Component": "מחק רכיב",
+  "No Components": "אין רכיבים",
+  "Ontology": "מילון מונחים",
+  "Text Annotations": "הערות לטקסט",
+  "annotation": "הערה",
+  "annotations": "הערות:",
+  "line_type": "סוג שורה",
+  "line_type_{0}_was_automatically_added_to_the_ontology": "סוג שורה {0} נוסף אוטומטית לאונטולוגיה",
+  "line_types": "סוגי שורות",
+  "ontology": "אונטולוגיה",
+  "region_types": "סוגי אזורים",
+  "region_types_to_include_in_the_alignment.": "סוגי אזורים לכלול ביישור.",
+  "text annotation": "הערות טקסט"
+}

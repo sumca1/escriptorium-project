@@ -1,0 +1,22 @@
+{
+  "Are you sure you want to cancel this task?": "האם אתה בטוח שברצונך לבטל משימה זו?",
+  "Cancel Task": "בטל משימה",
+  "Cancel tasks": "בטל משימות",
+  "Canceling tasks": "מבטל משימות",
+  "Canceling tasks...": "מבטל משימות...",
+  "Last task started": "המשימה האחרונה התחילה",
+  "Processing...": "מעבד...",
+  "Task Monitoring": "מעקב אחרי משימות",
+  "Task Usage": "שימוש במשימות",
+  "Task state": "מצב משימה",
+  "Tasks": "משימות",
+  "__backup_Canceling tasks": "מבטל משימות",
+  "alignment.processing": "מעבד יישורים",
+  "expand task monitoring and usage menu": "הרחב תפריט ניטור משימות ושימוש",
+  "processReady": "{\n      \"title\": \"הפילוח מוכן לחישוב מסכות!\"\n    }",
+  "processed": "מעובד",
+  "processing": "עיבוד",
+  "processing...": "עיבוד...",
+  "running": "רץ",
+  "status": "סטטוס:"
+}

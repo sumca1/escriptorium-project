@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblIA Design System - Button Showcase</title>
+    
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../css/design-system/variables.css">
+    <link rel="stylesheet" href="../css/design-system/reset.css">
+    <link rel="stylesheet" href="../css/components/buttons.css">
+    
+    <style>
+        body {
+            padding: var(--space-8);
+            background: var(--color-background-alt);
+        }
+        
+        .showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            background: var(--color-background);
+            padding: var(--space-8);
+            margin-bottom: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .section-title {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 2px solid var(--color-primary-500);
+            color: var(--color-primary-700);
+        }
+        
+        .demo-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            align-items: center;
+        }
+        
+        .demo-label {
+            font-weight: var(--font-semibold);
+            color: var(--color-text-secondary);
+            min-width: 150px;
+            font-size: var(--text-sm);
+        }
+        
+        .demo-content {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            align-items: center;
+        }
+        
+        code {
+            background: var(--color-gray-100);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-base);
+            font-family: var(--font-family-mono);
+            font-size: var(--text-sm);
+            color: var(--color-error-dark);
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Icons (using Unicode symbols for demo) */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+        }
+        
+        .icon-plus::before { content: "➕"; }
+        .icon-download::before { content: "⬇️"; }
+        .icon-upload::before { content: "⬆️"; }
+        .icon-edit::before { content: "✏️"; }
+        .icon-delete::before { content: "🗑️"; }
+        .icon-save::before { content: "💾"; }
+        .icon-search::before { content: "🔍"; }
+        .icon-settings::before { content: "⚙️"; }
+    </style>
+</head>
+<body>
+    <div class="showcase">
+        <header style="margin-bottom: var(--space-8);">
+            <h1 style="font-size: var(--text-5xl); color: var(--color-primary-700); margin-bottom: var(--space-2);">
+                🎨 מערכת עיצוב BiblIA
+            </h1>
+            <p style="font-size: var(--text-xl); color: var(--color-text-secondary);">
+                ספריית כפתורים מלאה - Button Showcase
+            </p>
+        </header>
+
+        <!-- Variants Section -->
+        <section class="section">
+            <h2 class="section-title">🎨 וריאציות כפתורים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-label">Primary</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary">כפתור ראשי</button>
+                    <code>.btn .btn-primary</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Secondary</div>
+                <div class="demo-content">
+                    <button class="btn btn-secondary">כפתור משני</button>
+                    <code>.btn .btn-secondary</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Outline</div>
+                <div class="demo-content">
+                    <button class="btn btn-outline">כפתור מתאר</button>
+                    <code>.btn .btn-outline</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Ghost</div>
+                <div class="demo-content">
+                    <button class="btn btn-ghost">כפתור שקוף</button>
+                    <code>.btn .btn-ghost</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Link</div>
+                <div class="demo-content">
+                    <button class="btn btn-link">כפתור קישור</button>
+                    <code>.btn .btn-link</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semantic Colors Section -->
+        <section class="section">
+            <h2 class="section-title">🎯 צבעים סמנטיים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-label">Success</div>
+                <div class="demo-content">
+                    <button class="btn btn-success">הצלחה</button>
+                    <code>.btn .btn-success</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Danger</div>
+                <div class="demo-content">
+                    <button class="btn btn-danger">מחיקה</button>
+                    <code>.btn .btn-danger</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Warning</div>
+                <div class="demo-content">
+                    <button class="btn btn-warning">אזהרה</button>
+                    <code>.btn .btn-warning</code>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Info</div>
+                <div class="demo-content">
+                    <button class="btn btn-info">מידע</button>
+                    <code>.btn .btn-info</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sizes Section -->
+        <section class="section">
+            <h2 class="section-title">📏 גדלים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-content">
+                    <button class="btn btn-primary btn-xs">Extra Small</button>
+                    <button class="btn btn-primary btn-sm">Small</button>
+                    <button class="btn btn-primary btn-md">Medium</button>
+                    <button class="btn btn-primary btn-lg">Large</button>
+                    <button class="btn btn-primary btn-xl">Extra Large</button>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <code>.btn-xs | .btn-sm | .btn-md | .btn-lg | .btn-xl</code>
+            </div>
+        </section>
+
+        <!-- Icons Section -->
+        <section class="section">
+            <h2 class="section-title">🔣 כפתורים עם אייקונים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-label">Icon + Text</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary">
+                        <span class="icon icon-plus"></span>
+                        <span>יצירת מסמך חדש</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span class="icon icon-download"></span>
+                        <span>הורדה</span>
+                    </button>
+                    <button class="btn btn-success">
+                        <span class="icon icon-save"></span>
+                        <span>שמירה</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Icon Only</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary btn-icon">
+                        <span class="icon icon-search"></span>
+                    </button>
+                    <button class="btn btn-secondary btn-icon">
+                        <span class="icon icon-edit"></span>
+                    </button>
+                    <button class="btn btn-danger btn-icon">
+                        <span class="icon icon-delete"></span>
+                    </button>
+                    <button class="btn btn-ghost btn-icon">
+                        <span class="icon icon-settings"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Circle Icons</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary btn-circle">
+                        <span class="icon icon-plus"></span>
+                    </button>
+                    <button class="btn btn-secondary btn-circle">
+                        <span class="icon icon-edit"></span>
+                    </button>
+                    <button class="btn btn-danger btn-circle">
+                        <span class="icon icon-delete"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- States Section -->
+        <section class="section">
+            <h2 class="section-title">🔄 מצבים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-label">Normal</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary">רגיל</button>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Loading</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary btn-loading">טוען...</button>
+                    <button class="btn btn-secondary btn-loading">טוען...</button>
+                    <button class="btn btn-outline btn-loading">טוען...</button>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Disabled</div>
+                <div class="demo-content">
+                    <button class="btn btn-primary" disabled>מנוטרל</button>
+                    <button class="btn btn-secondary" disabled>מנוטרל</button>
+                    <button class="btn btn-danger" disabled>מנוטרל</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Button Groups Section -->
+        <section class="section">
+            <h2 class="section-title">👥 קבוצות כפתורים</h2>
+            
+            <div class="demo-row">
+                <div class="demo-label">Basic Group</div>
+                <div class="demo-content">
+                    <div class="btn-group">
+                        <button class="btn btn-outline">ימין</button>
+                        <button class="btn btn-outline">מרכז</button>
+                        <button class="btn btn-outline">שמאל</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-row">
+                <div class="demo-label">Primary Group</div>
+                <div class="demo-content">
+                    <div class="btn-group">
+                        <button class="btn btn-primary">אחד</button>
+                        <button class="btn btn-primary">שניים</button>
+                        <button class="btn btn-primary">שלושה</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Width Section -->
+        <section class="section">
+            <h2 class="section-title">↔️ כפתורים ברוחב מלא</h2>
+            
+            <div class="demo-row">
+                <button class="btn btn-primary btn-block">כפתור ברוחב מלא</button>
+            </div>
+            
+            <div class="demo-row">
+                <button class="btn btn-secondary btn-block">
+                    <span class="icon icon-upload"></span>
+                    <span>העלאת קבצים</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Real World Examples -->
+        <section class="section">
+            <h2 class="section-title">💼 דוגמאות מהעולם האמיתי</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3 style="margin-bottom: var(--space-4); color: var(--color-text-primary);">טופס יצירת מסמך</h3>
+                    <div style="display: flex; gap: var(--space-3); justify-content: flex-start;">
+                        <button class="btn btn-ghost">ביטול</button>
+                        <button class="btn btn-outline">שמירת טיוטה</button>
+                        <button class="btn btn-primary">
+                            <span class="icon icon-save"></span>
+                            <span>יצירת מסמך</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: var(--space-4); color: var(--color-text-primary);">פעולות על מסמך</h3>
+                    <div style="display: flex; gap: var(--space-3); justify-content: flex-start;">
+                        <button class="btn btn-ghost btn-icon">
+                            <span class="icon icon-edit"></span>
+                        </button>
+                        <button class="btn btn-ghost btn-icon">
+                            <span class="icon icon-download"></span>
+                        </button>
+                        <button class="btn btn-danger btn-icon">
+                            <span class="icon icon-delete"></span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: var(--space-4); color: var(--color-text-primary);">אישור מחיקה</h3>
+                    <div style="display: flex; gap: var(--space-3); justify-content: flex-start;">
+                        <button class="btn btn-outline">לא, בטל</button>
+                        <button class="btn btn-danger">כן, מחק</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: var(--space-4); color: var(--color-text-primary);">פעולות OCR</h3>
+                    <div style="display: flex; gap: var(--space-3); justify-content: flex-start;">
+                        <button class="btn btn-primary">
+                            <span class="icon icon-search"></span>
+                            <span>זיהוי טקסט</span>
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="icon icon-settings"></span>
+                            <span>הגדרות</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--color-divider); color: var(--color-text-secondary);">
+            <p>BiblIA eScriptorium Design System v1.0.0</p>
+            <p style="font-size: var(--text-sm); margin-top: var(--space-2);">
+                נוצר עם ❤️ לפרויקט BiblIA
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add interactivity for demo purposes
+        document.querySelectorAll('.btn:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('btn-loading')) {
+                    console.log('Button clicked:', this.textContent.trim());
+                }
+            });
+        });
+    </script>
+</body>
+</html>

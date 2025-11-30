@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}TABA Dashboard - {% trans "Auto Ground Truth" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1>
+        <i class="fas fa-robot"></i>
+        {% trans "TABA Pipeline Dashboard" %}
+        <small class="text-muted">{% trans "Auto Ground Truth Generation" %}</small>
+      </h1>
+      <p class="lead">
+        {% trans "Automatically generate training data by aligning OCR with known digital texts using Passim" %}
+      </p>
+    </div>
+  </div>
+
+  <!-- System Status -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          <i class="fas fa-server"></i> {% trans "System Status" %}
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li>
+              <strong>{% trans "TABA Pipeline" %}:</strong>
+              {% if taba_installed %}
+                <span class="badge badge-success">{% trans "Installed" %}</span>
+              {% else %}
+                <span class="badge badge-danger">{% trans "Not Found" %}</span>
+              {% endif %}
+            </li>
+            <li>
+              <strong>{% trans "Passim" %}:</strong>
+              {% if passim_installed %}
+                <span class="badge badge-success">{% trans "Installed" %}</span>
+              {% else %}
+                <span class="badge badge-warning">{% trans "Not Installed" %}</span>
+              {% endif %}
+            </li>
+          </ul>
+          
+          {% if not taba_installed or not passim_installed %}
+          <div class="alert alert-warning mt-3">
+            <strong>{% trans "Setup Required" %}</strong><br>
+            {% trans "Follow the installation guide in" %} <code>apps/taba_pipeline/README.md</code>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-chart-bar"></i> {% trans "Statistics" %}
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-4">
+              <h3 class="text-primary">{{ total_corpora }}</h3>
+              <small>{% trans "GT Corpora" %}</small>
+            </div>
+            <div class="col-4">
+              <h3 class="text-success">{{ total_jobs }}</h3>
+              <small>{% trans "Total Jobs" %}</small>
+            </div>
+            <div class="col-4">
+              <h3 class="text-warning">{{ running_jobs }}</h3>
+              <small>{% trans "Running" %}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <i class="fas fa-bolt"></i> {% trans "Quick Actions" %}
+        </div>
+        <div class="card-body">
+          <div class="btn-group" role="group">
+            <a href="{% url 'taba:corpus-list' %}" class="btn btn-outline-primary">
+              <i class="fas fa-database"></i> {% trans "Manage GT Corpora" %}
+            </a>
+            <a href="{% url 'taba:job-create' %}" class="btn btn-outline-success">
+              <i class="fas fa-plus-circle"></i> {% trans "Create New Job" %}
+            </a>
+            <a href="{% url 'taba:job-list' %}" class="btn btn-outline-info">
+              <i class="fas fa-list"></i> {% trans "View All Jobs" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Jobs -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-history"></i> {% trans "Recent Alignment Jobs" %}
+        </div>
+        <div class="card-body">
+          {% if recent_jobs %}
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>{% trans "Name" %}</th>
+                  <th>{% trans "Document" %}</th>
+                  <th>{% trans "GT Corpus" %}</th>
+                  <th>{% trans "Status" %}</th>
+                  <th>{% trans "Progress" %}</th>
+                  <th>{% trans "Aligned Lines" %}</th>
+                  <th>{% trans "Created" %}</th>
+                  <th>{% trans "Actions" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for job in recent_jobs %}
+                <tr>
+                  <td>
+                    <a href="{% url 'taba:job-detail' job.pk %}">
+                      {{ job.name }}
+                    </a>
+                  </td>
+                  <td>{{ job.document.name }}</td>
+                  <td>{{ job.gt_corpus.name }}</td>
+                  <td>
+                    {% if job.status == 'completed' %}
+                      <span class="badge badge-success">{{ job.get_status_display }}</span>
+                    {% elif job.status == 'failed' %}
+                      <span class="badge badge-danger">{{ job.get_status_display }}</span>
+                    {% elif job.status == 'pending' %}
+                      <span class="badge badge-secondary">{{ job.get_status_display }}</span>
+                    {% else %}
+                      <span class="badge badge-info">{{ job.get_status_display }}</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar" role="progressbar" 
+                           style="width: {{ job.progress }}%"
+                           aria-valuenow="{{ job.progress }}" 
+                           aria-valuemin="0" 
+                           aria-valuemax="100">
+                        {{ job.progress }}%
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ job.total_aligned_lines }}</td>
+                  <td>{{ job.created_at|date:"Y-m-d H:i" }}</td>
+                  <td>
+                    <a href="{% url 'taba:job-detail' job.pk %}" 
+                       class="btn btn-sm btn-info">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            {% trans "No alignment jobs yet. Create your first job to get started!" %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ground Truth Corpora -->
+  <div class="row mt-4 mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-database"></i> {% trans "Ground Truth Corpora" %}
+        </div>
+        <div class="card-body">
+          {% if corpora %}
+          <div class="row">
+            {% for corpus in corpora %}
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href="{% url 'taba:corpus-detail' corpus.pk %}">
+                      {{ corpus.name }}
+                    </a>
+                  </h5>
+                  <p class="card-text text-muted small">
+                    {{ corpus.description|truncatewords:20 }}
+                  </p>
+                  <ul class="list-unstyled small">
+                    <li><strong>{% trans "Source" %}:</strong> {{ corpus.get_source_type_display }}</li>
+                    <li><strong>{% trans "Texts" %}:</strong> {{ corpus.total_texts }}</li>
+                    <li><strong>{% trans "Characters" %}:</strong> {{ corpus.total_characters|filesizeformat }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            {% trans "No GT corpora yet. Add digital texts to create your first corpus!" %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

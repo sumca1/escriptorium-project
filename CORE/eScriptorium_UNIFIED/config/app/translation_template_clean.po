@@ -1,0 +1,1516 @@
+# תבנית תרגום מנוקה - BiblIA eScriptorium
+# =======================================
+# נוצר בתאריך: 21/09/2025 19:24
+# רק מחרוזות הניתנות לתרגום
+
+# הוראות:
+# 1. מלא את השדה msgstr בתרגום עברי
+# 2. שמור על המרכאות
+# 3. השתמש בתווי בריחה לפי הצורך (\n, \', \")
+# 4. אחרי השלמת התרגום, הפעל את merge_translations.py
+
+# ============================================
+
+# #1 - מקור: app\apps\core\tasks.py:926
+msgid "Replacements applied with some errors"
+msgstr ""
+
+# #2 - מקור: app\apps\core\views.py:396
+msgid "Project created successfully!"
+msgstr ""
+
+# #3 - מקור: app\apps\core\views.py:410
+msgid "Project updated successfully!"
+msgstr ""
+
+# #4 - מקור: app\apps\core\views.py:512
+msgid "Document created successfully!"
+msgstr ""
+
+# #5 - מקור: app\apps\core\views.py:554
+msgid "Document saved successfully!"
+msgstr ""
+
+# #6 - מקור: app\apps\core\views.py:596
+msgid "Ontology saved successfully!"
+msgstr ""
+
+# #7 - מקור: app\apps\core\views.py:685
+msgid "Document shared successfully!"
+msgstr ""
+
+# #8 - מקור: app\apps\core\views.py:722
+msgid "Project shared successfully!"
+msgstr ""
+
+# #9 - מקור: app\apps\core\views.py:766
+msgid "Document archived successfully!"
+msgstr ""
+
+# #10 - מקור: app\apps\core\views.py:768
+msgid "Document published successfully!"
+msgstr ""
+
+# #11 - מקור: app\apps\core\views.py:926
+msgid "Model uploaded successfully!"
+msgstr ""
+
+# #12 - מקור: app\apps\core\views.py:967
+msgid "Model deleted successfully!"
+msgstr ""
+
+# #13 - מקור: app\apps\core\views.py:1004
+msgid "Right added successfully!"
+msgstr ""
+
+# #14 - מקור: app\apps\core\views.py:1034
+msgid "Right deleted successfully!"
+msgstr ""
+
+# #16 - מקור: app\apps\imports\parsers.py:1211
+msgid "Error while fetching {filename}: {error}"
+msgstr ""
+
+# #17 - מקור: app\apps\users\admin.py:139
+msgid "Successfully sent {count} invitations."
+msgstr ""
+
+# #18 - מקור: app\apps\users\forms.py:242
+msgid "Message : Please precise your institution or research center if applicable"
+msgstr ""
+
+# #19 - מקור: app\apps\users\views.py:255
+msgid "Profile successfully saved."
+msgstr ""
+
+# #20 - מקור: app\apps\users\views.py:327
+msgid "Team successfully created."
+msgstr ""
+
+# #21 - מקור: app\apps\users\views.py:350
+msgid "User successfully invited to the team."
+msgstr ""
+
+# #22 - מקור: app\apps\users\views.py:370
+msgid "Message successfully sent."
+msgstr ""
+
+# #1 - מקור: app\apps\api\serializers.py:968
+msgid "Either use model_name to create a new model, add a model pk to retrain an existing one, or both to create a new model from an existing one."
+msgstr ""
+
+# #2 - מקור: app\apps\api\serializers.py:1171
+msgid "Either use model_name to create a new model, or add a model pk to retrain an existing one."
+msgstr ""
+
+# #3 - מקור: app\apps\core\forms.py:190
+msgid "You cannot find and replace text across multiple projects at once, please pick a single project before submitting your request."
+msgstr ""
+
+# #5 - מקור: app\apps\core\models.py:935
+msgid "Created"
+msgstr ""
+
+# #7 - מקור: app\apps\imports\parsers.py:837
+msgid "Block type {0} was automatically added to the ontology"
+msgstr ""
+
+# #8 - מקור: app\apps\imports\parsers.py:901
+msgid "Line type {0} was automatically added to the ontology"
+msgstr ""
+
+# #1 - מקור: app\apps\api\serializers.py:1340
+msgid "If checked, the aligner will use all transcribed pages of the document to find matches. If unchecked, it will compare each page to the text separately."
+msgstr ""
+
+# #2 - מקור: app\apps\core\models.py:2179
+msgid "Pages per segmentation task"
+msgstr ""
+
+# #3 - מקור: app\apps\core\models.py:2183
+msgid "Pages per transcription task"
+msgstr ""
+
+# #6 - מקור: app\apps\imports\parsers.py:169
+msgid "Parse error in {filename}: {page}: {error}, skipping it."
+msgstr ""
+
+# #7 - מקור: app\apps\imports\parsers.py:927
+msgid "Default PAGE Import"
+msgstr ""
+
+# #8 - מקור: app\escriptorium\templates\404.html:6
+msgid "Page not found."
+msgstr ""
+
+# #9 - מקור: app\escriptorium\templates\base.html:85
+msgid "Search in all your projects"
+msgstr ""
+
+# #10 - מקור: app\escriptorium\templates\base.html:118
+msgid "My Models"
+msgstr ""
+
+# #11 - מקור: app\escriptorium\templates\base.html:129
+msgid "Change password"
+msgstr ""
+
+# #12 - מקור: app\escriptorium\templates\base.html:132
+msgid "Task reports"
+msgstr ""
+
+# #13 - מקור: app\escriptorium\templates\base.html:133
+msgid "Tasks monitoring"
+msgstr ""
+
+# #14 - מקור: app\escriptorium\templates\base.html:135
+msgid "Leaderboard"
+msgstr ""
+
+# #15 - מקור: app\escriptorium\templates\base.html:137
+msgid "Site administration"
+msgstr ""
+
+# #16 - מקור: app\escriptorium\templates\base.html:69
+msgid "Contact"
+msgstr ""
+
+# #17 - מקור: app\escriptorium\templates\base.html:141
+msgid "Invite"
+msgstr ""
+
+# #19 - מקור: app\escriptorium\templates\core\contributors.html:4
+msgid "Contributors"
+msgstr ""
+
+# #20 - מקור: app\escriptorium\templates\core\contributors.html:19
+msgid "The contributors list will be available here soon."
+msgstr ""
+
+# #21 - מקור: app\escriptorium\templates\core\credits.html:4
+msgid "Credits"
+msgstr ""
+
+# #22 - מקור: app\escriptorium\templates\core\credits.html:13
+msgid "eScriptorium and kraken are Free and Open-Source Software developed by a team in the laboratoire AOROC (CNRS PSL, UMR 8546) at the École Pratique des Hautes Études – Université PSL."
+msgstr ""
+
+# #23 - מקור: app\escriptorium\templates\core\credits.html:22
+msgid "The credits list will be available here soon."
+msgstr ""
+
+# #24 - מקור: app\escriptorium\templates\core\document_form.html:3
+msgid "Create a new Document"
+msgstr ""
+
+# #25 - מקור: app\escriptorium\templates\core\document_form.html:15
+msgid "Share this Document"
+msgstr ""
+
+# #26 - מקור: app\escriptorium\templates\core\document_form.html:24
+msgid "Migrate to another project"
+msgstr ""
+
+# #27 - מקור: app\escriptorium\templates\core\document_form.html:38
+msgid "Do you really want to delete the document?"
+msgstr ""
+
+# #28 - מקור: app\escriptorium\templates\core\document_form.html:71
+msgid "Metadata"
+msgstr ""
+
+# #29 - מקור: app\escriptorium\templates\core\document_form.html:32
+msgid "Publish"
+msgstr ""
+
+# #30 - מקור: app\escriptorium\templates\core\document_form.html:47
+msgid "nav-doc-tab"
+msgstr ""
+
+# #31 - מקור: app\escriptorium\templates\core\document_images.html:17
+msgid "Drop images here or click to upload."
+msgstr ""
+
+# #32 - מקור: app\escriptorium\templates\core\document_images.html:27
+msgid "Unselect all"
+msgstr ""
+
+# #33 - מקור: app\escriptorium\templates\core\document_images.html:28
+msgid "Loading"
+msgstr ""
+
+# #34 - מקור: app\escriptorium\templates\core\document_images.html:38
+msgid "You don't have any CPU minutes left"
+msgstr ""
+
+# #35 - מקור: app\escriptorium\templates\core\document_images.html:95
+msgid "You don't have any GPU minutes left"
+msgstr ""
+
+# #36 - מקור: app\escriptorium\templates\core\document_images.html:98
+msgid "You don't have any disk storage left"
+msgstr ""
+
+# #37 - מקור: app\escriptorium\templates\core\document_images.html:100
+msgid "Train a segmenter/recognizer model."
+msgstr ""
+
+# #38 - מקור: app\escriptorium\templates\core\document_images.html:113
+msgid "Cancel training"
+msgstr ""
+
+# #39 - מקור: app\escriptorium\templates\core\document_images.html:125
+msgid "Segment selected images."
+msgstr ""
+
+# #40 - מקור: app\escriptorium\templates\core\document_images.html:136
+msgid "Start transcribing selected images."
+msgstr ""
+
+# #41 - מקור: app\escriptorium\templates\core\document_images.html:148
+msgid "Align transcribed images to a textual witness (reference text)."
+msgstr ""
+
+# #42 - מקור: app\escriptorium\templates\core\document_images.html:168
+msgid "Delete this image and all its data (segmentation, transcriptions)"
+msgstr ""
+
+# #43 - מקור: app\escriptorium\templates\core\document_images.html:171
+msgid "Cancel tasks"
+msgstr ""
+
+# #44 - מקור: app\escriptorium\templates\core\document_images.html:177
+msgid "Compressing"
+msgstr ""
+
+# #45 - מקור: app\escriptorium\templates\core\document_list.html:3
+msgid "My Documents"
+msgstr ""
+
+# #46 - מקור: app\escriptorium\templates\core\document_list.html:10
+msgid "Manage tags"
+msgstr ""
+
+# #47 - מקור: app\escriptorium\templates\core\document_list.html:14
+msgid "Share this Project"
+msgstr ""
+
+# #48 - מקור: app\escriptorium\templates\core\document_list.html:128
+msgid "Do you really want to remove the document from your list?"
+msgstr ""
+
+# #49 - מקור: app\escriptorium\templates\core\document_list.html:9
+msgid "Create new Document"
+msgstr ""
+
+# #50 - מקור: app\escriptorium\templates\core\document_list.html:22
+msgid "Filters"
+msgstr ""
+
+# #51 - מקור: app\escriptorium\templates\core\document_list.html:41
+msgid "Preview"
+msgstr ""
+
+# #52 - מקור: app\escriptorium\templates\core\document_list.html:44
+msgid "Name"
+msgstr ""
+
+# #53 - מקור: app\escriptorium\templates\core\document_list.html:50
+msgid "Last modified"
+msgstr ""
+
+# #54 - מקור: app\escriptorium\templates\core\document_list.html:53
+msgid "Image count"
+msgstr ""
+
+# #55 - מקור: app\escriptorium\templates\core\document_list.html:56
+msgid "Tags"
+msgstr ""
+
+# #56 - מקור: app\escriptorium\templates\core\document_list.html:59
+msgid "Actions"
+msgstr ""
+
+# #57 - מקור: app\escriptorium\templates\core\document_list.html:85
+msgid "Shared with"
+msgstr ""
+
+# #58 - מקור: app\escriptorium\templates\core\document_list.html:87
+msgid "Last modified on"
+msgstr ""
+
+# #59 - מקור: app\escriptorium\templates\core\document_list.html:101
+msgid "Unpublished"
+msgstr ""
+
+# #60 - מקור: app\escriptorium\templates\core\document_list.html:111
+msgid "Edit last updated Element"
+msgstr ""
+
+# #61 - מקור: app\escriptorium\templates\core\document_nav.html:14
+msgid "Back to document list"
+msgstr ""
+
+# #62 - מקור: app\escriptorium\templates\core\document_nav.html:21
+msgid "Description"
+msgstr ""
+
+# #63 - מקור: app\escriptorium\templates\core\document_nav.html:25
+msgid "Images"
+msgstr ""
+
+# #64 - מקור: app\escriptorium\templates\core\document_nav.html:96
+msgid "All levels"
+msgstr ""
+
+# #65 - מקור: app\escriptorium\templates\core\document_ontology.html:4
+msgid "Document Ontology"
+msgstr ""
+
+# #66 - מקור: app\escriptorium\templates\core\document_ontology.html:39
+msgid "Lines and Regions typologies:"
+msgstr ""
+
+# #67 - מקור: app\escriptorium\templates\core\document_ontology.html:40
+msgid "The default configuration only contains semantic types."
+msgstr ""
+
+# #68 - מקור: app\escriptorium\templates\core\document_ontology.html:41
+msgid "It is not recommended to mix semantic, stylistic and layout types."
+msgstr ""
+
+# #70 - מקור: app\escriptorium\templates\core\document_ontology.html:44
+msgid "Annotations:"
+msgstr ""
+
+# #71 - מקור: app\escriptorium\templates\core\document_ontology.html:45
+msgid "Each Annotation can store values for different components."
+msgstr ""
+
+# #73 - מקור: app\escriptorium\templates\core\document_ontology.html:47
+msgid "Annotation types allow to regroup the corresponding buttons in the editing interface (and may be used as a hint for import/export)."
+msgstr ""
+
+# #74 - מקור: app\escriptorium\templates\core\document_ontology.html:53
+msgid "Region types"
+msgstr ""
+
+# #75 - מקור: app\escriptorium\templates\core\document_ontology.html:60
+msgid "Add a region type"
+msgstr ""
+
+# #76 - מקור: app\escriptorium\templates\core\document_ontology.html:70
+msgid "Line types"
+msgstr ""
+
+# #77 - מקור: app\escriptorium\templates\core\document_ontology.html:76
+msgid "Add a line type"
+msgstr ""
+
+# #78 - מקור: app\escriptorium\templates\core\document_ontology.html:87
+msgid "Part types"
+msgstr ""
+
+# #79 - מקור: app\escriptorium\templates\core\document_ontology.html:93
+msgid "Add a part type"
+msgstr ""
+
+# #80 - מקור: app\escriptorium\templates\core\document_ontology.html:103
+msgid "Annotations components"
+msgstr ""
+
+# #81 - מקור: app\escriptorium\templates\core\document_ontology.html:126
+msgid "Image Annotations"
+msgstr ""
+
+# #82 - מקור: app\escriptorium\templates\core\document_ontology.html:179
+msgid "Text Annotations"
+msgstr ""
+
+# #83 - מקור: app\escriptorium\templates\core\document_ontology.html:60
+msgid "{% trans"
+msgstr ""
+
+# #84 - מקור: app\escriptorium\templates\core\documents_tasks_list.html:6
+msgid "Task Monitoring"
+msgstr ""
+
+# #85 - מקור: app\escriptorium\templates\core\home.html:3
+msgid "Homepage"
+msgstr ""
+
+# #86 - מקור: app\escriptorium\templates\core\home.html:14
+msgid "eScriptorium: A Digital Text Production Pipeline for Print and Handwritten Texts using machine learning techniques."
+msgstr ""
+
+# #87 - מקור: app\escriptorium\templates\core\home.html:25
+msgid "Automatic<br>Transcription"
+msgstr ""
+
+# #88 - מקור: app\escriptorium\templates\core\home.html:26
+msgid "Apply OCR/HTR to images of printed and handwritten documents using shared open models."
+msgstr ""
+
+# #89 - מקור: app\escriptorium\templates\core\home.html:31
+msgid "Manual<br>Transcription"
+msgstr ""
+
+# #90 - מקור: app\escriptorium\templates\core\home.html:32
+msgid "Make use of an ergonomic user interface leveraging modern browser technology to edit segmentations and transcriptions."
+msgstr ""
+
+# #91 - מקור: app\escriptorium\templates\core\home.html:37
+msgid "Train<br>Models"
+msgstr ""
+
+# #92 - מקור: app\escriptorium\templates\core\home.html:38
+msgid "Create new models or finetune existing ones to improve automatic recognition."
+msgstr ""
+
+# #93 - מקור: app\escriptorium\templates\core\home.html:64
+msgid "Service originally developed by"
+msgstr ""
+
+# #94 - מקור: app\escriptorium\templates\core\home.html:65
+msgid "École Pratique des Hautes Études (EPHE)"
+msgstr ""
+
+# #95 - מקור: app\escriptorium\templates\core\home.html:72
+msgid "See"
+msgstr ""
+
+# #96 - מקור: app\escriptorium\templates\core\home.html:72
+msgid "contributors history"
+msgstr ""
+
+# #97 - מקור: app\escriptorium\templates\core\home.html:125
+msgid "Resources"
+msgstr ""
+
+# #98 - מקור: app\escriptorium\templates\core\home.html:127
+msgid "Tutorial"
+msgstr ""
+
+# #99 - מקור: app\escriptorium\templates\core\home.html:128
+msgid "eScriptorium open source code"
+msgstr ""
+
+# #100 - מקור: app\escriptorium\templates\core\home.html:129
+msgid "eScriptorium Blog"
+msgstr ""
+
+# #101 - מקור: app\escriptorium\templates\core\home.html:137
+msgid "Acknowledgements"
+msgstr ""
+
+# #102 - מקור: app\escriptorium\templates\core\home.html:145
+msgid "Legal mentions"
+msgstr ""
+
+# #103 - מקור: app\escriptorium\templates\core\ocrmodel_form.html:5
+msgid "Upload a model"
+msgstr ""
+
+# #104 - מקור: app\escriptorium\templates\core\migrate\migrate_document.html:27
+msgid "Migrate"
+msgstr ""
+
+# #105 - מקור: app\escriptorium\templates\core\models_list\table.html:6
+msgid "Role"
+msgstr ""
+
+# #106 - מקור: app\escriptorium\templates\core\models_list\table.html:8
+msgid "Script"
+msgstr ""
+
+# #107 - מקור: app\escriptorium\templates\core\models_list\table.html:19
+msgid "Trained from"
+msgstr ""
+
+# #108 - מקור: app\escriptorium\templates\core\models_list\table.html:20
+msgid "Training Status"
+msgstr ""
+
+# #109 - מקור: app\escriptorium\templates\core\models_list\table.html:21
+msgid "Accuracy"
+msgstr ""
+
+# #110 - מקור: app\escriptorium\templates\core\models_list\table.html:22
+msgid "Errors"
+msgstr ""
+
+# #111 - מקור: app\escriptorium\templates\core\models_list\table.html:23
+msgid "Right"
+msgstr ""
+
+# #112 - מקור: app\escriptorium\templates\core\models_list\table.html:28
+msgid "Model name"
+msgstr ""
+
+# #113 - מקור: app\escriptorium\templates\core\models_list\table.html:29
+msgid "Model role"
+msgstr ""
+
+# #114 - מקור: app\escriptorium\templates\core\models_list\table.html:30
+msgid "Model script"
+msgstr ""
+
+# #115 - מקור: app\escriptorium\templates\core\models_list\table.html:35
+msgid "Filter by script"
+msgstr ""
+
+# #116 - מקור: app\escriptorium\templates\core\models_list\table.html:42
+msgid "Parent from which the model was trained"
+msgstr ""
+
+# #117 - מקור: app\escriptorium\templates\core\models_list\table.html:46
+msgid "Is currently training"
+msgstr ""
+
+# #118 - מקור: app\escriptorium\templates\core\models_list\table.html:47
+msgid "Is done training"
+msgstr ""
+
+# #119 - מקור: app\escriptorium\templates\core\models_list\table.html:49
+msgid "Gathering data"
+msgstr ""
+
+# #120 - מקור: app\escriptorium\templates\core\models_list\table.html:58
+msgid "Number of errors/Total number of characters"
+msgstr ""
+
+# #121 - מקור: app\escriptorium\templates\core\models_list\table.html:70
+msgid "Toggle versions"
+msgstr ""
+
+# #122 - מקור: app\escriptorium\templates\core\models_list\table.html:86
+msgid "Share model"
+msgstr ""
+
+# #123 - מקור: app\escriptorium\templates\core\models_list\table.html:95
+msgid "Unbind model from the document"
+msgstr ""
+
+# #124 - מקור: app\escriptorium\templates\core\models_list\table.html:104
+msgid "Delete model"
+msgstr ""
+
+# #125 - מקור: app\escriptorium\templates\core\models_list\rights\delete.html:5
+msgid "Delete right"
+msgstr ""
+
+# #126 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:5
+msgid "shares"
+msgstr ""
+
+# #128 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:19
+msgid "Recipient type"
+msgstr ""
+
+# #129 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:21
+msgid "User full name"
+msgstr ""
+
+# #130 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:24
+msgid "Group name"
+msgstr ""
+
+# #132 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:28
+msgid "Stop sharing"
+msgstr ""
+
+# #133 - מקור: app\escriptorium\templates\core\models_list\rights\main.html:51
+msgid "Add right"
+msgstr ""
+
+# #134 - מקור: app\escriptorium\templates\core\search\search.html:28
+msgid "Couldn't connect to Elasticsearch, please contact your instance administrator."
+msgstr ""
+
+# #135 - מקור: app\escriptorium\templates\core\wizards\import_mets.html:15
+msgid "The prefix of the target transcription. Will default to "METS Import""
+msgstr ""
+
+# #136 - מקור: app\escriptorium\templates\includes\pagination.html:24
+msgid "First page"
+msgstr ""
+
+# #137 - מקור: app\escriptorium\templates\includes\pagination.html:60
+msgid "Last page"
+msgstr ""
+
+# #138 - מקור: app\escriptorium\templates\registration\login.html:8
+msgid "Please Sign In"
+msgstr ""
+
+# #140 - מקור: app\escriptorium\templates\registration\login.html:24
+msgid "Please login to see this page."
+msgstr ""
+
+# #141 - מקור: app\escriptorium\templates\registration\password_change_done.html:13
+msgid "Your password has successfully been changed."
+msgstr ""
+
+# #143 - מקור: app\escriptorium\templates\registration\password_change_form.html:34
+msgid "Old password:"
+msgstr ""
+
+# #144 - מקור: app\escriptorium\templates\registration\password_change_form.html:40
+msgid "New password:"
+msgstr ""
+
+# #145 - מקור: app\escriptorium\templates\registration\password_change_form.html:46
+msgid "New password confirmation:"
+msgstr ""
+
+# #146 - מקור: app\escriptorium\templates\registration\password_change_form.html:57
+msgid "Lost your password?"
+msgstr ""
+
+# #147 - מקור: app\escriptorium\templates\registration\password_change_form.html:52
+msgid "Change my password"
+msgstr ""
+
+# #148 - מקור: app\escriptorium\templates\registration\password_reset_complete.html:13
+msgid "Your password has been set.  You may go ahead and"
+msgstr ""
+
+# #149 - מקור: app\escriptorium\templates\registration\password_reset_complete.html:13
+msgid "log in"
+msgstr ""
+
+# #150 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:13
+msgid "Reset your password"
+msgstr ""
+
+# #151 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:19
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr ""
+
+# #153 - מקור: app\escriptorium\templates\registration\password_reset_confirm.html:31
+msgid "Confirm password:"
+msgstr ""
+
+# #154 - מקור: app\escriptorium\templates\registration\password_reset_done.html:13
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+# #155 - מקור: app\escriptorium\templates\registration\password_reset_done.html:14
+msgid "If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr ""
+
+# #156 - מקור: app\escriptorium\templates\registration\password_reset_form.html:17
+msgid "Forgotten your password? Enter your email address below, and we’ll email instructions for setting a new one."
+msgstr ""
+
+# #157 - מקור: app\escriptorium\templates\reporting\document_report.html:3
+msgid "Document report"
+msgstr ""
+
+# #158 - מקור: app\escriptorium\templates\reporting\document_report.html:33
+msgid "Data metrics"
+msgstr ""
+
+# #159 - מקור: app\escriptorium\templates\reporting\document_report.html:39
+msgid "Total number of document parts"
+msgstr ""
+
+# #160 - מקור: app\escriptorium\templates\reporting\document_report.html:41
+msgid "A document part corresponds to one image loaded within a document."
+msgstr ""
+
+# #161 - מקור: app\escriptorium\templates\reporting\document_report.html:49
+msgid "Transcribed document parts"
+msgstr ""
+
+# #162 - מקור: app\escriptorium\templates\reporting\document_report.html:51
+msgid "The number of transcribed images in the selected transcription(s)."
+msgstr ""
+
+# #166 - מקור: app\escriptorium\templates\reporting\document_report.html:73
+msgid "Vocabulary"
+msgstr ""
+
+# #167 - מקור: app\escriptorium\templates\reporting\document_report.html:74
+msgid "Reload vocabulary"
+msgstr ""
+
+# #168 - מקור: app\escriptorium\templates\reporting\document_report.html:104
+msgid "No vocabulary found in the selected transcription(s)."
+msgstr ""
+
+# #169 - מקור: app\escriptorium\templates\reporting\document_report.html:106
+msgid "The vocabulary is the list of all the characters currently used in the transcription of the document along with their frequency."
+msgstr ""
+
+# #170 - מקור: app\escriptorium\templates\reporting\project_reports.html:3
+msgid "Project reports"
+msgstr ""
+
+# #171 - מקור: app\escriptorium\templates\reporting\project_reports.html:38
+msgid "Total number of regions"
+msgstr ""
+
+# #172 - מקור: app\escriptorium\templates\reporting\project_reports.html:40
+msgid "A region is a polygon drawn on a document part, grouping one, several or no line(s)."
+msgstr ""
+
+# #173 - מקור: app\escriptorium\templates\reporting\project_reports.html:48
+msgid "Total number of lines"
+msgstr ""
+
+# #175 - מקור: app\escriptorium\templates\reporting\project_reports.html:60
+msgid "Total number of words"
+msgstr ""
+
+# #176 - מקור: app\escriptorium\templates\reporting\project_reports.html:62
+msgid "A word is any series of one or more characters, excepted punctuation signs and white spaces."
+msgstr ""
+
+# #177 - מקור: app\escriptorium\templates\reporting\project_reports.html:70
+msgid "Total number of characters"
+msgstr ""
+
+# #178 - מקור: app\escriptorium\templates\reporting\project_reports.html:72
+msgid "A character is any symbol used in the transcription, including punctuation, excepted white spaces."
+msgstr ""
+
+# #179 - מקור: app\escriptorium\templates\reporting\project_reports.html:121
+msgid "Annotation"
+msgstr ""
+
+# #180 - מקור: app\escriptorium\templates\reporting\project_reports.html:127
+msgid "Current use of document tags"
+msgstr ""
+
+# #181 - מקור: app\escriptorium\templates\reporting\project_reports.html:145
+msgid "Current use of part tags"
+msgstr ""
+
+# #182 - מקור: app\escriptorium\templates\reporting\project_reports.html:157
+msgid "Current use of regions type"
+msgstr ""
+
+# #183 - מקור: app\escriptorium\templates\reporting\project_reports.html:177
+msgid "Current use of lines type"
+msgstr ""
+
+# #184 - מקור: app\escriptorium\templates\reporting\project_reports.html:195
+msgid "Project activity"
+msgstr ""
+
+# #185 - מקור: app\escriptorium\templates\reporting\project_reports.html:201
+msgid "Created on"
+msgstr ""
+
+# #186 - מקור: app\escriptorium\templates\reporting\project_reports.html:210
+msgid "Last update on"
+msgstr ""
+
+# #187 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:11
+msgid "Total"
+msgstr ""
+
+# #188 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:14
+msgid "Last week"
+msgstr ""
+
+# #189 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:17
+msgid "Last day"
+msgstr ""
+
+# #191 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:23
+msgid "Disk usage"
+msgstr ""
+
+# #192 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:24
+msgid "CPU usage"
+msgstr ""
+
+# #193 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:25
+msgid "GPU usage"
+msgstr ""
+
+# #194 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:26
+msgid "No. of tasks"
+msgstr ""
+
+# #195 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:27
+msgid "Runtime"
+msgstr ""
+
+# #196 - מקור: app\escriptorium\templates\reporting\quotas_leaderboard.html:45
+msgid "All time"
+msgstr ""
+
+# #197 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:7
+msgid "Status:"
+msgstr ""
+
+# #198 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:8
+msgid "Queued at:"
+msgstr ""
+
+# #199 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:9
+msgid "Started at:"
+msgstr ""
+
+# #200 - מקור: app\escriptorium\templates\reporting\taskreport_detail.html:10
+msgid "Ended at:"
+msgstr ""
+
+# #201 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:20
+msgid "Calculated from your images and models"
+msgstr ""
+
+# #202 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:43
+msgid "CPU usage over the last week"
+msgstr ""
+
+# #203 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:66
+msgid "GPU usage over the last week"
+msgstr ""
+
+# #204 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:80
+msgid "CPU/GPU usage values also include automatic processing of the images on upload, those tasks aren't listed below."
+msgstr ""
+
+# #205 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:85
+msgid "Task report"
+msgstr ""
+
+# #206 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:86
+msgid "Started at"
+msgstr ""
+
+# #207 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:87
+msgid "Done at"
+msgstr ""
+
+# #208 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:88
+msgid "Duration"
+msgstr ""
+
+# #209 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:89
+msgid "State"
+msgstr ""
+
+# #210 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:90
+msgid "CPU cost"
+msgstr ""
+
+# #211 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:91
+msgid "GPU cost"
+msgstr ""
+
+# #212 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:132
+msgid "You don't have any task report yet."
+msgstr ""
+
+# #213 - מקור: app\escriptorium\templates\reporting\taskreport_list.html:5
+msgid "Task Usage"
+msgstr ""
+
+# #214 - מקור: app\escriptorium\templates\users\account_expired.html:9
+msgid "Account Expired"
+msgstr ""
+
+# #215 - מקור: app\escriptorium\templates\users\account_expired.html:10
+msgid "Your account has expired. Please reach out to the person who invited you for assistance."
+msgstr ""
+
+# #216 - מקור: app\escriptorium\templates\users\group_detail_invite.html:5
+msgid "Back to profile"
+msgstr ""
+
+# #217 - מקור: app\escriptorium\templates\users\group_detail_invite.html:8
+msgid "Team:"
+msgstr ""
+
+# #218 - מקור: app\escriptorium\templates\users\group_detail_invite.html:16
+msgid "Invite a user to this team."
+msgstr ""
+
+# #220 - מקור: app\escriptorium\templates\users\group_detail_invite.html:42
+msgid "Transfer ownership"
+msgstr ""
+
+# #221 - מקור: app\escriptorium\templates\users\group_detail_invite.html:54
+msgid "No other user in this team."
+msgstr ""
+
+# #222 - מקור: app\escriptorium\templates\users\profile_api_key.html:16
+msgid "example:"
+msgstr ""
+
+# #223 - מקור: app\escriptorium\templates\users\email\invitation_html.html:2
+msgid "Hello"
+msgstr ""
+
+# #224 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "is inviting you to join"
+msgstr ""
+
+# #225 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "his/her team"
+msgstr ""
+
+# #226 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "on"
+msgstr ""
+
+# #227 - מקור: app\escriptorium\templates\users\email\invitation_html.html:3
+msgid "eScriptorium!"
+msgstr ""
+
+# #228 - מקור: app\escriptorium\templates\users\email\invitation_html.html:4
+msgid "All you need to do is click on the link below:"
+msgstr ""
+
+# #229 - מקור: app\escriptorium\templates\users\email\invitation_html.html:6
+msgid "Sincerely, the eScriptorium team."
+msgstr ""
+
+# #2 - מקור: app\apps\api\serializers.py:626
+msgid "You don't have any disk storage left."
+msgstr ""
+
+# #3 - מקור: app\apps\api\serializers.py:855
+msgid "You don't have any CPU minutes left."
+msgstr ""
+
+# #4 - מקור: app\apps\api\serializers.py:857
+msgid "You don't have any GPU minutes left."
+msgstr ""
+
+# #5 - מקור: app\apps\api\serializers.py:880
+msgid "Horizontal l2r"
+msgstr ""
+
+# #6 - מקור: app\apps\api\serializers.py:881
+msgid "Horizontal r2l"
+msgstr ""
+
+# #7 - מקור: app\apps\api\serializers.py:882
+msgid "Vertical l2r"
+msgstr ""
+
+# #8 - מקור: app\apps\api\serializers.py:883
+msgid "Vertical r2l"
+msgstr ""
+
+# #9 - מקור: app\apps\api\serializers.py:1309
+msgid "Max offset"
+msgstr ""
+
+# #10 - מקור: app\apps\api\serializers.py:1310
+msgid "Enables max-offset and disables beam search. Maximum number of characters (20–80) difference between the aligned witness text and the original transcription."
+msgstr ""
+
+# #11 - מקור: app\apps\api\serializers.py:1316
+msgid "Beam size"
+msgstr ""
+
+# #12 - מקור: app\apps\api\serializers.py:1317
+msgid "Enables beam search; if this and max offset are left unset, beam search will be on and beam size set to 20. Higher beam size (1-100) will result in slower computation but more accurate results."
+msgstr ""
+
+# #13 - מקור: app\apps\api\serializers.py:1323
+msgid "Gap"
+msgstr ""
+
+# #14 - מקור: app\apps\api\serializers.py:1328
+msgid "The distance between matching unique n-grams; 600 should work well for clean OCR or texts where passages align to different portions of the witness text. To force end-to-end alignment of two documents, increase to 1,000,000."
+msgstr ""
+
+# #15 - מקור: app\apps\api\serializers.py:1331
+msgid "Merge aligned text with existing transcription"
+msgstr ""
+
+# #16 - מקור: app\apps\api\serializers.py:1334
+msgid "If checked, the aligner will reuse the text of the original transcription when alignment could not be performed; if unchecked, those lines will be blank."
+msgstr ""
+
+# #17 - מקור: app\apps\api\serializers.py:1337
+msgid "Use full transcribed document"
+msgstr ""
+
+# #18 - מקור: app\apps\api\serializers.py:1343
+msgid "Line length match threshold"
+msgstr ""
+
+# #19 - מקור: app\apps\api\serializers.py:1344
+msgid "Minimum proportion (0.0–1.0) of aligned line length to original transcription, below which matches are ignored. At 0.0, all matches are accepted."
+msgstr ""
+
+# #20 - מקור: app\apps\api\serializers.py:1353
+msgid "Region types to include in the alignment."
+msgstr ""
+
+# #21 - מקור: app\apps\api\serializers.py:1357
+msgid "Layer name"
+msgstr ""
+
+# #22 - מקור: app\apps\api\serializers.py:1358
+msgid "Name for the new transcription layer produced by this alignment. If you reuse an existing layer name, the layer will be overwritten; use caution."
+msgstr ""
+
+# #23 - מקור: app\apps\api\serializers.py:1379
+msgid "You must supply a textual witness (reference text)."
+msgstr ""
+
+# #24 - מקור: app\apps\api\serializers.py:1383
+msgid "You may only supply one witness text (file upload or existing text)."
+msgstr ""
+
+# #25 - מקור: app\apps\api\serializers.py:1388
+msgid "Alignment layer name cannot be the same as the transcription you are trying to align."
+msgstr ""
+
+# #26 - מקור: app\apps\api\serializers.py:1395
+msgid "Max offset and beam size cannot both be non-zero."
+msgstr ""
+
+# #27 - מקור: app\apps\api\serializers.py:874
+msgid "Lines and regions"
+msgstr ""
+
+# #28 - מקור: app\apps\api\serializers.py:875
+msgid "Lines Baselines and Masks"
+msgstr ""
+
+# #29 - מקור: app\apps\api\serializers.py:876
+msgid "Only lines Masks"
+msgstr ""
+
+# #30 - מקור: app\apps\api\serializers.py:877
+msgid "Regions"
+msgstr ""
+
+# #31 - מקור: app\apps\api\serializers.py:1031
+msgid "Upload local file"
+msgstr ""
+
+# #33 - מקור: app\apps\api\views.py:1187
+msgid "'lines' is mandatory."
+msgstr ""
+
+# #34 - מקור: app\apps\api\views.py:421
+msgid "Canceled."
+msgstr ""
+
+# #35 - מקור: app\apps\core\forms.py:137
+msgid "Text to search in all of your projects, surround one or more terms with quotation marks to deactivate fuzziness"
+msgstr ""
+
+# #36 - מקור: app\apps\core\forms.py:156
+msgid "Word by word"
+msgstr ""
+
+# #37 - מקור: app\apps\core\forms.py:156
+msgid "Regular expression"
+msgstr ""
+
+# #40 - מקור: app\apps\core\forms.py:531
+msgid "eScriptorium is not compatible with bounding box models."
+msgstr ""
+
+# #41 - מקור: app\apps\core\forms.py:967
+msgid "The model is already training."
+msgstr ""
+
+# #42 - מקור: app\apps\core\forms.py:970
+msgid "Either choose a model name or overwrite an existing one."
+msgstr ""
+
+# #44 - מקור: app\apps\core\forms.py:976
+msgid "You can't overwrite the existing file of a model you don't own."
+msgstr ""
+
+# #45 - מקור: app\apps\core\forms.py:1066
+msgid "Empty Ground Truth data."
+msgstr ""
+
+# #46 - מקור: app\apps\core\forms.py:178
+msgid "Text to find"
+msgstr ""
+
+# #47 - מקור: app\apps\core\forms.py:405
+msgid "Color"
+msgstr ""
+
+# #48 - מקור: app\apps\core\forms.py:406
+msgid "Allow Comments"
+msgstr ""
+
+# #49 - מקור: app\apps\core\models.py:224
+msgid "Rectangle"
+msgstr ""
+
+# #50 - מקור: app\apps\core\models.py:225
+msgid "Polygon"
+msgstr ""
+
+# #51 - מקור: app\apps\core\models.py:228
+msgid "Background Color"
+msgstr ""
+
+# #52 - מקור: app\apps\core\models.py:229
+msgid "Text Color"
+msgstr ""
+
+# #53 - מקור: app\apps\core\models.py:230
+msgid "Bold"
+msgstr ""
+
+# #54 - מקור: app\apps\core\models.py:231
+msgid "Italic"
+msgstr ""
+
+# #55 - מקור: app\apps\core\models.py:383
+msgid "Top to bottom"
+msgstr ""
+
+# #56 - מקור: app\apps\core\models.py:460
+msgid "Share with users"
+msgstr ""
+
+# #57 - מקור: app\apps\core\models.py:466
+msgid "Share with teams"
+msgstr ""
+
+# #58 - מקור: app\apps\core\models.py:516
+msgid "Draft"
+msgstr ""
+
+# #59 - מקור: app\apps\core\models.py:517
+msgid "Published"
+msgstr ""
+
+# #60 - מקור: app\apps\core\models.py:518
+msgid "Archived"
+msgstr ""
+
+# #61 - מקור: app\apps\core\models.py:523
+msgid "Left to right"
+msgstr ""
+
+# #62 - מקור: app\apps\core\models.py:524
+msgid "Right to left"
+msgstr ""
+
+# #63 - מקור: app\apps\core\models.py:530
+msgid "Baseline"
+msgstr ""
+
+# #64 - מקור: app\apps\core\models.py:531
+msgid "Topline"
+msgstr ""
+
+# #65 - מקור: app\apps\core\models.py:532
+msgid "Centered"
+msgstr ""
+
+# #66 - מקור: app\apps\core\models.py:555
+msgid "The position of the line relative to the polygon."
+msgstr ""
+
+# #69 - מקור: app\apps\core\models.py:878
+msgid "Couldn't find the alignment task."
+msgstr ""
+
+# #70 - מקור: app\apps\core\models.py:936
+msgid "Converting"
+msgstr ""
+
+# #71 - מקור: app\apps\core\models.py:937
+msgid "Converted"
+msgstr ""
+
+# #72 - מקור: app\apps\core\models.py:938
+msgid "Segmenting"
+msgstr ""
+
+# #73 - מקור: app\apps\core\models.py:939
+msgid "Segmented"
+msgstr ""
+
+# #74 - מקור: app\apps\core\models.py:940
+msgid "Transcribing"
+msgstr ""
+
+# #75 - מקור: app\apps\core\models.py:941
+msgid "Aligning"
+msgstr ""
+
+# #76 - מקור: app\apps\core\models.py:942
+msgid "Aligned"
+msgstr ""
+
+# #77 - מקור: app\apps\core\models.py:959
+msgid "Element"
+msgstr ""
+
+# #78 - מקור: app\apps\core\models.py:1651
+msgid "%(value)s is not a polygon - a 2 dimensional array."
+msgstr ""
+
+# #79 - מקור: app\apps\core\models.py:1661
+msgid "Polygon needs to have at least 2 points, it has %(length)d: %(value)s."
+msgstr ""
+
+# #80 - מקור: app\apps\core\models.py:1671
+msgid "Polygon needs to have at least 3 points, it has %(length)d: %(value)s."
+msgstr ""
+
+# #81 - מקור: app\apps\core\models.py:1834
+msgid "Both baseline and mask are empty."
+msgstr ""
+
+# #82 - מקור: app\apps\core\models.py:1963
+msgid "Recognize"
+msgstr ""
+
+# #83 - מקור: app\apps\core\models.py:2051
+msgid "Couldn't find the training task."
+msgstr ""
+
+# #84 - מקור: app\apps\core\models.py:232
+msgid "Underline"
+msgstr ""
+
+# #88 - מקור: app\apps\core\tasks.py:352
+msgid "Training finished!"
+msgstr ""
+
+# #90 - מקור: app\apps\core\tasks.py:433
+msgid "Segmentation done!"
+msgstr ""
+
+# #92 - מקור: app\apps\core\tasks.py:512
+msgid "Transcription done!"
+msgstr ""
+
+# #95 - מקור: app\apps\core\tasks.py:856
+msgid "Alignment done!"
+msgstr ""
+
+# #96 - מקור: app\apps\core\tasks.py:877
+msgid "Your replacements are being applied..."
+msgstr ""
+
+# #97 - מקור: app\apps\core\tasks.py:924
+msgid "All replacements failed"
+msgstr ""
+
+# #98 - מקור: app\apps\core\tasks.py:928
+msgid "Replacements applied!"
+msgstr ""
+
+# #99 - מקור: app\apps\imports\forms.py:39
+msgid "The document is unreachable, unreadable or the host timed out."
+msgstr ""
+
+# #102 - מקור: app\apps\imports\forms.py:52
+msgid "You're not allowed to import files from this domain, please contact your instance administrator."
+msgstr ""
+
+# #103 - מקור: app\apps\imports\forms.py:77
+msgid "The name of the target transcription. Will default to '{format} Import'."
+msgstr ""
+
+# #105 - מקור: app\apps\imports\forms.py:84
+msgid "Destroys existing regions, lines and any bound transcription before importing."
+msgstr ""
+
+# #108 - מקור: app\apps\imports\forms.py:91
+msgid "Resume previous import"
+msgstr ""
+
+# #110 - מקור: app\apps\imports\forms.py:161
+msgid "Choose one type of import."
+msgstr ""
+
+# #111 - מקור: app\apps\imports\forms.py:219
+msgid "Will significantly increase the time to produce and download the export."
+msgstr ""
+
+# #112 - מקור: app\apps\imports\forms.py:222
+msgid "Include character bounding boxes."
+msgstr ""
+
+# #114 - מקור: app\apps\imports\forms.py:218
+msgid "Include images"
+msgstr ""
+
+# #115 - מקור: app\apps\imports\forms.py:254
+msgid "Export %(document_name)s"
+msgstr ""
+
+# #117 - מקור: app\apps\imports\parsers.py:185
+msgid "Zip Import"
+msgstr ""
+
+# #119 - מקור: app\apps\imports\parsers.py:198
+msgid "Zip file appears to be corrupted."
+msgstr ""
+
+# #120 - מקור: app\apps\imports\parsers.py:339
+msgid "METS Import"
+msgstr ""
+
+# #121 - מקור: app\apps\imports\parsers.py:770
+msgid "Default ALTO Import"
+msgstr ""
+
+# #125 - מקור: app\apps\imports\parsers.py:667
+msgid "No match found for file {} with filename "{}"."
+msgstr ""
+
+# #128 - מקור: app\apps\imports\tasks.py:71
+msgid "Details"
+msgstr ""
+
+# #129 - מקור: app\apps\imports\tasks.py:137
+msgid "Export done!"
+msgstr ""
+
+# #130 - מקור: app\apps\users\admin.py:130
+msgid "You do not have permission to send invitations."
+msgstr ""
+
+# #132 - מקור: app\apps\users\forms.py:47
+msgid "CSV file with emails"
+msgstr ""
+
+# #133 - מקור: app\apps\users\forms.py:48
+msgid "Upload a CSV file with one email per line."
+msgstr ""
+
+# #134 - מקור: app\apps\users\forms.py:52
+msgid "Emails"
+msgstr ""
+
+# #135 - מקור: app\apps\users\forms.py:54
+msgid "Enter one email per line."
+msgstr ""
+
+# #136 - מקור: app\apps\users\forms.py:65
+msgid "Optional: set an expiry date for these accounts"
+msgstr ""
+
+# #138 - מקור: app\apps\users\forms.py:132
+msgid "Email or username."
+msgstr ""
+
+# #139 - מקור: app\apps\users\models.py:147
+msgid "Sent"
+msgstr ""
+
+# #140 - מקור: app\apps\users\models.py:148
+msgid "Received"
+msgstr ""
+
+# #141 - מקור: app\apps\users\models.py:149
+msgid "Accepted"
+msgstr ""
+
+# #142 - מקור: app\apps\users\models.py:246
+msgid "{username} accepted your invitation!"
+msgstr ""
+
+# #143 - מקור: app\apps\users\management\commands\check_quotas.py:43
+msgid "Disk storage"
+msgstr ""
+
+# #144 - מקור: app\apps\users\management\commands\check_quotas.py:44
+msgid "CPU minutes"
+msgstr ""
+
+# #145 - מקור: app\apps\users\management\commands\check_quotas.py:45
+msgid "GPU minutes"
+msgstr ""
+
+# #1 - מקור: app\apps\api\tests.py:302
+msgid "Fake report"
+msgstr ""
+
+# #7 - מקור: app\apps\core\forms.py:639
+msgid "default ({name})"
+msgstr ""
+
+# #8 - מקור: app\apps\core\forms.py:1015
+msgid "Overwrite existing model file"
+msgstr ""
+
+# #9 - מקור: app\apps\core\forms.py:1129
+msgid "Migrate with associated tags"
+msgstr ""
+
+# #10 - מקור: app\apps\core\models.py:2187
+msgid "Instance setting"
+msgstr ""
+
+# #11 - מקור: app\apps\core\models.py:2188
+msgid "Instance settings"
+msgstr ""
+
+# #12 - מקור: app\apps\core\views.py:1064
+msgid "Document was successfully migrated to the selected project!"
+msgstr ""
+
+# #18 - מקור: app\apps\imports\tests\test_api.py:422
+msgid "Test import"
+msgstr ""
+
+# #19 - מקור: app\apps\imports\tests\test_exporters.py:167
+msgid "Test report for export task"
+msgstr ""
+
+# #20 - מקור: app\apps\imports\tests\test_mets.py:31
+msgid "METS import from an archive"
+msgstr ""
+
+# #21 - מקור: app\apps\language_support\models.py:16
+msgid "חיבור למודל OCR מהליבה (בלי לשנות אותה!)"
+msgstr ""
+
+# #23 - מקור: app\apps\language_support\models.py:34
+msgid "ניקוד איכות charset עברי (0-1)"
+msgstr ""
+
+# #25 - מקור: app\apps\language_support\models.py:45
+msgid "פרטי ניתוח מלאים (charset, דוגמאות, וכו')"
+msgstr ""
+
+# #26 - מקור: app\apps\language_support\models.py:49
+msgid "ניתוח שפה למודל OCR"
+msgstr ""
+
+# #27 - מקור: app\apps\language_support\models.py:50
+msgid "ניתוחי שפה למודלי OCR"
+msgstr ""
+
+# #29 - מקור: app\apps\reporting\tasks.py:123
+msgid "report_label"
+msgstr ""
+
+# #30 - מקור: app\apps\users\admin.py:32
+msgid "Optional: Set the user's account expiry date"
+msgstr ""
+
+# #31 - מקור: app\apps\users\forms.py:20
+msgid "Optional: set an expiry date for this user's account"
+msgstr ""
+
+# #32 - מקור: app\escriptorium\templates\base.html:55
+msgid "Toggle navigation"
+msgstr ""
+
+# #38 - מקור: app\escriptorium\templates\django\forms\widgets\field.html:2
+msgid "my-1 mr-1"
+msgstr ""
+
+# #39 - מקור: app\escriptorium\templates\includes\pagination.html:4
+msgid "Pagination"
+msgstr ""

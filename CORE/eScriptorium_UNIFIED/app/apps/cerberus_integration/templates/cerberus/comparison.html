@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "OCR Comparison" %} - {{ document.name }}{% endblock %}
+
+{% block extra_head %}
+<style>
+    #ocr-comparison-app {
+        min-height: 100vh;
+        background-color: #f5f7fa;
+        direction: rtl;
+    }
+    
+    .comparison-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+    }
+    
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.3rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="ocr-comparison-app">
+    <div class="comparison-loading" v-if="!appLoaded">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">{% trans "Loading" %}...</span>
+        </div>
+        <p class="mt-3">{% trans "Loading OCR Comparison Dashboard" %}...</p>
+    </div>
+    
+    <ocr-comparison-dashboard
+        v-else
+        :document-id="{{ document.id }}"
+        :document-name="'{{ document.name|escapejs }}'"
+        :initial-transcriptions='{{ transcriptions|safe }}'
+    ></ocr-comparison-dashboard>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Global configuration
+    window.DOCUMENT_ID = {{ document.id }};
+    window.DOCUMENT_NAME = "{{ document.name|escapejs }}";
+    window.API_BASE_URL = "/cerberus";
+    
+    // Translations
+    window.COMPARISON_TRANSLATIONS = {
+        'loading': '{% trans "Loading" %}',
+        'compare': '{% trans "Compare" %}',
+        'selectTranscriptions': '{% trans "Select Transcriptions to Compare" %}',
+        'transcription1': '{% trans "Transcription 1" %}',
+        'transcription2': '{% trans "Transcription 2" %}',
+        'groundTruth': '{% trans "Ground Truth (Optional)" %}',
+        'compareEngines': '{% trans "Compare OCR Engines" %}',
+        'cer': '{% trans "Character Error Rate (CER)" %}',
+        'wer': '{% trans "Word Error Rate (WER)" %}',
+        'accuracy': '{% trans "Accuracy" %}',
+        'winner': '{% trans "Winner" %}',
+        'metrics': '{% trans "Metrics" %}',
+        'visualDiff': '{% trans "Visual Difference" %}',
+        'statistics': '{% trans "Statistics" %}',
+        'noTranscriptions': '{% trans "No transcriptions available" %}',
+        'selectAtLeastTwo': '{% trans "Select at least 2 transcriptions" %}',
+        'kraken': '{% trans "Kraken" %}',
+        'tesseract': '{% trans "Tesseract" %}',
+        'manual': '{% trans "Manual" %}',
+        'model': '{% trans "Model" %}',
+        'createdAt': '{% trans "Created At" %}',
+        'textLength': '{% trans "Text Length" %}',
+        'preview': '{% trans "Preview" %}',
+        'export': '{% trans "Export Results" %}',
+        'downloadCSV': '{% trans "Download CSV" %}',
+        'downloadJSON': '{% trans "Download JSON" %}',
+        'close': '{% trans "Close" %}',
+        'refresh': '{% trans "Refresh" %}',
+        'options': '{% trans "Options" %}',
+        'ignoreCase': '{% trans "Ignore Case" %}',
+        'ignorePunctuation': '{% trans "Ignore Punctuation" %}',
+        'ignoreWhitespace': '{% trans "Ignore Whitespace" %}',
+        'showDiff': '{% trans "Show Visual Diff" %}',
+        'recommendations': '{% trans "Recommendations" %}',
+        'bestModel': '{% trans "Best Model" %}',
+        'avgCER': '{% trans "Average CER" %}',
+        'substitutions': '{% trans "Substitutions" %}',
+        'insertions': '{% trans "Insertions" %}',
+        'deletions': '{% trans "Deletions" %}',
+        'correct': '{% trans "Correct Characters" %}',
+    };
+</script>
+
+<!-- Vue App Bundle (will be created) -->
+<script src="{% static 'js/ocr-comparison-bundle.js' %}"></script>
+{% endblock %}

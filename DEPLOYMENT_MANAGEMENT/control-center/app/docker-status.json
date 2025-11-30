@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-11-30T10:03:01.825Z",
+  "dockerRunning": true,
+  "containers": [
+    {
+      "id": "350342b1a399",
+      "name": "config-web-1",
+      "image": "config-web",
+      "status": "Exited (2) 2 weeks ago",
+      "state": "exited",
+      "ports": "",
+      "created": "2025-11-12 11:20:00 +0200 IST",
+      "isRunning": false,
+      "isPaused": false,
+      "isExited": true
+    },
+    {
+      "id": "709e916ca2e0",
+      "name": "config-redis-1",
+      "image": "redis:alpine",
+      "status": "Exited (255) 4 minutes ago",
+      "state": "exited",
+      "ports": "0.0.0.0:6379->6379/tcp",
+      "created": "2025-11-12 11:17:56 +0200 IST",
+      "isRunning": false,
+      "isPaused": false,
+      "isExited": true
+    },
+    {
+      "id": "88b5c35cb83e",
+      "name": "config-db-1",
+      "image": "postgres:15",
+      "status": "Exited (255) 4 minutes ago",
+      "state": "exited",
+      "ports": "0.0.0.0:5432->5432/tcp",
+      "created": "2025-11-12 11:17:56 +0200 IST",
+      "isRunning": false,
+      "isPaused": false,
+      "isExited": true
+    },
+    {
+      "id": "2a4de459f3da",
+      "name": "escriptorium_es",
+      "image": "elasticsearch:7.17.0",
+      "status": "Up 4 minutes",
+      "state": "running",
+      "ports": "0.0.0.0:9200->9200/tcp, [::]:9200->9200/tcp, 0.0.0.0:9300->9300/tcp, [::]:9300->9300/tcp",
+      "created": "2025-11-10 01:43:40 +0200 IST",
+      "isRunning": true,
+      "isPaused": false,
+      "isExited": false
+    },
+    {
+      "id": "7f095e09c799",
+      "name": "redis-dev",
+      "image": "redis:alpine",
+      "status": "Exited (0) 2 weeks ago",
+      "state": "exited",
+      "ports": "",
+      "created": "2025-11-09 14:45:44 +0200 IST",
+      "isRunning": false,
+      "isPaused": false,
+      "isExited": true
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "running": 1,
+    "stopped": 4,
+    "paused": 0
+  }
+}

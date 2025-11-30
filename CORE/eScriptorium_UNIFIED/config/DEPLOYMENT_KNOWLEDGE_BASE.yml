@@ -1,0 +1,378 @@
+# Docker Deployment Knowledge Base
+# ═══════════════════════════════════════════════════════════════════
+# Auto-updated by DOCKER_DEPLOYMENT_MASTER.ps1
+# Contains known issues, solutions, and learning from deployments
+# Created: 29 Oct 2025
+
+known_issues:
+  # ─────────────────────────────────────────────────────────────────
+  # SSL/Certificate Issues
+  # ─────────────────────────────────────────────────────────────────
+  - id: SSL_CERT_001
+    name: "SSL Certificate Verification Failed"
+    symptoms:
+      - "SSL: CERTIFICATE_VERIFY_FAILED"
+      - "certificate verify failed"
+      - "ssl.SSLCertVerificationError"
+    affected_commands:
+      - "pip install"
+      - "npm install"
+      - "wget"
+      - "curl"
+    solutions:
+      - type: "pip_install"
+        command: "pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org {package}"
+        auto_apply: true
+        success_rate: 95
+      - type: "environment_variable"
+        command: "export CURL_CA_BUNDLE=''"
+        auto_apply: false
+        requires_rebuild: true
+    prevention:
+      - "Add to Dockerfile: ENV CURL_CA_BUNDLE=''"
+      - "Use --trusted-host in requirements.txt"
+    last_seen: "2025-10-28"
+    frequency: "High"
+    
+  # ─────────────────────────────────────────────────────────────────
+  # Port Conflicts
+  # ─────────────────────────────────────────────────────────────────
+  - id: PORT_001
+    name: "Port Already in Use"
+    symptoms:
+      - "address already in use"
+      - "port is already allocated"
+      - "bind: address already in use"
+    affected_services:
+      - "web (port 8000)"
+      - "postgres (port 5432)"
+      - "redis (port 6379)"
+    solutions:
+      - type: "stop_containers"
+        command: "docker-compose down"
+        auto_apply: true
+        success_rate: 90
+      - type: "kill_process"
+        command: "lsof -ti:{port} | xargs kill -9"
+        auto_apply: false
+        requires_admin: true
+      - type: "change_port"
+        command: "Edit docker-compose.yml ports section"
+        auto_apply: false
+    prevention:
+      - "Always run docker-compose down before up"
+      - "Use unique port ranges for different projects"
+    last_seen: "2025-10-27"
+    frequency: "Medium"
+    
+  # ─────────────────────────────────────────────────────────────────
+  # Permission Issues
+  # ─────────────────────────────────────────────────────────────────
+  - id: PERM_001
+    name: "Permission Denied"
+    symptoms:
+      - "permission denied"
+      - "EACCES"
+      - "Operation not permitted"
+    affected_areas:
+      - "Volume mounts"
+      - "File creation"
+      - "Database initialization"
+    solutions:
+      - type: "fix_ownership"
+        command: "docker exec {container} chown -R appuser:appuser /usr/src/app"
+        auto_apply: true
+        success_rate: 85
+      - type: "volume_permissions"
+        command: "chmod -R 755 ./app"
+        auto_apply: false
+        requires_admin: true
+    prevention:
+      - "Use USER directive in Dockerfile"
+      - "Set correct permissions in entrypoint.sh"
+    last_seen: "2025-10-26"
+    frequency: "Low"
+    
+  # ─────────────────────────────────────────────────────────────────
+  # Missing Dependencies
+  # ─────────────────────────────────────────────────────────────────
+  - id: DEP_001
+    name: "Python Module Not Found"
+    symptoms:
+      - "ModuleNotFoundError"
+      - "ImportError: No module named"
+      - "cannot import name"
+    solutions:
+      - type: "install_package"
+        command: "docker exec {container} pip install {package}"
+        auto_apply: false
+        temporary_fix: true
+      - type: "rebuild_image"
+        command: "Add to requirements.txt and rebuild"
+        auto_apply: false
+        permanent_fix: true
+    prevention:
+      - "Always update requirements.txt"
+      - "Use pip freeze > requirements.txt"
+      - "Test imports before deployment"
+    last_seen: "2025-10-25"
+    frequency: "Medium"
+    
+  # ─────────────────────────────────────────────────────────────────
+  # Database Issues
+  # ─────────────────────────────────────────────────────────────────
+  - id: DB_001
+    name: "Database Connection Failed"
+    symptoms:
+      - "could not connect to server"
+      - "Connection refused"
+      - "database does not exist"
+    solutions:
+      - type: "wait_for_db"
+        command: "Add wait-for-it.sh script in entrypoint"
+        auto_apply: false
+      - type: "create_database"
+        command: "docker exec postgres createdb {dbname}"
+        auto_apply: true
+        success_rate: 80
+      - type: "migrate"
+        command: "docker exec {container} python manage.py migrate"
+        auto_apply: true
+    prevention:
+      - "Use depends_on with healthcheck"
+      - "Implement retry logic in app"
+    last_seen: "2025-10-24"
+    frequency: "Low"
+    
+  # ─────────────────────────────────────────────────────────────────
+  # Disk Space
+  # ─────────────────────────────────────────────────────────────────
+  - id: DISK_001
+    name: "No Space Left on Device"
+    symptoms:
+      - "no space left on device"
+      - "OSError: [Errno 28]"
+    solutions:
+      - type: "clean_docker"
+        command: "docker system prune -af --volumes"
+        auto_apply: true
+        success_rate: 95
+      - type: "remove_old_images"
+        command: "docker image prune -a"
+        auto_apply: true
+    prevention:
+      - "Regular docker system prune"
+      - "Use .dockerignore properly"
+      - "Monitor disk usage"
+    last_seen: "2025-10-23"
+    frequency: "Low"
+
+# ═══════════════════════════════════════════════════════════════════
+# REQUIRED PACKAGES & VERSIONS
+# ═══════════════════════════════════════════════════════════════════
+
+required_packages:
+  python:
+    # Core Django
+    - name: "Django"
+      version: ">=3.2,<4.0"
+      critical: true
+      reason: "Main web framework"
+      
+    - name: "djangorestframework"
+      version: ">=3.14"
+      critical: true
+      reason: "REST API support"
+      
+    # FastAPI (for microservices)
+    - name: "fastapi"
+      version: ">=0.95.0"
+      critical: true
+      reason: "FastAPI service"
+      
+    - name: "uvicorn"
+      extras: ["standard"]
+      version: ">=0.20.0"
+      critical: true
+      reason: "ASGI server"
+      
+    # Database
+    - name: "psycopg2-binary"
+      version: ">=2.9"
+      critical: true
+      reason: "PostgreSQL adapter"
+      
+    # Security (Session 2 fixes)
+    - name: "django-cors-headers"
+      version: ">=3.13"
+      critical: false
+      reason: "CORS support"
+      
+    # Utilities
+    - name: "pyyaml"
+      version: ">=6.0"
+      critical: false
+      reason: "YAML parsing"
+      
+    - name: "requests"
+      version: ">=2.28"
+      critical: false
+      reason: "HTTP client"
+      
+    - name: "Pillow"
+      version: ">=9.0"
+      critical: false
+      reason: "Image processing"
+      
+  system:
+    - name: "docker"
+      check_command: "docker --version"
+      install_url: "https://docs.docker.com/get-docker/"
+      
+    - name: "docker-compose"
+      check_command: "docker-compose --version"
+      install_url: "https://docs.docker.com/compose/install/"
+      
+    - name: "python3"
+      version: ">=3.9"
+      check_command: "python --version"
+
+# ═══════════════════════════════════════════════════════════════════
+# DEPLOYMENT CHECKLIST
+# ═══════════════════════════════════════════════════════════════════
+
+deployment_checklist:
+  pre_deployment:
+    - id: "CHECK_001"
+      task: "Verify all Session 2 security fixes are in source"
+      files:
+        - "app/apps/api/views.py"
+        - "app/fastapi_app/main.py"
+        - "app/biblia_templatetags/biblia_trans.py"
+        - "passim_service.py"
+        - "app/escriptorium_model_checker.py"
+      validation: "Check for security patterns (ALLOWED_ORDER_BY, host='127.0.0.1', escape())"
+      
+    - id: "CHECK_002"
+      task: "Ensure Dockerfile has all COPY commands"
+      validation: "Run validate_complete_docker.ps1"
+      
+    - id: "CHECK_003"
+      task: "Clean up backup/old files"
+      validation: "Check UNUSED_FILES_REPORT.txt"
+      
+    - id: "CHECK_004"
+      task: "Update requirements.txt if needed"
+      validation: "pip freeze comparison"
+      
+  during_deployment:
+    - id: "BUILD_001"
+      task: "Monitor build for errors"
+      action: "Check for SSL issues, missing files"
+      
+    - id: "BUILD_002"
+      task: "Verify all layers build successfully"
+      action: "Check Docker build output"
+      
+  post_deployment:
+    - id: "VERIFY_001"
+      task: "Check file synchronization"
+      action: "Compare source vs Docker file hashes"
+      
+    - id: "VERIFY_002"
+      task: "Test application endpoints"
+      endpoints:
+        - "http://localhost:8000/admin/"
+        - "http://localhost:8000/api/"
+        
+    - id: "VERIFY_003"
+      task: "Check logs for errors"
+      action: "docker-compose logs --tail=100"
+      
+    - id: "VERIFY_004"
+      task: "Verify database migrations"
+      action: "docker exec {container} python manage.py showmigrations"
+
+# ═══════════════════════════════════════════════════════════════════
+# LEARNING LOG (Auto-updated)
+# ═══════════════════════════════════════════════════════════════════
+
+learning_log:
+  # This section is auto-updated by deployment script
+  # Format: timestamp, issue, solution, success
+  
+  entries: []
+    # Example:
+    # - timestamp: "2025-10-29 14:30:00"
+    #   issue: "SSL_CERT_001"
+    #   attempted_solution: "pip_install_with_trusted_host"
+    #   success: true
+    #   notes: "Added --trusted-host to pip command"
+
+# ═══════════════════════════════════════════════════════════════════
+# COMMON WORKFLOWS
+# ═══════════════════════════════════════════════════════════════════
+
+workflows:
+  fresh_deployment:
+    description: "Deploy from scratch"
+    steps:
+      - "docker-compose down -v"
+      - "docker system prune -f"
+      - "./DOCKER_DEPLOYMENT_MASTER.ps1 -FullBuild"
+      - "docker-compose exec web python manage.py migrate"
+      - "docker-compose exec web python manage.py createsuperuser"
+      
+  update_deployment:
+    description: "Update existing deployment"
+    steps:
+      - "./DOCKER_DEPLOYMENT_MASTER.ps1"
+      - "docker-compose restart"
+      
+  emergency_fix:
+    description: "Hot-fix a single file"
+    steps:
+      - "Edit source file"
+      - "docker cp {source} {container}:{dest}"
+      - "docker-compose restart {service}"
+      - "Verify with ./DOCKER_DEPLOYMENT_MASTER.ps1 -SkipBuild"
+      
+  rollback:
+    description: "Rollback to previous version"
+    steps:
+      - "git checkout {previous_commit}"
+      - "./DOCKER_DEPLOYMENT_MASTER.ps1 -FullBuild"
+
+# ═══════════════════════════════════════════════════════════════════
+# MONITORING RECOMMENDATIONS
+# ═══════════════════════════════════════════════════════════════════
+
+monitoring:
+  critical_files:
+    - path: "app/apps/api/views.py"
+      watch_for: "ALLOWED_ORDER_BY"
+      reason: "SQL injection protection"
+      
+    - path: "app/fastapi_app/main.py"
+      watch_for: 'host="127.0.0.1"'
+      reason: "Binding security"
+      
+    - path: "app/biblia_templatetags/biblia_trans.py"
+      watch_for: "from django.utils.html import escape"
+      reason: "XSS prevention"
+      
+  health_checks:
+    - endpoint: "http://localhost:8000/health/"
+      interval: "30s"
+      timeout: "5s"
+      
+    - command: "docker ps --filter name=escriptorium --filter status=running"
+      interval: "60s"
+      
+  disk_usage:
+    threshold: "80%"
+    action: "docker system prune -f"
+    
+  log_rotation:
+    max_size: "100M"
+    max_files: 10

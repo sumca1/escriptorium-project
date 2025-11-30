@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת לחצן - Debug Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #1e293b;
+            color: white;
+            padding: 2rem;
+            direction: rtl;
+        }
+        .test-section {
+            background: #334155;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .log {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .info { color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <h1>🔍 בדיקת מערכת הלחצנים</h1>
+    
+    <div class="test-section">
+        <h2>1️⃣ בדיקת חיבור לשרת</h2>
+        <button onclick="testServerConnection()">בדוק חיבור ל-Terminal Server</button>
+        <button onclick="testDashboardServer()">בדוק חיבור ל-Dashboard Server</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>2️⃣ בדיקת פונקציות</h2>
+        <button onclick="testStartServer()">הפעל startTerminalServer()</button>
+        <button onclick="testShowInstructions()">הצג הוראות</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>3️⃣ הפעלת קבצים מקומיים</h2>
+        <button onclick="testVBSLaunch()">נסה להפעיל VBS (לא יעבוד מדפדפן!)</button>
+        <button onclick="openControlCenterFolder()">פתח תיקיית Control Center</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>📊 לוג בדיקות:</h2>
+        <div id="log" class="log"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString('he-IL');
+            const colorClass = type;
+            logDiv.innerHTML += `<div class="${colorClass}">[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        async function testServerConnection() {
+            log('🔍 בודק חיבור ל-Terminal Server (port 3000)...', 'info');
+            try {
+                const response = await fetch('http://localhost:3000/health', {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                if (response.ok) {
+                    log('✅ Terminal Server פעיל! StatusCode: ' + response.status, 'success');
+                    const data = await response.json();
+                    log('📊 תגובה: ' + JSON.stringify(data), 'info');
+                } else {
+                    log('⚠️ השרת ענה אבל עם שגיאה: ' + response.status, 'warning');
+                }
+            } catch (error) {
+                log('❌ Terminal Server לא פעיל: ' + error.message, 'error');
+                log('💡 פתרון: הרץ את start-servers.vbs או start-terminal-server.bat', 'warning');
+            }
+        }
+
+        async function testDashboardServer() {
+            log('🔍 בודק חיבור ל-Dashboard Server (port 8080)...', 'info');
+            try {
+                const response = await fetch('http://localhost:8080', {
+                    method: 'HEAD'
+                });
+                if (response.ok) {
+                    log('✅ Dashboard Server פעיל! StatusCode: ' + response.status, 'success');
+                } else {
+                    log('⚠️ Dashboard Server ענה עם שגיאה: ' + response.status, 'warning');
+                }
+            } catch (error) {
+                log('❌ Dashboard Server לא פעיל: ' + error.message, 'error');
+                log('💡 פתרון: dashboard-server אמור להיפתח אוטומטית ע"י auto-start-terminal-server.ps1', 'warning');
+            }
+        }
+
+        function testStartServer() {
+            log('🚀 מנסה לקרוא ל-startTerminalServer()...', 'info');
+            log('⚠️ שים לב: הפונקציה הזו אמורה להציג modal, לא להפעיל את השרת בפועל!', 'warning');
+            log('❌ הסיבה: דפדפנים לא יכולים להפעיל קבצים מקומיים (.bat/.vbs/.ps1) מסיבות אבטחה', 'error');
+            log('✅ הפתרון הנכון: הצגת הוראות למשתמש איך להפעיל ידנית', 'success');
+            
+            // נסה לקרוא לפונקציה
+            if (typeof startTerminalServer === 'function') {
+                log('✅ הפונקציה startTerminalServer קיימת!', 'success');
+            } else {
+                log('❌ הפונקציה startTerminalServer לא נמצאה!', 'error');
+                log('💡 זה אומר שאתה לא בדף dashboard.html', 'info');
+            }
+        }
+
+        function testShowInstructions() {
+            log('📋 מציג modal עם הוראות הפעלה...', 'info');
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; color: #1e293b; padding: 2rem; border-radius: 12px; max-width: 500px; text-align: right;">
+                    <h2 style="color: #1e3a8a; margin-bottom: 1rem;">🚀 הפעלת השרתים</h2>
+                    <p style="margin-bottom: 1rem;">לחץ פעמיים על אחד מהקבצים:</p>
+                    <ol style="text-align: right; padding-right: 1.5rem;">
+                        <li><strong>start-servers.vbs</strong> (מומלץ!)</li>
+                        <li><strong>start-terminal-server.bat</strong></li>
+                    </ol>
+                    <p style="margin-top: 1rem; color: #64748b; font-size: 0.9rem;">
+                        📂 מיקום: control-center\\
+                    </p>
+                    <button onclick="this.closest('div[style*=fixed]').remove()" 
+                            style="margin-top: 1rem; width: 100%; background: #3b82f6; color: white; border: none; padding: 0.75rem; border-radius: 6px; cursor: pointer;">
+                        הבנתי ✓
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            log('✅ Modal הוצג בהצלחה!', 'success');
+        }
+
+        function testVBSLaunch() {
+            log('⚠️ מנסה להפעיל VBS מהדפדפן...', 'warning');
+            log('❌ זה לא יעבוד! דפדפנים חוסמים הפעלת קבצים מקומיים', 'error');
+            log('🔒 סיבה: אבטחה - למנוע malware מלהריץ קבצים', 'info');
+            
+            try {
+                const link = document.createElement('a');
+                link.href = 'file:///i:/OCR_Arabic_Testing/BiblIA_dataset-project/BiblIA_dataset/escriptorium/ui/control-center/start-servers.vbs';
+                link.click();
+                log('⚠️ ניסיון נעשה, אבל כנראה נחסם', 'warning');
+            } catch (error) {
+                log('❌ שגיאה: ' + error.message, 'error');
+            }
+            
+            log('💡 פתרון: פתח את File Explorer והפעל את הקובץ ידנית', 'success');
+        }
+
+        function openControlCenterFolder() {
+            log('📂 מנסה לפתוח את תיקיית control-center...', 'info');
+            const folderPath = 'file:///i:/OCR_Arabic_Testing/BiblIA_dataset-project/BiblIA_dataset/escriptorium/ui/control-center';
+            window.open(folderPath, '_blank');
+            log('✅ ניסיון להציג את התיקייה (עשוי להיחסם בדפדפנים מסוימים)', 'warning');
+        }
+
+        // הרץ בדיקות אוטומטיות בטעינה
+        window.addEventListener('load', () => {
+            log('🎉 מערכת בדיקות נטענה!', 'success');
+            log('📝 לחץ על הכפתורים למעלה כדי לבצע בדיקות', 'info');
+            log('', 'info');
+            
+            // בדיקה אוטומטית
+            setTimeout(async () => {
+                log('🤖 מתחיל בדיקות אוטומטיות...', 'info');
+                await testServerConnection();
+                setTimeout(() => testDashboardServer(), 1000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

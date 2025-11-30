@@ -1,0 +1,142 @@
+{
+  "build_manager": {
+    "enabled": true,
+    "version": "2.0",
+    "log_level": "INFO"
+  },
+  "queue": {
+    "max_concurrent_jobs": 1,
+    "job_timeout_minutes": 30,
+    "auto_retry_on_failure": true,
+    "retry_count": 3,
+    "cleanup_old_jobs_days": 7
+  },
+  "environments": {
+    "dev": {
+      "name": "Development",
+      "auto_approve": true,
+      "require_approval": 0,
+      "deployment_window": "anytime",
+      "keep_builds": 2,
+      "health_check_interval": 5
+    },
+    "staging": {
+      "name": "Staging",
+      "auto_approve": true,
+      "require_approval": 0,
+      "deployment_window": "anytime",
+      "keep_builds": 3,
+      "health_check_interval": 5
+    },
+    "production": {
+      "name": "Production",
+      "auto_approve": false,
+      "require_approval": 2,
+      "require_team_lead_approval": true,
+      "deployment_window": "09:00-17:00 weekdays",
+      "keep_builds": 5,
+      "health_check_interval": 2
+    }
+  },
+  "quality_gates": {
+    "enabled": true,
+    "syntax_check": {
+      "enabled": true,
+      "tools": ["eslint", "pylint", "stylelint"],
+      "fail_on_error": true
+    },
+    "unit_tests": {
+      "enabled": true,
+      "tools": ["jest", "pytest"],
+      "min_pass_rate": 95,
+      "fail_on_error": true
+    },
+    "security_scan": {
+      "enabled": true,
+      "tools": ["npm_audit", "trivy"],
+      "fail_on_critical": true,
+      "fail_on_high": false
+    },
+    "performance": {
+      "enabled": true,
+      "max_build_time_minutes": 20,
+      "max_bundle_size_mb": 500,
+      "fail_on_error": false
+    },
+    "code_coverage": {
+      "enabled": true,
+      "min_coverage_percent": 70,
+      "target_coverage_percent": 80,
+      "fail_on_error": false
+    },
+    "template_validation": {
+      "enabled": true,
+      "check_vue": true,
+      "check_html": true,
+      "check_translations": true,
+      "fail_on_error": true
+    }
+  },
+  "resource_allocation": {
+    "enabled": true,
+    "routes": {
+      "build_frontend": "claude",
+      "compile_translations": "gpt4",
+      "run_tests": "claude",
+      "deploy_staging": "claude",
+      "deploy_production": "claude",
+      "restart_services": "claude",
+      "debug": "claude",
+      "creative_problem_solving": "gemini"
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_check_interval_minutes": 5,
+    "checks": {
+      "docker_status": true,
+      "disk_space": true,
+      "memory_usage": true,
+      "npm_cache": true,
+      "build_time_trend": true,
+      "error_rate": true
+    },
+    "alerts": {
+      "disk_free_percent": 15,
+      "memory_usage_percent": 80,
+      "build_time_threshold_multiplier": 2.0,
+      "error_rate_threshold_percent": 5
+    }
+  },
+  "artifacts": {
+    "enabled": true,
+    "storage_dir": "artifacts",
+    "compression": "gzip",
+    "retention_policy": {
+      "dev_days": 3,
+      "staging_days": 7,
+      "production_days": 30
+    }
+  },
+  "audit_trail": {
+    "enabled": true,
+    "log_dir": "logs",
+    "retention_days": 90,
+    "log_level": "FULL"
+  },
+  "notifications": {
+    "enabled": false,
+    "channels": {
+      "email": false,
+      "slack": false,
+      "teams": false,
+      "webhook": false
+    }
+  },
+  "performance_targets": {
+    "build_frontend_target_minutes": 12,
+    "compile_translations_target_seconds": 120,
+    "deployment_target_seconds": 60,
+    "health_check_target_seconds": 5
+  }
+}

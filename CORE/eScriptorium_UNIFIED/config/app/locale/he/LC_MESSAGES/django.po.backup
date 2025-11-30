@@ -1,0 +1,802 @@
+# Hebrew translation for eScriptorium
+# Copyright (C) 2025 BiblIA Project
+# This file is distributed under the same license as the eScriptorium package.
+# BiblIA Team <team@biblia.org>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eScriptorium 0.13\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-21 15:00+0000\n"
+"PO-Revision-Date: 2025-09-21 19:15+0000\n"
+"Last-Translator: BiblIA Team <team@biblia.org>\n"
+"Language-Team: Hebrew <team@biblia.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Language names
+msgid "English"
+msgstr "אנגלית"
+
+msgid "Hebrew"
+msgstr "עברית"
+
+msgid "French"
+msgstr "צרפתית"
+
+msgid "German"
+msgstr "גרמנית"
+
+# Authentication & Registration
+msgid "Change your password"
+msgstr "שנה את הסיסמה שלך"
+
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "שכחת את הסיסמה? הכנס את כתובת האימייל שלך למטה, ואנו נשלח לך הוראות להגדרת סיסמה חדשה."
+
+msgid "Email address:"
+msgstr "כתובת אימייל:"
+
+msgid "Reset my password"
+msgstr "אפס את הסיסמה שלי"
+
+msgid "Register to eScriptorium"
+msgstr "הרשם ל-eScriptorium"
+
+msgid "Signup"
+msgstr "הרשמה"
+
+# Profile & User Management
+msgid "Profile Settings"
+msgstr "הגדרות פרופיל"
+
+msgid "Information"
+msgstr "מידע"
+
+msgid "API key"
+msgstr "מפתח API"
+
+msgid "Files"
+msgstr "קבצים"
+
+msgid "Teams"
+msgstr "צוותים"
+
+msgid "Invitations"
+msgstr "הזמנות"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Update"
+msgstr "עדכן"
+
+msgid "Create"
+msgstr "צור"
+
+msgid "You don't have any saved files yet."
+msgstr "עדיין אין לך קבצים שמורים."
+
+msgid "You don't have permission to view or edit this document."
+msgstr "אין לך הרשאה לצxxxxxxxxxxxx את המסמך הזה."
+
+# Teams & Groups
+msgid "Create a new Team"
+msgstr "צור צוות חדש"
+
+msgid "Pending Invitations"
+msgstr "הזמנות ממתינות"
+
+msgid "Accept"
+msgstr "קבל"
+
+msgid "My Teams"
+msgstr "הצוותים שלי"
+
+msgid "Leave"
+msgstr "עזוב"
+
+msgid "You are not part of any team yet."
+msgstr "אתה עדיין לא חלק מאף צוות."
+
+msgid "Share with"
+msgstr "שתף עם"
+
+msgid "Users"
+msgstr "משתמשים"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Share"
+msgstr "שתף"
+
+msgid "Owner"
+msgstr "בעלים"
+
+msgid "Do you really want to remove the project from your list?"
+msgstr "האם אתה באמת רוצה להסיר את הפרויקט מהרשימה שלך?"
+
+msgid "Remove from list"
+msgstr "הסר מהרשימה"
+
+# API & Technical
+msgid "API Authentication Token:"
+msgstr "טוקן אימות API:"
+
+msgid "Copy to clipboard."
+msgstr "העתק ללוח."
+
+msgid "Regenerate Token."
+msgstr "יצר טוקן מחדש."
+
+msgid "example: "
+msgstr "דוגמה: "
+
+# Invitations
+msgid "Invite Users"
+msgstr "הזמן משתמשים"
+
+msgid "Invite mode"
+msgstr "מצב הזמנה"
+
+msgid "Single"
+msgstr "יחיד"
+
+msgid "Bulk"
+msgstr "קבוצתי"
+
+msgid "Recipient's information"
+msgstr "מידע על הנמען"
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "Upload CSV file"
+msgstr "העלה קובץ CSV"
+
+msgid "OR"
+msgstr "או"
+
+msgid "Or"
+msgstr "או"
+
+msgid "Paste emails (one per line)"
+msgstr "הדבק אימיילים (אחד בכל שורה)"
+
+msgid "Team"
+msgstr "צוות"
+
+msgid "Expiry date (optional)"
+msgstr "תאריך תפוגה (אופציונלי)"
+
+msgid "Send Invitations"
+msgstr "שלח הזמנות"
+
+# Table headers
+msgid "Recipient"
+msgstr "נמען"
+
+msgid "Group"
+msgstr "קבוצה"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Content"
+msgstr "תוכן"
+
+msgid "Replacement preview"
+msgstr "תצוגה מקדימה של החלפה"
+
+msgid "Image preview"
+msgstr "תצוגה מקדימה של תמונה"
+
+msgid "Score"
+msgstr "ציון"
+
+msgid "Edit"
+msgstr "ערוך"
+
+# Messages
+msgid "You didn't send any invitations yet."
+msgstr "עדיין לא שלחת הזמנות."
+
+msgid "No results matched your search."
+msgstr "אין תוצאות התואמות לחיפוש שלך."
+
+msgid "Image preview is not available for this search result"
+msgstr "תצוגה מקדימה של תמונה לא זמינה עבור תוצאת חיפוש זו"
+
+# Admin
+msgid "Add invitation"
+msgstr "הוסף הזמנה"
+
+msgid "Bulk Invite"
+msgstr "הזמנה קבוצתית"
+
+# Projects
+msgid "My Projects"
+msgstr "הפרויקטים שלי"
+
+msgid "Create new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Update a Project"
+msgstr "עדכן פרויקט"
+
+msgid "Create a new Project"
+msgstr "צור פרויקט חדש"
+
+msgid "Documents"
+msgstr "מסמכים"
+
+msgid "Reports"
+msgstr "דוחות"
+
+msgid "Ontology"
+msgstr "אונטולוגיה"
+
+# Search functionality
+msgid "Search in projects"
+msgstr "חיפוש בפרויקטים"
+
+msgid "Search text in projects"
+msgstr "חיפוש טקסט בפרויקטים"
+
+msgid "Search feature is deactivated on this instance."
+msgstr "תכונת החיפוש מושבתת במופע הזה."
+
+msgid "Search"
+msgstr "חפש"
+
+msgid "Find"
+msgstr "מצא"
+
+msgid "Couldn't xxxxxct to Elasticsearch, please contact your instance administrator."
+msgstr "לא הצלחתי להתחבר ל-Elasticsearch, אנא פנה למנהל המופע שלך."
+
+msgid "Reason:"
+msgstr "סיבה:"
+
+msgid "Find and replace in projects"
+msgstr "מצא והחלף בפרויקטים"
+
+msgid "Find and replace text in projects"
+msgstr "מצא והחלף טקסט בפרויקטים"
+
+msgid "Replace all"
+msgstr "החלף הכל"
+
+msgid "Filter results by this part"
+msgstr "סנן תוצאות לפי חלק זה"
+
+msgid "Filter results by this document"
+msgstr "סנן תוצאות לפי מסמך זה"
+
+msgid "Filter results by this transcription level"
+msgstr "סנן תוצאות לפי רמת התמלול"
+
+msgid "Results"
+msgstr "תוצאות"
+
+msgid "Previous line"
+msgstr "שורה קודמת"
+
+msgid "Line transcription"
+msgstr "תמלול שורה"
+
+msgid "Next line"
+msgstr "שורה הבאה"
+
+msgid "Search terms found in previous or next line."
+msgstr "מונחי חיפוש נמצאו בשורה קודמת או הבאה."
+
+msgid "in document"
+msgstr "במסמך"
+
+msgid "Full image cropped according to the transcription bounding box"
+msgstr "תמונה מלאה חתוכה לפי מסגרת התמלול"
+
+msgid "Search score"
+msgstr "ציון חיפוש"
+
+msgid "Go to document part editing page"
+msgstr "עבור לדף עריכת חלק המסמך"
+
+# Import/Export functionality
+msgid "Import is already ongoing, please wait for it to be finished or cancel it."
+msgstr "הייבוא כבר מתבצע, אנא המתן עד שיסתיים או בטל אותו."
+
+msgid "Resume previous import."
+msgstr "המשך ייבוא קודם."
+
+msgid "Start importing"
+msgstr "התחל ייבוא"
+
+msgid "Import images from IIIF."
+msgstr "ייבא תמונות מ-IIIF."
+
+msgid "Import images from a PDF document."
+msgstr "ייבא תמונות ממסמך PDF."
+
+msgid "A single pdf with one image per page."
+msgstr "PDF יחיד עם תמונה אחת לכל עמוד."
+
+msgid "Import segmentation & transcriptions from XML."
+msgstr "ייבא פילוח ותמלולים מ-XML."
+
+msgid "Import images/segmentation/transcriptions described by METS."
+msgstr "ייבא תמונות/פילוח/תמלולים המתוארים ב-METS."
+
+msgid "The prefix of the target transcription. Will default to \"METS Import\""
+msgstr "קידומת התמלול היעד. יהיה כברירת מחדל \"ייבוא METS\""
+
+msgid "From a remote METS file"
+msgstr "מקובץ METS מרוחק"
+
+msgid "Or from a local archive"
+msgstr "או מארכיון מקומי"
+
+msgid "A single ZIP archive described by a METS file contained inside it."
+msgstr "ארכיון ZIP יחיד המתואר על ידי קובץ METS שנמצא בתוכו."
+
+msgid "Export"
+msgstr "ייצא"
+
+# Training & Models
+msgid "(PLACEHOLDER)"
+msgstr "(מקום שומר מקום)"
+
+msgid "New model"
+msgstr "מודל חדש"
+
+msgid "Or select an existing one"
+msgstr "או בחר אחד קיים"
+
+msgid "Train"
+msgstr "אמן"
+
+msgid "The training data will be generated from the selected images and transcription."
+msgstr "נתוני האימון יווצרו מהתמונות והתמלול שנבחרו."
+
+msgid "Empty lines will be ignored."
+msgstr "שורות ריקות יתעלמו."
+
+msgid "Gathering data can take time and the model won't be available in the models tab until then."
+msgstr "איסוף נתונים עלול לקחת זמן והמודל לא יהיה זמין בלשונית המודלים עד אז."
+
+msgid "image(s) selected."
+msgstr "תמונה/ות נבחרו."
+
+# Transcription & Segmentation
+msgid "Make sure that the segmentation is good before going forward because resegmenting will delete all bound transcriptions."
+msgstr "וודא שהפילוח טוב לפני המשך כי פילוח מחדש ימחק את כל התמלולים הקשורים."
+
+msgid "Select a model"
+msgstr "בחר מודל"
+
+msgid "Select a transcription"
+msgstr "בחר תמלול"
+
+msgid "Transcribe"
+msgstr "תמלל"
+
+msgid "Beware that re-segmenting will delete any existing transcriptions!"
+msgstr "זהירות, פילוח מחדש ימחק כל תמלול קיים!"
+
+msgid "Segment"
+msgstr "פלח"
+
+# Alignment
+msgid "Choose a transcription and a textual witness (reference text) to align to the transcription."
+msgstr "בחר תמלול ועד טקסטואלי (טקסט ייחוס) ליישור עם התמלול."
+
+msgid "Upload or select a textual witness"
+msgstr "העלה או בחר עד טקסטואלי"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Align"
+msgstr "יישר"
+
+# Additional funding and institutional text
+msgid "Funded salaries of two developers for XX years…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים..."
+
+# Common UI elements
+msgid "Powered by"
+msgstr "מופעל על ידי"
+
+msgid "Service hosted and maintained by"
+msgstr "שירות מארח ומתוחזק על ידי"
+
+msgid "Inria Paris"
+msgstr "Inria פריס"
+
+msgid "Institutions & Funding"
+msgstr "מוסדות ומימון"
+
+msgid "Other Contributions"
+msgstr "תרומות אחרות"
+
+msgid "In addition to the support of AOROC and the EPHE, eScriptorium has benefitted from a significant number of institutions and funding sources, including the following:"
+msgstr "מופעל על ידי"
+
+msgid "Service hosted and maintained by"
+msgstr "שירות מארח ומתוחזק על ידי"
+
+msgid "Inria Paris"
+msgstr "Inria פריס"
+
+msgid "Institutions & Funding"
+msgstr "מוסדות ומימון"
+
+msgid "Other Contributions"
+msgstr "תרומות אחרות"
+
+# Additional Login/Authentication terms
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Your username and password didn't match. Please try again."
+msgstr "שם המשתמש והסיסמה שלך לא תואמים. אנא נסה שוב."
+
+msgid "Hello {{username}}"
+msgstr "שלום {{username}}"
+
+msgid "Password"
+msgstr "סיסמה"
+
+msgid "Login"
+msgstr "התחברות"
+
+msgid "Sign in"
+msgstr "כניסה"
+
+msgid "Lost password?"
+msgstr "שכחת סיסמה?"
+
+msgid "Forgotten your password?"
+msgstr "שכחת את הסיסמה?"
+
+msgid "Remember me"
+msgstr "זכור אותי"
+
+msgid "Log out"
+msgstr "התנתק"
+
+msgid "Logout"
+msgstr "התנתקות"
+
+# Navigation and Common UI
+msgid "Home"
+msgstr "בית"
+
+msgid "Dashboard"
+msgstr "לוח בקרה"
+
+msgid "Projects"
+msgstr "פרויקטים"
+
+msgid "Models"
+msgstr "מודלים"
+
+msgid "Profile"
+msgstr "פרופיל"
+
+msgid "Help"
+msgstr "עזרה"
+
+msgid "About"
+msgstr "אודות"
+
+msgid "Back"
+msgstr "חזור"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Cancel"
+msgstr "ביטול"
+
+msgid "Delete"
+msgstr "מחק"
+
+msgid "Confirm"
+msgstr "אשר"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Loading..."
+msgstr "טוען..."
+
+msgid "Please wait..."
+msgstr "אנא המתן..."
+
+# Form validation and errors
+msgid "This field is required."
+msgstr "שדה זה חובה."
+
+msgid "Please enter a valid email address."
+msgstr "אנא הכנס כתובת אימייל תקינה."
+
+msgid "Passwords do not match."
+msgstr "הסיסמאות אינן תואמות."
+
+msgid "Invalid username or password."
+msgstr "שם משתמש או סיסמה שגויים."
+
+# Common actions
+msgid "View"
+msgstr "צפה"
+
+msgid "Download"
+msgstr "הורד"
+
+msgid "Upload"
+msgstr "העלה"
+
+msgid "Import"
+msgstr "ייבא"
+
+msgid "Submit"
+msgstr "שלח"
+
+msgid "Apply"
+msgstr "החל"
+
+msgid "Reset"
+msgstr "איפוס"
+
+# Date and time
+msgid "Today"
+msgstr "היום"
+
+msgid "Yesterday"
+msgstr "אתמול"
+
+msgid "Tomorrow"
+msgstr "מחר"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Time"
+msgstr "שעה"
+
+# Status and states
+msgid "Active"
+msgstr "פעיל"
+
+msgid "Inactive"
+msgstr "לא פעיל"
+
+msgid "Pending"
+msgstr "ממתין"
+
+msgid "Completed"
+msgstr "הושלם"
+
+msgid "Failed"
+msgstr "נכשל"
+
+msgid "Success"
+msgstr "הצליח"
+
+msgid "Error"
+msgstr "שגיאה"
+
+msgid "Warning"
+msgstr "אזהרה"
+
+# Model Field Labels and Help Text
+msgid "email address"
+msgstr "כתובת אימייל"
+
+msgid "Use the legacy version of the user interface. If unchecked, features that have not yet been ported to the new interface may become unavailable. Likewise, if checked, newer features may become unavailable."
+msgstr "השתמש בגרסה הישנה של ממשק המשתמש. אם לא מסומן, תכונות שעדיין לא הועברו לממשק החדש עלולות להפוך לא זמינות. כמו כן, אם מסומן, תכונות חדשות יותר עלולות להפוך לא זמינות."
+
+msgid "Team"
+msgstr "צוות"
+
+msgid "Contact message"
+msgstr "הודעת יצירת קשר"
+
+msgid "Contact messages"
+msgstr "הודעות יצירת קשר"
+
+# Form Labels and Help Text
+msgid "All projects"
+msgstr "כל הפרויקטים"
+
+msgid "Text to replace"
+msgstr "טקסט להחלפה"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Model"
+msgstr "מודל"
+
+msgid "-- New --"
+msgstr "-- חדש --"
+
+msgid "If checked, deletes existing segmentation <b>and bound transcriptions</b> first!"
+msgstr "אם מסומן, מוחק קודם פילוח קיים <b>ותמלולים קשורים</b>!"
+
+msgid "The transcription on which to perform alignment."
+msgstr "התמלול שעליו לבצע יישור."
+
+msgid "The reference text for alignment; must be a .txt file."
+msgstr "טקסט הייחוס ליישור; חייב להיות קובץ .txt."
+
+msgid "Reuse a previously-uploaded reference text."
+msgstr "השתמש מחדש בטקסט ייחוס שהועלה קודם."
+
+msgid "N-gram"
+msgstr "N-gram"
+
+msgid "Length (2–25) of token sequences to compare; 25 should work well for at least moderately clean OCR. For very poor OCR, lower to 3 or 4."
+msgstr "אורך (2-25) של רצפי טוקנים להשוואה; 25 אמור לעבוד טוב לפחות עבור OCR נקי בינוני. עבור OCR גרוע מאוד, הורד ל-3 או 4."
+
+# Workflow and Task Status
+msgid "Queued"
+msgstr "בתור"
+
+msgid "Running"
+msgstr "רץ"
+
+msgid "Crashed"
+msgstr "קרס"
+
+msgid "Finished"
+msgstr "הסתיים"
+
+msgid "Canceled"
+msgstr "בוטל"
+
+# User Management and Invitations Messages
+msgid "Invitation sent successfully!"
+msgstr "ההזמנה נשלחה בהצלחה!"
+
+msgid "You do not have permission to invite users."
+msgstr "אין לך הרשאה להזמין משתמשים."
+
+msgid "Successfully registered, you can now log in!"
+msgstr "נרשמת בהצלחה, כעת תוכל להתחבר!"
+
+msgid "You are now a member of Team {team_name}!"
+msgstr "אתה כעת חבר בצוות {team_name}!"
+
+msgid "User {user} successfully removed from the team {team_name}."
+msgstr "המשתמש {user} הוסר בהצלחה מהצוות {team_name}."
+
+msgid "You successfully left {team}."
+msgstr "עזבת בהצלחה את {team}."
+
+msgid "Successfully transferred ownership to {user}."
+msgstr "הבעלות הועברה בהצלחה ל{user}."
+
+msgid "Successfully sent %(count)d invitations."
+msgstr "נשלחו בהצלחה %(count)d הזמנות."
+
+msgid "Skipped invalid: %(emails)s"
+msgstr "דולג על לא תקין: %(emails)s"
+
+msgid "Invitation sent to %(email)s."
+msgstr "ההזמנה נשלחה אל %(email)s."
+
+# System Messages and Notifications
+msgid "Something went wrong during the ontology import..."
+msgstr "משהו השתבש במהלך ייבוא האונטולוגיה..."
+
+msgid "Ontology import finished with warnings."
+msgstr "ייבוא האונטולוגיה הסתיים עם אזהרות."
+
+msgid "Ontology import finished successfully!"
+msgstr "ייבוא האונטולוגיה הסתיים בהצלחה!"
+
+# File and document related
+msgid "Document"
+msgstr "מסמך"
+
+msgid "Page"
+msgstr "עמוד"
+
+msgid "Line"
+msgstr "שורה"
+
+msgid "Word"
+msgstr "מילה"
+
+msgid "Character"
+msgstr "תו"
+
+msgid "Text"
+msgstr "טקסט"
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "File"
+msgstr "קובץ"
+
+msgid "Folder"
+msgstr "תיקייה"
+
+msgid "Size"
+msgstr "גודל"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Format"
+msgstr "פורמט"
+
+msgid "Quality"
+msgstr "איכות"
+
+msgid "Resolution"
+msgstr "רזולוציה"
+
+# Button and Action Labels  
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Send invitation"
+msgstr "שלח הזמנה"
+
+msgid "Remove user from group"
+msgstr "הסר משתמש מקבוצה"
+
+# Block translations with variables
+msgctxt "invitation email"
+msgid "%(sender)s has invited you to join the team %(team_name)s on eScriptorium."
+msgstr "%(sender)s הזמין אותך להצטרף לצוות %(team_name)s ב-eScriptorium."
+
+msgctxt "team ownership"
+msgid "Owned by %(owner)s"
+msgstr "בבעלות %(owner)s"
+
+# Additional funding and institutional text (from contributors examples)
+msgid "In addition to the support of AOROC and the EPHE, eScriptorium has benefitted from a significant number of institutions and funding sources, including the following:"
+msgstr "בנוסף לתמיכת AOROC וה-EPHE, eScriptorium זכה לתמיכת מספר רב של מוסדות ומקורות מימון, כולל:"
+
+msgid "Funded salaries of two developers for XX years, as well as …"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם..."
+
+msgid "Funded …???"
+msgstr "מימן...???"
+
+msgid "Funded the acquisition of HPC hardware and servers…"
+msgstr "מימן רכישת חומרת HPC ושרתים..."
+
+msgid "Funded the development of the virtual keyboard with Teklia."
+msgstr "מימן את פיתוח המקלדת הוירטואלית עם Teklia."
+
+msgid "Funded salaries of two developers for XX years, as well as sustaining the HPC…"
+msgstr "מימן משכורות של שני מפתחים למשך XX שנים, כמו גם קיום ה-HPC..."
+
+msgid "Funded advanced line-joining interface…"
+msgstr "מימן ממשק מתקדם לחיבור שורות..."
+
+msgid "Funded UI development…"
+msgstr "מימן פיתוח ממשק משתמש..."
+
+msgid "Funded SLURM-based task execution…"
+msgstr "מימן ביצוע משימות מבוסס SLURM..."
+
+msgid "We are also very grateful for other types of contribution, such as open datasets (particularly those on HTR-United), open models, tickets reporting bugs and improvements, documentation, organising training sessions, producing plugins and other tools…"
+msgstr "אנו גם מאוד אסירי תודה לסוגים אחרים של תרומה, כגון מערכי נתונים פתוחים (במיוחד אלה ב-HTR-United), מודלים פתוחים, כרטיסים המדווחים על באגים ושיפורים, תיעוד, ארגון מפגשי הכשרה, הפקת תוספים וכלים אחרים..."
