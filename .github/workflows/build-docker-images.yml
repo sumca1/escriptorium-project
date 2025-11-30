@@ -37,20 +37,10 @@ jobs:
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
       
-      - name: 🏗️ Build and push eScriptorium image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./CORE/eScriptorium_UNIFIED
-          file: ./CORE/eScriptorium_UNIFIED/Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            ENVIRONMENT=production
-      
       - name: 📦 Pull and push base images for NetFree bypass
         run: |
           echo "🐳 משוך תמונות base מ-Docker Hub (זמין ב-GitHub!)"
+          echo "⚠️ חובה לעשות זאת לפני build של eScriptorium!"
           
           # Registry image
           echo "📦 1/4 - registry:2"
@@ -79,6 +69,17 @@ jobs:
           docker push ${{ env.REGISTRY }}/${{ github.repository }}/postgres:15-alpine
           
           echo "✅ כל התמונות זמינות ב-GitHub Container Registry!"
+      
+      - name: 🏗️ Build and push eScriptorium image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./CORE/eScriptorium_UNIFIED
+          file: ./CORE/eScriptorium_UNIFIED/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            ENVIRONMENT=production
       
       - name: ✅ Build complete
         run: |
