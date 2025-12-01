@@ -23,12 +23,20 @@ jobs:
       - name: Pull image from GHCR
         run: |
           echo "📦 מוריד image מ-GHCR..."
-          docker pull ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }}
+          TAG="${{ inputs.image_tag }}"
+          if [ -z "$TAG" ]; then
+            TAG="latest"
+          fi
+          docker pull ghcr.io/${{ github.repository }}:$TAG
       
       - name: Export image to tar
         run: |
           echo "💾 שומר image כקובץ tar..."
-          docker save ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }} -o escriptorium-image.tar
+          TAG="${{ inputs.image_tag }}"
+          if [ -z "$TAG" ]; then
+            TAG="latest"
+          fi
+          docker save ghcr.io/${{ github.repository }}:$TAG -o escriptorium-image.tar
           
           echo "📊 גודל הקובץ:"
           ls -lh escriptorium-image.tar
@@ -49,16 +57,20 @@ jobs:
       
       - name: Summary
         run: |
+          TAG="${{ inputs.image_tag }}"
+          if [ -z "$TAG" ]; then
+            TAG="latest"
+          fi
           echo "✅ Image exported successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📦 **Artifact:** escriptorium-docker-image" >> $GITHUB_STEP_SUMMARY
-          echo "🏷️  **Tag:** ${{ inputs.image_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "🏷️  **Tag:** $TAG" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### להורדה ושימוש:" >> $GITHUB_STEP_SUMMARY
           echo '```powershell' >> $GITHUB_STEP_SUMMARY
           echo '# הורד את escriptorium-image.tar.gz' >> $GITHUB_STEP_SUMMARY
           echo 'gunzip escriptorium-image.tar.gz' >> $GITHUB_STEP_SUMMARY
           echo 'docker load -i escriptorium-image.tar' >> $GITHUB_STEP_SUMMARY
-          echo 'docker tag ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }} localhost:5001/escriptorium:${{ inputs.image_tag || 'latest' }}' >> $GITHUB_STEP_SUMMARY
-          echo 'docker push localhost:5001/escriptorium:${{ inputs.image_tag || 'latest' }}' >> $GITHUB_STEP_SUMMARY
+          echo "docker tag ghcr.io/${{ github.repository }}:$TAG localhost:5001/escriptorium:$TAG" >> $GITHUB_STEP_SUMMARY
+          echo "docker push localhost:5001/escriptorium:$TAG" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
