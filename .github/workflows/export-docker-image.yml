@@ -23,12 +23,12 @@ jobs:
       - name: Pull image from GHCR
         run: |
           echo "📦 מוריד image מ-GHCR..."
-          docker pull ghcr.io/${{ github.repository }}/escriptorium:${{ inputs.image_tag }}
+          docker pull ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }}
       
       - name: Export image to tar
         run: |
           echo "💾 שומר image כקובץ tar..."
-          docker save ghcr.io/${{ github.repository }}/escriptorium:${{ inputs.image_tag }} -o escriptorium-image.tar
+          docker save ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }} -o escriptorium-image.tar
           
           echo "📊 גודל הקובץ:"
           ls -lh escriptorium-image.tar
@@ -59,6 +59,6 @@ jobs:
           echo '# הורד את escriptorium-image.tar.gz' >> $GITHUB_STEP_SUMMARY
           echo 'gunzip escriptorium-image.tar.gz' >> $GITHUB_STEP_SUMMARY
           echo 'docker load -i escriptorium-image.tar' >> $GITHUB_STEP_SUMMARY
-          echo 'docker tag ghcr.io/${{ github.repository }}/escriptorium:${{ inputs.image_tag }} localhost:5001/escriptorium:${{ inputs.image_tag }}' >> $GITHUB_STEP_SUMMARY
-          echo 'docker push localhost:5001/escriptorium:${{ inputs.image_tag }}' >> $GITHUB_STEP_SUMMARY
+          echo 'docker tag ghcr.io/${{ github.repository }}:${{ inputs.image_tag || 'latest' }} localhost:5001/escriptorium:${{ inputs.image_tag || 'latest' }}' >> $GITHUB_STEP_SUMMARY
+          echo 'docker push localhost:5001/escriptorium:${{ inputs.image_tag || 'latest' }}' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
